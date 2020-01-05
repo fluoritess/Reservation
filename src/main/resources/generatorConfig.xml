@@ -127,10 +127,17 @@
                <!--enableDeleteByExample="true" enableSelectByExample="true"-->
                <!--selectByExampleQueryId="true">-->
         <!--</table>-->
-        <table tableName="coupon" domainObjectName="coupon"
+        <!--<table tableName="coupon" domainObjectName="coupon"-->
+               <!--enableCountByExample="true" enableUpdateByExample="true"-->
+               <!--enableDeleteByExample="true" enableSelectByExample="true"-->
+               <!--selectByExampleQueryId="true">-->
+        <!--</table>-->
+
+        <table tableName="messageboard" domainObjectName="messageboard"
                enableCountByExample="true" enableUpdateByExample="true"
                enableDeleteByExample="true" enableSelectByExample="true"
                selectByExampleQueryId="true">
         </table>
+
     </context>
 </generatorConfiguration>
