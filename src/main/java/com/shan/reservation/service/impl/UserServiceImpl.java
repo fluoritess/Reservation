@@ -9,7 +9,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.Iterator;
 import java.util.List;
-
+/**
+ * @author wsw
+ * @Package com.gabe.mychat.service
+ * @Description:
+ * @date 2020年1月5日 22:17:26
+ */
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
