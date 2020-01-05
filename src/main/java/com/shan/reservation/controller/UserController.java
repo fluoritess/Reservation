@@ -1,6 +1,8 @@
 package com.shan.reservation.controller;
 
+import com.shan.reservation.bean.address;
 import com.shan.reservation.bean.user;
+import com.shan.reservation.service.AddressService;
 import com.shan.reservation.service.UserService;
 import com.shan.reservation.util.ArchivesLog;
 import com.shan.reservation.util.R;
@@ -29,6 +31,8 @@ import java.util.Map;
 public class UserController {
     @Autowired
     UserService userService;
+    @Autowired
+    AddressService addressService;
     @ResponseBody
     @RequestMapping("/test" )
     public R updateImg(@RequestBody Map<String,String> map){
@@ -51,5 +55,21 @@ public class UserController {
         }
         return  R.error();
     }
-
+    @ResponseBody
+    @RequestMapping("/GetUserCityInfo" )
+    public R GetUserInfo(@RequestBody Map<String,String> map,HttpSession httpSession){
+        String name=map.get("name");
+        user user=userService.selectUserByNickName(name);
+        if(user!=null){
+            int addressId=user.getUserId();
+            address address=addressService.getAddressInfo(addressId);
+            String city=address.getAddressCity();
+            String distinct=address.getAddressDistrict();
+            Map info=new HashMap();
+            info.put("city",city);
+            info.put("distict",distinct);
+            return  R.ok().put("user",info);
+        }
+        return  R.error();
+    }
 }

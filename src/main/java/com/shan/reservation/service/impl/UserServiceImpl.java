@@ -11,7 +11,7 @@ import java.util.Iterator;
 import java.util.List;
 
 @Service
-public class UserSercieImpl implements UserService {
+public class UserServiceImpl implements UserService {
     @Autowired
     userMapper userMapper;
 

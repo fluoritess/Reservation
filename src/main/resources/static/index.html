@@ -24,7 +24,7 @@ Author URI: http://www.deathghost.cn
  <section class="Topmenubg">
   <div class="Topnav">
    <div class="LeftNav">
-    <a href="login/register.html">注册</a>/<a href="login/login.html">登录</a><a href="#">QQ客服</a><a href="#">微信客服</a><a href="#">手机客户端</a>
+    <!--<a href="login/register.html">注册</a>/<a href="login/login.html">登录</a><a href="#">QQ客服</a><a href="#">微信客服</a><a href="#">手机客户端</a>-->
    </div>
    <div class="RightNav">
     <a href="user_center.html">用户中心</a> <a href="user_orderlist.html" target="_blank" title="我的订单">我的订单</a> <a href="cart.html">购物车（0）</a> <a href="user_favorites.html" target="_blank" title="我的收藏">我的收藏</a> <a href="#">商家入驻</a>
@@ -35,7 +35,7 @@ Author URI: http://www.deathghost.cn
   <div class="Logo">
    <img src="login/images/logo.png" title="DeathGhost" alt="模板">
    <i></i>
-   <span>西安市 [ <a href="#">莲湖区</a> ]</span>
+   <span id="distict"></span>
   </div>
   <div class="Search"> 
    <form method="get" id="main_a_serach" onsubmit="return check_search(this)">
@@ -363,5 +363,40 @@ Author URI: http://www.deathghost.cn
  </section>
 <div class="copyright">© 版权所有 2016 DeathGhost 技术支持：<a href="http://www.deathghost.cn" title="DeathGhost">DeathGhost</a></div>
 </footer>
+<script type="text/javascript">
+    $(function(){
+        var user=sessionStorage.getItem("name");
+        console.log(user);
+        if(user==null){
+            $(".LeftNav").append(" <a href=\"login/register.html\">注册</a>/<a href=\"login/login.html\">登录</a><a href=\"#\">QQ客服</a><a href=\"#\">微信客服</a><a href=\"#\">手机客户端</a>");
+        }
+        else{
+            $(".LeftNav").append(" <a href=\"login/register.html\">退出登录</a><a href=\"#\">QQ客服</a><a href=\"#\">微信客服</a><a href=\"#\">手机客户端</a>");
+            var json = {
+                name: user
+            };
+            json = JSON.stringify(json);
+            $.ajax({
+                type: "POST",
+                url: "/GetUserCityInfo",
+                contentType: "application/json; charset=utf-8",
+                data: json,
+                async: false,
+                dataType: "json",
+                success: function (info) {
+                    console.log(info);
+                    var city=info.user.city;
+                    console.log(city);
+                    var distict=info.user.distict;
+                    console.log(distict);
+                    $("#distict").append(city+ "[ <a href=\"#\">"+distict+"</a> ]");
+                },
+                error: function (message) {
+                    $("#request-process-patent").html("获取数据失败！");
+                }
+            });
+        }
+    });
+</script>
 </body>
 </html>

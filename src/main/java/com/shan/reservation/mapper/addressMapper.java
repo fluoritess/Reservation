@@ -3,8 +3,10 @@ package com.shan.reservation.mapper;
 import com.shan.reservation.bean.address;
 import com.shan.reservation.bean.addressExample;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+@Mapper
 public interface addressMapper {
     int countByExample(addressExample example);
 
