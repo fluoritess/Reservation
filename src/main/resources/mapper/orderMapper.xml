@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shan.reservation.mapper.orderMapper" >
+  <resultMap id="BaseResultMap" type="com.shan.reservation.bean.order" >
+    <constructor >
+      <idArg column="order_id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="order_user" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="order_restaurant" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="order_price" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="order_food" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="order_state" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="is_ship" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    order_id, order_user, order_restaurant, order_price, create_time, update_time, order_food, 
+    order_state, is_ship
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shan.reservation.bean.orderExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from order
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from order
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shan.reservation.bean.orderExample" >
+    delete from order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shan.reservation.bean.order" >
+    insert into order (order_id, order_user, order_restaurant, 
+      order_price, create_time, update_time, 
+      order_food, order_state, is_ship
+      )
+    values (#{orderId,jdbcType=VARCHAR}, #{orderUser,jdbcType=INTEGER}, #{orderRestaurant,jdbcType=INTEGER}, 
+      #{orderPrice,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{orderFood,jdbcType=VARCHAR}, #{orderState,jdbcType=INTEGER}, #{isShip,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.shan.reservation.bean.order" >
+    insert into order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="orderUser != null" >
+        order_user,
+      </if>
+      <if test="orderRestaurant != null" >
+        order_restaurant,
+      </if>
+      <if test="orderPrice != null" >
+        order_price,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="orderFood != null" >
+        order_food,
+      </if>
+      <if test="orderState != null" >
+        order_state,
+      </if>
+      <if test="isShip != null" >
+        is_ship,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderUser != null" >
+        #{orderUser,jdbcType=INTEGER},
+      </if>
+      <if test="orderRestaurant != null" >
+        #{orderRestaurant,jdbcType=INTEGER},
+      </if>
+      <if test="orderPrice != null" >
+        #{orderPrice,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderFood != null" >
+        #{orderFood,jdbcType=VARCHAR},
+      </if>
+      <if test="orderState != null" >
+        #{orderState,jdbcType=INTEGER},
+      </if>
+      <if test="isShip != null" >
+        #{isShip,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shan.reservation.bean.orderExample" resultType="java.lang.Integer" >
+    select count(*) from order
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update order
+    <set >
+      <if test="record.orderId != null" >
+        order_id = #{record.orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderUser != null" >
+        order_user = #{record.orderUser,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderRestaurant != null" >
+        order_restaurant = #{record.orderRestaurant,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderPrice != null" >
+        order_price = #{record.orderPrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.orderFood != null" >
+        order_food = #{record.orderFood,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderState != null" >
+        order_state = #{record.orderState,jdbcType=INTEGER},
+      </if>
+      <if test="record.isShip != null" >
+        is_ship = #{record.isShip,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update order
+    set order_id = #{record.orderId,jdbcType=VARCHAR},
+      order_user = #{record.orderUser,jdbcType=INTEGER},
+      order_restaurant = #{record.orderRestaurant,jdbcType=INTEGER},
+      order_price = #{record.orderPrice,jdbcType=INTEGER},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      order_food = #{record.orderFood,jdbcType=VARCHAR},
+      order_state = #{record.orderState,jdbcType=INTEGER},
+      is_ship = #{record.isShip,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shan.reservation.bean.order" >
+    update order
+    <set >
+      <if test="orderUser != null" >
+        order_user = #{orderUser,jdbcType=INTEGER},
+      </if>
+      <if test="orderRestaurant != null" >
+        order_restaurant = #{orderRestaurant,jdbcType=INTEGER},
+      </if>
+      <if test="orderPrice != null" >
+        order_price = #{orderPrice,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderFood != null" >
+        order_food = #{orderFood,jdbcType=VARCHAR},
+      </if>
+      <if test="orderState != null" >
+        order_state = #{orderState,jdbcType=INTEGER},
+      </if>
+      <if test="isShip != null" >
+        is_ship = #{isShip,jdbcType=INTEGER},
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shan.reservation.bean.order" >
+    update order
+    set order_user = #{orderUser,jdbcType=INTEGER},
+      order_restaurant = #{orderRestaurant,jdbcType=INTEGER},
+      order_price = #{orderPrice,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      order_food = #{orderFood,jdbcType=VARCHAR},
+      order_state = #{orderState,jdbcType=INTEGER},
+      is_ship = #{isShip,jdbcType=INTEGER}
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </update>
+</mapper>

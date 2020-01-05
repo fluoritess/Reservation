@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shan.reservation.mapper.addressMapper" >
+  <resultMap id="BaseResultMap" type="com.shan.reservation.bean.address" >
+    <constructor >
+      <idArg column="address_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="address_provence" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="address_city" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="address_district" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="address_street" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    address_id, address_provence, address_city, address_district, address_street
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shan.reservation.bean.addressExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from address
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from address
+    where address_id = #{addressId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from address
+    where address_id = #{addressId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shan.reservation.bean.addressExample" >
+    delete from address
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shan.reservation.bean.address" >
+    insert into address (address_id, address_provence, address_city, 
+      address_district, address_street)
+    values (#{addressId,jdbcType=INTEGER}, #{addressProvence,jdbcType=VARCHAR}, #{addressCity,jdbcType=VARCHAR}, 
+      #{addressDistrict,jdbcType=VARCHAR}, #{addressStreet,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shan.reservation.bean.address" >
+    insert into address
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="addressId != null" >
+        address_id,
+      </if>
+      <if test="addressProvence != null" >
+        address_provence,
+      </if>
+      <if test="addressCity != null" >
+        address_city,
+      </if>
+      <if test="addressDistrict != null" >
+        address_district,
+      </if>
+      <if test="addressStreet != null" >
+        address_street,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="addressId != null" >
+        #{addressId,jdbcType=INTEGER},
+      </if>
+      <if test="addressProvence != null" >
+        #{addressProvence,jdbcType=VARCHAR},
+      </if>
+      <if test="addressCity != null" >
+        #{addressCity,jdbcType=VARCHAR},
+      </if>
+      <if test="addressDistrict != null" >
+        #{addressDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="addressStreet != null" >
+        #{addressStreet,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shan.reservation.bean.addressExample" resultType="java.lang.Integer" >
+    select count(*) from address
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update address
+    <set >
+      <if test="record.addressId != null" >
+        address_id = #{record.addressId,jdbcType=INTEGER},
+      </if>
+      <if test="record.addressProvence != null" >
+        address_provence = #{record.addressProvence,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addressCity != null" >
+        address_city = #{record.addressCity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addressDistrict != null" >
+        address_district = #{record.addressDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addressStreet != null" >
+        address_street = #{record.addressStreet,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update address
+    set address_id = #{record.addressId,jdbcType=INTEGER},
+      address_provence = #{record.addressProvence,jdbcType=VARCHAR},
+      address_city = #{record.addressCity,jdbcType=VARCHAR},
+      address_district = #{record.addressDistrict,jdbcType=VARCHAR},
+      address_street = #{record.addressStreet,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shan.reservation.bean.address" >
+    update address
+    <set >
+      <if test="addressProvence != null" >
+        address_provence = #{addressProvence,jdbcType=VARCHAR},
+      </if>
+      <if test="addressCity != null" >
+        address_city = #{addressCity,jdbcType=VARCHAR},
+      </if>
+      <if test="addressDistrict != null" >
+        address_district = #{addressDistrict,jdbcType=VARCHAR},
+      </if>
+      <if test="addressStreet != null" >
+        address_street = #{addressStreet,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where address_id = #{addressId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shan.reservation.bean.address" >
+    update address
+    set address_provence = #{addressProvence,jdbcType=VARCHAR},
+      address_city = #{addressCity,jdbcType=VARCHAR},
+      address_district = #{addressDistrict,jdbcType=VARCHAR},
+      address_street = #{addressStreet,jdbcType=VARCHAR}
+    where address_id = #{addressId,jdbcType=INTEGER}
+  </update>
+</mapper>

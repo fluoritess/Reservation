@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shan.reservation.mapper.evaluationMapper" >
+  <resultMap id="BaseResultMap" type="com.shan.reservation.bean.evaluation" >
+    <constructor >
+      <idArg column="evaluation_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="order_id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="evaluation_content" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="evaluation_start" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="evaluation_data" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    evaluation_id, order_id, evaluation_content, evaluation_start, evaluation_data
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shan.reservation.bean.evaluationExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from evaluation
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from evaluation
+    where evaluation_id = #{evaluationId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from evaluation
+    where evaluation_id = #{evaluationId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.shan.reservation.bean.evaluationExample" >
+    delete from evaluation
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.shan.reservation.bean.evaluation" >
+    insert into evaluation (evaluation_id, order_id, evaluation_content, 
+      evaluation_start, evaluation_data)
+    values (#{evaluationId,jdbcType=INTEGER}, #{orderId,jdbcType=VARCHAR}, #{evaluationContent,jdbcType=VARCHAR}, 
+      #{evaluationStart,jdbcType=INTEGER}, #{evaluationData,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.shan.reservation.bean.evaluation" >
+    insert into evaluation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="evaluationId != null" >
+        evaluation_id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="evaluationContent != null" >
+        evaluation_content,
+      </if>
+      <if test="evaluationStart != null" >
+        evaluation_start,
+      </if>
+      <if test="evaluationData != null" >
+        evaluation_data,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="evaluationId != null" >
+        #{evaluationId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluationContent != null" >
+        #{evaluationContent,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluationStart != null" >
+        #{evaluationStart,jdbcType=INTEGER},
+      </if>
+      <if test="evaluationData != null" >
+        #{evaluationData,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.shan.reservation.bean.evaluationExample" resultType="java.lang.Integer" >
+    select count(*) from evaluation
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update evaluation
+    <set >
+      <if test="record.evaluationId != null" >
+        evaluation_id = #{record.evaluationId,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderId != null" >
+        order_id = #{record.orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.evaluationContent != null" >
+        evaluation_content = #{record.evaluationContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.evaluationStart != null" >
+        evaluation_start = #{record.evaluationStart,jdbcType=INTEGER},
+      </if>
+      <if test="record.evaluationData != null" >
+        evaluation_data = #{record.evaluationData,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update evaluation
+    set evaluation_id = #{record.evaluationId,jdbcType=INTEGER},
+      order_id = #{record.orderId,jdbcType=VARCHAR},
+      evaluation_content = #{record.evaluationContent,jdbcType=VARCHAR},
+      evaluation_start = #{record.evaluationStart,jdbcType=INTEGER},
+      evaluation_data = #{record.evaluationData,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.shan.reservation.bean.evaluation" >
+    update evaluation
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluationContent != null" >
+        evaluation_content = #{evaluationContent,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluationStart != null" >
+        evaluation_start = #{evaluationStart,jdbcType=INTEGER},
+      </if>
+      <if test="evaluationData != null" >
+        evaluation_data = #{evaluationData,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where evaluation_id = #{evaluationId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.shan.reservation.bean.evaluation" >
+    update evaluation
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      evaluation_content = #{evaluationContent,jdbcType=VARCHAR},
+      evaluation_start = #{evaluationStart,jdbcType=INTEGER},
+      evaluation_data = #{evaluationData,jdbcType=TIMESTAMP}
+    where evaluation_id = #{evaluationId,jdbcType=INTEGER}
+  </update>
+</mapper>

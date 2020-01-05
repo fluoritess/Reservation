@@ -1,0 +1,74 @@
+/*register.css*/
+#secTab {
+	padding-top: 26px;
+}
+.innerTab {
+	width: 330px;
+	margin: 0 auto;
+}
+.innerTab>h2 {
+	text-align: center;
+    font: bold 24px/50px "microsoft yahei";
+    color: #333;
+    margin-bottom: 10px;
+}
+.tableItem {
+	position: relative;
+    z-index: 100;
+    height: 24px;
+    margin-bottom: 10px;
+    padding: 14px 0;
+    border: 1px solid #dedede;
+    background: #FFF;
+    line-height: 24px;
+}
+.tableItem span {
+	position: absolute;
+    left: 20px;
+    top: 0;
+    display: none;
+    height: 50px;
+    font: 14px/50px "sisum";
+    color: #666;
+}
+
+.onlyItem {
+	width: 192px!important;
+}
+.tableText {
+	display: inline-block;
+	/*position: relative;*/
+	/*z-index: 2;*/
+	width: 126px;
+	height: 50px;
+	margin-left: 10px;
+	text-align: center;
+	background-color: #57565f;
+	font: bold 12px/52px "sisum";
+	color: #fff;
+	cursor: default;
+	border-radius: 2px;
+	font-size: 14px;
+}
+.tableItem input {
+	vertical-align: middle;    
+	width: 100%;
+    height: 24px;
+    padding: 0 20px;
+    border: 0 none;
+    line-height: 24px;
+    vertical-align: middle;
+    font-family: "Microsoft YaHei";
+    font-size: 14px;
+    outline: none;
+    box-sizing: border-box;
+}
+.clickRegist {
+	height: 35px;
+	line-height: 35px;
+	color: #666;
+	text-indent: 1em;
+}
+.clickRegist a {
+	color: #06c;
+}
