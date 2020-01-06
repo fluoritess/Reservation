@@ -20,7 +20,7 @@ Author URI: http://www.deathghost.cn
  <section class="Topmenubg">
   <div class="Topnav">
    <div class="LeftNav">
-    <a href="register.html">注册</a>/<a href="login.html">登录</a><a href="#">QQ客服</a><a href="#">微信客服</a><a href="#">手机客户端</a>
+    <!--<a href="register.html">注册</a>/<a href="login.html">登录</a><a href="#">QQ客服</a><a href="#">微信客服</a><a href="#">手机客户端</a>-->
    </div>
    <div class="RightNav">
     <a href="user_center.html">用户中心</a> <a href="user_orderlist.html" target="_blank" title="我的订单">我的订单</a> <a href="cart.html">购物车（0）</a> <a href="user_favorites.html" target="_blank" title="我的收藏">我的收藏</a> <a href="#">商家入驻</a>
@@ -29,7 +29,7 @@ Author URI: http://www.deathghost.cn
  </section>
  <div class="Logo_search">
   <div class="Logo">
-   <img src="images/logo.jpg" title="DeathGhost" alt="模板">
+   <img src="login/images/logo.png" title="DeathGhost" alt="模板">
    <i></i>
    <span>西安市 [ <a href="#">莲湖区</a> ]</span>
   </div>
@@ -79,18 +79,18 @@ Author URI: http://www.deathghost.cn
 		</li>
 		<li class="select-list">
 			<dl id="select2">
-				<dt>位置：</dt>
-				<dd class="select-all selected"><a href="javascript:">全部</a></dd>
-				<dd><a href="javascript:">高新区</a></dd>
-                <dd><a href="javascript:">未央区</a></dd>
-                <dd><a href="javascript:">碑林区</a></dd>
-                <dd><a href="javascript:">阎良区</a></dd>
-                <dd><a href="javascript:">新城区</a></dd>
-                <dd><a href="javascript:">雁塔区</a></dd>
-                <dd><a href="javascript:">莲湖区</a></dd>
-                <dd><a href="javascript:">灞桥区</a></dd>
-                <dd><a href="javascript:">高陵区</a></dd>
-                <dd><a href="javascript:">周至县</a></dd>
+				<!--<dt>位置：</dt>-->
+				<!--<dd class="select-all selected"><a href="javascript:">全部</a></dd>-->
+				<!--<dd><a href="javascript:">高新区</a></dd>-->
+                <!--<dd><a href="javascript:">未央区</a></dd>-->
+                <!--<dd><a href="javascript:">碑林区</a></dd>-->
+                <!--<dd><a href="javascript:">阎良区</a></dd>-->
+                <!--<dd><a href="javascript:">新城区</a></dd>-->
+                <!--<dd><a href="javascript:">雁塔区</a></dd>-->
+                <!--<dd><a href="javascript:">莲湖区</a></dd>-->
+                <!--<dd><a href="javascript:">灞桥区</a></dd>-->
+                <!--<dd><a href="javascript:">高陵区</a></dd>-->
+                <!--<dd><a href="javascript:">周至县</a></dd>-->
 			</dl>
 		</li>
 		<li class="select-list">
@@ -338,5 +338,76 @@ Author URI: http://www.deathghost.cn
  </section>
 <div class="copyright">© 版权所有 2016 DeathGhost 技术支持：<a href="http://www.deathghost.cn" title="DeathGhost">DeathGhost</a></div>
 </footer>
+<script type="text/javascript">
+    $(function(){
+        var user=sessionStorage.getItem("name");
+        console.log(user);
+        if(user==null){
+            $(".LeftNav").append(" <a href=\"login/register.html\">注册</a>/<a href=\"login/login.html\">登录</a><a href=\"#\">QQ客服</a><a href=\"#\">微信客服</a><a href=\"#\">手机客户端</a>");
+            $("#select2").append("\t<dt>位置：</dt>\n" +
+                "\t\t\t\t<dd class=\"select-all selected\"><a href=\"javascript:\">全部</a></dd>\n" +
+                "\t\t\t\t<dd><a href=\"javascript:\">高新区</a></dd>\n" +
+                "                <dd><a href=\"javascript:\">未央区</a></dd>\n" +
+                "                <dd><a href=\"javascript:\">碑林区</a></dd>\n" +
+                "                <dd><a href=\"javascript:\">阎良区</a></dd>\n" +
+                "                <dd><a href=\"javascript:\">新城区</a></dd>\n" +
+                "                <dd><a href=\"javascript:\">雁塔区</a></dd>\n" +
+                "                <dd><a href=\"javascript:\">莲湖区</a></dd>\n" +
+                "                <dd><a href=\"javascript:\">灞桥区</a></dd>\n" +
+                "                <dd><a href=\"javascript:\">高陵区</a></dd>\n" +
+                "                <dd><a href=\"javascript:\">周至县</a></dd>");
+        }
+        else{
+            $(".LeftNav").append(" <a href=\"login/register.html\">退出登录</a><a href=\"#\">QQ客服</a><a href=\"#\">微信客服</a><a href=\"#\">手机客户端</a>");
+            var json = {
+                name: user
+            };
+            json = JSON.stringify(json);
+            var cityname=null;
+            $.ajax({
+                type: "POST",
+                url: "/GetUserCityInfo",
+                contentType: "application/json; charset=utf-8",
+                data: json,
+                async: false,
+                dataType: "json",
+                success: function (info) {
+                    var city=info.user.city;
+                    cityname=city;
+                    var distict=info.user.distict;
+                    $("#distict").append(city+ "[ <a href=\"#\">"+distict+"</a> ]");
+                },
+                error: function (message) {
+                    $("#request-process-patent").html("获取数据失败！");
+                }
+            });
+
+            var city = {
+                city_name: cityname
+            };
+            city = JSON.stringify(city);
+            $("#select2").append("<dt>位置：</dt>\n" +
+                "\t\t\t\t<dd class=\"select-all selected\"><a href=\"javascript:\">全部</a></dd>");
+            $.ajax({
+                type: "POST",
+                url: "/GetDistictInfo",
+                contentType: "application/json; charset=utf-8",
+                data: city,
+                async: false,
+                dataType: "json",
+                success: function (info) {
+                    for(var i=0;i<info.distict.length;i++){
+                        var distict=info.distict[i].cityDistict;
+                        console.log(distict);
+                        $("#select2").append("<dd><a href=\"javascript:\">"+distict+"</a></dd>");
+                    }
+                },
+                error: function (message) {
+                    $("#request-process-patent").html("获取数据失败！");
+                }
+            });
+        }
+    });
+</script>
 </body>
 </html>
