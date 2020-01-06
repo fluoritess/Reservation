@@ -44,7 +44,7 @@ $(function () {
 // class tree  fslist_navtree
 $(document).ready(function(){
 	
-	$("#select1 dd").click(function () {
+	$("#select1").on('click','dd',function(){
 		$(this).addClass("selected").siblings().removeClass("selected");
 		if ($(this).hasClass("select-all")) {
 			$("#selectA").remove();
@@ -57,7 +57,8 @@ $(document).ready(function(){
 			}
 		}
 	});
-	$("#select2 dd").click(function () {
+	$("#select2").on('click','dd',function () {
+	    console.log($(this).text());
 		$(this).addClass("selected").siblings().removeClass("selected");
 		if ($(this).hasClass("select-all")) {
 			$("#selectB").remove();
@@ -70,7 +71,7 @@ $(document).ready(function(){
 			}
 		}
 	});
-	$("#select3 dd").click(function () {
+	$("#select3").on('click','dd',function () {
 		$(this).addClass("selected").siblings().removeClass("selected");
 		if ($(this).hasClass("select-all")) {
 			$("#selectC").remove();
@@ -83,7 +84,7 @@ $(document).ready(function(){
 			}
 		}
 	});
-	$("#select4 dd").click(function () {
+	$("#select4").on('click','dd',function () {
 		$(this).addClass("selected").siblings().removeClass("selected");
 		if ($(this).hasClass("select-all")) {
 			$("#selectD").remove();
@@ -96,26 +97,26 @@ $(document).ready(function(){
 			}
 		}
 	});
-	$("#selectA").live("click", function () {
+	$("#selectA").on("click", function () {
 		$(this).remove();
 		$("#select1 .select-all").addClass("selected").siblings().removeClass("selected");
 	});
 	
-	$("#selectB").live("click", function () {
+	$("#selectB").on("click", function () {
 		$(this).remove();
 		$("#select2 .select-all").addClass("selected").siblings().removeClass("selected");
 	});
 	
-	$("#selectC").live("click", function () {
+	$("#selectC").on("click", function () {
 		$(this).remove();
 		$("#select3 .select-all").addClass("selected").siblings().removeClass("selected");
 	});
-	$("#selectD").live("click", function () {
+	$("#selectD").on("click", function () {
 		$(this).remove();
 		$("#select4 .select-all").addClass("selected").siblings().removeClass("selected");
 	});
 	
-	$(".select dd").live("click", function () {
+	$(".select dd").on("click", function () {
 		if ($(".select-result dd").length > 1) {
 			$(".select-no").hide();
 		} else {

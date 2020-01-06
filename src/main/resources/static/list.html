@@ -79,8 +79,8 @@ Author URI: http://www.deathghost.cn
 		</li>
 		<li class="select-list">
 			<dl id="select2">
-				<!--<dt>位置：</dt>-->
-				<!--<dd class="select-all selected"><a href="javascript:">全部</a></dd>-->
+				<dt>位置：</dt>
+				<dd class="select-all selected"><a href="javascript:">全部</a></dd>
 				<!--<dd><a href="javascript:">高新区</a></dd>-->
                 <!--<dd><a href="javascript:">未央区</a></dd>-->
                 <!--<dd><a href="javascript:">碑林区</a></dd>-->
@@ -344,9 +344,7 @@ Author URI: http://www.deathghost.cn
         console.log(user);
         if(user==null){
             $(".LeftNav").append(" <a href=\"login/register.html\">注册</a>/<a href=\"login/login.html\">登录</a><a href=\"#\">QQ客服</a><a href=\"#\">微信客服</a><a href=\"#\">手机客户端</a>");
-            $("#select2").append("\t<dt>位置：</dt>\n" +
-                "\t\t\t\t<dd class=\"select-all selected\"><a href=\"javascript:\">全部</a></dd>\n" +
-                "\t\t\t\t<dd><a href=\"javascript:\">高新区</a></dd>\n" +
+            $("#select2").append("<dd><a href=\"javascript:\">高新区</a></dd>\n" +
                 "                <dd><a href=\"javascript:\">未央区</a></dd>\n" +
                 "                <dd><a href=\"javascript:\">碑林区</a></dd>\n" +
                 "                <dd><a href=\"javascript:\">阎良区</a></dd>\n" +
@@ -386,8 +384,6 @@ Author URI: http://www.deathghost.cn
                 city_name: cityname
             };
             city = JSON.stringify(city);
-            $("#select2").append("<dt>位置：</dt>\n" +
-                "\t\t\t\t<dd class=\"select-all selected\"><a href=\"javascript:\">全部</a></dd>");
             $.ajax({
                 type: "POST",
                 url: "/GetDistictInfo",
