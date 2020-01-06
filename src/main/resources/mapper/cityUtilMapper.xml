@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shan.reservation.mapper.cityUtilMapper" >
+    <resultMap id="BaseResultMap" type="com.shan.reservation.bean.city_info" >
+        <constructor >
+            <arg column="city_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="city_distict" jdbcType="VARCHAR" javaType="java.lang.String" />
+        </constructor>
+    </resultMap>
+
+    <select id="selectDistictByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select * from city_info where city_name= #{city_name}
+    </select>
+</mapper>

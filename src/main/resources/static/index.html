@@ -137,19 +137,19 @@ Author URI: http://www.deathghost.cn
    <ul style="display:block;">
     <li>
      <p class="seekarea">
-     <a href="#">碑林区</a>
-     <a href="#">新城区</a>
-     <a href="#">未央区</a>
-     <a href="#">雁塔区</a>
-     <a href="#">莲湖区</a>
-     <a href="#">高新区</a>
-     <a href="#">灞桥区</a>
-     <a href="#">高陵区</a>
-     <a href="#">阎良区</a>
-     <a href="#">临潼区</a>
-     <a href="#">长安区</a>
-     <a href="#">周至县</a>
-     <a href="#">蓝田县 </a>
+     <!--<a href="#">碑林区</a>-->
+     <!--<a href="#">新城区</a>-->
+     <!--<a href="#">未央区</a>-->
+     <!--<a href="#">雁塔区</a>-->
+     <!--<a href="#">莲湖区</a>-->
+     <!--<a href="#">高新区</a>-->
+     <!--<a href="#">灞桥区</a>-->
+     <!--<a href="#">高陵区</a>-->
+     <!--<a href="#">阎良区</a>-->
+     <!--<a href="#">临潼区</a>-->
+     <!--<a href="#">长安区</a>-->
+     <!--<a href="#">周至县</a>-->
+     <!--<a href="#">蓝田县 </a>-->
      </p>
      <div class="SCcontent">
      <a href="detailsp.html" target="_blank" title="菜品名称">
@@ -212,19 +212,19 @@ Author URI: http://www.deathghost.cn
    <ul>
   <li>
      <p class="seekarea">
-     <a href="#">碑林区</a>
-     <a href="#">新城区</a>
-     <a href="#">未央区</a>
-     <a href="#">雁塔区</a>
-     <a href="#">莲湖区</a>
-     <a href="#">高新区</a>
-     <a href="#">灞桥区</a>
-     <a href="#">高陵区</a>
-     <a href="#">阎良区</a>
-     <a href="#">临潼区</a>
-     <a href="#">长安区</a>
-     <a href="#">周至县</a>
-     <a href="#">蓝田县 </a>
+     <!--<a href="#">碑林区</a>-->
+     <!--<a href="#">新城区</a>-->
+     <!--<a href="#">未央区</a>-->
+     <!--<a href="#">雁塔区</a>-->
+     <!--<a href="#">莲湖区</a>-->
+     <!--<a href="#">高新区</a>-->
+     <!--<a href="#">灞桥区</a>-->
+     <!--<a href="#">高陵区</a>-->
+     <!--<a href="#">阎良区</a>-->
+     <!--<a href="#">临潼区</a>-->
+     <!--<a href="#">长安区</a>-->
+     <!--<a href="#">周至县</a>-->
+     <!--<a href="#">蓝田县 </a>-->
      </p>
      <div class="DCcontent">
        <a href="shop.html" target="_blank" title="TITLE:店名">
@@ -369,6 +369,19 @@ Author URI: http://www.deathghost.cn
         console.log(user);
         if(user==null){
             $(".LeftNav").append(" <a href=\"login/register.html\">注册</a>/<a href=\"login/login.html\">登录</a><a href=\"#\">QQ客服</a><a href=\"#\">微信客服</a><a href=\"#\">手机客户端</a>");
+            $(".seekarea").append(" <a href=\"#\">碑林区</a>\n" +
+                "     <a href=\"#\">新城区</a>\n" +
+                "     <a href=\"#\">未央区</a>\n" +
+                "     <a href=\"#\">雁塔区</a>\n" +
+                "     <a href=\"#\">莲湖区</a>\n" +
+                "     <a href=\"#\">高新区</a>\n" +
+                "     <a href=\"#\">灞桥区</a>\n" +
+                "     <a href=\"#\">高陵区</a>\n" +
+                "     <a href=\"#\">阎良区</a>\n" +
+                "     <a href=\"#\">临潼区</a>\n" +
+                "     <a href=\"#\">长安区</a>\n" +
+                "     <a href=\"#\">周至县</a>\n" +
+                "     <a href=\"#\">蓝田县 </a>");
         }
         else{
             $(".LeftNav").append(" <a href=\"login/register.html\">退出登录</a><a href=\"#\">QQ客服</a><a href=\"#\">微信客服</a><a href=\"#\">手机客户端</a>");
@@ -376,6 +389,7 @@ Author URI: http://www.deathghost.cn
                 name: user
             };
             json = JSON.stringify(json);
+            var cityname=null;
             $.ajax({
                 type: "POST",
                 url: "/GetUserCityInfo",
@@ -384,12 +398,33 @@ Author URI: http://www.deathghost.cn
                 async: false,
                 dataType: "json",
                 success: function (info) {
-                    console.log(info);
                     var city=info.user.city;
-                    console.log(city);
+                    cityname=city;
                     var distict=info.user.distict;
-                    console.log(distict);
                     $("#distict").append(city+ "[ <a href=\"#\">"+distict+"</a> ]");
+                },
+                error: function (message) {
+                    $("#request-process-patent").html("获取数据失败！");
+                }
+            });
+
+            var city = {
+                city_name: cityname
+            };
+            city = JSON.stringify(city);
+            $.ajax({
+                type: "POST",
+                url: "/GetDistictInfo",
+                contentType: "application/json; charset=utf-8",
+                data: city,
+                async: false,
+                dataType: "json",
+                success: function (info) {
+                    for(var i=0;i<info.distict.length;i++){
+                            var distict=info.distict[i].cityDistict;
+                            console.log(distict);
+                            $(".seekarea").append("  <a href=\"#\">"+distict+"</a>")
+                    }
                 },
                 error: function (message) {
                     $("#request-process-patent").html("获取数据失败！");

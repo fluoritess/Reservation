@@ -133,11 +133,15 @@
                <!--selectByExampleQueryId="true">-->
         <!--</table>-->
 
-        <table tableName="messageboard" domainObjectName="messageboard"
+        <!--<table tableName="messageboard" domainObjectName="messageboard"-->
+               <!--enableCountByExample="true" enableUpdateByExample="true"-->
+               <!--enableDeleteByExample="true" enableSelectByExample="true"-->
+               <!--selectByExampleQueryId="true">-->
+        <!--</table>-->
+        <table tableName="city_info" domainObjectName="city_info"
                enableCountByExample="true" enableUpdateByExample="true"
                enableDeleteByExample="true" enableSelectByExample="true"
                selectByExampleQueryId="true">
         </table>
-
     </context>
 </generatorConfiguration>
