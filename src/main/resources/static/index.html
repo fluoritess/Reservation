@@ -10,6 +10,8 @@
 <script type="text/javascript" src="js/public.js"></script>
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/jqpublic.js"></script>
+    <script src="layui/layui.js"></script>
+    <link rel="stylesheet" href="layui/css/layui.css" media="all">
 <!--
 Author: DeathGhost
 Author URI: http://www.deathghost.cn
@@ -71,11 +73,21 @@ Author URI: http://www.deathghost.cn
   <a href="list.html" target="_blank"><img src="images/dc_button.png"></a>
  </aside>
  <div class="F-middle">
- <ul class="rslides f426x240">
-        <li><a href="javascript:"><img src="upload/01.jpg"/></a></li>
-        <li><a href="javascript:"><img src="upload/02.jpg" /></a></li>
-        <li><a href="javascript:"><img src="upload/03.jpg"/></a></li>
-    </ul>
+     <div class=" layui-carousel" id="test1">
+ <!--<ul class="rslides f426x240">-->
+     <!--<ul class="slider">-->
+        <!--<li><a href="javascript:"><img src="upload/01.jpg"/></a></li>-->
+        <!--<li><a href="javascript:"><img src="upload/02.jpg" /></a></li>-->
+        <!--<li><a href="javascript:"><img src="upload/03.jpg"/></a></li>-->
+    <!--</ul>-->
+     <div carousel-item>
+         <div><a href="javascript:"><img src="upload/01.jpg"/></a></div>
+         <div><a href="javascript:"><img src="upload/02.jpg"/></a></div>
+         <div><a href="javascript:"><img src="upload/03.jpg"/></a></div>
+         <div><a href="javascript:"><img src="upload/04.jpg"/></a></div>
+         <div><a href="javascript:"><img src="upload/05.jpg"/></a></div>
+     </div>
+     </div>
  </div>
  <aside class="N-right">
   <div class="N-title">公司新闻 <i>COMPANY NEWS</i></div>
@@ -431,6 +443,17 @@ Author URI: http://www.deathghost.cn
                 }
             });
         }
+    });
+    layui.use('carousel', function(){
+        var carousel = layui.carousel;
+        //建造实例
+        carousel.render({
+            elem: '#test1'
+            ,width: '100%' //设置容器宽度
+            ,height:'100%'
+            ,arrow: 'always' //始终显示箭头
+            //,anim: 'updown' //切换动画方式
+        });
     });
 </script>
 </body>

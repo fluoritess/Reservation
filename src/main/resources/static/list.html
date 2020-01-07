@@ -64,17 +64,17 @@ Author URI: http://www.deathghost.cn
 			<dl id="select1">
 				<dt>分类：</dt>
 				<dd class="select-all selected"><a href="javascript:">全部</a></dd>
-				<dd><a href="javascript:">火锅/干锅</a></dd>
+				<dd><a href="javascript:">家常菜谱</a></dd>
+                <dd><a href="javascript:">西式快餐</a></dd>
                 <dd><a href="javascript:">火锅/干锅</a></dd>
-                <dd><a href="javascript:">火锅/干锅</a></dd>
-                <dd><a href="javascript:">火锅/干锅</a></dd>
-                <dd><a href="javascript:">火锅/干锅</a></dd>
-                <dd><a href="javascript:">火锅/干锅</a></dd>
-                <dd><a href="javascript:">火锅/干锅</a></dd>
-                <dd><a href="javascript:">火锅/干锅</a></dd>
-                <dd><a href="javascript:">火锅/干锅</a></dd>
-                <dd><a href="javascript:">火锅/干锅</a></dd>
-                <dd><a href="javascript:">火锅/干锅</a></dd>
+                <dd><a href="javascript:">米面菜谱</a></dd>
+                <dd><a href="javascript:">日本料理</a></dd>
+                <dd><a href="javascript:">东南亚菜</a></dd>
+                <dd><a href="javascript:">意大利餐</a></dd>
+                <dd><a href="javascript:">法国菜谱</a></dd>
+                <dd><a href="javascript:">时尚饮品</a></dd>
+                <dd><a href="javascript:">甜点点心</a></dd>
+                <dd><a href="javascript:">其他菜系</a></dd>
 			</dl>
 		</li>
 		<li class="select-list">
@@ -342,6 +342,7 @@ Author URI: http://www.deathghost.cn
     $(function(){
         var user=sessionStorage.getItem("name");
         console.log(user);
+        //用户没有登陆
         if(user==null){
             $(".LeftNav").append(" <a href=\"login/register.html\">注册</a>/<a href=\"login/login.html\">登录</a><a href=\"#\">QQ客服</a><a href=\"#\">微信客服</a><a href=\"#\">手机客户端</a>");
             $("#select2").append("<dd><a href=\"javascript:\">高新区</a></dd>\n" +
@@ -355,6 +356,7 @@ Author URI: http://www.deathghost.cn
                 "                <dd><a href=\"javascript:\">高陵区</a></dd>\n" +
                 "                <dd><a href=\"javascript:\">周至县</a></dd>");
         }
+        //用户登陆后获取用户所在区信息
         else{
             $(".LeftNav").append(" <a href=\"login/register.html\">退出登录</a><a href=\"#\">QQ客服</a><a href=\"#\">微信客服</a><a href=\"#\">手机客户端</a>");
             var json = {

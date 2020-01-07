@@ -43,7 +43,6 @@ $(function () {
     })
 // class tree  fslist_navtree
 $(document).ready(function(){
-	
 	$("#select1").on('click','dd',function(){
 		$(this).addClass("selected").siblings().removeClass("selected");
 		if ($(this).hasClass("select-all")) {
@@ -56,6 +55,7 @@ $(document).ready(function(){
 				$(".select-result dl").append(copyThisA.attr("id", "selectA"));
 			}
 		}
+
 	});
 	$("#select2").on('click','dd',function () {
 	    console.log($(this).text());
