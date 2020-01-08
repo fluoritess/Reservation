@@ -40,7 +40,8 @@ public class RestaurantServiceImpl implements RestaurantService {
             int state=list.get(i).getRestaurantState();
             food_category category=food_categoryMapper.selectByPrimaryKey(cate_id);
             String cate_name=category.getCategoryName();
-            restaurantUtil restaurantUtil_BEAN=new restaurantUtil(restaurant_id,password,address_4,restaurantPhone,name,state,cate_name);
+            double score=list.get(i).getScore();
+            restaurantUtil restaurantUtil_BEAN=new restaurantUtil(restaurant_id,password,address_4,restaurantPhone,name,state,cate_name,score);
             tarlist.add(restaurantUtil_BEAN);
         }
         return tarlist;

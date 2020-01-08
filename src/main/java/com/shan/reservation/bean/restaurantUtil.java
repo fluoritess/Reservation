@@ -15,10 +15,12 @@ public class restaurantUtil {
 
     private String restaurantCategory;
 
+    private Double score;
+
     public restaurantUtil() {
     }
 
-    public restaurantUtil(Integer restaurantId, String restaurantPassword, String restaurantAddress, String restaurantPhone, String restaurantName, Integer restaurantState, String restaurantCategory) {
+    public restaurantUtil(Integer restaurantId, String restaurantPassword, String restaurantAddress, String restaurantPhone, String restaurantName, Integer restaurantState, String restaurantCategory, Double score) {
         this.restaurantId = restaurantId;
         this.restaurantPassword = restaurantPassword;
         this.restaurantAddress = restaurantAddress;
@@ -26,6 +28,7 @@ public class restaurantUtil {
         this.restaurantName = restaurantName;
         this.restaurantState = restaurantState;
         this.restaurantCategory = restaurantCategory;
+        this.score = score;
     }
 
     public Integer getRestaurantId() {
@@ -82,5 +85,13 @@ public class restaurantUtil {
 
     public void setRestaurantCategory(String restaurantCategory) {
         this.restaurantCategory = restaurantCategory;
+    }
+
+    public Double getScore() {
+        return score;
+    }
+
+    public void setScore(Double score) {
+        this.score = score;
     }
 }

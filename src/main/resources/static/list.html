@@ -357,6 +357,7 @@ Author URI: http://www.deathghost.cn
                    var name=info.restaurant[i].restaurantName;
                    var restaurantCategory=info.restaurant[i].restaurantCategory;
                    var restaurantAddress=info.restaurant[i].restaurantAddress;
+                   var score=info.restaurant[i].score;
                    $("#relist1").append("<li>\n" +
                        "   <a href=\"shop.html\" target=\"_blank\" title=\"调用产品名/店铺名\"><img src=\"upload/03.jpg\"></a>\n" +
                        "   <hgroup>\n" +
@@ -373,7 +374,7 @@ Author URI: http://www.deathghost.cn
                        "    <img src=\"images/star-on.png\">\n" +
                        "    <img src=\"images/star-on.png\">\n" +
                        "    <img src=\"images/star-off.png\">\n" +
-                       "    <span class=\"Score-v\">4.8</span>\n" +
+                       "    <span class=\"Score-v\">"+score+"</span>\n" +
                        "    </span>\n" +
                        "    <span class=\"DSBUTTON\"><a href=\"shop.html\" target=\"_blank\" class=\"Fontfff\">点外卖</a></span>\n" +
                        "   </p>\n" +

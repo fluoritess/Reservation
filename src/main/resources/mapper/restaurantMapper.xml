@@ -10,6 +10,7 @@
       <arg column="restaurant_name" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="restaurant_state" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="restaurant_category_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="score" jdbcType="DOUBLE" javaType="java.lang.Double" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -72,7 +73,7 @@
   </sql>
   <sql id="Base_Column_List" >
     restaurant_id, restaurant_password, restaurant_address, restaurant_phone, restaurant_name, 
-    restaurant_state, restaurant_category_id
+    restaurant_state, restaurant_category_id, score
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shan.reservation.bean.restaurantExample" >
     select
@@ -108,10 +109,12 @@
   <insert id="insert" parameterType="com.shan.reservation.bean.restaurant" >
     insert into restaurant (restaurant_id, restaurant_password, 
       restaurant_address, restaurant_phone, restaurant_name, 
-      restaurant_state, restaurant_category_id)
+      restaurant_state, restaurant_category_id, 
+      score)
     values (#{restaurantId,jdbcType=INTEGER}, #{restaurantPassword,jdbcType=VARCHAR}, 
       #{restaurantAddress,jdbcType=INTEGER}, #{restaurantPhone,jdbcType=VARCHAR}, #{restaurantName,jdbcType=VARCHAR}, 
-      #{restaurantState,jdbcType=INTEGER}, #{restaurantCategoryId,jdbcType=INTEGER})
+      #{restaurantState,jdbcType=INTEGER}, #{restaurantCategoryId,jdbcType=INTEGER}, 
+      #{score,jdbcType=DOUBLE})
   </insert>
   <insert id="insertSelective" parameterType="com.shan.reservation.bean.restaurant" >
     insert into restaurant
@@ -137,6 +140,9 @@
       <if test="restaurantCategoryId != null" >
         restaurant_category_id,
       </if>
+      <if test="score != null" >
+        score,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="restaurantId != null" >
@@ -159,6 +165,9 @@
       </if>
       <if test="restaurantCategoryId != null" >
         #{restaurantCategoryId,jdbcType=INTEGER},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=DOUBLE},
       </if>
     </trim>
   </insert>
@@ -192,6 +201,9 @@
       <if test="record.restaurantCategoryId != null" >
         restaurant_category_id = #{record.restaurantCategoryId,jdbcType=INTEGER},
       </if>
+      <if test="record.score != null" >
+        score = #{record.score,jdbcType=DOUBLE},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -205,7 +217,8 @@
       restaurant_phone = #{record.restaurantPhone,jdbcType=VARCHAR},
       restaurant_name = #{record.restaurantName,jdbcType=VARCHAR},
       restaurant_state = #{record.restaurantState,jdbcType=INTEGER},
-      restaurant_category_id = #{record.restaurantCategoryId,jdbcType=INTEGER}
+      restaurant_category_id = #{record.restaurantCategoryId,jdbcType=INTEGER},
+      score = #{record.score,jdbcType=DOUBLE}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -231,6 +244,9 @@
       <if test="restaurantCategoryId != null" >
         restaurant_category_id = #{restaurantCategoryId,jdbcType=INTEGER},
       </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=DOUBLE},
+      </if>
     </set>
     where restaurant_id = #{restaurantId,jdbcType=INTEGER}
   </update>
@@ -241,7 +257,8 @@
       restaurant_phone = #{restaurantPhone,jdbcType=VARCHAR},
       restaurant_name = #{restaurantName,jdbcType=VARCHAR},
       restaurant_state = #{restaurantState,jdbcType=INTEGER},
-      restaurant_category_id = #{restaurantCategoryId,jdbcType=INTEGER}
+      restaurant_category_id = #{restaurantCategoryId,jdbcType=INTEGER},
+      score = #{score,jdbcType=DOUBLE}
     where restaurant_id = #{restaurantId,jdbcType=INTEGER}
   </update>
 </mapper>
