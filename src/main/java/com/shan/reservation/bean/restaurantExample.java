@@ -493,6 +493,66 @@ public class restaurantExample {
             addCriterion("restaurant_state not between", value1, value2, "restaurantState");
             return (Criteria) this;
         }
+
+        public Criteria andRestaurantCategoryIdIsNull() {
+            addCriterion("restaurant_category_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantCategoryIdIsNotNull() {
+            addCriterion("restaurant_category_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantCategoryIdEqualTo(Integer value) {
+            addCriterion("restaurant_category_id =", value, "restaurantCategoryId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantCategoryIdNotEqualTo(Integer value) {
+            addCriterion("restaurant_category_id <>", value, "restaurantCategoryId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantCategoryIdGreaterThan(Integer value) {
+            addCriterion("restaurant_category_id >", value, "restaurantCategoryId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantCategoryIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("restaurant_category_id >=", value, "restaurantCategoryId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantCategoryIdLessThan(Integer value) {
+            addCriterion("restaurant_category_id <", value, "restaurantCategoryId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantCategoryIdLessThanOrEqualTo(Integer value) {
+            addCriterion("restaurant_category_id <=", value, "restaurantCategoryId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantCategoryIdIn(List<Integer> values) {
+            addCriterion("restaurant_category_id in", values, "restaurantCategoryId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantCategoryIdNotIn(List<Integer> values) {
+            addCriterion("restaurant_category_id not in", values, "restaurantCategoryId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantCategoryIdBetween(Integer value1, Integer value2) {
+            addCriterion("restaurant_category_id between", value1, value2, "restaurantCategoryId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantCategoryIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("restaurant_category_id not between", value1, value2, "restaurantCategoryId");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

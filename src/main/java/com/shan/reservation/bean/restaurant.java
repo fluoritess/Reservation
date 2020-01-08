@@ -13,13 +13,16 @@ public class restaurant {
 
     private Integer restaurantState;
 
-    public restaurant(Integer restaurantId, String restaurantPassword, Integer restaurantAddress, String restaurantPhone, String restaurantName, Integer restaurantState) {
+    private Integer restaurantCategoryId;
+
+    public restaurant(Integer restaurantId, String restaurantPassword, Integer restaurantAddress, String restaurantPhone, String restaurantName, Integer restaurantState, Integer restaurantCategoryId) {
         this.restaurantId = restaurantId;
         this.restaurantPassword = restaurantPassword;
         this.restaurantAddress = restaurantAddress;
         this.restaurantPhone = restaurantPhone;
         this.restaurantName = restaurantName;
         this.restaurantState = restaurantState;
+        this.restaurantCategoryId = restaurantCategoryId;
     }
 
     public restaurant() {
@@ -72,5 +75,13 @@ public class restaurant {
 
     public void setRestaurantState(Integer restaurantState) {
         this.restaurantState = restaurantState;
+    }
+
+    public Integer getRestaurantCategoryId() {
+        return restaurantCategoryId;
+    }
+
+    public void setRestaurantCategoryId(Integer restaurantCategoryId) {
+        this.restaurantCategoryId = restaurantCategoryId;
     }
 }

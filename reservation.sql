@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50720
 File Encoding         : 65001
 
-Date: 2020-01-05 22:55:20
+Date: 2020-01-08 15:47:00
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -32,6 +32,9 @@ CREATE TABLE `address` (
 -- Records of address
 -- ----------------------------
 INSERT INTO `address` VALUES ('1', '四川省', '成都', '武侯区', '龙腾中路');
+INSERT INTO `address` VALUES ('2', '四川省', '成都', '青阳区', '青阳路');
+INSERT INTO `address` VALUES ('3', '四川省', '成都', '锦江区', '靖江路');
+INSERT INTO `address` VALUES ('4', '四川省', '成都', '金牛区', '人民路');
 
 -- ----------------------------
 -- Table structure for `admin`
@@ -68,6 +71,29 @@ CREATE TABLE `advertisement` (
 -- ----------------------------
 -- Records of advertisement
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for `city_info`
+-- ----------------------------
+DROP TABLE IF EXISTS `city_info`;
+CREATE TABLE `city_info` (
+  `city_name` varchar(32) NOT NULL,
+  `city_distict` varchar(32) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of city_info
+-- ----------------------------
+INSERT INTO `city_info` VALUES ('成都', '青阳区');
+INSERT INTO `city_info` VALUES ('成都', '锦江区');
+INSERT INTO `city_info` VALUES ('成都', '金牛区');
+INSERT INTO `city_info` VALUES ('成都', '武侯区');
+INSERT INTO `city_info` VALUES ('成都', '成华区');
+INSERT INTO `city_info` VALUES ('成都', '龙泉驿区');
+INSERT INTO `city_info` VALUES ('成都', '青白江区');
+INSERT INTO `city_info` VALUES ('成都', '新都区');
+INSERT INTO `city_info` VALUES ('成都', '温江区');
+INSERT INTO `city_info` VALUES ('成都', '双流区');
 
 -- ----------------------------
 -- Table structure for `coupon`
@@ -133,8 +159,8 @@ CREATE TABLE `food` (
 -- ----------------------------
 -- Records of food
 -- ----------------------------
-INSERT INTO `food` VALUES ('1', '1', '89', '黑胡椒牛排', '1', '黑胡椒牛排是以牛里脊肉为主要食材的大众菜，口味咸鲜', '2');
-INSERT INTO `food` VALUES ('2', '2', '30', '烤芝士沙拉', '2', '烤芝士配上蔬菜沙拉,口味新颖，很别样的感觉! ', '3');
+INSERT INTO `food` VALUES ('1', '1', '89', '黑胡椒牛排', '2', '黑胡椒牛排是以牛里脊肉为主要食材的大众菜，口味咸鲜', '2');
+INSERT INTO `food` VALUES ('2', '2', '30', '烤芝士沙拉', '7', '烤芝士配上蔬菜沙拉,口味新颖，很别样的感觉! ', '3');
 
 -- ----------------------------
 -- Table structure for `food_category`
@@ -149,8 +175,17 @@ CREATE TABLE `food_category` (
 -- ----------------------------
 -- Records of food_category
 -- ----------------------------
-INSERT INTO `food_category` VALUES ('1', '牛排');
-INSERT INTO `food_category` VALUES ('2', '沙拉');
+INSERT INTO `food_category` VALUES ('1', '家常菜谱');
+INSERT INTO `food_category` VALUES ('2', '西式快餐');
+INSERT INTO `food_category` VALUES ('3', '火锅/干锅');
+INSERT INTO `food_category` VALUES ('4', '米面菜谱');
+INSERT INTO `food_category` VALUES ('5', '日本料理');
+INSERT INTO `food_category` VALUES ('6', '东南亚菜');
+INSERT INTO `food_category` VALUES ('7', '意大利餐');
+INSERT INTO `food_category` VALUES ('8', '法国菜谱');
+INSERT INTO `food_category` VALUES ('9', '时尚饮品');
+INSERT INTO `food_category` VALUES ('10', '甜点点心');
+INSERT INTO `food_category` VALUES ('11', '其他菜系');
 
 -- ----------------------------
 -- Table structure for `item`
@@ -247,6 +282,7 @@ CREATE TABLE `restaurant` (
   `restaurant_phone` varchar(32) NOT NULL,
   `restaurant_name` varchar(255) NOT NULL,
   `restaurant_state` int(11) NOT NULL,
+  `restaurant_category_id` int(11) NOT NULL,
   PRIMARY KEY (`restaurant_id`),
   KEY `restaurant_address` (`restaurant_address`),
   CONSTRAINT `restaurant_ibfk_1` FOREIGN KEY (`restaurant_address`) REFERENCES `address` (`address_id`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -255,8 +291,14 @@ CREATE TABLE `restaurant` (
 -- ----------------------------
 -- Records of restaurant
 -- ----------------------------
-INSERT INTO `restaurant` VALUES ('1', '123', '1', '15249875321', '森林牛排', '1');
-INSERT INTO `restaurant` VALUES ('2', '123', '1', '16332854759', '美味沙拉店', '1');
+INSERT INTO `restaurant` VALUES ('1', '123', '1', '15249875321', '森林牛排', '1', '0');
+INSERT INTO `restaurant` VALUES ('2', '123', '1', '16332854759', '美味沙拉店', '1', '0');
+INSERT INTO `restaurant` VALUES ('3', '123', '1', '13245677893', '重庆老火锅', '1', '0');
+INSERT INTO `restaurant` VALUES ('4', '123', '4', '13245674425', '家常川菜馆', '1', '0');
+INSERT INTO `restaurant` VALUES ('5', '123', '2', '16235613211', '美琪日本料理', '1', '0');
+INSERT INTO `restaurant` VALUES ('6', '123', '3', '13568900432', '小龙坎', '1', '0');
+INSERT INTO `restaurant` VALUES ('7', '123', '4', '15678234561', '家常小炒', '1', '0');
+INSERT INTO `restaurant` VALUES ('8', '123', '2', '13457688934', '烧仙草', '1', '0');
 
 -- ----------------------------
 -- Table structure for `user`

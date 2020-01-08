@@ -138,10 +138,10 @@
                <!--enableDeleteByExample="true" enableSelectByExample="true"-->
                <!--selectByExampleQueryId="true">-->
         <!--</table>-->
-        <table tableName="city_info" domainObjectName="city_info"
-               enableCountByExample="true" enableUpdateByExample="true"
-               enableDeleteByExample="true" enableSelectByExample="true"
-               selectByExampleQueryId="true">
-        </table>
+        <!--&lt;!&ndash;<table tableName="city_info" domainObjectName="city_info"&ndash;&gt;-->
+               <!--&lt;!&ndash;enableCountByExample="true" enableUpdateByExample="true"&ndash;&gt;-->
+               <!--&lt;!&ndash;enableDeleteByExample="true" enableSelectByExample="true"&ndash;&gt;-->
+               <!--&lt;!&ndash;selectByExampleQueryId="true">&ndash;&gt;-->
+        <!--</table>-->
     </context>
 </generatorConfiguration>
