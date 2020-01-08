@@ -3,8 +3,11 @@ package com.shan.reservation.mapper;
 import com.shan.reservation.bean.restaurant;
 import com.shan.reservation.bean.restaurantExample;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface restaurantMapper {
     int countByExample(restaurantExample example);
 

@@ -3,8 +3,10 @@ package com.shan.reservation.mapper;
 import com.shan.reservation.bean.food_category;
 import com.shan.reservation.bean.food_categoryExample;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+@Mapper
 public interface food_categoryMapper {
     int countByExample(food_categoryExample example);
 
