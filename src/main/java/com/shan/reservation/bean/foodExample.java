@@ -543,6 +543,76 @@ public class foodExample {
             addCriterion("sales not between", value1, value2, "sales");
             return (Criteria) this;
         }
+
+        public Criteria andFoodImageIsNull() {
+            addCriterion("food_image is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFoodImageIsNotNull() {
+            addCriterion("food_image is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFoodImageEqualTo(String value) {
+            addCriterion("food_image =", value, "foodImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andFoodImageNotEqualTo(String value) {
+            addCriterion("food_image <>", value, "foodImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andFoodImageGreaterThan(String value) {
+            addCriterion("food_image >", value, "foodImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andFoodImageGreaterThanOrEqualTo(String value) {
+            addCriterion("food_image >=", value, "foodImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andFoodImageLessThan(String value) {
+            addCriterion("food_image <", value, "foodImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andFoodImageLessThanOrEqualTo(String value) {
+            addCriterion("food_image <=", value, "foodImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andFoodImageLike(String value) {
+            addCriterion("food_image like", value, "foodImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andFoodImageNotLike(String value) {
+            addCriterion("food_image not like", value, "foodImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andFoodImageIn(List<String> values) {
+            addCriterion("food_image in", values, "foodImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andFoodImageNotIn(List<String> values) {
+            addCriterion("food_image not in", values, "foodImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andFoodImageBetween(String value1, String value2) {
+            addCriterion("food_image between", value1, value2, "foodImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andFoodImageNotBetween(String value1, String value2) {
+            addCriterion("food_image not between", value1, value2, "foodImage");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

@@ -46,7 +46,8 @@ public class RestaurantServiceImpl implements RestaurantService {
             food_category category=food_categoryMapper.selectByPrimaryKey(cate_id);
             String cate_name=category.getCategoryName();
             double score=list.get(i).getScore();
-            restaurantUtil restaurantUtil_BEAN=new restaurantUtil(restaurant_id,password,address_4,restaurantPhone,name,state,cate_name,score);
+            String image=list.get(i).getRestaurantImage();
+            restaurantUtil restaurantUtil_BEAN=new restaurantUtil(restaurant_id,password,address_4,restaurantPhone,name,state,cate_name,score,image);
             tarlist.add(restaurantUtil_BEAN);
         }
         return tarlist;
@@ -82,7 +83,8 @@ public class RestaurantServiceImpl implements RestaurantService {
                 food_category category=food_categoryMapper.selectByPrimaryKey(cate_id);
                 String cate_name=category.getCategoryName();
                 double score=list.get(i).getScore();
-                restaurantUtil restaurantUtil_BEAN=new restaurantUtil(restaurant_id,password,address_4,restaurantPhone,name,state,cate_name,score);
+                String image=list.get(i).getRestaurantImage();
+                restaurantUtil restaurantUtil_BEAN=new restaurantUtil(restaurant_id,password,address_4,restaurantPhone,name,state,cate_name,score,image);
                 tarlist.add(restaurantUtil_BEAN);
             }
         }

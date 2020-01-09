@@ -15,7 +15,9 @@ public class food {
 
     private Integer sales;
 
-    public food(Integer foodId, Integer restaurantId, Double foodPrice, String foodName, Integer categoryId, String describe, Integer sales) {
+    private String foodImage;
+
+    public food(Integer foodId, Integer restaurantId, Double foodPrice, String foodName, Integer categoryId, String describe, Integer sales, String foodImage) {
         this.foodId = foodId;
         this.restaurantId = restaurantId;
         this.foodPrice = foodPrice;
@@ -23,6 +25,7 @@ public class food {
         this.categoryId = categoryId;
         this.describe = describe;
         this.sales = sales;
+        this.foodImage = foodImage;
     }
 
     public food() {
@@ -83,5 +86,13 @@ public class food {
 
     public void setSales(Integer sales) {
         this.sales = sales;
+    }
+
+    public String getFoodImage() {
+        return foodImage;
+    }
+
+    public void setFoodImage(String foodImage) {
+        this.foodImage = foodImage == null ? null : foodImage.trim();
     }
 }

@@ -78,6 +78,7 @@ $(document).ready(function(){
                     var restaurantCategory=info.restaurant[i].restaurantCategory;
                     var restaurantAddress=info.restaurant[i].restaurantAddress;
                     var score=info.restaurant[i].score;
+                    var image=info.restaurant[i].restaurantImage;
                     if(3<=score<4){
                         console.log(score);
                     }
@@ -85,7 +86,7 @@ $(document).ready(function(){
 
                     }
                     $("#relist1").append("<li>\n" +
-                        "   <a href=\"shop.html\" target=\"_blank\" title=\"调用产品名/店铺名\"><img src=\"upload/03.jpg\"></a>\n" +
+                        "   <a href=\"shop.html\" target=\"_blank\" title=\"调用产品名/店铺名\"><img src=\""+image+"\"></a>\n" +
                         "   <hgroup>\n" +
                         "   <h3>"+name+"</h3>\n" +
                         "   <h4></h4>\n" +
@@ -131,7 +132,9 @@ $(document).ready(function(){
 		}
         var cate=$("#select1 .selected").text();
         var address=$("#select2 .selected").text();
+
 	});
+
 	$("#select3").on('click','dd',function () {
 		$(this).addClass("selected").siblings().removeClass("selected");
 		if ($(this).hasClass("select-all")) {

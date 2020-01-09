@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50720
 File Encoding         : 65001
 
-Date: 2020-01-08 15:47:00
+Date: 2020-01-09 15:25:31
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -31,10 +31,12 @@ CREATE TABLE `address` (
 -- ----------------------------
 -- Records of address
 -- ----------------------------
-INSERT INTO `address` VALUES ('1', '四川省', '成都', '武侯区', '龙腾中路');
-INSERT INTO `address` VALUES ('2', '四川省', '成都', '青阳区', '青阳路');
-INSERT INTO `address` VALUES ('3', '四川省', '成都', '锦江区', '靖江路');
-INSERT INTO `address` VALUES ('4', '四川省', '成都', '金牛区', '人民路');
+INSERT INTO `address` VALUES ('1', '四川省', '成都', '武侯区', '龙腾中路125号');
+INSERT INTO `address` VALUES ('2', '四川省', '成都', '青阳区', '青阳路222号');
+INSERT INTO `address` VALUES ('3', '四川省', '成都', '锦江区', '靖江路45号');
+INSERT INTO `address` VALUES ('4', '四川省', '成都', '金牛区', '人民路35号');
+INSERT INTO `address` VALUES ('5', '四川省', '成都', '武侯区', '龙腾上路23号');
+INSERT INTO `address` VALUES ('6', '四川省', '成都', '武侯区', '杜甫草堂路45号');
 
 -- ----------------------------
 -- Table structure for `admin`
@@ -149,6 +151,7 @@ CREATE TABLE `food` (
   `category_id` int(11) NOT NULL,
   `describe` varchar(2500) DEFAULT NULL,
   `sales` int(11) DEFAULT NULL,
+  `food_image` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`food_id`),
   KEY `restaurant_id` (`restaurant_id`),
   KEY `category_id` (`category_id`),
@@ -159,8 +162,8 @@ CREATE TABLE `food` (
 -- ----------------------------
 -- Records of food
 -- ----------------------------
-INSERT INTO `food` VALUES ('1', '1', '89', '黑胡椒牛排', '2', '黑胡椒牛排是以牛里脊肉为主要食材的大众菜，口味咸鲜', '2');
-INSERT INTO `food` VALUES ('2', '2', '30', '烤芝士沙拉', '7', '烤芝士配上蔬菜沙拉,口味新颖，很别样的感觉! ', '3');
+INSERT INTO `food` VALUES ('1', '1', '89', '黑胡椒牛排', '2', '黑胡椒牛排是以牛里脊肉为主要食材的大众菜，口味咸鲜', '2', null);
+INSERT INTO `food` VALUES ('2', '2', '30', '烤芝士沙拉', '7', '烤芝士配上蔬菜沙拉,口味新颖，很别样的感觉! ', '3', null);
 
 -- ----------------------------
 -- Table structure for `food_category`
@@ -283,6 +286,8 @@ CREATE TABLE `restaurant` (
   `restaurant_name` varchar(255) NOT NULL,
   `restaurant_state` int(11) NOT NULL,
   `restaurant_category_id` int(11) NOT NULL,
+  `score` double(11,2) DEFAULT NULL,
+  `restaurant_image` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`restaurant_id`),
   KEY `restaurant_address` (`restaurant_address`),
   CONSTRAINT `restaurant_ibfk_1` FOREIGN KEY (`restaurant_address`) REFERENCES `address` (`address_id`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -291,14 +296,14 @@ CREATE TABLE `restaurant` (
 -- ----------------------------
 -- Records of restaurant
 -- ----------------------------
-INSERT INTO `restaurant` VALUES ('1', '123', '1', '15249875321', '森林牛排', '1', '0');
-INSERT INTO `restaurant` VALUES ('2', '123', '1', '16332854759', '美味沙拉店', '1', '0');
-INSERT INTO `restaurant` VALUES ('3', '123', '1', '13245677893', '重庆老火锅', '1', '0');
-INSERT INTO `restaurant` VALUES ('4', '123', '4', '13245674425', '家常川菜馆', '1', '0');
-INSERT INTO `restaurant` VALUES ('5', '123', '2', '16235613211', '美琪日本料理', '1', '0');
-INSERT INTO `restaurant` VALUES ('6', '123', '3', '13568900432', '小龙坎', '1', '0');
-INSERT INTO `restaurant` VALUES ('7', '123', '4', '15678234561', '家常小炒', '1', '0');
-INSERT INTO `restaurant` VALUES ('8', '123', '2', '13457688934', '烧仙草', '1', '0');
+INSERT INTO `restaurant` VALUES ('1', '123', '1', '15249875321', '森林牛排', '1', '2', '4.62', 'upload/niupai.jpg');
+INSERT INTO `restaurant` VALUES ('2', '123', '5', '16332854759', '美味沙拉店', '1', '10', '4.83', 'upload/shala.jpg');
+INSERT INTO `restaurant` VALUES ('3', '123', '6', '13245677893', '重庆老火锅', '1', '3', '4.88', 'upload/huoguo.jpg');
+INSERT INTO `restaurant` VALUES ('4', '123', '4', '13245674425', '家常川菜馆', '1', '1', '4.77', 'upload/jiachang.jpg');
+INSERT INTO `restaurant` VALUES ('5', '123', '2', '16235613211', '美琪日本料理', '1', '5', '4.74', 'upload/03.jpg');
+INSERT INTO `restaurant` VALUES ('6', '123', '3', '13568900432', '小龙坎', '1', '3', '4.62', 'upload/03.jpg');
+INSERT INTO `restaurant` VALUES ('7', '123', '4', '15678234561', '家常小炒', '1', '1', '4.89', 'upload/03.jpg');
+INSERT INTO `restaurant` VALUES ('8', '123', '2', '13457688934', '烧仙草', '1', '9', '4.78', 'upload/03.jpg');
 
 -- ----------------------------
 -- Table structure for `user`

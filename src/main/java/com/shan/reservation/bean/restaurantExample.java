@@ -613,6 +613,76 @@ public class restaurantExample {
             addCriterion("score not between", value1, value2, "score");
             return (Criteria) this;
         }
+
+        public Criteria andRestaurantImageIsNull() {
+            addCriterion("restaurant_image is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantImageIsNotNull() {
+            addCriterion("restaurant_image is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantImageEqualTo(String value) {
+            addCriterion("restaurant_image =", value, "restaurantImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantImageNotEqualTo(String value) {
+            addCriterion("restaurant_image <>", value, "restaurantImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantImageGreaterThan(String value) {
+            addCriterion("restaurant_image >", value, "restaurantImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantImageGreaterThanOrEqualTo(String value) {
+            addCriterion("restaurant_image >=", value, "restaurantImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantImageLessThan(String value) {
+            addCriterion("restaurant_image <", value, "restaurantImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantImageLessThanOrEqualTo(String value) {
+            addCriterion("restaurant_image <=", value, "restaurantImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantImageLike(String value) {
+            addCriterion("restaurant_image like", value, "restaurantImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantImageNotLike(String value) {
+            addCriterion("restaurant_image not like", value, "restaurantImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantImageIn(List<String> values) {
+            addCriterion("restaurant_image in", values, "restaurantImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantImageNotIn(List<String> values) {
+            addCriterion("restaurant_image not in", values, "restaurantImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantImageBetween(String value1, String value2) {
+            addCriterion("restaurant_image between", value1, value2, "restaurantImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantImageNotBetween(String value1, String value2) {
+            addCriterion("restaurant_image not between", value1, value2, "restaurantImage");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

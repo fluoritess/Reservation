@@ -17,6 +17,8 @@ public class restaurantUtil {
 
     private Double score;
 
+    private String restaurantImage;
+
     public restaurantUtil() {
     }
 
@@ -29,6 +31,26 @@ public class restaurantUtil {
         this.restaurantState = restaurantState;
         this.restaurantCategory = restaurantCategory;
         this.score = score;
+    }
+
+    public restaurantUtil(Integer restaurantId, String restaurantPassword, String restaurantAddress, String restaurantPhone, String restaurantName, Integer restaurantState, String restaurantCategory, Double score, String restaurantImage) {
+        this.restaurantId = restaurantId;
+        this.restaurantPassword = restaurantPassword;
+        this.restaurantAddress = restaurantAddress;
+        this.restaurantPhone = restaurantPhone;
+        this.restaurantName = restaurantName;
+        this.restaurantState = restaurantState;
+        this.restaurantCategory = restaurantCategory;
+        this.score = score;
+        this.restaurantImage = restaurantImage;
+    }
+
+    public String getRestaurantImage() {
+        return restaurantImage;
+    }
+
+    public void setRestaurantImage(String restaurantImage) {
+        this.restaurantImage = restaurantImage;
     }
 
     public Integer getRestaurantId() {
