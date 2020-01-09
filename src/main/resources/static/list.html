@@ -358,6 +358,12 @@ Author URI: http://www.deathghost.cn
                    var restaurantCategory=info.restaurant[i].restaurantCategory;
                    var restaurantAddress=info.restaurant[i].restaurantAddress;
                    var score=info.restaurant[i].score;
+                   if(3<=score<4){
+                       console.log(score);
+                   }
+                   else if(4<=score<5){
+
+                   }
                    $("#relist1").append("<li>\n" +
                        "   <a href=\"shop.html\" target=\"_blank\" title=\"调用产品名/店铺名\"><img src=\"upload/03.jpg\"></a>\n" +
                        "   <hgroup>\n" +

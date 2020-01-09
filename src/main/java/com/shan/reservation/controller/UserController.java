@@ -43,6 +43,7 @@ public class UserController {
     }
     @ResponseBody
     @RequestMapping("/Login" )
+    @ArchivesLog(operationType = "用户操作", operationName = "用户登陆")
     public R Login(@RequestBody Map<String,String> map,HttpSession httpSession){
         String name=map.get("name");
         String password=map.get("password");
@@ -57,6 +58,7 @@ public class UserController {
     }
     @ResponseBody
     @RequestMapping("/GetUserCityInfo" )
+    @ArchivesLog(operationType = "查询信息", operationName = "根据用户name查询用户所属区")
     public R GetUserInfo(@RequestBody Map<String,String> map,HttpSession httpSession){
         String name=map.get("name");
         user user=userService.selectUserByNickName(name);

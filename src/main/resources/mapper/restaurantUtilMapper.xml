@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shan.reservation.mapper.restaurantUtilMapper" >
+    <resultMap id="BaseResultMap" type="com.shan.reservation.bean.restaurant" >
+        <constructor >
+            <idArg column="restaurant_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="restaurant_password" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="restaurant_address" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="restaurant_phone" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="restaurant_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="restaurant_state" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="restaurant_category_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="score" jdbcType="DOUBLE" javaType="java.lang.Double" />
+        </constructor>
+    </resultMap>
+    <select id="selectRestaurantByCateId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select * from restaurant where restaurant_category_id = #{foodCategoryId,jdbcType=INTEGER}
+    </select>
+</mapper>

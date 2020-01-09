@@ -15,4 +15,5 @@ import java.util.List;
 @Service
 public interface RestaurantService {
     List<restaurantUtil> findAllRestaurant();
+    List<restaurantUtil> findRestaurantByCate(String CateName);
 }

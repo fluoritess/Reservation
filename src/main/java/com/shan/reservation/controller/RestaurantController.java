@@ -5,6 +5,7 @@ import com.shan.reservation.bean.restaurant;
 import com.shan.reservation.bean.restaurantUtil;
 import com.shan.reservation.mapper.restaurantMapper;
 import com.shan.reservation.service.RestaurantService;
+import com.shan.reservation.util.ArchivesLog;
 import com.shan.reservation.util.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,8 +29,19 @@ public class RestaurantController {
     RestaurantService RestaurantService;
     @ResponseBody
     @RequestMapping("/findAllRestaurant" )
+    @ArchivesLog(operationType = "查询信息", operationName = "查询所有餐馆")
     public R findAllRestaurant(HttpSession httpSession){
         List<restaurantUtil> list= RestaurantService.findAllRestaurant();
         return  R.ok().put("restaurant",list);
     }
+
+    @ResponseBody
+    @RequestMapping("/findRestaurantByCate" )
+    @ArchivesLog(operationType = "查询信息", operationName = "根据分类查询餐馆")
+    public R findRestaurantByCate(@RequestBody Map<String,String> map,HttpSession httpSession){
+        String cate=(String)map.get("cate");
+        List<restaurantUtil> list= RestaurantService.findRestaurantByCate(cate);
+        return  R.ok().put("restaurant",list);
+    }
+
 }
