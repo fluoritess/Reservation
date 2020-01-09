@@ -11,9 +11,14 @@
             <arg column="restaurant_state" jdbcType="INTEGER" javaType="java.lang.Integer" />
             <arg column="restaurant_category_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
             <arg column="score" jdbcType="DOUBLE" javaType="java.lang.Double" />
+            <arg column="restaurant_image" jdbcType="VARCHAR" javaType="java.lang.String" />
         </constructor>
     </resultMap>
     <select id="selectRestaurantByCateId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
         select * from restaurant where restaurant_category_id = #{foodCategoryId,jdbcType=INTEGER}
     </select>
+    <select id="selectRestaurantByAddressId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+       SELECT * from restaurant where restaurant_address= #{addressId,jdbcType=INTEGER}
+    </select>
+
 </mapper>

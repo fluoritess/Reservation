@@ -91,4 +91,42 @@ public class RestaurantServiceImpl implements RestaurantService {
         return tarlist;
     }
 
+    @Override
+    public List<restaurantUtil> findRestaurantByAddress(String address) {
+        List<address> addresslist=addressMapper.selectByExample(null);
+        List<restaurant> list=new ArrayList<>();
+        List<restaurantUtil> tarlist=new ArrayList<restaurantUtil>();
+        Iterator it=addresslist.iterator();
+        while(it.hasNext()){
+            address address1=(com.shan.reservation.bean.address)it.next();
+            if(address.equals(address1.getAddressDistrict())){
+                int address_id=address1.getAddressId();
+                list=restaurantUtilMapper.selectRestaurantByAddressId(address_id);
+            }
+        }
+        if(list!=null){
+            for(int i=0;i<list.size();i++){
+                int address_id=list.get(i).getRestaurantAddress();
+                int cate_id=list.get(i).getRestaurantCategoryId();
+                int  restaurant_id=list.get(i).getRestaurantId();
+                String password=list.get(i).getRestaurantPassword();
+                address address_=addressMapper.selectByPrimaryKey(address_id);
+                String address_1=address_.getAddressCity();
+                String address_2=address_.getAddressDistrict();
+                String address_3=address_.getAddressStreet();
+                String address_4=address_1+address_2+address_3;
+                String restaurantPhone=list.get(i).getRestaurantPhone();
+                String name=list.get(i).getRestaurantName();
+                int state=list.get(i).getRestaurantState();
+                food_category category=food_categoryMapper.selectByPrimaryKey(cate_id);
+                String cate_name=category.getCategoryName();
+                double score=list.get(i).getScore();
+                String image=list.get(i).getRestaurantImage();
+                restaurantUtil restaurantUtil_BEAN=new restaurantUtil(restaurant_id,password,address_4,restaurantPhone,name,state,cate_name,score,image);
+                tarlist.add(restaurantUtil_BEAN);
+            }
+        }
+        return tarlist;
+    }
+
 }

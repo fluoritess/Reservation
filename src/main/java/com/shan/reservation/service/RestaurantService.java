@@ -14,6 +14,10 @@ import java.util.List;
  */
 @Service
 public interface RestaurantService {
+    //查询所有餐馆
     List<restaurantUtil> findAllRestaurant();
+    //根据分类查询餐馆
     List<restaurantUtil> findRestaurantByCate(String CateName);
+    //根据位置查询餐馆
+    List<restaurantUtil> findRestaurantByAddress(String address);
 }

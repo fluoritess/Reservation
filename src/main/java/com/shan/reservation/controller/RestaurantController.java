@@ -43,5 +43,12 @@ public class RestaurantController {
         List<restaurantUtil> list= RestaurantService.findRestaurantByCate(cate);
         return  R.ok().put("restaurant",list);
     }
-
+    @ResponseBody
+    @RequestMapping("/findRestaurantByAddress" )
+    @ArchivesLog(operationType = "查询信息", operationName = "根据分类查询餐馆")
+    public R findRestaurantByAddress(@RequestBody Map<String,String> map,HttpSession httpSession){
+        String address=(String)map.get("address");
+        List<restaurantUtil> list= RestaurantService.findRestaurantByAddress(address);
+        return  R.ok().put("restaurant",list);
+    }
 }
