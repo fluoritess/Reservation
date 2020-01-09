@@ -58,60 +58,114 @@ $(document).ready(function(){
 		//更新餐馆list
         var cate=$("#select1 .selected").text();
 		var address=$("#select2 .selected").text();
-        if(address=='全部'){
-        var json = {
-            cate: cate
-        };
-        json = JSON.stringify(json);
-        $.ajax({
-            type: "POST",
-            url: "/findRestaurantByCate",
-            contentType: "application/json; charset=utf-8",
-            data: json,
-            async: false,
-            dataType: "json",
-            success: function (info) {
-                console.log(info);
-                $("#relist1").empty();
-                for(var i=0;i<info.restaurant.length&&i<4;i++){
-                    var name=info.restaurant[i].restaurantName;
-                    var restaurantCategory=info.restaurant[i].restaurantCategory;
-                    var restaurantAddress=info.restaurant[i].restaurantAddress;
-                    var score=info.restaurant[i].score;
-                    var image=info.restaurant[i].restaurantImage;
-                    if(3<=score<4){
-                        console.log(score);
-                    }
-                    else if(4<=score<5){
+		console.log(cate+address);
+        if(address=='全部'&&cate=='全部'){
+            console.log('执行2');
+            $.ajax({
+                type: "POST",
+                url: "/findAllRestaurant",
+                contentType: "application/json; charset=utf-8",
+                data: null,
+                async: false,
+                dataType: "json",
+                success: function (info) {
+                    console.log(info);
+                    $("#relist1").empty();
+                    for(var i=0;i<info.restaurant.length&&i<4;i++){
+                        var name=info.restaurant[i].restaurantName;
+                        var restaurantCategory=info.restaurant[i].restaurantCategory;
+                        var restaurantAddress=info.restaurant[i].restaurantAddress;
+                        var score=info.restaurant[i].score;
+                        var image=info.restaurant[i].restaurantImage;
+                        if(3<=score<4){
+                            console.log(score);
+                        }
+                        else if(4<=score<5){
 
+                        }
+                        $("#relist1").append("<li>\n" +
+                            "   <a href=\"shop.html\" target=\"_blank\" title=\"调用产品名/店铺名\"><img src=\""+image+"\"></a>\n" +
+                            "   <hgroup>\n" +
+                            "   <h3>"+name+"</h3>\n" +
+                            "   <h4></h4>\n" +
+                            "   </hgroup>\n" +
+                            "   <p>菜系："+restaurantCategory+"</p>\n" +
+                            "   <p>地址："+restaurantAddress+"</p>\n" +
+                            "   <p>人均：20~50元</p>\n" +
+                            "   <p>\n" +
+                            "    <span class=\"Score-l\">\n" +
+                            "    <img src=\"images/star-on.png\">\n" +
+                            "    <img src=\"images/star-on.png\">\n" +
+                            "    <img src=\"images/star-on.png\">\n" +
+                            "    <img src=\"images/star-on.png\">\n" +
+                            "    <img src=\"images/star-off.png\">\n" +
+                            "    <span class=\"Score-v\">"+score+"</span>\n" +
+                            "    </span>\n" +
+                            "    <span class=\"DSBUTTON\"><a href=\"shop.html\" target=\"_blank\" class=\"Fontfff\">点外卖</a></span>\n" +
+                            "   </p>\n" +
+                            "  </li>");
                     }
-                    $("#relist1").append("<li>\n" +
-                        "   <a href=\"shop.html\" target=\"_blank\" title=\"调用产品名/店铺名\"><img src=\""+image+"\"></a>\n" +
-                        "   <hgroup>\n" +
-                        "   <h3>"+name+"</h3>\n" +
-                        "   <h4></h4>\n" +
-                        "   </hgroup>\n" +
-                        "   <p>菜系："+restaurantCategory+"</p>\n" +
-                        "   <p>地址："+restaurantAddress+"</p>\n" +
-                        "   <p>人均：20~50元</p>\n" +
-                        "   <p>\n" +
-                        "    <span class=\"Score-l\">\n" +
-                        "    <img src=\"images/star-on.png\">\n" +
-                        "    <img src=\"images/star-on.png\">\n" +
-                        "    <img src=\"images/star-on.png\">\n" +
-                        "    <img src=\"images/star-on.png\">\n" +
-                        "    <img src=\"images/star-off.png\">\n" +
-                        "    <span class=\"Score-v\">"+score+"</span>\n" +
-                        "    </span>\n" +
-                        "    <span class=\"DSBUTTON\"><a href=\"shop.html\" target=\"_blank\" class=\"Fontfff\">点外卖</a></span>\n" +
-                        "   </p>\n" +
-                        "  </li>");
+                },
+                error: function (message) {
+                    $("#request-process-patent").html("获取数据失败！");
                 }
-            },
-            error: function (message) {
-                $("#request-process-patent").html("获取数据失败！");
-            }
-        });
+            });
+        }
+        else if(address=='全部'){
+            console.log('执行1');
+            var json = {
+                cate: cate
+            };
+            json = JSON.stringify(json);
+            $.ajax({
+                type: "POST",
+                url: "/findRestaurantByCate",
+                contentType: "application/json; charset=utf-8",
+                data: json,
+                async: false,
+                dataType: "json",
+                success: function (info) {
+                    console.log(info);
+                    $("#relist1").empty();
+                    for(var i=0;i<info.restaurant.length&&i<4;i++){
+                        var name=info.restaurant[i].restaurantName;
+                        var restaurantCategory=info.restaurant[i].restaurantCategory;
+                        var restaurantAddress=info.restaurant[i].restaurantAddress;
+                        var score=info.restaurant[i].score;
+                        var image=info.restaurant[i].restaurantImage;
+                        if(3<=score<4){
+                            console.log(score);
+                        }
+                        else if(4<=score<5){
+
+                        }
+                        $("#relist1").append("<li>\n" +
+                            "   <a href=\"shop.html\" target=\"_blank\" title=\"调用产品名/店铺名\"><img src=\""+image+"\"></a>\n" +
+                            "   <hgroup>\n" +
+                            "   <h3>"+name+"</h3>\n" +
+                            "   <h4></h4>\n" +
+                            "   </hgroup>\n" +
+                            "   <p>菜系："+restaurantCategory+"</p>\n" +
+                            "   <p>地址："+restaurantAddress+"</p>\n" +
+                            "   <p>人均：20~50元</p>\n" +
+                            "   <p>\n" +
+                            "    <span class=\"Score-l\">\n" +
+                            "    <img src=\"images/star-on.png\">\n" +
+                            "    <img src=\"images/star-on.png\">\n" +
+                            "    <img src=\"images/star-on.png\">\n" +
+                            "    <img src=\"images/star-on.png\">\n" +
+                            "    <img src=\"images/star-off.png\">\n" +
+                            "    <span class=\"Score-v\">"+score+"</span>\n" +
+                            "    </span>\n" +
+                            "    <span class=\"DSBUTTON\"><a href=\"shop.html\" target=\"_blank\" class=\"Fontfff\">点外卖</a></span>\n" +
+                            "   </p>\n" +
+                            "  </li>");
+                    }
+                },
+                error: function (message) {
+                    $("#request-process-patent").html("获取数据失败！");
+                }
+            });
         }
         else{
 
@@ -133,7 +187,59 @@ $(document).ready(function(){
         var cate=$("#select1 .selected").text();
         var address=$("#select2 .selected").text();
         console.log(address);
-        if(cate=='全部'){
+        if(address=='全部'&&cate=='全部'){
+            console.log('执行2');
+            $.ajax({
+                type: "POST",
+                url: "/findAllRestaurant",
+                contentType: "application/json; charset=utf-8",
+                data: null,
+                async: false,
+                dataType: "json",
+                success: function (info) {
+                    console.log(info);
+                    $("#relist1").empty();
+                    for(var i=0;i<info.restaurant.length&&i<4;i++){
+                        var name=info.restaurant[i].restaurantName;
+                        var restaurantCategory=info.restaurant[i].restaurantCategory;
+                        var restaurantAddress=info.restaurant[i].restaurantAddress;
+                        var score=info.restaurant[i].score;
+                        var image=info.restaurant[i].restaurantImage;
+                        if(3<=score<4){
+                            console.log(score);
+                        }
+                        else if(4<=score<5){
+
+                        }
+                        $("#relist1").append("<li>\n" +
+                            "   <a href=\"shop.html\" target=\"_blank\" title=\"调用产品名/店铺名\"><img src=\""+image+"\"></a>\n" +
+                            "   <hgroup>\n" +
+                            "   <h3>"+name+"</h3>\n" +
+                            "   <h4></h4>\n" +
+                            "   </hgroup>\n" +
+                            "   <p>菜系："+restaurantCategory+"</p>\n" +
+                            "   <p>地址："+restaurantAddress+"</p>\n" +
+                            "   <p>人均：20~50元</p>\n" +
+                            "   <p>\n" +
+                            "    <span class=\"Score-l\">\n" +
+                            "    <img src=\"images/star-on.png\">\n" +
+                            "    <img src=\"images/star-on.png\">\n" +
+                            "    <img src=\"images/star-on.png\">\n" +
+                            "    <img src=\"images/star-on.png\">\n" +
+                            "    <img src=\"images/star-off.png\">\n" +
+                            "    <span class=\"Score-v\">"+score+"</span>\n" +
+                            "    </span>\n" +
+                            "    <span class=\"DSBUTTON\"><a href=\"shop.html\" target=\"_blank\" class=\"Fontfff\">点外卖</a></span>\n" +
+                            "   </p>\n" +
+                            "  </li>");
+                    }
+                },
+                error: function (message) {
+                    $("#request-process-patent").html("获取数据失败！");
+                }
+            });
+        }
+        else if(cate=='全部'){
             var json = {
                 address: address
             };
