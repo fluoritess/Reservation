@@ -45,10 +45,19 @@ public class RestaurantController {
     }
     @ResponseBody
     @RequestMapping("/findRestaurantByAddress" )
-    @ArchivesLog(operationType = "查询信息", operationName = "根据分类查询餐馆")
+    @ArchivesLog(operationType = "查询信息", operationName = "根据地址查询餐馆")
     public R findRestaurantByAddress(@RequestBody Map<String,String> map,HttpSession httpSession){
         String address=(String)map.get("address");
         List<restaurantUtil> list= RestaurantService.findRestaurantByAddress(address);
+        return  R.ok().put("restaurant",list);
+    }
+    @ResponseBody
+    @RequestMapping("/findRestaurantByAddressAndCate" )
+    @ArchivesLog(operationType = "查询信息", operationName = "根据分类与地址查询餐馆")
+    public R findRestaurantByAddressAndCate(@RequestBody Map<String,String> map,HttpSession httpSession){
+        String cate=(String)map.get("cate");
+        String address=(String)map.get("address");
+        List<restaurantUtil> list= RestaurantService.findRestaurantByAddressAndCate(cate,address);
         return  R.ok().put("restaurant",list);
     }
 }

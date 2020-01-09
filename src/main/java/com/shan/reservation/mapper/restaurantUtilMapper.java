@@ -9,4 +9,5 @@ import java.util.List;
 public interface restaurantUtilMapper {
     List<restaurant> selectRestaurantByCateId(int foodCategoryId);
     List<restaurant> selectRestaurantByAddressId(int addressId);
+    List<restaurant> findRestaurantByAddressAndCate(int foodCategoryId,int addressId);
 }

@@ -1,5 +1,6 @@
 package com.shan.reservation.service;
 
+import com.shan.reservation.bean.address;
 import com.shan.reservation.bean.restaurant;
 import com.shan.reservation.bean.restaurantUtil;
 import org.springframework.stereotype.Service;
@@ -20,4 +21,6 @@ public interface RestaurantService {
     List<restaurantUtil> findRestaurantByCate(String CateName);
     //根据位置查询餐馆
     List<restaurantUtil> findRestaurantByAddress(String address);
+    //根据分类与位置查询餐馆
+    List<restaurantUtil> findRestaurantByAddressAndCate(String CateName,String address);
 }
