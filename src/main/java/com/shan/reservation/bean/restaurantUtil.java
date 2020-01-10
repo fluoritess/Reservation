@@ -19,6 +19,8 @@ public class restaurantUtil {
 
     private String restaurantImage;
 
+    private Integer collection;
+
     public restaurantUtil() {
     }
 
@@ -43,6 +45,27 @@ public class restaurantUtil {
         this.restaurantCategory = restaurantCategory;
         this.score = score;
         this.restaurantImage = restaurantImage;
+    }
+
+    public restaurantUtil(Integer restaurantId, String restaurantPassword, String restaurantAddress, String restaurantPhone, String restaurantName, Integer restaurantState, String restaurantCategory, Double score, String restaurantImage, Integer collection) {
+        this.restaurantId = restaurantId;
+        this.restaurantPassword = restaurantPassword;
+        this.restaurantAddress = restaurantAddress;
+        this.restaurantPhone = restaurantPhone;
+        this.restaurantName = restaurantName;
+        this.restaurantState = restaurantState;
+        this.restaurantCategory = restaurantCategory;
+        this.score = score;
+        this.restaurantImage = restaurantImage;
+        this.collection = collection;
+    }
+
+    public Integer getCollection() {
+        return collection;
+    }
+
+    public void setCollection(Integer collection) {
+        this.collection = collection;
     }
 
     public String getRestaurantImage() {

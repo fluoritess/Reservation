@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50720
 File Encoding         : 65001
 
-Date: 2020-01-09 15:25:31
+Date: 2020-01-10 15:28:12
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -37,6 +37,7 @@ INSERT INTO `address` VALUES ('3', '四川省', '成都', '锦江区', '靖江�
 INSERT INTO `address` VALUES ('4', '四川省', '成都', '金牛区', '人民路35号');
 INSERT INTO `address` VALUES ('5', '四川省', '成都', '武侯区', '龙腾上路23号');
 INSERT INTO `address` VALUES ('6', '四川省', '成都', '武侯区', '杜甫草堂路45号');
+INSERT INTO `address` VALUES ('7', '四川省', '成都', '龙泉驿区', '十陵上街100号');
 
 -- ----------------------------
 -- Table structure for `admin`
@@ -288,6 +289,7 @@ CREATE TABLE `restaurant` (
   `restaurant_category_id` int(11) NOT NULL,
   `score` double(11,2) DEFAULT NULL,
   `restaurant_image` varchar(255) DEFAULT NULL,
+  `collection` int(11) DEFAULT NULL,
   PRIMARY KEY (`restaurant_id`),
   KEY `restaurant_address` (`restaurant_address`),
   CONSTRAINT `restaurant_ibfk_1` FOREIGN KEY (`restaurant_address`) REFERENCES `address` (`address_id`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -296,14 +298,14 @@ CREATE TABLE `restaurant` (
 -- ----------------------------
 -- Records of restaurant
 -- ----------------------------
-INSERT INTO `restaurant` VALUES ('1', '123', '1', '15249875321', '森林牛排', '1', '2', '4.62', 'upload/niupai.jpg');
-INSERT INTO `restaurant` VALUES ('2', '123', '5', '16332854759', '美味沙拉店', '1', '10', '4.83', 'upload/shala.jpg');
-INSERT INTO `restaurant` VALUES ('3', '123', '6', '13245677893', '重庆老火锅', '1', '3', '4.88', 'upload/huoguo.jpg');
-INSERT INTO `restaurant` VALUES ('4', '123', '4', '13245674425', '家常川菜馆', '1', '1', '4.77', 'upload/jiachang.jpg');
-INSERT INTO `restaurant` VALUES ('5', '123', '2', '16235613211', '美琪日本料理', '1', '5', '4.74', 'upload/03.jpg');
-INSERT INTO `restaurant` VALUES ('6', '123', '3', '13568900432', '小龙坎', '1', '3', '4.62', 'upload/03.jpg');
-INSERT INTO `restaurant` VALUES ('7', '123', '4', '15678234561', '家常小炒', '1', '1', '4.89', 'upload/03.jpg');
-INSERT INTO `restaurant` VALUES ('8', '123', '2', '13457688934', '烧仙草', '1', '9', '4.78', 'upload/03.jpg');
+INSERT INTO `restaurant` VALUES ('1', '123', '1', '15249875321', '森林牛排', '1', '2', '4.62', 'upload/niupai.jpg', '1211');
+INSERT INTO `restaurant` VALUES ('2', '123', '5', '16332854759', '美味沙拉店', '1', '10', '4.83', 'upload/shala.jpg', '223');
+INSERT INTO `restaurant` VALUES ('3', '123', '7', '13245677893', '小郡干火锅', '1', '3', '4.88', 'upload/huoguo.jpg', '2452');
+INSERT INTO `restaurant` VALUES ('4', '123', '4', '13245674425', '家常川菜馆', '1', '1', '4.77', 'upload/jiachang.jpg', '4427');
+INSERT INTO `restaurant` VALUES ('5', '123', '2', '16235613211', '美琪日本料理', '1', '5', '4.74', 'upload/03.jpg', '782');
+INSERT INTO `restaurant` VALUES ('6', '123', '3', '13568900432', '小龙坎', '1', '3', '4.62', 'upload/03.jpg', '4792');
+INSERT INTO `restaurant` VALUES ('7', '123', '4', '15678234561', '家常小炒', '1', '1', '4.89', 'upload/03.jpg', '4671');
+INSERT INTO `restaurant` VALUES ('8', '123', '2', '13457688934', '烧仙草', '1', '9', '4.78', 'upload/03.jpg', '2369');
 
 -- ----------------------------
 -- Table structure for `user`

@@ -178,4 +178,10 @@ public class RestaurantServiceImpl implements RestaurantService {
         return tarlist;
     }
 
+    @Override
+    public restaurant findRestaurantById(int id) {
+        restaurant restaurant=restaurantMapper.selectByPrimaryKey(id);
+        return restaurant;
+    }
+
 }

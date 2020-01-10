@@ -77,6 +77,7 @@ $(document).ready(function(){
                         var restaurantAddress=info.restaurant[i].restaurantAddress;
                         var score=info.restaurant[i].score;
                         var image=info.restaurant[i].restaurantImage;
+                        var id=info.restaurant[i].restaurantId;
                         if(3<=score<4){
                             console.log(score);
                         }
@@ -101,7 +102,7 @@ $(document).ready(function(){
                             "    <img src=\"images/star-off.png\">\n" +
                             "    <span class=\"Score-v\">"+score+"</span>\n" +
                             "    </span>\n" +
-                            "    <span class=\"DSBUTTON\"><a href=\"shop.html\" target=\"_blank\" class=\"Fontfff\">点外卖</a></span>\n" +
+                            "    <span class=\"DSBUTTON\"><a href=\"shop.html?"+id+"\" target=\"_blank\" class=\"Fontfff\">点外卖</a></span>\n" +
                             "   </p>\n" +
                             "  </li>");
                     }
@@ -133,6 +134,7 @@ $(document).ready(function(){
                         var restaurantAddress=info.restaurant[i].restaurantAddress;
                         var score=info.restaurant[i].score;
                         var image=info.restaurant[i].restaurantImage;
+                        var id=info.restaurant[i].restaurantId;
                         if(3<=score<4){
                             console.log(score);
                         }
@@ -157,7 +159,7 @@ $(document).ready(function(){
                             "    <img src=\"images/star-off.png\">\n" +
                             "    <span class=\"Score-v\">"+score+"</span>\n" +
                             "    </span>\n" +
-                            "    <span class=\"DSBUTTON\"><a href=\"shop.html\" target=\"_blank\" class=\"Fontfff\">点外卖</a></span>\n" +
+                            "    <span class=\"DSBUTTON\"><a href=\"shop.html?"+id+"\" target=\"_blank\" class=\"Fontfff\">点外卖</a></span>\n" +
                             "   </p>\n" +
                             "  </li>");
                     }
@@ -189,6 +191,7 @@ $(document).ready(function(){
                         var restaurantAddress=info.restaurant[i].restaurantAddress;
                         var score=info.restaurant[i].score;
                         var image=info.restaurant[i].restaurantImage;
+                        var id=info.restaurant[i].restaurantId;
                         if(3<=score<4){
                             console.log(score);
                         }
@@ -213,7 +216,7 @@ $(document).ready(function(){
                             "    <img src=\"images/star-off.png\">\n" +
                             "    <span class=\"Score-v\">"+score+"</span>\n" +
                             "    </span>\n" +
-                            "    <span class=\"DSBUTTON\"><a href=\"shop.html\" target=\"_blank\" class=\"Fontfff\">点外卖</a></span>\n" +
+                            "    <span class=\"DSBUTTON\"><a href=\"shop.html?"+id+"\" target=\"_blank\" class=\"Fontfff\">点外卖</a></span>\n" +
                             "   </p>\n" +
                             "  </li>");
                     }
@@ -258,6 +261,7 @@ $(document).ready(function(){
                         var restaurantAddress=info.restaurant[i].restaurantAddress;
                         var score=info.restaurant[i].score;
                         var image=info.restaurant[i].restaurantImage;
+                        var id=info.restaurant[i].restaurantId;
                         if(3<=score<4){
                             console.log(score);
                         }
@@ -282,7 +286,7 @@ $(document).ready(function(){
                             "    <img src=\"images/star-off.png\">\n" +
                             "    <span class=\"Score-v\">"+score+"</span>\n" +
                             "    </span>\n" +
-                            "    <span class=\"DSBUTTON\"><a href=\"shop.html\" target=\"_blank\" class=\"Fontfff\">点外卖</a></span>\n" +
+                            "    <span class=\"DSBUTTON\"><a href=\"shop.html?"+id+"\" target=\"_blank\" class=\"Fontfff\">点外卖</a></span>\n" +
                             "   </p>\n" +
                             "  </li>");
                     }
@@ -313,6 +317,7 @@ $(document).ready(function(){
                         var restaurantAddress=info.restaurant[i].restaurantAddress;
                         var score=info.restaurant[i].score;
                         var image=info.restaurant[i].restaurantImage;
+                        var id=info.restaurant[i].restaurantId;
                         if(3<=score<4){
                             console.log(score);
                         }
@@ -337,7 +342,7 @@ $(document).ready(function(){
                             "    <img src=\"images/star-off.png\">\n" +
                             "    <span class=\"Score-v\">"+score+"</span>\n" +
                             "    </span>\n" +
-                            "    <span class=\"DSBUTTON\"><a href=\"shop.html\" target=\"_blank\" class=\"Fontfff\">点外卖</a></span>\n" +
+                            "    <span class=\"DSBUTTON\"><a href=\"shop.html"+id+"\" target=\"_blank\" class=\"Fontfff\">点外卖</a></span>\n" +
                             "   </p>\n" +
                             "  </li>");
                     }
@@ -369,6 +374,7 @@ $(document).ready(function(){
                         var restaurantAddress=info.restaurant[i].restaurantAddress;
                         var score=info.restaurant[i].score;
                         var image=info.restaurant[i].restaurantImage;
+                        var id=info.restaurant[i].restaurantId;
                         if(3<=score<4){
                             console.log(score);
                         }
@@ -393,7 +399,7 @@ $(document).ready(function(){
                             "    <img src=\"images/star-off.png\">\n" +
                             "    <span class=\"Score-v\">"+score+"</span>\n" +
                             "    </span>\n" +
-                            "    <span class=\"DSBUTTON\"><a href=\"shop.html\" target=\"_blank\" class=\"Fontfff\">点外卖</a></span>\n" +
+                            "    <span class=\"DSBUTTON\"><a href=\"shop.html?"+id+"\" target=\"_blank\" class=\"Fontfff\">点外卖</a></span>\n" +
                             "   </p>\n" +
                             "  </li>");
                     }

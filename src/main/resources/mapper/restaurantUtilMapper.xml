@@ -12,6 +12,7 @@
             <arg column="restaurant_category_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
             <arg column="score" jdbcType="DOUBLE" javaType="java.lang.Double" />
             <arg column="restaurant_image" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="collection" jdbcType="INTEGER" javaType="java.lang.Integer" />
         </constructor>
     </resultMap>
     <select id="selectRestaurantByCateId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >

@@ -19,7 +19,9 @@ public class restaurant {
 
     private String restaurantImage;
 
-    public restaurant(Integer restaurantId, String restaurantPassword, Integer restaurantAddress, String restaurantPhone, String restaurantName, Integer restaurantState, Integer restaurantCategoryId, Double score, String restaurantImage) {
+    private Integer collection;
+
+    public restaurant(Integer restaurantId, String restaurantPassword, Integer restaurantAddress, String restaurantPhone, String restaurantName, Integer restaurantState, Integer restaurantCategoryId, Double score, String restaurantImage, Integer collection) {
         this.restaurantId = restaurantId;
         this.restaurantPassword = restaurantPassword;
         this.restaurantAddress = restaurantAddress;
@@ -29,6 +31,7 @@ public class restaurant {
         this.restaurantCategoryId = restaurantCategoryId;
         this.score = score;
         this.restaurantImage = restaurantImage;
+        this.collection = collection;
     }
 
     public restaurant() {
@@ -105,5 +108,13 @@ public class restaurant {
 
     public void setRestaurantImage(String restaurantImage) {
         this.restaurantImage = restaurantImage == null ? null : restaurantImage.trim();
+    }
+
+    public Integer getCollection() {
+        return collection;
+    }
+
+    public void setCollection(Integer collection) {
+        this.collection = collection;
     }
 }

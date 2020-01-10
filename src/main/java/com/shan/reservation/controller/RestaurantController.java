@@ -43,6 +43,7 @@ public class RestaurantController {
         List<restaurantUtil> list= RestaurantService.findRestaurantByCate(cate);
         return  R.ok().put("restaurant",list);
     }
+
     @ResponseBody
     @RequestMapping("/findRestaurantByAddress" )
     @ArchivesLog(operationType = "查询信息", operationName = "根据地址查询餐馆")
@@ -51,6 +52,7 @@ public class RestaurantController {
         List<restaurantUtil> list= RestaurantService.findRestaurantByAddress(address);
         return  R.ok().put("restaurant",list);
     }
+
     @ResponseBody
     @RequestMapping("/findRestaurantByAddressAndCate" )
     @ArchivesLog(operationType = "查询信息", operationName = "根据分类与地址查询餐馆")
@@ -59,5 +61,14 @@ public class RestaurantController {
         String address=(String)map.get("address");
         List<restaurantUtil> list= RestaurantService.findRestaurantByAddressAndCate(cate,address);
         return  R.ok().put("restaurant",list);
+    }
+
+    @ResponseBody
+    @RequestMapping("/findRestaurantById" )
+    @ArchivesLog(operationType = "查询信息", operationName = "根据Id查询餐馆")
+    public R findRestaurantById(@RequestBody Map<String,String> map,HttpSession httpSession){
+        int id=Integer.parseInt(map.get("id"));
+        restaurant restaurant= RestaurantService.findRestaurantById(id);
+        return  R.ok().put("restaurant",restaurant);
     }
 }

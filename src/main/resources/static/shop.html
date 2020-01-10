@@ -371,6 +371,27 @@ Author URI: http://www.deathghost.cn
  </section>
 <div class="copyright">© 版权所有 2016 DeathGhost 技术支持：<a href="http://www.deathghost.cn" title="DeathGhost">DeathGhost</a></div>
 </footer>
-
+<script type="text/javascript">
+        var id = location.href.split("?")[1];
+        var json = {
+            id: id
+        };
+        json = JSON.stringify(json);
+        var cityname=null;
+        $.ajax({
+            type: "POST",
+            url: "/findRestaurantById",
+            contentType: "application/json; charset=utf-8",
+            data: json,
+            async: false,
+            dataType: "json",
+            success: function (info) {
+                console.log(info);
+            },
+            error: function (message) {
+                $("#request-process-patent").html("获取数据失败！");
+            }
+        });
+</script>
 </body>
 </html>

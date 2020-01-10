@@ -683,6 +683,66 @@ public class restaurantExample {
             addCriterion("restaurant_image not between", value1, value2, "restaurantImage");
             return (Criteria) this;
         }
+
+        public Criteria andCollectionIsNull() {
+            addCriterion("collection is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollectionIsNotNull() {
+            addCriterion("collection is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollectionEqualTo(Integer value) {
+            addCriterion("collection =", value, "collection");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollectionNotEqualTo(Integer value) {
+            addCriterion("collection <>", value, "collection");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollectionGreaterThan(Integer value) {
+            addCriterion("collection >", value, "collection");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollectionGreaterThanOrEqualTo(Integer value) {
+            addCriterion("collection >=", value, "collection");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollectionLessThan(Integer value) {
+            addCriterion("collection <", value, "collection");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollectionLessThanOrEqualTo(Integer value) {
+            addCriterion("collection <=", value, "collection");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollectionIn(List<Integer> values) {
+            addCriterion("collection in", values, "collection");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollectionNotIn(List<Integer> values) {
+            addCriterion("collection not in", values, "collection");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollectionBetween(Integer value1, Integer value2) {
+            addCriterion("collection between", value1, value2, "collection");
+            return (Criteria) this;
+        }
+
+        public Criteria andCollectionNotBetween(Integer value1, Integer value2) {
+            addCriterion("collection not between", value1, value2, "collection");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
