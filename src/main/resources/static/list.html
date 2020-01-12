@@ -243,36 +243,38 @@ Author URI: http://www.deathghost.cn
     <!--华丽的分割线-->
  <aside>
   <div class="title">热门商家</div>
-  <div class="C-list">
-   <a href="shop.html" target="_blank" title="店铺名称"><img src="upload/cc.jpg"></a>
-   <p><a href="shop.html" target="_blank">[大雁塔]店铺名称</a></p>
-   <p>
-   <span>人均：20~50元</span>
-   <span style=" float:right">
-    <img src="images/star-on.png">
-    <img src="images/star-on.png">
-    <img src="images/star-on.png">
-    <img src="images/star-on.png">
-    <img src="images/star-off.png">
-    <span class="ALscore">4.8</span>
-   </span>
-   </p>
-  </div>
-  <div class="C-list">
-   <a href="shop.html" target="_blank" title="店铺名称"><img src="upload/cc.jpg"></a>
-   <p><a href="shop.html" target="_blank">[大雁塔]店铺名称</a></p>
-   <p>
-   <span>人均：20~50元</span>
-   <span style=" float:right">
-    <img src="images/star-on.png">
-    <img src="images/star-on.png">
-    <img src="images/star-on.png">
-    <img src="images/star-on.png">
-    <img src="images/star-off.png">
-    <span class="ALscore">4.8</span>
-   </span>
-   </p>
-  </div>
+     <div id="hotshop">
+  <!--<div class="C-list">-->
+   <!--<a href="shop.html" target="_blank" title="店铺名称"><img src="upload/cc.jpg"></a>-->
+   <!--<p><a href="shop.html" target="_blank">[大雁塔]店铺名称</a></p>-->
+   <!--<p>-->
+   <!--<span>人均：20~50元</span>-->
+   <!--<span style=" float:right">-->
+    <!--<img src="images/star-on.png">-->
+    <!--<img src="images/star-on.png">-->
+    <!--<img src="images/star-on.png">-->
+    <!--<img src="images/star-on.png">-->
+    <!--<img src="images/star-off.png">-->
+    <!--<span class="ALscore">4.8</span>-->
+   <!--</span>-->
+   <!--</p>-->
+  <!--</div>-->
+  <!--<div class="C-list">-->
+   <!--<a href="shop.html" target="_blank" title="店铺名称"><img src="upload/cc.jpg"></a>-->
+   <!--<p><a href="shop.html" target="_blank">[大雁塔]店铺名称</a></p>-->
+   <!--<p>-->
+   <!--<span>人均：20~50元</span>-->
+   <!--<span style=" float:right">-->
+    <!--<img src="images/star-on.png">-->
+    <!--<img src="images/star-on.png">-->
+    <!--<img src="images/star-on.png">-->
+    <!--<img src="images/star-on.png">-->
+    <!--<img src="images/star-off.png">-->
+    <!--<span class="ALscore">4.8</span>-->
+   <!--</span>-->
+   <!--</p>-->
+  <!--</div>-->
+     </div>
  </aside>
  <div class="TurnPage">
   <a href="#">
@@ -355,7 +357,7 @@ Author URI: http://www.deathghost.cn
             async: false,
             dataType: "json",
             success: function (info) {
-                console.log(info);
+                // console.log(info);
                for(var i=0;i<info.restaurant.length&&i<4;i++){
                    var name=info.restaurant[i].restaurantName;
                    var restaurantCategory=info.restaurant[i].restaurantCategory;
@@ -364,7 +366,7 @@ Author URI: http://www.deathghost.cn
                    var image=info.restaurant[i].restaurantImage;
                    var id=info.restaurant[i].restaurantId;
                    if(3<=score<4){
-                       console.log(score);
+                       // console.log(score);
                    }
                    else if(4<=score<5){
 
@@ -392,6 +394,45 @@ Author URI: http://www.deathghost.cn
                        "   </p>\n" +
                        "  </li>");
                }
+            },
+            error: function (message) {
+                $("#request-process-patent").html("获取数据失败！");
+            }
+        });
+        //获取最热商家findHotRestaurant
+        $.ajax({
+            type: "POST",
+            url: "/findHotRestaurant",
+            contentType: "application/json; charset=utf-8",
+            data: null,
+            async: false,
+            dataType: "json",
+            success: function (info) {
+                console.log(info);
+                for(var i=0;i<info.restaurant.length&&i<4;i++){
+                    var name=info.restaurant[i].restaurantName;
+                    var restaurantCategory=info.restaurant[i].restaurantCategory;
+                    var restaurantAddress=info.restaurant[i].restaurantAddress;
+                    var score=info.restaurant[i].score;
+                    var image=info.restaurant[i].restaurantImage;
+                    var id=info.restaurant[i].restaurantId;
+                    console.log(name);
+                    $("#hotshop").append("<div class=\"C-list\">\n" +
+                        "   <a href=\"shop.html\" target=\"_blank\" title=\"店铺名称\"><img src=\""+image+"\"></a>\n" +
+                        "   <p><a href=\"shop.html\" target=\"_blank\">"+name+"</a></p>\n" +
+                        "   <p>\n" +
+                        "   <span>人均：20~50元</span>\n" +
+                        "   <span style=\" float:right\">\n" +
+                        "    <img src=\"images/star-on.png\">\n" +
+                        "    <img src=\"images/star-on.png\">\n" +
+                        "    <img src=\"images/star-on.png\">\n" +
+                        "    <img src=\"images/star-on.png\">\n" +
+                        "    <img src=\"images/star-off.png\">\n" +
+                        "    <span class=\"ALscore\">"+score+"</span>\n" +
+                        "   </span>\n" +
+                        "   </p>\n" +
+                        "  </div>");
+                }
             },
             error: function (message) {
                 $("#request-process-patent").html("获取数据失败！");

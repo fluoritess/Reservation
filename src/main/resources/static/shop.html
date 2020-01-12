@@ -63,7 +63,7 @@ Author URI: http://www.deathghost.cn
  <section class="Topmenubg">
   <div class="Topnav">
    <div class="LeftNav">
-    <a href="register.html">注册</a>/<a href="login.html">登录</a><a href="#">QQ客服</a><a href="#">微信客服</a><a href="#">手机客户端</a>
+    <!--<a href="register.html">注册</a>/<a href="login.html">登录</a><a href="#">QQ客服</a><a href="#">微信客服</a><a href="#">手机客户端</a>-->
    </div>
    <div class="RightNav">
     <a href="user_center.html">用户中心</a> <a href="user_orderlist.html" target="_blank" title="我的订单">我的订单</a> <a href="cart.html">购物车（0）</a> <a href="user_favorites.html" target="_blank" title="我的收藏">我的收藏</a> <a href="#">商家入驻</a>
@@ -72,9 +72,9 @@ Author URI: http://www.deathghost.cn
  </section>
  <div class="Logo_search">
   <div class="Logo">
-   <img src="images/logo.jpg" title="DeathGhost" alt="模板">
+      <a href="index.html"><img src="login/images/logo.png" title="DeathGhost" alt="模板"></a>
    <i></i>
-   <span>西安市 [ <a href="#">莲湖区</a> ]</span>
+      <span id="distict"></span>
   </div>
   <div class="Search"> 
    <form method="get" id="main_a_serach" onsubmit="return check_search(this)">
@@ -103,42 +103,33 @@ Author URI: http://www.deathghost.cn
 <section class="Shop-index">
  <article>
   <div class="shopinfor">
-   <div class="title">
-    <img src="upload/wpjnewlogo.jpg" class="shop-ico">
-    <span>含山路外婆家</span>
-    <span>
-     <img src="images/star-on.png">
-     <img src="images/star-on.png">
-     <img src="images/star-on.png">
-     <img src="images/star-on.png">
-     <img src="images/star-off.png">
-    </span>
-    <span>4.8</span>
+   <div class="title" id="shopname">
+
    </div>
    <div class="imginfor">
     <div class="shopimg">
-     <img src="upload/cc.jpg" id="showimg">
+     <!--<img src="upload/cc.jpg" id="showimg">-->
       <ul class="smallpic">
-       <li><img src="upload/cc.jpg" onmouseover="show(this)" onmouseout="hide()"></li>
+       <!--<li><img src="upload/cc.jpg" onmouseover="show(this)" onmouseout="hide()"></li>-->
       </ul>
     </div>
     <div class="shoptext">
-     <p><span>地址：</span>陕西省西安市雁塔区丈八北路***号</p>
-     <p><span>电话：</span>029-88888888</p>
-     <p><span>特色菜品：</span>毛肚、牛丸、滑虾、羊肉、香辣虾...</p>
-     <p><span>优惠活动：</span>暂无信息</p>
-     <p><span>停车位：</span>4个停车位（免费）</p>
-     <p><span>营业时间：</span>09:00~22:00</p>
-     <p><span>WIFI：</span>免费WIFI</p>
-     <p><span>价格：</span>50元</p>
-     <div class="Button">
-      <a href="#ydwm"><span class="DCbutton">查看菜谱点菜</span></a>
-     </div>
-     <div class="otherinfor">
-     <a href="#" class="icoa"><img src="images/collect.png">收藏店铺（1293）</a>
-     <div class="bshare-custom"><a title="分享" class="bshare-more bshare-more-icon more-style-addthis">分享</a></div>
-	 <script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=1&amp;lang=zh"></script><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
-     </div>
+        <!--<p><span>地址：</span>陕西省西安市雁塔区丈八北路***号</p>-->
+        <!--<p><span>电话：</span>029-88888888</p>-->
+        <!--<p><span>特色菜品：</span>毛肚、牛丸、滑虾、羊肉、香辣虾...</p>-->
+        <!--<p><span>优惠活动：</span>暂无信息</p>-->
+        <!--<p><span>停车位：</span>4个停车位（免费）</p>-->
+        <!--<p><span>营业时间：</span>09:00~22:00</p>-->
+        <!--<p><span>WIFI：</span>免费WIFI</p>-->
+        <!--<p><span>价格：</span>50元</p>-->
+        <div class="Button">
+            <a href="#ydwm"><span class="DCbutton">查看菜谱点菜</span></a>
+        </div>
+        <div class="otherinfor">
+            <a href="#" class="icoa"><img src="images/collect.png">收藏店铺（1293）</a>
+            <div class="bshare-custom"><a title="分享" class="bshare-more bshare-more-icon more-style-addthis">分享</a></div>
+            <script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=1&amp;lang=zh"></script><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
+        </div>
    </div>
   </div>
   <div class="shopcontent">
@@ -387,9 +378,68 @@ Author URI: http://www.deathghost.cn
             dataType: "json",
             success: function (info) {
                 console.log(info);
+                var name=info.restaurant.restaurantAddress;
+                var phone=info.restaurant.restaurantPhone;
+                var image=info.restaurant.restaurantImage;
+                var addrress=info.restaurant.restaurantAddress;
+                var score=info.restaurant.score;
+                var shopname=info.restaurant.restaurantName;
+                $(".shoptext").prepend(" <p><span>地址：</span>"+addrress+"</p>\n" +
+                    "        <p><span>电话：</span>"+phone+"</p>\n" +
+                    "        <p><span>特色菜品：</span>毛肚、牛丸、滑虾、羊肉、香辣虾...</p>\n" +
+                    "        <p><span>优惠活动：</span>暂无信息</p>\n" +
+                    "        <p><span>停车位：</span>4个停车位（免费）</p>\n" +
+                    "        <p><span>营业时间：</span>09:00~22:00</p>\n" +
+                    "        <p><span>WIFI：</span>免费WIFI</p>\n" +
+                    "        <p><span>价格：</span>50元</p>");
+                $(".shopimg").prepend("<img src=\""+image+"\" id=\"showimg\">");
+                $(".smallpic").append("<li><img src=\""+image+"\" onmouseover=\"show(this)\" onmouseout=\"hide()\"></li>");
+                $("#shopname").append("<img src=\"upload/wpjnewlogo.jpg\" class=\"shop-ico\">\n" +
+                    "    <span>"+shopname+"</span>\n" +
+                    "    <span>\n" +
+                    "     <img src=\"images/star-on.png\">\n" +
+                    "     <img src=\"images/star-on.png\">\n" +
+                    "     <img src=\"images/star-on.png\">\n" +
+                    "     <img src=\"images/star-on.png\">\n" +
+                    "     <img src=\"images/star-off.png\">\n" +
+                    "    </span>\n" +
+                    "    <span>"+score+"</span>");
             },
             error: function (message) {
                 $("#request-process-patent").html("获取数据失败！");
+            }
+        });
+        $(function(){
+            var user=sessionStorage.getItem("name");
+            console.log(user);
+            if(user==null){
+                $(".LeftNav").append(" <a href=\"login/register.html\">注册</a>/<a href=\"login/login.html\">登录</a><a href=\"#\">QQ客服</a><a href=\"#\">微信客服</a><a href=\"#\">手机客户端</a>");
+
+            }
+            else{
+                $(".LeftNav").append(" <a href=\"index.html\">退出登录</a><a href=\"#\">QQ客服</a><a href=\"#\">微信客服</a><a href=\"#\">手机客户端</a>");
+                var json = {
+                    name: user
+                };
+                json = JSON.stringify(json);
+                var cityname=null;
+                $.ajax({
+                    type: "POST",
+                    url: "/GetUserCityInfo",
+                    contentType: "application/json; charset=utf-8",
+                    data: json,
+                    async: false,
+                    dataType: "json",
+                    success: function (info) {
+                        var city=info.user.city;
+                        cityname=city;
+                        var distict=info.user.distict;
+                        $("#distict").append(city+ "[ <a href=\"#\">"+distict+"</a> ]");
+                    },
+                    error: function (message) {
+                        $("#request-process-patent").html("获取数据失败！");
+                    }
+                });
             }
         });
 </script>

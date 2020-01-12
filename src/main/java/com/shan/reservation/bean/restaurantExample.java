@@ -743,6 +743,136 @@ public class restaurantExample {
             addCriterion("collection not between", value1, value2, "collection");
             return (Criteria) this;
         }
+
+        public Criteria andRestaurantDescribeIsNull() {
+            addCriterion("restaurant_describe is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantDescribeIsNotNull() {
+            addCriterion("restaurant_describe is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantDescribeEqualTo(String value) {
+            addCriterion("restaurant_describe =", value, "restaurantDescribe");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantDescribeNotEqualTo(String value) {
+            addCriterion("restaurant_describe <>", value, "restaurantDescribe");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantDescribeGreaterThan(String value) {
+            addCriterion("restaurant_describe >", value, "restaurantDescribe");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantDescribeGreaterThanOrEqualTo(String value) {
+            addCriterion("restaurant_describe >=", value, "restaurantDescribe");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantDescribeLessThan(String value) {
+            addCriterion("restaurant_describe <", value, "restaurantDescribe");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantDescribeLessThanOrEqualTo(String value) {
+            addCriterion("restaurant_describe <=", value, "restaurantDescribe");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantDescribeLike(String value) {
+            addCriterion("restaurant_describe like", value, "restaurantDescribe");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantDescribeNotLike(String value) {
+            addCriterion("restaurant_describe not like", value, "restaurantDescribe");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantDescribeIn(List<String> values) {
+            addCriterion("restaurant_describe in", values, "restaurantDescribe");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantDescribeNotIn(List<String> values) {
+            addCriterion("restaurant_describe not in", values, "restaurantDescribe");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantDescribeBetween(String value1, String value2) {
+            addCriterion("restaurant_describe between", value1, value2, "restaurantDescribe");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantDescribeNotBetween(String value1, String value2) {
+            addCriterion("restaurant_describe not between", value1, value2, "restaurantDescribe");
+            return (Criteria) this;
+        }
+
+        public Criteria andSalesIsNull() {
+            addCriterion("sales is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSalesIsNotNull() {
+            addCriterion("sales is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSalesEqualTo(Integer value) {
+            addCriterion("sales =", value, "sales");
+            return (Criteria) this;
+        }
+
+        public Criteria andSalesNotEqualTo(Integer value) {
+            addCriterion("sales <>", value, "sales");
+            return (Criteria) this;
+        }
+
+        public Criteria andSalesGreaterThan(Integer value) {
+            addCriterion("sales >", value, "sales");
+            return (Criteria) this;
+        }
+
+        public Criteria andSalesGreaterThanOrEqualTo(Integer value) {
+            addCriterion("sales >=", value, "sales");
+            return (Criteria) this;
+        }
+
+        public Criteria andSalesLessThan(Integer value) {
+            addCriterion("sales <", value, "sales");
+            return (Criteria) this;
+        }
+
+        public Criteria andSalesLessThanOrEqualTo(Integer value) {
+            addCriterion("sales <=", value, "sales");
+            return (Criteria) this;
+        }
+
+        public Criteria andSalesIn(List<Integer> values) {
+            addCriterion("sales in", values, "sales");
+            return (Criteria) this;
+        }
+
+        public Criteria andSalesNotIn(List<Integer> values) {
+            addCriterion("sales not in", values, "sales");
+            return (Criteria) this;
+        }
+
+        public Criteria andSalesBetween(Integer value1, Integer value2) {
+            addCriterion("sales between", value1, value2, "sales");
+            return (Criteria) this;
+        }
+
+        public Criteria andSalesNotBetween(Integer value1, Integer value2) {
+            addCriterion("sales not between", value1, value2, "sales");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

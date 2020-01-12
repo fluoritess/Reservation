@@ -13,6 +13,8 @@
             <arg column="score" jdbcType="DOUBLE" javaType="java.lang.Double" />
             <arg column="restaurant_image" jdbcType="VARCHAR" javaType="java.lang.String" />
             <arg column="collection" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="restaurant_describe" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="sales" jdbcType="INTEGER" javaType="java.lang.Integer" />
         </constructor>
     </resultMap>
     <select id="selectRestaurantByCateId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
@@ -24,4 +26,8 @@
     <select id="findRestaurantByAddressAndCate" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
        SELECT * from restaurant where restaurant_address= #{addressId,jdbcType=INTEGER} And  restaurant_category_id = #{foodCategoryId,jdbcType=INTEGER}
     </select>
+    <select id="findhotshop" resultMap="BaseResultMap" >
+       SELECT * from restaurant   order by sales desc limit 2;
+    </select>
+
 </mapper>

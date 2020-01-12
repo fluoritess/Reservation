@@ -68,7 +68,14 @@ public class RestaurantController {
     @ArchivesLog(operationType = "查询信息", operationName = "根据Id查询餐馆")
     public R findRestaurantById(@RequestBody Map<String,String> map,HttpSession httpSession){
         int id=Integer.parseInt(map.get("id"));
-        restaurant restaurant= RestaurantService.findRestaurantById(id);
+        restaurantUtil restaurant= RestaurantService.findRestaurantById(id);
+        return  R.ok().put("restaurant",restaurant);
+    }
+    @ResponseBody
+    @RequestMapping("/findHotRestaurant" )
+    @ArchivesLog(operationType = "查询信息", operationName = "查询最热餐馆")
+    public R findHotRestaurant(HttpSession httpSession){
+        List<restaurantUtil> restaurant= RestaurantService.findhotshop();
         return  R.ok().put("restaurant",restaurant);
     }
 }

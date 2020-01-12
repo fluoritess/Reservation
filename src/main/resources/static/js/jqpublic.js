@@ -342,7 +342,7 @@ $(document).ready(function(){
                             "    <img src=\"images/star-off.png\">\n" +
                             "    <span class=\"Score-v\">"+score+"</span>\n" +
                             "    </span>\n" +
-                            "    <span class=\"DSBUTTON\"><a href=\"shop.html"+id+"\" target=\"_blank\" class=\"Fontfff\">点外卖</a></span>\n" +
+                            "    <span class=\"DSBUTTON\"><a href=\"shop.html?"+id+"\" target=\"_blank\" class=\"Fontfff\">点外卖</a></span>\n" +
                             "   </p>\n" +
                             "  </li>");
                     }

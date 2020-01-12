@@ -179,9 +179,53 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    public restaurant findRestaurantById(int id) {
+    public restaurantUtil findRestaurantById(int id) {
         restaurant restaurant=restaurantMapper.selectByPrimaryKey(id);
-        return restaurant;
+        int address_id=restaurant.getRestaurantAddress();
+        int cate_id=restaurant.getRestaurantCategoryId();
+        int  restaurant_id=restaurant.getRestaurantId();
+        String password=restaurant.getRestaurantPassword();
+        address address_=addressMapper.selectByPrimaryKey(address_id);
+        String address_1=address_.getAddressCity();
+        String address_2=address_.getAddressDistrict();
+        String address_3=address_.getAddressStreet();
+        String address_4=address_1+address_2+address_3;
+        String restaurantPhone=restaurant.getRestaurantPhone();
+        String name=restaurant.getRestaurantName();
+        int state=restaurant.getRestaurantState();
+        food_category category=food_categoryMapper.selectByPrimaryKey(cate_id);
+        String cate_name=category.getCategoryName();
+        double score=restaurant.getScore();
+        String image=restaurant.getRestaurantImage();
+        restaurantUtil restaurantUtil_BEAN=new restaurantUtil(restaurant_id,password,address_4,restaurantPhone,name,state,cate_name,score,image);
+        return restaurantUtil_BEAN;
+    }
+
+    @Override
+    public List<restaurantUtil> findhotshop() {
+        List<restaurant> list=restaurantUtilMapper.findhotshop();
+        List<restaurantUtil> tarlist=new ArrayList<restaurantUtil>();
+        for(int i=0;i<list.size();i++){
+            int address_id=list.get(i).getRestaurantAddress();
+            int cate_id=list.get(i).getRestaurantCategoryId();
+            int  restaurant_id=list.get(i).getRestaurantId();
+            String password=list.get(i).getRestaurantPassword();
+            address address=addressMapper.selectByPrimaryKey(address_id);
+            String address_1=address.getAddressCity();
+            String address_2=address.getAddressDistrict();
+            String address_3=address.getAddressStreet();
+            String address_4=address_1+address_2+address_3;
+            String restaurantPhone=list.get(i).getRestaurantPhone();
+            String name=list.get(i).getRestaurantName();
+            int state=list.get(i).getRestaurantState();
+            food_category category=food_categoryMapper.selectByPrimaryKey(cate_id);
+            String cate_name=category.getCategoryName();
+            double score=list.get(i).getScore();
+            String image=list.get(i).getRestaurantImage();
+            restaurantUtil restaurantUtil_BEAN=new restaurantUtil(restaurant_id,password,address_4,restaurantPhone,name,state,cate_name,score,image);
+            tarlist.add(restaurantUtil_BEAN);
+        }
+        return tarlist;
     }
 
 }

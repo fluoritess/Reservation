@@ -21,7 +21,26 @@ public class restaurantUtil {
 
     private Integer collection;
 
+    private String restaurantDescribe;
+
+    private Integer sales;
+
     public restaurantUtil() {
+    }
+
+    public restaurantUtil(Integer restaurantId, String restaurantPassword, String restaurantAddress, String restaurantPhone, String restaurantName, Integer restaurantState, String restaurantCategory, Double score, String restaurantImage, Integer collection, String restaurantDescribe, Integer sales) {
+        this.restaurantId = restaurantId;
+        this.restaurantPassword = restaurantPassword;
+        this.restaurantAddress = restaurantAddress;
+        this.restaurantPhone = restaurantPhone;
+        this.restaurantName = restaurantName;
+        this.restaurantState = restaurantState;
+        this.restaurantCategory = restaurantCategory;
+        this.score = score;
+        this.restaurantImage = restaurantImage;
+        this.collection = collection;
+        this.restaurantDescribe = restaurantDescribe;
+        this.sales = sales;
     }
 
     public restaurantUtil(Integer restaurantId, String restaurantPassword, String restaurantAddress, String restaurantPhone, String restaurantName, Integer restaurantState, String restaurantCategory, Double score) {
@@ -60,12 +79,42 @@ public class restaurantUtil {
         this.collection = collection;
     }
 
+    public restaurantUtil(Integer restaurantId, String restaurantPassword, String restaurantAddress, String restaurantPhone, String restaurantName, Integer restaurantState, String restaurantCategory, Double score, String restaurantImage, Integer collection, String restaurantDescribe) {
+        this.restaurantId = restaurantId;
+        this.restaurantPassword = restaurantPassword;
+        this.restaurantAddress = restaurantAddress;
+        this.restaurantPhone = restaurantPhone;
+        this.restaurantName = restaurantName;
+        this.restaurantState = restaurantState;
+        this.restaurantCategory = restaurantCategory;
+        this.score = score;
+        this.restaurantImage = restaurantImage;
+        this.collection = collection;
+        this.restaurantDescribe = restaurantDescribe;
+    }
+
     public Integer getCollection() {
         return collection;
     }
 
     public void setCollection(Integer collection) {
         this.collection = collection;
+    }
+
+    public String getRestaurantDescribe() {
+        return restaurantDescribe;
+    }
+
+    public Integer getSales() {
+        return sales;
+    }
+
+    public void setSales(Integer sales) {
+        this.sales = sales;
+    }
+
+    public void setRestaurantDescribe(String restaurantDescribe) {
+        this.restaurantDescribe = restaurantDescribe;
     }
 
     public String getRestaurantImage() {

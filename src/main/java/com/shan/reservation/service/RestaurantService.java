@@ -24,5 +24,7 @@ public interface RestaurantService {
     //根据分类与位置查询餐馆
     List<restaurantUtil> findRestaurantByAddressAndCate(String CateName,String address);
     //根据Id查询餐馆
-   restaurant findRestaurantById(int id);
+    restaurantUtil findRestaurantById(int id);
+    //查询最热餐馆
+    List<restaurantUtil> findhotshop();
 }
