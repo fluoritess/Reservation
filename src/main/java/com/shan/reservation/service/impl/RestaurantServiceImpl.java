@@ -197,7 +197,8 @@ public class RestaurantServiceImpl implements RestaurantService {
         String cate_name=category.getCategoryName();
         double score=restaurant.getScore();
         String image=restaurant.getRestaurantImage();
-        restaurantUtil restaurantUtil_BEAN=new restaurantUtil(restaurant_id,password,address_4,restaurantPhone,name,state,cate_name,score,image);
+        int cllection=restaurant.getCollection();
+        restaurantUtil restaurantUtil_BEAN=new restaurantUtil(restaurant_id,password,address_4,restaurantPhone,name,state,cate_name,score,image,cllection);
         return restaurantUtil_BEAN;
     }
 

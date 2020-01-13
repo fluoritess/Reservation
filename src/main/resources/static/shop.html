@@ -125,8 +125,8 @@ Author URI: http://www.deathghost.cn
         <div class="Button">
             <a href="#ydwm"><span class="DCbutton">查看菜谱点菜</span></a>
         </div>
-        <div class="otherinfor">
-            <a href="#" class="icoa"><img src="images/collect.png">收藏店铺（1293）</a>
+        <div class="otherinfor" id="otherinfor">
+            <!--<a href="#" class="icoa"><img src="images/collect.png">收藏店铺（1293）</a>-->
             <div class="bshare-custom"><a title="分享" class="bshare-more bshare-more-icon more-style-addthis">分享</a></div>
             <script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=1&amp;lang=zh"></script><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
         </div>
@@ -384,6 +384,7 @@ Author URI: http://www.deathghost.cn
                 var addrress=info.restaurant.restaurantAddress;
                 var score=info.restaurant.score;
                 var shopname=info.restaurant.restaurantName;
+                var collection=info.restaurant.collection;
                 $(".shoptext").prepend(" <p><span>地址：</span>"+addrress+"</p>\n" +
                     "        <p><span>电话：</span>"+phone+"</p>\n" +
                     "        <p><span>特色菜品：</span>毛肚、牛丸、滑虾、羊肉、香辣虾...</p>\n" +
@@ -404,6 +405,7 @@ Author URI: http://www.deathghost.cn
                     "     <img src=\"images/star-off.png\">\n" +
                     "    </span>\n" +
                     "    <span>"+score+"</span>");
+                $("#otherinfor").prepend(" <a href=\"#\" class=\"icoa\"><img src=\"images/collect.png\">收藏店铺（"+collection+"）</a>");
             },
             error: function (message) {
                 $("#request-process-patent").html("获取数据失败！");
