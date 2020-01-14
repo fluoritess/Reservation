@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50720
 File Encoding         : 65001
 
-Date: 2020-01-14 17:45:04
+Date: 2020-01-14 18:18:44
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -304,11 +304,11 @@ CREATE TABLE `restaurant` (
 -- ----------------------------
 -- Records of restaurant
 -- ----------------------------
-INSERT INTO `restaurant` VALUES ('1', '123', '1', '15249875321', '森林牛排', '1', '2', '4.62', 'upload/niupai.jpg', '1211', '香霏牛排现已打造成功近百家连锁店，在业界，以西餐技能过硬，办理共同见长，赢得了广阔顾客的好评；', '3642', '1', '30', 'upload/shop/niupai.jpg', '80');
-INSERT INTO `restaurant` VALUES ('2', '123', '5', '16332854759', '美味沙拉店', '1', '10', '4.83', 'upload/shala.jpg', '223', null, '634', '1', '4', null, '20');
-INSERT INTO `restaurant` VALUES ('3', '123', '7', '13245677893', '小郡干火锅', '1', '3', '4.88', 'upload/huoguo.jpg', '2452', null, '4876', '1', '10', null, '40');
-INSERT INTO `restaurant` VALUES ('4', '123', '4', '13245674425', '家常川菜馆', '1', '1', '4.77', 'upload/jiachang.jpg', '4427', null, '7654', '1', '22', null, '20');
-INSERT INTO `restaurant` VALUES ('5', '123', '2', '16235613211', '美琪日本料理', '1', '5', '4.74', 'upload/riliao.jpg', '782', null, '1983', '1', '8', null, '90');
+INSERT INTO `restaurant` VALUES ('1', '123', '1', '15249875321', '香霏牛排', '1', '2', '4.62', 'upload/niupai.jpg', '1211', '香霏牛排现已打造成功近百家连锁店，在业界，以西餐技能过硬，办理共同见长，赢得了广阔顾客的好评。', '3642', '1', '30', 'upload/shop/niupai.jpg', '80');
+INSERT INTO `restaurant` VALUES ('2', '123', '5', '16332854759', 'you味沙拉', '1', '10', '4.83', 'upload/shala.jpg', '223', '国内提出主食沙拉的连锁餐饮品牌，是一个以各国风味主食色拉为特色的健康轻食品牌。', '634', '1', '4', 'upload/shop/shala.jpg', '20');
+INSERT INTO `restaurant` VALUES ('3', '123', '7', '13245677893', '小郡干火锅', '1', '3', '4.88', 'upload/huoguo.jpg', '2452', '小郡肝就是店里的“头牌”,只留鸡胗中间最嫩的两小块肉,头天晚上腌制时,师傅要手打一个多钟头,脆生生的小郡肝。', '4876', '1', '10', 'upload/shop/xiaojungan.jpg', '40');
+INSERT INTO `restaurant` VALUES ('4', '123', '4', '13245674425', '菜香源川菜馆', '1', '1', '4.77', 'upload/jiachang.jpg', '4427', '“闻之口生津，菜香源头寻”。这正是菜香源川菜馆赋予“新概念川菜”的全新内涵。', '7654', '1', '22', 'upload/shop/chuancai.jpg', '20');
+INSERT INTO `restaurant` VALUES ('5', '123', '2', '16235613211', '壹级日本料理', '1', '5', '4.74', 'upload/riliao.jpg', '782', '日料吃的就是一个新鲜和精致!超级刺身大拼盘,低调中透露着奢华,每款都很吸睛,摆盘更是仙气十足~', '1983', '1', '8', 'upload/shop/riliao.jpg', '90');
 INSERT INTO `restaurant` VALUES ('6', '123', '3', '13568900432', '小龙坎', '1', '3', '4.62', 'upload/xiaolongkan.jpg', '4792', null, '9867', '1', '20', null, '70');
 INSERT INTO `restaurant` VALUES ('7', '123', '4', '15678234561', '家常小炒', '1', '1', '4.89', 'upload/03.jpg', '4671', null, '8975', '1', '15', null, '25');
 INSERT INTO `restaurant` VALUES ('8', '123', '2', '13457688934', '烧仙草', '1', '9', '4.78', 'upload/shaoxiancao.jpg', '2369', null, '4826', '1', '18', null, '15');
