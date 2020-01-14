@@ -192,32 +192,37 @@ Author URI: http://www.deathghost.cn
       </figure>
       </a>
      </div>
-     <div class="bestshop">
-      <a href="shop.html" target="_blank" title="店铺名称">
-      <figure>
-       <img src="upload/wpjnewlogo.jpg">
-      </figure>
-      </a>
-      <a href="shop.html" target="_blank" title="店铺名称">
-      <figure>
-       <img src="upload/weijia.jpg">
-      </figure>
-      </a>
-      <a href="shop.html" target="_blank" title="店铺名称">
-      <figure>
-       <img src="upload/wpjnewlogo.jpg">
-      </figure>
-      </a>
-      <a href="shop.html" target="_blank" title="店铺名称">
-      <figure>
-       <img src="upload/weijia.jpg">
-      </figure>
-      </a>
-      <a href="shop.html" target="_blank" title="店铺名称">
-      <figure>
-       <img src="upload/wpjnewlogo.jpg">
-      </figure>
-      </a>
+     <div class="bestshop" id="bestshop">
+      <!--<a href="shop.html" target="_blank" title="店铺名称">-->
+      <!--<figure>-->
+       <!--<img src="upload/wpjnewlogo.jpg">-->
+      <!--</figure>-->
+      <!--</a>-->
+
+      <!--<a href="shop.html" target="_blank" title="店铺名称">-->
+      <!--<figure>-->
+       <!--<img src="upload/weijia.jpg">-->
+      <!--</figure>-->
+      <!--</a>-->
+
+      <!--<a href="shop.html" target="_blank" title="店铺名称">-->
+      <!--<figure>-->
+       <!--<img src="upload/wpjnewlogo.jpg">-->
+      <!--</figure>-->
+      <!--</a>-->
+
+      <!--<a href="shop.html" target="_blank" title="店铺名称">-->
+      <!--<figure>-->
+       <!--<img src="upload/weijia.jpg">-->
+      <!--</figure>-->
+      <!--</a>-->
+
+      <!--<a href="shop.html" target="_blank" title="店铺名称">-->
+      <!--<figure>-->
+       <!--<img src="upload/wpjnewlogo.jpg">-->
+      <!--</figure>-->
+      <!--</a>-->
+
      </div>
     </li>
    </ul>
@@ -377,6 +382,30 @@ Author URI: http://www.deathghost.cn
 </footer>
 <script type="text/javascript">
     $(function(){
+        $.ajax({
+            type: "POST",
+            url: "/findAllRestaurant",
+            contentType: "application/json; charset=utf-8",
+            data: null,
+            async: false,
+            dataType: "json",
+            success: function (info) {
+                console.log(info);
+                for(var i=0;i<info.restaurant.length&&i<5;i++){
+                    var name=info.restaurant[i].restaurantName;
+                    var id=info.restaurant[i].restaurantId;
+                    var logo=info.restaurant[i].logo;
+                    $("#bestshop").append("   <a href=\"shop.html?"+id+"\" target=\"_blank\" title=\""+name+"\">\n" +
+                        "      <figure>\n" +
+                        "       <img src=\""+logo+"\">\n" +
+                        "      </figure>\n" +
+                        "      </a>");
+                }
+            },
+            error: function (message) {
+                $("#request-process-patent").html("获取数据失败！");
+            }
+        });
         var user=sessionStorage.getItem("name");
         console.log(user);
         if(user==null){
