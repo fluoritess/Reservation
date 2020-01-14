@@ -53,6 +53,24 @@ public class restaurantUtil {
         this.averageprice = averageprice;
     }
 
+    public restaurantUtil(Integer restaurantId, String restaurantPassword, String restaurantAddress, String restaurantPhone, String restaurantName, Integer restaurantState, String restaurantCategory, Double score, String restaurantImage, Integer collection, String restaurantDescribe, Integer wifi, Integer parkingspace, String logo, Double averageprice) {
+        this.restaurantId = restaurantId;
+        this.restaurantPassword = restaurantPassword;
+        this.restaurantAddress = restaurantAddress;
+        this.restaurantPhone = restaurantPhone;
+        this.restaurantName = restaurantName;
+        this.restaurantState = restaurantState;
+        this.restaurantCategory = restaurantCategory;
+        this.score = score;
+        this.restaurantImage = restaurantImage;
+        this.collection = collection;
+        this.restaurantDescribe = restaurantDescribe;
+        this.wifi = wifi;
+        this.parkingspace = parkingspace;
+        this.logo = logo;
+        this.averageprice = averageprice;
+    }
+
     public restaurantUtil(Integer restaurantId, String restaurantPassword, String restaurantAddress, String restaurantPhone, String restaurantName, Integer restaurantState, String restaurantCategory, Double score, String restaurantImage, Integer collection, String restaurantDescribe, Integer sales) {
         this.restaurantId = restaurantId;
         this.restaurantPassword = restaurantPassword;
@@ -89,6 +107,19 @@ public class restaurantUtil {
         this.restaurantCategory = restaurantCategory;
         this.score = score;
         this.restaurantImage = restaurantImage;
+    }
+
+    public restaurantUtil(Integer restaurantId, String restaurantPassword, String restaurantAddress, String restaurantPhone, String restaurantName, Integer restaurantState, String restaurantCategory, Double score, String restaurantImage, String logo) {
+        this.restaurantId = restaurantId;
+        this.restaurantPassword = restaurantPassword;
+        this.restaurantAddress = restaurantAddress;
+        this.restaurantPhone = restaurantPhone;
+        this.restaurantName = restaurantName;
+        this.restaurantState = restaurantState;
+        this.restaurantCategory = restaurantCategory;
+        this.score = score;
+        this.restaurantImage = restaurantImage;
+        this.logo = logo;
     }
 
     public restaurantUtil(Integer restaurantId, String restaurantPassword, String restaurantAddress, String restaurantPhone, String restaurantName, Integer restaurantState, String restaurantCategory, Double score, String restaurantImage, Integer collection) {

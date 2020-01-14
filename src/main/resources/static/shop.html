@@ -385,17 +385,20 @@ Author URI: http://www.deathghost.cn
                 var score=info.restaurant.score;
                 var shopname=info.restaurant.restaurantName;
                 var collection=info.restaurant.collection;
+                var parkingspace=info.restaurant.parkingspace;
+                var restaurantDescribe=info.restaurant.restaurantDescribe;
+                var averageprice=info.restaurant.averageprice;
+                var logo=info.restaurant.logo;
                 $(".shoptext").prepend(" <p><span>地址：</span>"+addrress+"</p>\n" +
                     "        <p><span>电话：</span>"+phone+"</p>\n" +
-                    "        <p><span>特色菜品：</span>毛肚、牛丸、滑虾、羊肉、香辣虾...</p>\n" +
+                    "        <p><span>店家简介：</span>"+restaurantDescribe+"</p>\n" +
                     "        <p><span>优惠活动：</span>暂无信息</p>\n" +
-                    "        <p><span>停车位：</span>4个停车位（免费）</p>\n" +
-                    "        <p><span>营业时间：</span>09:00~22:00</p>\n" +
+                    "        <p><span>停车位：</span>"+parkingspace+"个停车位（免费）</p>\n" +
                     "        <p><span>WIFI：</span>免费WIFI</p>\n" +
-                    "        <p><span>价格：</span>50元</p>");
+                    "        <p><span>单人平均消费价格：</span>"+averageprice+"元</p>");
                 $(".shopimg").prepend("<img src=\""+image+"\" id=\"showimg\">");
                 $(".smallpic").append("<li><img src=\""+image+"\" onmouseover=\"show(this)\" onmouseout=\"hide()\"></li>");
-                $("#shopname").append("<img src=\"upload/wpjnewlogo.jpg\" class=\"shop-ico\">\n" +
+                $("#shopname").append("<img src=\""+logo+"\" class=\"shop-ico\">\n" +
                     "    <span>"+shopname+"</span>\n" +
                     "    <span>\n" +
                     "     <img src=\"images/star-on.png\">\n" +
