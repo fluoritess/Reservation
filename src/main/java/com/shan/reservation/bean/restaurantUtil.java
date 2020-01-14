@@ -24,8 +24,33 @@ public class restaurantUtil {
     private String restaurantDescribe;
 
     private Integer sales;
+    private Integer wifi;
 
+    private Integer parkingspace;
+
+    private String logo;
+
+    private Double averageprice;
     public restaurantUtil() {
+    }
+
+    public restaurantUtil(Integer restaurantId, String restaurantPassword, String restaurantAddress, String restaurantPhone, String restaurantName, Integer restaurantState, String restaurantCategory, Double score, String restaurantImage, Integer collection, String restaurantDescribe, Integer sales, Integer wifi, Integer parkingspace, String logo, Double averageprice) {
+        this.restaurantId = restaurantId;
+        this.restaurantPassword = restaurantPassword;
+        this.restaurantAddress = restaurantAddress;
+        this.restaurantPhone = restaurantPhone;
+        this.restaurantName = restaurantName;
+        this.restaurantState = restaurantState;
+        this.restaurantCategory = restaurantCategory;
+        this.score = score;
+        this.restaurantImage = restaurantImage;
+        this.collection = collection;
+        this.restaurantDescribe = restaurantDescribe;
+        this.sales = sales;
+        this.wifi = wifi;
+        this.parkingspace = parkingspace;
+        this.logo = logo;
+        this.averageprice = averageprice;
     }
 
     public restaurantUtil(Integer restaurantId, String restaurantPassword, String restaurantAddress, String restaurantPhone, String restaurantName, Integer restaurantState, String restaurantCategory, Double score, String restaurantImage, Integer collection, String restaurantDescribe, Integer sales) {
@@ -91,6 +116,38 @@ public class restaurantUtil {
         this.restaurantImage = restaurantImage;
         this.collection = collection;
         this.restaurantDescribe = restaurantDescribe;
+    }
+
+    public Integer getWifi() {
+        return wifi;
+    }
+
+    public void setWifi(Integer wifi) {
+        this.wifi = wifi;
+    }
+
+    public Integer getParkingspace() {
+        return parkingspace;
+    }
+
+    public void setParkingspace(Integer parkingspace) {
+        this.parkingspace = parkingspace;
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
+
+    public Double getAverageprice() {
+        return averageprice;
+    }
+
+    public void setAverageprice(Double averageprice) {
+        this.averageprice = averageprice;
     }
 
     public Integer getCollection() {

@@ -25,7 +25,15 @@ public class restaurant {
 
     private Integer sales;
 
-    public restaurant(Integer restaurantId, String restaurantPassword, Integer restaurantAddress, String restaurantPhone, String restaurantName, Integer restaurantState, Integer restaurantCategoryId, Double score, String restaurantImage, Integer collection, String restaurantDescribe, Integer sales) {
+    private Integer wifi;
+
+    private Integer parkingspace;
+
+    private String logo;
+
+    private Double averageprice;
+
+    public restaurant(Integer restaurantId, String restaurantPassword, Integer restaurantAddress, String restaurantPhone, String restaurantName, Integer restaurantState, Integer restaurantCategoryId, Double score, String restaurantImage, Integer collection, String restaurantDescribe, Integer sales, Integer wifi, Integer parkingspace, String logo, Double averageprice) {
         this.restaurantId = restaurantId;
         this.restaurantPassword = restaurantPassword;
         this.restaurantAddress = restaurantAddress;
@@ -38,6 +46,10 @@ public class restaurant {
         this.collection = collection;
         this.restaurantDescribe = restaurantDescribe;
         this.sales = sales;
+        this.wifi = wifi;
+        this.parkingspace = parkingspace;
+        this.logo = logo;
+        this.averageprice = averageprice;
     }
 
     public restaurant() {
@@ -138,5 +150,37 @@ public class restaurant {
 
     public void setSales(Integer sales) {
         this.sales = sales;
+    }
+
+    public Integer getWifi() {
+        return wifi;
+    }
+
+    public void setWifi(Integer wifi) {
+        this.wifi = wifi;
+    }
+
+    public Integer getParkingspace() {
+        return parkingspace;
+    }
+
+    public void setParkingspace(Integer parkingspace) {
+        this.parkingspace = parkingspace;
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo == null ? null : logo.trim();
+    }
+
+    public Double getAverageprice() {
+        return averageprice;
+    }
+
+    public void setAverageprice(Double averageprice) {
+        this.averageprice = averageprice;
     }
 }

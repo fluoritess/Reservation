@@ -15,6 +15,10 @@
       <arg column="collection" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="restaurant_describe" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="sales" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="wifi" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="parkingspace" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="logo" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="averageprice" jdbcType="DOUBLE" javaType="java.lang.Double" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -78,7 +82,7 @@
   <sql id="Base_Column_List" >
     restaurant_id, restaurant_password, restaurant_address, restaurant_phone, restaurant_name, 
     restaurant_state, restaurant_category_id, score, restaurant_image, collection, restaurant_describe, 
-    sales
+    sales, wifi, parkingspace, logo, averageprice
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shan.reservation.bean.restaurantExample" >
     select
@@ -116,12 +120,16 @@
       restaurant_address, restaurant_phone, restaurant_name, 
       restaurant_state, restaurant_category_id, 
       score, restaurant_image, collection, 
-      restaurant_describe, sales)
+      restaurant_describe, sales, wifi, 
+      parkingspace, logo, averageprice
+      )
     values (#{restaurantId,jdbcType=INTEGER}, #{restaurantPassword,jdbcType=VARCHAR}, 
       #{restaurantAddress,jdbcType=INTEGER}, #{restaurantPhone,jdbcType=VARCHAR}, #{restaurantName,jdbcType=VARCHAR}, 
       #{restaurantState,jdbcType=INTEGER}, #{restaurantCategoryId,jdbcType=INTEGER}, 
       #{score,jdbcType=DOUBLE}, #{restaurantImage,jdbcType=VARCHAR}, #{collection,jdbcType=INTEGER}, 
-      #{restaurantDescribe,jdbcType=VARCHAR}, #{sales,jdbcType=INTEGER})
+      #{restaurantDescribe,jdbcType=VARCHAR}, #{sales,jdbcType=INTEGER}, #{wifi,jdbcType=INTEGER}, 
+      #{parkingspace,jdbcType=INTEGER}, #{logo,jdbcType=VARCHAR}, #{averageprice,jdbcType=DOUBLE}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.shan.reservation.bean.restaurant" >
     insert into restaurant
@@ -162,6 +170,18 @@
       <if test="sales != null" >
         sales,
       </if>
+      <if test="wifi != null" >
+        wifi,
+      </if>
+      <if test="parkingspace != null" >
+        parkingspace,
+      </if>
+      <if test="logo != null" >
+        logo,
+      </if>
+      <if test="averageprice != null" >
+        averageprice,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="restaurantId != null" >
@@ -199,6 +219,18 @@
       </if>
       <if test="sales != null" >
         #{sales,jdbcType=INTEGER},
+      </if>
+      <if test="wifi != null" >
+        #{wifi,jdbcType=INTEGER},
+      </if>
+      <if test="parkingspace != null" >
+        #{parkingspace,jdbcType=INTEGER},
+      </if>
+      <if test="logo != null" >
+        #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="averageprice != null" >
+        #{averageprice,jdbcType=DOUBLE},
       </if>
     </trim>
   </insert>
@@ -247,6 +279,18 @@
       <if test="record.sales != null" >
         sales = #{record.sales,jdbcType=INTEGER},
       </if>
+      <if test="record.wifi != null" >
+        wifi = #{record.wifi,jdbcType=INTEGER},
+      </if>
+      <if test="record.parkingspace != null" >
+        parkingspace = #{record.parkingspace,jdbcType=INTEGER},
+      </if>
+      <if test="record.logo != null" >
+        logo = #{record.logo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.averageprice != null" >
+        averageprice = #{record.averageprice,jdbcType=DOUBLE},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -265,7 +309,11 @@
       restaurant_image = #{record.restaurantImage,jdbcType=VARCHAR},
       collection = #{record.collection,jdbcType=INTEGER},
       restaurant_describe = #{record.restaurantDescribe,jdbcType=VARCHAR},
-      sales = #{record.sales,jdbcType=INTEGER}
+      sales = #{record.sales,jdbcType=INTEGER},
+      wifi = #{record.wifi,jdbcType=INTEGER},
+      parkingspace = #{record.parkingspace,jdbcType=INTEGER},
+      logo = #{record.logo,jdbcType=VARCHAR},
+      averageprice = #{record.averageprice,jdbcType=DOUBLE}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -306,6 +354,18 @@
       <if test="sales != null" >
         sales = #{sales,jdbcType=INTEGER},
       </if>
+      <if test="wifi != null" >
+        wifi = #{wifi,jdbcType=INTEGER},
+      </if>
+      <if test="parkingspace != null" >
+        parkingspace = #{parkingspace,jdbcType=INTEGER},
+      </if>
+      <if test="logo != null" >
+        logo = #{logo,jdbcType=VARCHAR},
+      </if>
+      <if test="averageprice != null" >
+        averageprice = #{averageprice,jdbcType=DOUBLE},
+      </if>
     </set>
     where restaurant_id = #{restaurantId,jdbcType=INTEGER}
   </update>
@@ -321,7 +381,11 @@
       restaurant_image = #{restaurantImage,jdbcType=VARCHAR},
       collection = #{collection,jdbcType=INTEGER},
       restaurant_describe = #{restaurantDescribe,jdbcType=VARCHAR},
-      sales = #{sales,jdbcType=INTEGER}
+      sales = #{sales,jdbcType=INTEGER},
+      wifi = #{wifi,jdbcType=INTEGER},
+      parkingspace = #{parkingspace,jdbcType=INTEGER},
+      logo = #{logo,jdbcType=VARCHAR},
+      averageprice = #{averageprice,jdbcType=DOUBLE}
     where restaurant_id = #{restaurantId,jdbcType=INTEGER}
   </update>
 </mapper>

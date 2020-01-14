@@ -15,6 +15,10 @@
             <arg column="collection" jdbcType="INTEGER" javaType="java.lang.Integer" />
             <arg column="restaurant_describe" jdbcType="VARCHAR" javaType="java.lang.String" />
             <arg column="sales" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="wifi" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="parkingspace" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="logo" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="averageprice" jdbcType="DOUBLE" javaType="java.lang.Double" />
         </constructor>
     </resultMap>
     <select id="selectRestaurantByCateId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >

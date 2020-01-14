@@ -873,6 +873,256 @@ public class restaurantExample {
             addCriterion("sales not between", value1, value2, "sales");
             return (Criteria) this;
         }
+
+        public Criteria andWifiIsNull() {
+            addCriterion("wifi is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWifiIsNotNull() {
+            addCriterion("wifi is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWifiEqualTo(Integer value) {
+            addCriterion("wifi =", value, "wifi");
+            return (Criteria) this;
+        }
+
+        public Criteria andWifiNotEqualTo(Integer value) {
+            addCriterion("wifi <>", value, "wifi");
+            return (Criteria) this;
+        }
+
+        public Criteria andWifiGreaterThan(Integer value) {
+            addCriterion("wifi >", value, "wifi");
+            return (Criteria) this;
+        }
+
+        public Criteria andWifiGreaterThanOrEqualTo(Integer value) {
+            addCriterion("wifi >=", value, "wifi");
+            return (Criteria) this;
+        }
+
+        public Criteria andWifiLessThan(Integer value) {
+            addCriterion("wifi <", value, "wifi");
+            return (Criteria) this;
+        }
+
+        public Criteria andWifiLessThanOrEqualTo(Integer value) {
+            addCriterion("wifi <=", value, "wifi");
+            return (Criteria) this;
+        }
+
+        public Criteria andWifiIn(List<Integer> values) {
+            addCriterion("wifi in", values, "wifi");
+            return (Criteria) this;
+        }
+
+        public Criteria andWifiNotIn(List<Integer> values) {
+            addCriterion("wifi not in", values, "wifi");
+            return (Criteria) this;
+        }
+
+        public Criteria andWifiBetween(Integer value1, Integer value2) {
+            addCriterion("wifi between", value1, value2, "wifi");
+            return (Criteria) this;
+        }
+
+        public Criteria andWifiNotBetween(Integer value1, Integer value2) {
+            addCriterion("wifi not between", value1, value2, "wifi");
+            return (Criteria) this;
+        }
+
+        public Criteria andParkingspaceIsNull() {
+            addCriterion("parkingspace is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andParkingspaceIsNotNull() {
+            addCriterion("parkingspace is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andParkingspaceEqualTo(Integer value) {
+            addCriterion("parkingspace =", value, "parkingspace");
+            return (Criteria) this;
+        }
+
+        public Criteria andParkingspaceNotEqualTo(Integer value) {
+            addCriterion("parkingspace <>", value, "parkingspace");
+            return (Criteria) this;
+        }
+
+        public Criteria andParkingspaceGreaterThan(Integer value) {
+            addCriterion("parkingspace >", value, "parkingspace");
+            return (Criteria) this;
+        }
+
+        public Criteria andParkingspaceGreaterThanOrEqualTo(Integer value) {
+            addCriterion("parkingspace >=", value, "parkingspace");
+            return (Criteria) this;
+        }
+
+        public Criteria andParkingspaceLessThan(Integer value) {
+            addCriterion("parkingspace <", value, "parkingspace");
+            return (Criteria) this;
+        }
+
+        public Criteria andParkingspaceLessThanOrEqualTo(Integer value) {
+            addCriterion("parkingspace <=", value, "parkingspace");
+            return (Criteria) this;
+        }
+
+        public Criteria andParkingspaceIn(List<Integer> values) {
+            addCriterion("parkingspace in", values, "parkingspace");
+            return (Criteria) this;
+        }
+
+        public Criteria andParkingspaceNotIn(List<Integer> values) {
+            addCriterion("parkingspace not in", values, "parkingspace");
+            return (Criteria) this;
+        }
+
+        public Criteria andParkingspaceBetween(Integer value1, Integer value2) {
+            addCriterion("parkingspace between", value1, value2, "parkingspace");
+            return (Criteria) this;
+        }
+
+        public Criteria andParkingspaceNotBetween(Integer value1, Integer value2) {
+            addCriterion("parkingspace not between", value1, value2, "parkingspace");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogoIsNull() {
+            addCriterion("logo is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogoIsNotNull() {
+            addCriterion("logo is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogoEqualTo(String value) {
+            addCriterion("logo =", value, "logo");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogoNotEqualTo(String value) {
+            addCriterion("logo <>", value, "logo");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogoGreaterThan(String value) {
+            addCriterion("logo >", value, "logo");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogoGreaterThanOrEqualTo(String value) {
+            addCriterion("logo >=", value, "logo");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogoLessThan(String value) {
+            addCriterion("logo <", value, "logo");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogoLessThanOrEqualTo(String value) {
+            addCriterion("logo <=", value, "logo");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogoLike(String value) {
+            addCriterion("logo like", value, "logo");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogoNotLike(String value) {
+            addCriterion("logo not like", value, "logo");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogoIn(List<String> values) {
+            addCriterion("logo in", values, "logo");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogoNotIn(List<String> values) {
+            addCriterion("logo not in", values, "logo");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogoBetween(String value1, String value2) {
+            addCriterion("logo between", value1, value2, "logo");
+            return (Criteria) this;
+        }
+
+        public Criteria andLogoNotBetween(String value1, String value2) {
+            addCriterion("logo not between", value1, value2, "logo");
+            return (Criteria) this;
+        }
+
+        public Criteria andAveragepriceIsNull() {
+            addCriterion("averageprice is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAveragepriceIsNotNull() {
+            addCriterion("averageprice is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAveragepriceEqualTo(Double value) {
+            addCriterion("averageprice =", value, "averageprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andAveragepriceNotEqualTo(Double value) {
+            addCriterion("averageprice <>", value, "averageprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andAveragepriceGreaterThan(Double value) {
+            addCriterion("averageprice >", value, "averageprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andAveragepriceGreaterThanOrEqualTo(Double value) {
+            addCriterion("averageprice >=", value, "averageprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andAveragepriceLessThan(Double value) {
+            addCriterion("averageprice <", value, "averageprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andAveragepriceLessThanOrEqualTo(Double value) {
+            addCriterion("averageprice <=", value, "averageprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andAveragepriceIn(List<Double> values) {
+            addCriterion("averageprice in", values, "averageprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andAveragepriceNotIn(List<Double> values) {
+            addCriterion("averageprice not in", values, "averageprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andAveragepriceBetween(Double value1, Double value2) {
+            addCriterion("averageprice between", value1, value2, "averageprice");
+            return (Criteria) this;
+        }
+
+        public Criteria andAveragepriceNotBetween(Double value1, Double value2) {
+            addCriterion("averageprice not between", value1, value2, "averageprice");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
