@@ -11,19 +11,19 @@ public class food {
 
     private Integer categoryId;
 
-    private String describe;
+    private String foodDescribe;
 
     private Integer sales;
 
     private String foodImage;
 
-    public food(Integer foodId, Integer restaurantId, Double foodPrice, String foodName, Integer categoryId, String describe, Integer sales, String foodImage) {
+    public food(Integer foodId, Integer restaurantId, Double foodPrice, String foodName, Integer categoryId, String foodDescribe, Integer sales, String foodImage) {
         this.foodId = foodId;
         this.restaurantId = restaurantId;
         this.foodPrice = foodPrice;
         this.foodName = foodName;
         this.categoryId = categoryId;
-        this.describe = describe;
+        this.foodDescribe = foodDescribe;
         this.sales = sales;
         this.foodImage = foodImage;
     }
@@ -72,12 +72,12 @@ public class food {
         this.categoryId = categoryId;
     }
 
-    public String getDescribe() {
-        return describe;
+    public String getFoodDescribe() {
+        return foodDescribe;
     }
 
-    public void setDescribe(String describe) {
-        this.describe = describe == null ? null : describe.trim();
+    public void setFoodDescribe(String foodDescribe) {
+        this.foodDescribe = foodDescribe == null ? null : foodDescribe.trim();
     }
 
     public Integer getSales() {

@@ -414,73 +414,73 @@ public class foodExample {
             return (Criteria) this;
         }
 
-        public Criteria andDescribeIsNull() {
-            addCriterion("describe is null");
+        public Criteria andFoodDescribeIsNull() {
+            addCriterion("food_describe is null");
             return (Criteria) this;
         }
 
-        public Criteria andDescribeIsNotNull() {
-            addCriterion("describe is not null");
+        public Criteria andFoodDescribeIsNotNull() {
+            addCriterion("food_describe is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDescribeEqualTo(String value) {
-            addCriterion("describe =", value, "describe");
+        public Criteria andFoodDescribeEqualTo(String value) {
+            addCriterion("food_describe =", value, "foodDescribe");
             return (Criteria) this;
         }
 
-        public Criteria andDescribeNotEqualTo(String value) {
-            addCriterion("describe <>", value, "describe");
+        public Criteria andFoodDescribeNotEqualTo(String value) {
+            addCriterion("food_describe <>", value, "foodDescribe");
             return (Criteria) this;
         }
 
-        public Criteria andDescribeGreaterThan(String value) {
-            addCriterion("describe >", value, "describe");
+        public Criteria andFoodDescribeGreaterThan(String value) {
+            addCriterion("food_describe >", value, "foodDescribe");
             return (Criteria) this;
         }
 
-        public Criteria andDescribeGreaterThanOrEqualTo(String value) {
-            addCriterion("describe >=", value, "describe");
+        public Criteria andFoodDescribeGreaterThanOrEqualTo(String value) {
+            addCriterion("food_describe >=", value, "foodDescribe");
             return (Criteria) this;
         }
 
-        public Criteria andDescribeLessThan(String value) {
-            addCriterion("describe <", value, "describe");
+        public Criteria andFoodDescribeLessThan(String value) {
+            addCriterion("food_describe <", value, "foodDescribe");
             return (Criteria) this;
         }
 
-        public Criteria andDescribeLessThanOrEqualTo(String value) {
-            addCriterion("describe <=", value, "describe");
+        public Criteria andFoodDescribeLessThanOrEqualTo(String value) {
+            addCriterion("food_describe <=", value, "foodDescribe");
             return (Criteria) this;
         }
 
-        public Criteria andDescribeLike(String value) {
-            addCriterion("describe like", value, "describe");
+        public Criteria andFoodDescribeLike(String value) {
+            addCriterion("food_describe like", value, "foodDescribe");
             return (Criteria) this;
         }
 
-        public Criteria andDescribeNotLike(String value) {
-            addCriterion("describe not like", value, "describe");
+        public Criteria andFoodDescribeNotLike(String value) {
+            addCriterion("food_describe not like", value, "foodDescribe");
             return (Criteria) this;
         }
 
-        public Criteria andDescribeIn(List<String> values) {
-            addCriterion("describe in", values, "describe");
+        public Criteria andFoodDescribeIn(List<String> values) {
+            addCriterion("food_describe in", values, "foodDescribe");
             return (Criteria) this;
         }
 
-        public Criteria andDescribeNotIn(List<String> values) {
-            addCriterion("describe not in", values, "describe");
+        public Criteria andFoodDescribeNotIn(List<String> values) {
+            addCriterion("food_describe not in", values, "foodDescribe");
             return (Criteria) this;
         }
 
-        public Criteria andDescribeBetween(String value1, String value2) {
-            addCriterion("describe between", value1, value2, "describe");
+        public Criteria andFoodDescribeBetween(String value1, String value2) {
+            addCriterion("food_describe between", value1, value2, "foodDescribe");
             return (Criteria) this;
         }
 
-        public Criteria andDescribeNotBetween(String value1, String value2) {
-            addCriterion("describe not between", value1, value2, "describe");
+        public Criteria andFoodDescribeNotBetween(String value1, String value2) {
+            addCriterion("food_describe not between", value1, value2, "foodDescribe");
             return (Criteria) this;
         }
 

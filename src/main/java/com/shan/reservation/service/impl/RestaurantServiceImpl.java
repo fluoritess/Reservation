@@ -48,7 +48,8 @@ public class RestaurantServiceImpl implements RestaurantService {
             double score=list.get(i).getScore();
             String image=list.get(i).getRestaurantImage();
             String logo=list.get(i).getLogo();
-            restaurantUtil restaurantUtil_BEAN=new restaurantUtil(restaurant_id,password,address_4,restaurantPhone,name,state,cate_name,score,image,logo);
+            String describe=list.get(i).getRestaurantDescribe();
+            restaurantUtil restaurantUtil_BEAN=new restaurantUtil(restaurant_id,password,address_4,restaurantPhone,name,state,cate_name,score,image,describe,logo);
             tarlist.add(restaurantUtil_BEAN);
         }
         return tarlist;

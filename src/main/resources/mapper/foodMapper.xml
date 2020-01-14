@@ -8,7 +8,7 @@
       <arg column="food_price" jdbcType="DOUBLE" javaType="java.lang.Double" />
       <arg column="food_name" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="category_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="describe" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="food_describe" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="sales" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="food_image" jdbcType="VARCHAR" javaType="java.lang.String" />
     </constructor>
@@ -72,7 +72,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    food_id, restaurant_id, food_price, food_name, category_id, describe, sales, food_image
+    food_id, restaurant_id, food_price, food_name, category_id, food_describe, sales, 
+    food_image
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shan.reservation.bean.foodExample" >
     select
@@ -107,10 +108,10 @@
   </delete>
   <insert id="insert" parameterType="com.shan.reservation.bean.food" >
     insert into food (food_id, restaurant_id, food_price, 
-      food_name, category_id, describe, 
+      food_name, category_id, food_describe, 
       sales, food_image)
     values (#{foodId,jdbcType=INTEGER}, #{restaurantId,jdbcType=INTEGER}, #{foodPrice,jdbcType=DOUBLE}, 
-      #{foodName,jdbcType=VARCHAR}, #{categoryId,jdbcType=INTEGER}, #{describe,jdbcType=VARCHAR}, 
+      #{foodName,jdbcType=VARCHAR}, #{categoryId,jdbcType=INTEGER}, #{foodDescribe,jdbcType=VARCHAR}, 
       #{sales,jdbcType=INTEGER}, #{foodImage,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.shan.reservation.bean.food" >
@@ -131,8 +132,8 @@
       <if test="categoryId != null" >
         category_id,
       </if>
-      <if test="describe != null" >
-        describe,
+      <if test="foodDescribe != null" >
+        food_describe,
       </if>
       <if test="sales != null" >
         sales,
@@ -157,8 +158,8 @@
       <if test="categoryId != null" >
         #{categoryId,jdbcType=INTEGER},
       </if>
-      <if test="describe != null" >
-        #{describe,jdbcType=VARCHAR},
+      <if test="foodDescribe != null" >
+        #{foodDescribe,jdbcType=VARCHAR},
       </if>
       <if test="sales != null" >
         #{sales,jdbcType=INTEGER},
@@ -192,8 +193,8 @@
       <if test="record.categoryId != null" >
         category_id = #{record.categoryId,jdbcType=INTEGER},
       </if>
-      <if test="record.describe != null" >
-        describe = #{record.describe,jdbcType=VARCHAR},
+      <if test="record.foodDescribe != null" >
+        food_describe = #{record.foodDescribe,jdbcType=VARCHAR},
       </if>
       <if test="record.sales != null" >
         sales = #{record.sales,jdbcType=INTEGER},
@@ -213,7 +214,7 @@
       food_price = #{record.foodPrice,jdbcType=DOUBLE},
       food_name = #{record.foodName,jdbcType=VARCHAR},
       category_id = #{record.categoryId,jdbcType=INTEGER},
-      describe = #{record.describe,jdbcType=VARCHAR},
+      food_describe = #{record.foodDescribe,jdbcType=VARCHAR},
       sales = #{record.sales,jdbcType=INTEGER},
       food_image = #{record.foodImage,jdbcType=VARCHAR}
     <if test="_parameter != null" >
@@ -235,8 +236,8 @@
       <if test="categoryId != null" >
         category_id = #{categoryId,jdbcType=INTEGER},
       </if>
-      <if test="describe != null" >
-        describe = #{describe,jdbcType=VARCHAR},
+      <if test="foodDescribe != null" >
+        food_describe = #{foodDescribe,jdbcType=VARCHAR},
       </if>
       <if test="sales != null" >
         sales = #{sales,jdbcType=INTEGER},
@@ -253,7 +254,7 @@
       food_price = #{foodPrice,jdbcType=DOUBLE},
       food_name = #{foodName,jdbcType=VARCHAR},
       category_id = #{categoryId,jdbcType=INTEGER},
-      describe = #{describe,jdbcType=VARCHAR},
+      food_describe = #{foodDescribe,jdbcType=VARCHAR},
       sales = #{sales,jdbcType=INTEGER},
       food_image = #{foodImage,jdbcType=VARCHAR}
     where food_id = #{foodId,jdbcType=INTEGER}

@@ -109,6 +109,20 @@ public class restaurantUtil {
         this.restaurantImage = restaurantImage;
     }
 
+    public restaurantUtil(Integer restaurantId, String restaurantPassword, String restaurantAddress, String restaurantPhone, String restaurantName, Integer restaurantState, String restaurantCategory, Double score, String restaurantImage, String restaurantDescribe, String logo) {
+        this.restaurantId = restaurantId;
+        this.restaurantPassword = restaurantPassword;
+        this.restaurantAddress = restaurantAddress;
+        this.restaurantPhone = restaurantPhone;
+        this.restaurantName = restaurantName;
+        this.restaurantState = restaurantState;
+        this.restaurantCategory = restaurantCategory;
+        this.score = score;
+        this.restaurantImage = restaurantImage;
+        this.restaurantDescribe = restaurantDescribe;
+        this.logo = logo;
+    }
+
     public restaurantUtil(Integer restaurantId, String restaurantPassword, String restaurantAddress, String restaurantPhone, String restaurantName, Integer restaurantState, String restaurantCategory, Double score, String restaurantImage, String logo) {
         this.restaurantId = restaurantId;
         this.restaurantPassword = restaurantPassword;

@@ -146,51 +146,56 @@ Author URI: http://www.deathghost.cn
    <a name="ydwm">
     <!--case1-->
     <div class="menutab show">
-     <ul class="products">
-		<li>
-		 <a href="detailsp.html" target="_blank" title="酸辣土豆丝">
-         <img src="upload/01.jpg" class="foodsimgsize">
-         </a>
-          <a href="#" class="item">
-		 <div>
-		  <p>酸辣土豆丝</p>
-		  <p class="AButton">拖至购物车:￥50.00</p>
-		 </div>
-		 </a>
-		</li>
-		<li>
-		 <a href="detailsp.html" target="_blank" title="酸辣土豆丝">
-         <img src="upload/02.jpg" class="foodsimgsize">
-         </a>
-          <a href="#" class="item">
-		 <div>
-		  <p>酸辣土豆丝</p>
-		  <p class="AButton">拖至购物车:￥50.00</p>
-		 </div>
-		 </a>
-		</li>
-		<li>
-		 <a href="detailsp.html" target="_blank" title="酸辣土豆丝">
-         <img src="upload/04.jpg" class="foodsimgsize">
-         </a>
-          <a href="#" class="item">
-		 <div>
-		  <p>酸辣土豆丝</p>
-		  <p class="AButton">拖至购物车:￥50.00</p>
-		 </div>
-		 </a>
-		</li>
-		<li>
-		 <a href="detailsp.html" target="_blank" title="酸辣土豆丝">
-         <img src="upload/03.jpg" class="foodsimgsize">
-         </a>
-          <a href="#" class="item">
-		 <div>
-		  <p>酸辣土豆丝</p>
-		  <p class="AButton">拖至购物车:￥50.00</p>
-		 </div>
-		 </a>
-		</li>
+     <ul class="products" id="product">
+
+		<!--<li>-->
+		 <!--<a href="detailsp.html" target="_blank" title="酸辣土豆丝">-->
+         <!--<img src="upload/01.jpg" class="foodsimgsize">-->
+         <!--</a>-->
+          <!--<a href="#" class="item">-->
+		 <!--<div>-->
+		  <!--<p>酸辣土豆丝</p>-->
+		  <!--<p class="AButton">拖至购物车:￥50.00</p>-->
+		 <!--</div>-->
+		 <!--</a>-->
+		<!--</li>-->
+         <!---->
+		<!--<li>-->
+		 <!--<a href="detailsp.html" target="_blank" title="酸辣土豆丝">-->
+         <!--<img src="upload/02.jpg" class="foodsimgsize">-->
+         <!--</a>-->
+          <!--<a href="#" class="item">-->
+		 <!--<div>-->
+		  <!--<p>酸辣土豆丝</p>-->
+		  <!--<p class="AButton">拖至购物车:￥50.00</p>-->
+		 <!--</div>-->
+		 <!--</a>-->
+		<!--</li>-->
+         <!---->
+		<!--<li>-->
+		 <!--<a href="detailsp.html" target="_blank" title="酸辣土豆丝">-->
+         <!--<img src="upload/04.jpg" class="foodsimgsize">-->
+         <!--</a>-->
+          <!--<a href="#" class="item">-->
+		 <!--<div>-->
+		  <!--<p>酸辣土豆丝</p>-->
+		  <!--<p class="AButton">拖至购物车:￥50.00</p>-->
+		 <!--</div>-->
+		 <!--</a>-->
+		<!--</li>-->
+         <!---->
+		<!--<li>-->
+		 <!--<a href="detailsp.html" target="_blank" title="酸辣土豆丝">-->
+         <!--<img src="upload/03.jpg" class="foodsimgsize">-->
+         <!--</a>-->
+          <!--<a href="#" class="item">-->
+		 <!--<div>-->
+		  <!--<p>酸辣土豆丝</p>-->
+		  <!--<p class="AButton">拖至购物车:￥50.00</p>-->
+		 <!--</div>-->
+		 <!--</a>-->
+		<!--</li>-->
+
        <div class="TurnPage">
      <a href="#">
       <span class="Prev"><i></i>首页</span>
@@ -377,7 +382,7 @@ Author URI: http://www.deathghost.cn
             async: false,
             dataType: "json",
             success: function (info) {
-                console.log(info);
+                // console.log(info);
                 var name=info.restaurant.restaurantAddress;
                 var phone=info.restaurant.restaurantPhone;
                 var image=info.restaurant.restaurantImage;
@@ -409,6 +414,36 @@ Author URI: http://www.deathghost.cn
                     "    </span>\n" +
                     "    <span>"+score+"</span>");
                 $("#otherinfor").prepend(" <a href=\"#\" class=\"icoa\"><img src=\"images/collect.png\">收藏店铺（"+collection+"）</a>");
+            },
+            error: function (message) {
+                $("#request-process-patent").html("获取数据失败！");
+            }
+        });
+        $.ajax({
+            type: "POST",
+            url: "/findFoodByRestaurant",
+            contentType: "application/json; charset=utf-8",
+            data: json,
+            async: false,
+            dataType: "json",
+            success: function (info) {
+               console.log(info);
+               for(var i=0;i<info.food.length&&i<4;i++){
+                   var foodname=info.food[i].foodName;
+                   var foodPrice=info.food[i].foodPrice;
+                   var foodImage=info.food[i].foodImage;
+                    $("#product").prepend("\t<li>\n" +
+                        "\t\t <a href=\"detailsp.html\" target=\"_blank\" title=\"酸辣土豆丝\">\n" +
+                        "         <img src=\""+foodImage+"\" class=\"foodsimgsize\">\n" +
+                        "         </a>\n" +
+                        "          <a href=\"#\" class=\"item\">\n" +
+                        "\t\t <div>\n" +
+                        "\t\t  <p>"+foodname+"</p>\n" +
+                        "\t\t  <p class=\"AButton\">拖至购物车:￥"+foodPrice+"</p>\n" +
+                        "\t\t </div>\n" +
+                        "\t\t </a>\n" +
+                        "\t\t</li>");
+               }
             },
             error: function (message) {
                 $("#request-process-patent").html("获取数据失败！");
