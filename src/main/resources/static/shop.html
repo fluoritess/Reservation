@@ -432,8 +432,9 @@ Author URI: http://www.deathghost.cn
                    var foodname=info.food[i].foodName;
                    var foodPrice=info.food[i].foodPrice;
                    var foodImage=info.food[i].foodImage;
+                   var foodId=info.food[i].foodId;
                     $("#product").prepend("\t<li>\n" +
-                        "\t\t <a href=\"detailsp.html\" target=\"_blank\" title=\"酸辣土豆丝\">\n" +
+                        "\t\t <a href=\"detailsp.html?"+foodId+"\" target=\"_blank\" title=\""+foodname+"\">\n" +
                         "         <img src=\""+foodImage+"\" class=\"foodsimgsize\">\n" +
                         "         </a>\n" +
                         "          <a href=\"#\" class=\"item\">\n" +
