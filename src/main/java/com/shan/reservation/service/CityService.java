@@ -10,7 +10,7 @@ import java.util.List;
  * @author wsw
  * @Package com.gabe.mychat.service
  * @Description:
- * @date 22020年1月6日 13:17:42
+ * @date 2020年1月6日 13:17:42
  */
 @Service
 public interface CityService {
