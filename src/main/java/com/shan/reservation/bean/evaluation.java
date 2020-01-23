@@ -9,16 +9,22 @@ public class evaluation {
 
     private String evaluationContent;
 
-    private Integer evaluationStart;
+    private Date evaluationStart;
 
     private Date evaluationData;
 
-    public evaluation(Integer evaluationId, String orderId, String evaluationContent, Integer evaluationStart, Date evaluationData) {
+    private Integer userId;
+
+    private Integer restaurantId;
+
+    public evaluation(Integer evaluationId, String orderId, String evaluationContent, Date evaluationStart, Date evaluationData, Integer userId, Integer restaurantId) {
         this.evaluationId = evaluationId;
         this.orderId = orderId;
         this.evaluationContent = evaluationContent;
         this.evaluationStart = evaluationStart;
         this.evaluationData = evaluationData;
+        this.userId = userId;
+        this.restaurantId = restaurantId;
     }
 
     public evaluation() {
@@ -49,11 +55,11 @@ public class evaluation {
         this.evaluationContent = evaluationContent == null ? null : evaluationContent.trim();
     }
 
-    public Integer getEvaluationStart() {
+    public Date getEvaluationStart() {
         return evaluationStart;
     }
 
-    public void setEvaluationStart(Integer evaluationStart) {
+    public void setEvaluationStart(Date evaluationStart) {
         this.evaluationStart = evaluationStart;
     }
 
@@ -63,5 +69,21 @@ public class evaluation {
 
     public void setEvaluationData(Date evaluationData) {
         this.evaluationData = evaluationData;
+    }
+
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public Integer getRestaurantId() {
+        return restaurantId;
+    }
+
+    public void setRestaurantId(Integer restaurantId) {
+        this.restaurantId = restaurantId;
     }
 }

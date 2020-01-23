@@ -315,52 +315,52 @@ public class evaluationExample {
             return (Criteria) this;
         }
 
-        public Criteria andEvaluationStartEqualTo(Integer value) {
+        public Criteria andEvaluationStartEqualTo(Date value) {
             addCriterion("evaluation_start =", value, "evaluationStart");
             return (Criteria) this;
         }
 
-        public Criteria andEvaluationStartNotEqualTo(Integer value) {
+        public Criteria andEvaluationStartNotEqualTo(Date value) {
             addCriterion("evaluation_start <>", value, "evaluationStart");
             return (Criteria) this;
         }
 
-        public Criteria andEvaluationStartGreaterThan(Integer value) {
+        public Criteria andEvaluationStartGreaterThan(Date value) {
             addCriterion("evaluation_start >", value, "evaluationStart");
             return (Criteria) this;
         }
 
-        public Criteria andEvaluationStartGreaterThanOrEqualTo(Integer value) {
+        public Criteria andEvaluationStartGreaterThanOrEqualTo(Date value) {
             addCriterion("evaluation_start >=", value, "evaluationStart");
             return (Criteria) this;
         }
 
-        public Criteria andEvaluationStartLessThan(Integer value) {
+        public Criteria andEvaluationStartLessThan(Date value) {
             addCriterion("evaluation_start <", value, "evaluationStart");
             return (Criteria) this;
         }
 
-        public Criteria andEvaluationStartLessThanOrEqualTo(Integer value) {
+        public Criteria andEvaluationStartLessThanOrEqualTo(Date value) {
             addCriterion("evaluation_start <=", value, "evaluationStart");
             return (Criteria) this;
         }
 
-        public Criteria andEvaluationStartIn(List<Integer> values) {
+        public Criteria andEvaluationStartIn(List<Date> values) {
             addCriterion("evaluation_start in", values, "evaluationStart");
             return (Criteria) this;
         }
 
-        public Criteria andEvaluationStartNotIn(List<Integer> values) {
+        public Criteria andEvaluationStartNotIn(List<Date> values) {
             addCriterion("evaluation_start not in", values, "evaluationStart");
             return (Criteria) this;
         }
 
-        public Criteria andEvaluationStartBetween(Integer value1, Integer value2) {
+        public Criteria andEvaluationStartBetween(Date value1, Date value2) {
             addCriterion("evaluation_start between", value1, value2, "evaluationStart");
             return (Criteria) this;
         }
 
-        public Criteria andEvaluationStartNotBetween(Integer value1, Integer value2) {
+        public Criteria andEvaluationStartNotBetween(Date value1, Date value2) {
             addCriterion("evaluation_start not between", value1, value2, "evaluationStart");
             return (Criteria) this;
         }
@@ -422,6 +422,126 @@ public class evaluationExample {
 
         public Criteria andEvaluationDataNotBetween(Date value1, Date value2) {
             addCriterion("evaluation_data not between", value1, value2, "evaluationData");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdIsNull() {
+            addCriterion("user_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdIsNotNull() {
+            addCriterion("user_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdEqualTo(Integer value) {
+            addCriterion("user_id =", value, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdNotEqualTo(Integer value) {
+            addCriterion("user_id <>", value, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdGreaterThan(Integer value) {
+            addCriterion("user_id >", value, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("user_id >=", value, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdLessThan(Integer value) {
+            addCriterion("user_id <", value, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdLessThanOrEqualTo(Integer value) {
+            addCriterion("user_id <=", value, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdIn(List<Integer> values) {
+            addCriterion("user_id in", values, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdNotIn(List<Integer> values) {
+            addCriterion("user_id not in", values, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdBetween(Integer value1, Integer value2) {
+            addCriterion("user_id between", value1, value2, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("user_id not between", value1, value2, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantIdIsNull() {
+            addCriterion("restaurant_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantIdIsNotNull() {
+            addCriterion("restaurant_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantIdEqualTo(Integer value) {
+            addCriterion("restaurant_id =", value, "restaurantId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantIdNotEqualTo(Integer value) {
+            addCriterion("restaurant_id <>", value, "restaurantId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantIdGreaterThan(Integer value) {
+            addCriterion("restaurant_id >", value, "restaurantId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("restaurant_id >=", value, "restaurantId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantIdLessThan(Integer value) {
+            addCriterion("restaurant_id <", value, "restaurantId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantIdLessThanOrEqualTo(Integer value) {
+            addCriterion("restaurant_id <=", value, "restaurantId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantIdIn(List<Integer> values) {
+            addCriterion("restaurant_id in", values, "restaurantId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantIdNotIn(List<Integer> values) {
+            addCriterion("restaurant_id not in", values, "restaurantId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantIdBetween(Integer value1, Integer value2) {
+            addCriterion("restaurant_id between", value1, value2, "restaurantId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRestaurantIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("restaurant_id not between", value1, value2, "restaurantId");
             return (Criteria) this;
         }
     }
