@@ -434,6 +434,8 @@ Author URI: http://www.deathghost.cn
                     var username=info.data[i].username;
                     var foodid=info.data[i].foodid;
                     var foodname=info.data[i].foodname;
+                    var foodBargain=info.food[i].foodBargain;
+
                     console.log(content);
                     // $("#C-content").append("  <q>"+content+"</q>\n" +
                     //     "       <i>"+date+"</i>");
@@ -486,6 +488,7 @@ Author URI: http://www.deathghost.cn
                    var foodPrice=info.food[i].foodPrice;
                    var foodImage=info.food[i].foodImage;
                    var foodId=info.food[i].foodId;
+                   var foodBargain=info.food[i].foodBargain;
                     $("#product").prepend("\t<li>\n" +
                         "\t\t <a href=\"detailsp.html?"+foodId+"\" target=\"_blank\" title=\""+foodname+"\">\n" +
                         "         <img src=\""+foodImage+"\" class=\"foodsimgsize\">\n" +
@@ -493,7 +496,7 @@ Author URI: http://www.deathghost.cn
                         "          <a href=\"#\" class=\"item\">\n" +
                         "\t\t <div>\n" +
                         "\t\t  <p>"+foodname+"</p>\n" +
-                        "\t\t  <p class=\"AButton\">拖至购物车:￥"+foodPrice+"</p>\n" +
+                        "\t\t  <p class=\"AButton\">拖至购物车:￥"+foodBargain+"</p>\n" +
                         "\t\t </div>\n" +
                         "\t\t </a>\n" +
                         "\t\t</li>");

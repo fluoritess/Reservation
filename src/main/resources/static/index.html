@@ -459,12 +459,13 @@ Author URI: http://www.deathghost.cn
                     var image = info.food[i].foodImage;
                     var foodPrice=info.food[i].foodPrice;
                     var foodId=info.food[i].foodId;
+                    var foodBargain=info.food[i].foodBargain;
                     $("#SCcontent").append("  <a href=\"detailsp.html?"+foodId+"\" target=\"_blank\" title=\"菜品名称\">\n" +
                         "      <figure>\n" +
                         "       <img src=\""+image+"\">\n" +
                         "       <figcaption>\n" +
                         "       <span class=\"title\">"+name+"</span>\n" +
-                        "       <span class=\"price\"><i>￥</i>"+foodPrice+"</span>\n" +
+                        "       <span class=\"price\"><i>￥</i>"+foodBargain+"</span>\n" +
                         "       </figcaption>\n" +
                         "      </figure>\n" +
                         "      </a>\n" +

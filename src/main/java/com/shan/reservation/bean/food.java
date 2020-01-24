@@ -7,6 +7,8 @@ public class food {
 
     private Double foodPrice;
 
+    private Double foodBargain;
+
     private String foodName;
 
     private Integer categoryId;
@@ -17,15 +19,19 @@ public class food {
 
     private String foodImage;
 
-    public food(Integer foodId, Integer restaurantId, Double foodPrice, String foodName, Integer categoryId, String foodDescribe, Integer sales, String foodImage) {
+    private Integer stock;
+
+    public food(Integer foodId, Integer restaurantId, Double foodPrice, Double foodBargain, String foodName, Integer categoryId, String foodDescribe, Integer sales, String foodImage, Integer stock) {
         this.foodId = foodId;
         this.restaurantId = restaurantId;
         this.foodPrice = foodPrice;
+        this.foodBargain = foodBargain;
         this.foodName = foodName;
         this.categoryId = categoryId;
         this.foodDescribe = foodDescribe;
         this.sales = sales;
         this.foodImage = foodImage;
+        this.stock = stock;
     }
 
     public food() {
@@ -54,6 +60,14 @@ public class food {
 
     public void setFoodPrice(Double foodPrice) {
         this.foodPrice = foodPrice;
+    }
+
+    public Double getFoodBargain() {
+        return foodBargain;
+    }
+
+    public void setFoodBargain(Double foodBargain) {
+        this.foodBargain = foodBargain;
     }
 
     public String getFoodName() {
@@ -94,5 +108,13 @@ public class food {
 
     public void setFoodImage(String foodImage) {
         this.foodImage = foodImage == null ? null : foodImage.trim();
+    }
+
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
     }
 }

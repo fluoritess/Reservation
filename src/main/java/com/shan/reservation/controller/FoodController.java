@@ -2,6 +2,7 @@ package com.shan.reservation.controller;
 
 import com.shan.reservation.bean.food;
 import com.shan.reservation.bean.restaurantUtil;
+import com.shan.reservation.mapper.foodMapper;
 import com.shan.reservation.service.FoodService;
 import com.shan.reservation.service.RestaurantService;
 import com.shan.reservation.util.ArchivesLog;
@@ -26,6 +27,8 @@ import java.util.Map;
 public class FoodController {
     @Autowired
     FoodService FoodService;
+    @Autowired
+    foodMapper foodMapper;
     @ResponseBody
     @RequestMapping("/findAllFood" )
     @ArchivesLog(operationType = "查询信息", operationName = "查询所有食物")
@@ -40,6 +43,14 @@ public class FoodController {
         int foodId=Integer.parseInt(map.get("id"));
         List<food> list= FoodService.findFoodByRestaurant(foodId);
         return  R.ok().put("food",list);
+    }
+    @ResponseBody
+    @RequestMapping("/findFoodById" )
+    @ArchivesLog(operationType = "查询信息", operationName = "根据食物id查询食物")
+    public R findFoodById(@RequestBody Map<String,String> map, HttpSession httpSession){
+        int foodId=Integer.parseInt(map.get("id"));
+        food food= foodMapper.selectByPrimaryKey(foodId);
+        return  R.ok().put("food",food);
     }
 
 }

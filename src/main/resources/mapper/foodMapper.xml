@@ -6,11 +6,13 @@
       <idArg column="food_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="restaurant_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="food_price" jdbcType="DOUBLE" javaType="java.lang.Double" />
+      <arg column="food_bargain" jdbcType="DOUBLE" javaType="java.lang.Double" />
       <arg column="food_name" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="category_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="food_describe" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="sales" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="food_image" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="stock" jdbcType="INTEGER" javaType="java.lang.Integer" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -72,8 +74,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    food_id, restaurant_id, food_price, food_name, category_id, food_describe, sales, 
-    food_image
+    food_id, restaurant_id, food_price, food_bargain, food_name, category_id, food_describe, 
+    sales, food_image, stock
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shan.reservation.bean.foodExample" >
     select
@@ -108,11 +110,13 @@
   </delete>
   <insert id="insert" parameterType="com.shan.reservation.bean.food" >
     insert into food (food_id, restaurant_id, food_price, 
-      food_name, category_id, food_describe, 
-      sales, food_image)
+      food_bargain, food_name, category_id, 
+      food_describe, sales, food_image, 
+      stock)
     values (#{foodId,jdbcType=INTEGER}, #{restaurantId,jdbcType=INTEGER}, #{foodPrice,jdbcType=DOUBLE}, 
-      #{foodName,jdbcType=VARCHAR}, #{categoryId,jdbcType=INTEGER}, #{foodDescribe,jdbcType=VARCHAR}, 
-      #{sales,jdbcType=INTEGER}, #{foodImage,jdbcType=VARCHAR})
+      #{foodBargain,jdbcType=DOUBLE}, #{foodName,jdbcType=VARCHAR}, #{categoryId,jdbcType=INTEGER}, 
+      #{foodDescribe,jdbcType=VARCHAR}, #{sales,jdbcType=INTEGER}, #{foodImage,jdbcType=VARCHAR}, 
+      #{stock,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.shan.reservation.bean.food" >
     insert into food
@@ -125,6 +129,9 @@
       </if>
       <if test="foodPrice != null" >
         food_price,
+      </if>
+      <if test="foodBargain != null" >
+        food_bargain,
       </if>
       <if test="foodName != null" >
         food_name,
@@ -141,6 +148,9 @@
       <if test="foodImage != null" >
         food_image,
       </if>
+      <if test="stock != null" >
+        stock,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="foodId != null" >
@@ -151,6 +161,9 @@
       </if>
       <if test="foodPrice != null" >
         #{foodPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="foodBargain != null" >
+        #{foodBargain,jdbcType=DOUBLE},
       </if>
       <if test="foodName != null" >
         #{foodName,jdbcType=VARCHAR},
@@ -166,6 +179,9 @@
       </if>
       <if test="foodImage != null" >
         #{foodImage,jdbcType=VARCHAR},
+      </if>
+      <if test="stock != null" >
+        #{stock,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -187,6 +203,9 @@
       <if test="record.foodPrice != null" >
         food_price = #{record.foodPrice,jdbcType=DOUBLE},
       </if>
+      <if test="record.foodBargain != null" >
+        food_bargain = #{record.foodBargain,jdbcType=DOUBLE},
+      </if>
       <if test="record.foodName != null" >
         food_name = #{record.foodName,jdbcType=VARCHAR},
       </if>
@@ -202,6 +221,9 @@
       <if test="record.foodImage != null" >
         food_image = #{record.foodImage,jdbcType=VARCHAR},
       </if>
+      <if test="record.stock != null" >
+        stock = #{record.stock,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -212,11 +234,13 @@
     set food_id = #{record.foodId,jdbcType=INTEGER},
       restaurant_id = #{record.restaurantId,jdbcType=INTEGER},
       food_price = #{record.foodPrice,jdbcType=DOUBLE},
+      food_bargain = #{record.foodBargain,jdbcType=DOUBLE},
       food_name = #{record.foodName,jdbcType=VARCHAR},
       category_id = #{record.categoryId,jdbcType=INTEGER},
       food_describe = #{record.foodDescribe,jdbcType=VARCHAR},
       sales = #{record.sales,jdbcType=INTEGER},
-      food_image = #{record.foodImage,jdbcType=VARCHAR}
+      food_image = #{record.foodImage,jdbcType=VARCHAR},
+      stock = #{record.stock,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -229,6 +253,9 @@
       </if>
       <if test="foodPrice != null" >
         food_price = #{foodPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="foodBargain != null" >
+        food_bargain = #{foodBargain,jdbcType=DOUBLE},
       </if>
       <if test="foodName != null" >
         food_name = #{foodName,jdbcType=VARCHAR},
@@ -245,6 +272,9 @@
       <if test="foodImage != null" >
         food_image = #{foodImage,jdbcType=VARCHAR},
       </if>
+      <if test="stock != null" >
+        stock = #{stock,jdbcType=INTEGER},
+      </if>
     </set>
     where food_id = #{foodId,jdbcType=INTEGER}
   </update>
@@ -252,11 +282,13 @@
     update food
     set restaurant_id = #{restaurantId,jdbcType=INTEGER},
       food_price = #{foodPrice,jdbcType=DOUBLE},
+      food_bargain = #{foodBargain,jdbcType=DOUBLE},
       food_name = #{foodName,jdbcType=VARCHAR},
       category_id = #{categoryId,jdbcType=INTEGER},
       food_describe = #{foodDescribe,jdbcType=VARCHAR},
       sales = #{sales,jdbcType=INTEGER},
-      food_image = #{foodImage,jdbcType=VARCHAR}
+      food_image = #{foodImage,jdbcType=VARCHAR},
+      stock = #{stock,jdbcType=INTEGER}
     where food_id = #{foodId,jdbcType=INTEGER}
   </update>
 </mapper>

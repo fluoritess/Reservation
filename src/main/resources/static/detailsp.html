@@ -78,20 +78,20 @@ $(function(){
 <!--Start content-->
 <section class="slp">
  <section class="food-hd">
-  <div class="foodpic">
-   <img src="upload/02.jpg" id="showimg">
-    <ul class="smallpic">
-     <li><img src="upload/02.jpg" onmouseover="show(this)" onmouseout="hide()"></li>
-    </ul>
+  <div class="foodpic" id="foodpic">
+   <!--<img src="upload/02.jpg" id="showimg">-->
+    <!--<ul class="smallpic">-->
+     <!--<li><img src="upload/02.jpg" onmouseover="show(this)" onmouseout="hide()"></li>-->
+    <!--</ul>-->
   </div>
-  <div class="foodtext">
-   <div class="foodname_a">
-    <h1>酸辣土豆丝</h1>
-    <p>西安市丈八路220号</p>
+  <div class="foodtext"id="foodtext">
+   <div class="foodname_a" id="foodname_a">
+    <!--<h1>酸辣土豆丝</h1>-->
+    <!--<p>西安市丈八路220号</p>-->
    </div>
-   <div class="price_a">
-    <p class="price01">促销：￥<span>59.00</span></p>
-    <p class="price02">价格：￥<s>69.00</s></p>
+   <div class="price_a" id="price_a">
+    <!--<p class="price01">促销：￥<span>59.00</span></p>-->
+    <!--<p class="price02">价格：￥<s>69.00</s></p>-->
    </div>
    <div class="Freight">
     <span>配送费用：</span>
@@ -283,4 +283,39 @@ $(function(){
 <div class="copyright">© 版权所有 2016 DeathGhost 技术支持：<a href="http://www.deathghost.cn" title="DeathGhost">DeathGhost</a></div>
 </footer>
 </body>
+<script>
+    var id = location.href.split("?")[1];
+    var json = {
+        id: id
+    };
+    json = JSON.stringify(json);
+    var cityname=null;
+    $.ajax({
+        type: "POST",
+        url: "/findFoodById",
+        contentType: "application/json; charset=utf-8",
+        data: json,
+        async: false,
+        dataType: "json",
+        success: function (info) {
+           console.log(info);
+            var imag=info.food.foodImage;
+            var foodName=info.food.foodName;
+            var foodDescribe=info.food.foodDescribe;
+            var foodPrice=info.food.foodPrice;
+            var foodBargain=info.food.foodBargain;
+            $("#foodpic").prepend(" <img src=\""+imag+"\" id=\"showimg\">\n" +
+                "    <ul class=\"smallpic\">\n" +
+                "     <li><img src=\""+imag+"\" onmouseover=\"show(this)\" onmouseout=\"hide()\"></li>\n" +
+                "    </ul>");
+            $("#foodname_a").append("<h1>"+foodName+"</h1>\n" +
+                "    <p>"+foodDescribe+"</p>");
+            $("#price_a").append("  <p class=\"price01\">促销：￥<span>"+foodBargain+"</span></p>\n" +
+                "    <p class=\"price02\">价格：￥<s>"+foodPrice+"</s></p>");
+        },
+        error: function (message) {
+            $("#request-process-patent").html("获取数据失败！");
+        }
+    });
+</script>
 </html>

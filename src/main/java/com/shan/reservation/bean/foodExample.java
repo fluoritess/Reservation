@@ -284,6 +284,66 @@ public class foodExample {
             return (Criteria) this;
         }
 
+        public Criteria andFoodBargainIsNull() {
+            addCriterion("food_bargain is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFoodBargainIsNotNull() {
+            addCriterion("food_bargain is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFoodBargainEqualTo(Double value) {
+            addCriterion("food_bargain =", value, "foodBargain");
+            return (Criteria) this;
+        }
+
+        public Criteria andFoodBargainNotEqualTo(Double value) {
+            addCriterion("food_bargain <>", value, "foodBargain");
+            return (Criteria) this;
+        }
+
+        public Criteria andFoodBargainGreaterThan(Double value) {
+            addCriterion("food_bargain >", value, "foodBargain");
+            return (Criteria) this;
+        }
+
+        public Criteria andFoodBargainGreaterThanOrEqualTo(Double value) {
+            addCriterion("food_bargain >=", value, "foodBargain");
+            return (Criteria) this;
+        }
+
+        public Criteria andFoodBargainLessThan(Double value) {
+            addCriterion("food_bargain <", value, "foodBargain");
+            return (Criteria) this;
+        }
+
+        public Criteria andFoodBargainLessThanOrEqualTo(Double value) {
+            addCriterion("food_bargain <=", value, "foodBargain");
+            return (Criteria) this;
+        }
+
+        public Criteria andFoodBargainIn(List<Double> values) {
+            addCriterion("food_bargain in", values, "foodBargain");
+            return (Criteria) this;
+        }
+
+        public Criteria andFoodBargainNotIn(List<Double> values) {
+            addCriterion("food_bargain not in", values, "foodBargain");
+            return (Criteria) this;
+        }
+
+        public Criteria andFoodBargainBetween(Double value1, Double value2) {
+            addCriterion("food_bargain between", value1, value2, "foodBargain");
+            return (Criteria) this;
+        }
+
+        public Criteria andFoodBargainNotBetween(Double value1, Double value2) {
+            addCriterion("food_bargain not between", value1, value2, "foodBargain");
+            return (Criteria) this;
+        }
+
         public Criteria andFoodNameIsNull() {
             addCriterion("food_name is null");
             return (Criteria) this;
@@ -611,6 +671,66 @@ public class foodExample {
 
         public Criteria andFoodImageNotBetween(String value1, String value2) {
             addCriterion("food_image not between", value1, value2, "foodImage");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockIsNull() {
+            addCriterion("stock is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockIsNotNull() {
+            addCriterion("stock is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockEqualTo(Integer value) {
+            addCriterion("stock =", value, "stock");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockNotEqualTo(Integer value) {
+            addCriterion("stock <>", value, "stock");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockGreaterThan(Integer value) {
+            addCriterion("stock >", value, "stock");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockGreaterThanOrEqualTo(Integer value) {
+            addCriterion("stock >=", value, "stock");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockLessThan(Integer value) {
+            addCriterion("stock <", value, "stock");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockLessThanOrEqualTo(Integer value) {
+            addCriterion("stock <=", value, "stock");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockIn(List<Integer> values) {
+            addCriterion("stock in", values, "stock");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockNotIn(List<Integer> values) {
+            addCriterion("stock not in", values, "stock");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockBetween(Integer value1, Integer value2) {
+            addCriterion("stock between", value1, value2, "stock");
+            return (Criteria) this;
+        }
+
+        public Criteria andStockNotBetween(Integer value1, Integer value2) {
+            addCriterion("stock not between", value1, value2, "stock");
             return (Criteria) this;
         }
     }
