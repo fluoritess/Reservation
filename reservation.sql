@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50720
 File Encoding         : 65001
 
-Date: 2020-01-23 22:21:45
+Date: 2020-01-24 15:22:48
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -135,6 +135,7 @@ CREATE TABLE `evaluation` (
   `evaluation_data` datetime DEFAULT NULL,
   `user_id` int(11) NOT NULL,
   `restaurant_id` int(11) NOT NULL,
+  `food_id` int(11) NOT NULL,
   PRIMARY KEY (`evaluation_id`),
   KEY `order_id` (`order_id`),
   KEY `user_id` (`user_id`),
@@ -147,7 +148,7 @@ CREATE TABLE `evaluation` (
 -- ----------------------------
 -- Records of evaluation
 -- ----------------------------
-INSERT INTO `evaluation` VALUES ('1', '1', '还不错，速度挺快,还不错，速度挺快还不错，速度挺快还不错，速度挺快还不错，速度挺快还不错，速度挺快还不错，速度挺快。。。', '2020-01-23 22:19:13', '2020-01-23 22:19:15', '1', '4');
+INSERT INTO `evaluation` VALUES ('1', '1', '还不错，速度挺快,还不错，速度挺快还不错，速度挺快还不错，速度挺快还不错，速度挺快还不错，速度挺快还不错，速度挺快。。。', '2020-01-23 22:19:13', '2020-01-23 22:19:15', '1', '4', '6');
 
 -- ----------------------------
 -- Table structure for `food`

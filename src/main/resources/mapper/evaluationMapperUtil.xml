@@ -10,6 +10,7 @@
             <arg column="evaluation_data" jdbcType="TIMESTAMP" javaType="java.util.Date" />
             <arg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
             <arg column="restaurant_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="food_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
         </constructor>
     </resultMap>
     <select id="selectReId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >

@@ -17,7 +17,9 @@ public class evaluation {
 
     private Integer restaurantId;
 
-    public evaluation(Integer evaluationId, String orderId, String evaluationContent, Date evaluationStart, Date evaluationData, Integer userId, Integer restaurantId) {
+    private Integer foodId;
+
+    public evaluation(Integer evaluationId, String orderId, String evaluationContent, Date evaluationStart, Date evaluationData, Integer userId, Integer restaurantId, Integer foodId) {
         this.evaluationId = evaluationId;
         this.orderId = orderId;
         this.evaluationContent = evaluationContent;
@@ -25,6 +27,7 @@ public class evaluation {
         this.evaluationData = evaluationData;
         this.userId = userId;
         this.restaurantId = restaurantId;
+        this.foodId = foodId;
     }
 
     public evaluation() {
@@ -85,5 +88,13 @@ public class evaluation {
 
     public void setRestaurantId(Integer restaurantId) {
         this.restaurantId = restaurantId;
+    }
+
+    public Integer getFoodId() {
+        return foodId;
+    }
+
+    public void setFoodId(Integer foodId) {
+        this.foodId = foodId;
     }
 }

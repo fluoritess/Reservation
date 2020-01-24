@@ -211,13 +211,12 @@ Author URI: http://www.deathghost.cn
     </a>
     <!--case2-->
     <div class="menutab">
-     <div class="shopcomment">
+     <div class="shopcomment" id="shopcomment">
       <div class="Spname">
-       <a href="#" target="_blank" title="酸辣土豆丝">酸辣土豆丝</a>
+       <!--<a href="#" target="_blank" title="酸辣土豆丝">酸辣土豆丝</a>-->
       </div>
       <div class="C-content" id="C-content">
-       <!--<q>还不错，速度挺快,还不错，速度挺快还不错，速度挺快还不错，速度挺快还不错，速度挺快还不错，速度挺快还不错，速度挺快。。。</q>-->
-       <!--<i>2014年09月17日 19:36 </i>-->
+
       </div>
       <div class="username" id="username">
 
@@ -428,20 +427,46 @@ Author URI: http://www.deathghost.cn
             async: false,
             dataType: "json",
             success: function (info) {
-                // console.log(info);
-                var content=info.data.content;
-                var date=info.data.date;
-                var username=info.data.username;
-                var size=info.data.size;
-                // console.log(content);
-                $("#C-content").append("  <q>"+content+"</q>\n" +
-                    "       <i>"+date+"</i>");
+                console.log(info);
+                for(var i=0;i<info.data.length;i++){
+                    var content=info.data[i].content;
+                    var date=info.data[i].date;
+                    var username=info.data[i].username;
+                    var foodid=info.data[i].foodid;
+                    var foodname=info.data[i].foodname;
+                    console.log(content);
+                    // $("#C-content").append("  <q>"+content+"</q>\n" +
+                    //     "       <i>"+date+"</i>");
+                    // $("#username").append("用户:"+username+"");
+                    $("#shopcomment").append(" <div class=\"Spname\">\n" +
+                        "       <a href=\"detailsp.html?"+foodid+"\"  target=\"_blank\" title=\"酸辣土豆丝\">"+foodname+"</a>\n" +
+                        "      </div>\n" +
+                        "      <div class=\"C-content\" id=\"C-content\">\n" +""+content+""+
+                        "     \n" +
+                        "      </div>\n" +
+                        "      <div class=\"username\" id=\"username\">\n" +"用户:"+username+""+
+                        "\n" +
+                        "      </div>");
+                }
+                var size=info.data[0].size;
                 $("#pinglun").append("<li class=\"on\">菜谱</li>\n" +
                     "      <li>累计评论（"+size+"）</li>\n" +
                     "      <li>商家详情</li>\n" +
                     "      <li>店铺留言</li>\n" +
                     "      <p><b></b></p>");
-                $("#username").append("用户:"+username+"");
+                // var content=info.data.content;
+                // var date=info.data.date;
+                // var username=info.data.username;
+                // var size=info.data.size;
+                // console.log(content);
+                // $("#C-content").append("  <q>"+content+"</q>\n" +
+                //     "       <i>"+date+"</i>");
+                // $("#pinglun").append("<li class=\"on\">菜谱</li>\n" +
+                //     "      <li>累计评论（"+size+"）</li>\n" +
+                //     "      <li>商家详情</li>\n" +
+                //     "      <li>店铺留言</li>\n" +
+                //     "      <p><b></b></p>");
+                // $("#username").append("用户:"+username+"");
             },
             error: function (message) {
                 $("#request-process-patent").html("获取数据失败！");
