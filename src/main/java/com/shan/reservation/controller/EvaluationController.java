@@ -62,4 +62,34 @@ public class EvaluationController {
         }
         return  R.ok().put("data",tarlist);
     }
+    @ResponseBody
+    @RequestMapping("/selectByFoodId" )
+    @ArchivesLog(operationType = "查询信息", operationName = "根据餐馆id查询评论")
+    public R selectByFoodId(@RequestBody Map<String,String> map, HttpSession httpSession){
+        int reId=Integer.parseInt(map.get("id"));
+        List<evaluation> list=EvaluationService.selectByFoodId(reId);
+        List tarlist=new ArrayList();
+        Iterator it=list.iterator();
+        int size=list.size();
+        while(it.hasNext()){
+            evaluation evaluation=(evaluation)it.next();
+            int user_id=evaluation.getUserId();
+            user user=userMapper.selectByPrimaryKey(user_id);
+            String username=user.getUserName();
+            String content=evaluation.getEvaluationContent();
+            Date date=evaluation.getEvaluationData();
+            int food_id=evaluation.getFoodId();
+            food food=foodMapper.selectByPrimaryKey(food_id);
+            String foodname=food.getFoodName();
+            Map data=new HashMap();
+            data.put("size",size);
+            data.put("username",username);
+            data.put("content",content);
+            data.put("date",date);
+            data.put("foodname",foodname);
+            data.put("foodid",food_id);
+            tarlist.add(data);
+        }
+        return  R.ok().put("data",tarlist);
+    }
 }

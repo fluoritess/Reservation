@@ -9,4 +9,5 @@ import java.util.List;
 @Mapper
 public interface evaluationMapperUtil {
     List<evaluation> selectReId(int restaurantId);
+    List<evaluation> selectByFoodId(int foodId);
 }

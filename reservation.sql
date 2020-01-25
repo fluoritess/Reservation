@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50720
 File Encoding         : 65001
 
-Date: 2020-01-24 16:32:37
+Date: 2020-01-25 23:05:16
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -165,6 +165,8 @@ CREATE TABLE `food` (
   `sales` int(11) DEFAULT NULL,
   `food_image` varchar(255) DEFAULT NULL,
   `stock` int(11) NOT NULL,
+  `cumulative_evaluation` int(11) DEFAULT NULL,
+  `score` double(11,2) DEFAULT NULL,
   PRIMARY KEY (`food_id`),
   KEY `restaurant_id` (`restaurant_id`),
   KEY `category_id` (`category_id`),
@@ -175,13 +177,13 @@ CREATE TABLE `food` (
 -- ----------------------------
 -- Records of food
 -- ----------------------------
-INSERT INTO `food` VALUES ('1', '1', '108.00', '89.00', '黑胡椒牛排', '2', '黑胡椒牛排是以牛里脊肉为主要食材的大众菜，口味咸鲜', '2', 'upload/food/niupai.jpg', '29');
-INSERT INTO `food` VALUES ('2', '2', '42.00', '30.00', '烤芝士沙拉', '7', '烤芝士配上蔬菜沙拉,口味新颖，很别样的感觉! ', '3', 'upload/food/zhishi.jpg', '42');
-INSERT INTO `food` VALUES ('3', '8', '16.00', '10.00', '烧仙草', '9', '烧仙草', '20', 'upload/food/shaoxiancao.jpg', '230');
-INSERT INTO `food` VALUES ('4', '4', '28.00', '20.00', '回锅肉', '1', '是一种四川传统菜式中家常（味型）菜肴的代表菜肴之一，属于川菜系列。', '15', 'upload/food/huiguorou.jpg', '226');
-INSERT INTO `food` VALUES ('5', '4', '26.00', '22.00', '干煸肥肠', '1', '干煸肥肠是用肥肠制作的一道著名的地方佳肴，属于川菜。具有色泽深红、筋韧辣香等口味特点。', '31', 'upload/food/feichang.jpg', '320');
-INSERT INTO `food` VALUES ('6', '4', '23.00', '18.00', '鱼香肉丝', '1', '鱼香肉丝是一道传统名菜，以鱼香味调味而得名，属于川菜。', '28', 'upload/food/rousi.jpg', '198');
-INSERT INTO `food` VALUES ('7', '4', '32.00', '30.00', '糖醋里脊', '1', '糖醋里脊是经典传统名菜之一，以猪里脊肉为主材，配以面粉、淀粉、醋等佐料，酸甜可口，让人食欲大开。', '14', 'upload/food/liji.jpg', '264');
+INSERT INTO `food` VALUES ('1', '1', '108.00', '89.00', '黑胡椒牛排', '2', '黑胡椒牛排是以牛里脊肉为主要食材的大众菜，口味咸鲜', '241', 'upload/food/niupai.jpg', '29', '198', '4.77');
+INSERT INTO `food` VALUES ('2', '2', '42.00', '30.00', '烤芝士沙拉', '7', '烤芝士配上蔬菜沙拉,口味新颖，很别样的感觉! ', '303', 'upload/food/zhishi.jpg', '42', '278', '4.86');
+INSERT INTO `food` VALUES ('3', '8', '16.00', '10.00', '烧仙草', '9', '烧仙草', '2011', 'upload/food/shaoxiancao.jpg', '230', '1672', '4.67');
+INSERT INTO `food` VALUES ('4', '4', '28.00', '20.00', '回锅肉', '1', '是一种四川传统菜式中家常（味型）菜肴的代表菜肴之一，属于川菜系列。', '1526', 'upload/food/huiguorou.jpg', '226', '1482', '4.87');
+INSERT INTO `food` VALUES ('5', '4', '26.00', '22.00', '干煸肥肠', '1', '干煸肥肠是用肥肠制作的一道著名的地方佳肴，属于川菜。具有色泽深红、筋韧辣香等口味特点。', '3105', 'upload/food/feichang.jpg', '320', '2983', '4.90');
+INSERT INTO `food` VALUES ('6', '4', '23.00', '18.00', '鱼香肉丝', '1', '鱼香肉丝是一道传统名菜，以鱼香味调味而得名，属于川菜。', '2809', 'upload/food/rousi.jpg', '198', '2769', '4.79');
+INSERT INTO `food` VALUES ('7', '4', '32.00', '30.00', '糖醋里脊', '1', '糖醋里脊是经典传统名菜之一，以猪里脊肉为主材，配以面粉、淀粉、醋等佐料，酸甜可口，让人食欲大开。', '1443', 'upload/food/liji.jpg', '264', '1098', '4.78');
 
 -- ----------------------------
 -- Table structure for `food_category`

@@ -449,12 +449,21 @@ Author URI: http://www.deathghost.cn
                         "\n" +
                         "      </div>");
                 }
-                var size=info.data[0].size;
-                $("#pinglun").append("<li class=\"on\">菜谱</li>\n" +
-                    "      <li>累计评论（"+size+"）</li>\n" +
-                    "      <li>商家详情</li>\n" +
-                    "      <li>店铺留言</li>\n" +
-                    "      <p><b></b></p>");
+                if(info.data.length>0){
+                    var size=info.data[0].size;
+                    $("#pinglun").append("<li class=\"on\">菜谱</li>\n" +
+                        "      <li>累计评论（"+size+"）</li>\n" +
+                        "      <li>商家详情</li>\n" +
+                        "      <li>店铺留言</li>\n" +
+                        "      <p><b></b></p>");
+                }
+              else{
+                    $("#pinglun").append("<li class=\"on\">菜谱</li>\n" +
+                        "      <li>累计评论（0）</li>\n" +
+                        "      <li>商家详情</li>\n" +
+                        "      <li>店铺留言</li>\n" +
+                        "      <p><b></b></p>");
+                }
                 // var content=info.data.content;
                 // var date=info.data.date;
                 // var username=info.data.username;

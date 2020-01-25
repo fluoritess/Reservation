@@ -143,17 +143,17 @@ $(function(){
   <article>
    <div class="shopcontent">
   <div class="title2 cf">
-    <ul class="title-list fr cf ">
-      <li class="on">详细说明</li>
-      <li>评价详情（5）</li>
-      <li>成交记录（5）</li>
-      <p><b></b></p>
+    <ul class="title-list fr cf " id="pinglun">
+      <!--<li class="on">详细说明</li>-->
+      <!--<li>评价详情（5）</li>-->
+      <!--<li>成交记录（5）</li>-->
+      <!--<p><b></b></p>-->
     </ul>
   </div>
   <div class="menutab-wrap">
     <!--case1-->
     <div class="menutab show">
-      <div class="cont_padding">
+      <div class="cont_padding" id="cont_padding">
        <!--<p>测试信息，可删除！</p>-->
        <!--<p>1. 将土豆洗净刮皮。</p>-->
        <!--<p>2. 先将土豆切成整齐的大薄片这样是切出均匀的丝的要点。</p>-->
@@ -165,15 +165,15 @@ $(function(){
     <!--case2-->
     <div class="menutab">
      <div class="cont_padding">
-      <table class="Dcomment">
+      <table class="Dcomment" id="Dcomment">
        <th width="80%">评价内容</th>
        <th width="20%" style="text-align:right">评价人</th>
        <tr>
-       <td>
-        还不错，速度倒是挺速度倒是挺快速度倒是挺快速度倒是挺快速度倒是挺快速度倒是挺快速度倒是挺快速度倒是挺快速度倒是挺快速度倒是挺快速度倒是挺快速度倒是挺快快...
-        <time>2016-05-31 22:30:39</time>
-       </td>
-       <td align="right">DEATHGHOST</td>
+       <!--<td>-->
+      <!---->
+        <!--<time></time>-->
+       <!--</td>-->
+       <!--<td align="right"></td>-->
        </tr>
       </table>
       <div class="TurnPage">
@@ -319,7 +319,7 @@ $(function(){
             $("#Numerical2").append(cumulativeEvaluation);
             $("#Numerical3").append(score);
             $("#kucun").append("库存:"+stock);
-            $(".cont_padding").append(""+foodDescribe+"");
+            $("#cont_padding").append(""+foodDescribe+"");
         },
         error: function (message) {
             $("#request-process-patent").html("获取数据失败！");
@@ -356,6 +356,48 @@ $(function(){
                     $("#request-process-patent").html("获取数据失败！");
                 }
             });
+        }
+    });
+    //获取评论
+    $.ajax({
+        type: "POST",
+        url: "/selectByFoodId",
+        contentType: "application/json; charset=utf-8",
+        data: json,
+        async: false,
+        dataType: "json",
+        success: function (info) {
+            console.log(info);
+            for(var i=0;i<info.data.length;i++){
+                var content=info.data[i].content;
+                var date=info.data[i].date;
+                var username=info.data[i].username;
+                var foodid=info.data[i].foodid;
+                var foodname=info.data[i].foodname;
+                console.log(content);
+            }
+            if(info.data.length>0){
+                $("#pinglun").append(" <li class=\"on\">详细说明</li>\n" +
+                    "      <li>评价详情（"+info.data[0].size+"）</li>\n" +
+                    "      <li>成交记录（5）</li>\n" +
+                    "      <p><b></b></p>");
+
+            }
+            else{
+                $("#pinglun").append(" <li class=\"on\">详细说明</li>\n" +
+                    "      <li>评价详情（0）</li>\n" +
+                    "      <li>成交记录（5）</li>\n" +
+                    "      <p><b></b></p>");
+            }
+
+            $("#Dcomment").append(" <td>\n" +content+
+                "      \n" +
+                "        <time>"+date+"</time>\n" +
+                "       </td>\n" +
+                "       <td align=\"right\">"+username+"</td>");
+        },
+        error: function (message) {
+            $("#request-process-patent").html("获取数据失败！");
         }
     });
 </script>
