@@ -21,7 +21,11 @@ public class food {
 
     private Integer stock;
 
-    public food(Integer foodId, Integer restaurantId, Double foodPrice, Double foodBargain, String foodName, Integer categoryId, String foodDescribe, Integer sales, String foodImage, Integer stock) {
+    private Integer cumulativeEvaluation;
+
+    private Double score;
+
+    public food(Integer foodId, Integer restaurantId, Double foodPrice, Double foodBargain, String foodName, Integer categoryId, String foodDescribe, Integer sales, String foodImage, Integer stock, Integer cumulativeEvaluation, Double score) {
         this.foodId = foodId;
         this.restaurantId = restaurantId;
         this.foodPrice = foodPrice;
@@ -32,6 +36,8 @@ public class food {
         this.sales = sales;
         this.foodImage = foodImage;
         this.stock = stock;
+        this.cumulativeEvaluation = cumulativeEvaluation;
+        this.score = score;
     }
 
     public food() {
@@ -116,5 +122,21 @@ public class food {
 
     public void setStock(Integer stock) {
         this.stock = stock;
+    }
+
+    public Integer getCumulativeEvaluation() {
+        return cumulativeEvaluation;
+    }
+
+    public void setCumulativeEvaluation(Integer cumulativeEvaluation) {
+        this.cumulativeEvaluation = cumulativeEvaluation;
+    }
+
+    public Double getScore() {
+        return score;
+    }
+
+    public void setScore(Double score) {
+        this.score = score;
     }
 }

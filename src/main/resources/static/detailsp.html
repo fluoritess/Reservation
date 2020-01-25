@@ -48,9 +48,9 @@ $(function(){
  </section>
  <div class="Logo_search">
   <div class="Logo">
-   <img src="images/logo.jpg" title="DeathGhost" alt="模板">
+      <a href="index.html"><img src="login/images/logo.png" title="DeathGhost" alt="模板"></a>
    <i></i>
-   <span>西安市 [ <a href="#">莲湖区</a> ]</span>
+   <span id="distict"></span>
   </div>
   <div class="Search"> 
    <form method="get" id="main_a_serach" onsubmit="return check_search(this)">
@@ -100,22 +100,22 @@ $(function(){
    </div>
    <ul class="Tran_infor">
      <li>
-      <p class="Numerical">3</p>
+      <p class="Numerical" id="Numerical1"></p>
       <p>月销量</p>
      </li>
      <li class="line">
-      <p class="Numerical">58</p>
+      <p class="Numerical" id="Numerical2"></p>
       <p>累计评价</p>
      </li>
      <li>
-      <p class="Numerical">59</p>
-      <p>送幸福积分</p>
+      <p class="Numerical" id="Numerical3"></p>
+      <p>评分</p>
      </li>
    </ul>
    <form action="cart.html">
    <div class="BuyNo">
     <span>我要买：<input type="number" name="Number" required autofocus min="1" value="1"/>份</span>
-    <span>库存：3258</span>
+    <span id="kucun"></span>
     <div class="Buybutton">
      <input name="" type="submit" value="加入购物车" class="BuyB">
      <a href="shop.html"><span class="Backhome">进入店铺首页</span></a>
@@ -154,13 +154,12 @@ $(function(){
     <!--case1-->
     <div class="menutab show">
       <div class="cont_padding">
-       <img src="upload/tds.jpg">
-       <p>测试信息，可删除！</p>
-       <p>1. 将土豆洗净刮皮。</p>
-       <p>2. 先将土豆切成整齐的大薄片这样是切出均匀的丝的要点。</p>
-       <p>3. 将土豆片切成细丝。</p>
-       <p>4. 用清水将切好的土豆丝泡去淀粉，（这样炒出的土豆丝清爽不粘）</p>
-       <p>5. 将葱切末、辣椒剪成小段、蒜切末、红椒切丝、姜切末。</p>
+       <!--<p>测试信息，可删除！</p>-->
+       <!--<p>1. 将土豆洗净刮皮。</p>-->
+       <!--<p>2. 先将土豆切成整齐的大薄片这样是切出均匀的丝的要点。</p>-->
+       <!--<p>3. 将土豆片切成细丝。</p>-->
+       <!--<p>4. 用清水将切好的土豆丝泡去淀粉，（这样炒出的土豆丝清爽不粘）</p>-->
+       <!--<p>5. 将葱切末、辣椒剪成小段、蒜切末、红椒切丝、姜切末。</p>-->
       </div>
     </div>
     <!--case2-->
@@ -228,12 +227,12 @@ $(function(){
 </section>
 <!--End content-->
 <div class="F-link">
-  <span>友情链接：</span>
-  <a href="http://www.deathghost.cn" target="_blank" title="DeathGhost">DeathGhost</a>
-  <a href="http://www.17sucai.com/pins/15966.html" target="_blank" title="免费后台管理模板">绿色清爽版通用型后台管理模板免费下载</a>
-  <a href="http://www.17sucai.com/pins/17567.html" target="_blank" title="果蔬菜类模板源码">HTML5果蔬菜类模板源码</a>
-  <a href="http://www.17sucai.com/pins/14931.html" target="_blank" title="黑色的cms商城网站后台管理模板">黑色的cms商城网站后台管理模板</a>
- </div>
+    <span>友情链接：</span>
+    <a href="http://localhost:8080/index.html" target="_blank" title="杉杉订餐">杉杉订餐</a>
+    <a href="http://www.caixiangyuan.com/" target="_blank" title="菜香源主页">菜香源川菜馆官网</a>
+    <a href="http://www.jidongzs.com/?bd_vid=8764546780220336850" target="_blank" title="烧仙草挂网">悸动烧仙草挂网</a>
+    <a href="http://www.sohu.com/a/161665425_125537" target="_blank" title="香霏牛排官网">香霏牛排官网</a>
+</div>
 <footer>
  <section class="Otherlink">
   <aside>
@@ -304,6 +303,10 @@ $(function(){
             var foodDescribe=info.food.foodDescribe;
             var foodPrice=info.food.foodPrice;
             var foodBargain=info.food.foodBargain;
+            var sales=info.food.sales;
+            var stock=info.food.stock;
+            var cumulativeEvaluation=info.food.cumulativeEvaluation;
+            var score=info.food.score;
             $("#foodpic").prepend(" <img src=\""+imag+"\" id=\"showimg\">\n" +
                 "    <ul class=\"smallpic\">\n" +
                 "     <li><img src=\""+imag+"\" onmouseover=\"show(this)\" onmouseout=\"hide()\"></li>\n" +
@@ -312,9 +315,47 @@ $(function(){
                 "    <p>"+foodDescribe+"</p>");
             $("#price_a").append("  <p class=\"price01\">促销：￥<span>"+foodBargain+"</span></p>\n" +
                 "    <p class=\"price02\">价格：￥<s>"+foodPrice+"</s></p>");
+            $("#Numerical1").append(sales);
+            $("#Numerical2").append(cumulativeEvaluation);
+            $("#Numerical3").append(score);
+            $("#kucun").append("库存:"+stock);
+            $(".cont_padding").append(""+foodDescribe+"");
         },
         error: function (message) {
             $("#request-process-patent").html("获取数据失败！");
+        }
+    });
+    $(function(){
+        var user=sessionStorage.getItem("name");
+        console.log(user);
+        if(user==null){
+            $(".LeftNav").append(" <a href=\"login/register.html\">注册</a>/<a href=\"login/login.html\">登录</a><a href=\"#\">QQ客服</a><a href=\"#\">微信客服</a><a href=\"#\">手机客户端</a>");
+
+        }
+        else{
+            $(".LeftNav").append(" <a href=\"index.html\">退出登录</a><a href=\"#\">QQ客服</a><a href=\"#\">微信客服</a><a href=\"#\">手机客户端</a>");
+            var json = {
+                name: user
+            };
+            json = JSON.stringify(json);
+            var cityname=null;
+            $.ajax({
+                type: "POST",
+                url: "/GetUserCityInfo",
+                contentType: "application/json; charset=utf-8",
+                data: json,
+                async: false,
+                dataType: "json",
+                success: function (info) {
+                    var city=info.user.city;
+                    cityname=city;
+                    var distict=info.user.distict;
+                    $("#distict").append(city+ "[ <a href=\"#\">"+distict+"</a> ]");
+                },
+                error: function (message) {
+                    $("#request-process-patent").html("获取数据失败！");
+                }
+            });
         }
     });
 </script>

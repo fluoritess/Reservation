@@ -434,8 +434,7 @@ Author URI: http://www.deathghost.cn
                     var username=info.data[i].username;
                     var foodid=info.data[i].foodid;
                     var foodname=info.data[i].foodname;
-                    var foodBargain=info.food[i].foodBargain;
-
+                    // var foodBargain=info.food[i].foodBargain;
                     console.log(content);
                     // $("#C-content").append("  <q>"+content+"</q>\n" +
                     //     "       <i>"+date+"</i>");
@@ -482,7 +481,7 @@ Author URI: http://www.deathghost.cn
             async: false,
             dataType: "json",
             success: function (info) {
-               console.log(info);
+               // console.log(info);
                for(var i=0;i<info.food.length&&i<4;i++){
                    var foodname=info.food[i].foodName;
                    var foodPrice=info.food[i].foodPrice;
@@ -523,14 +522,14 @@ Author URI: http://www.deathghost.cn
                     var image=info.restaurant[i].restaurantImage;
                     var id=info.restaurant[i].restaurantId;
                     var logo=info.restaurant[i].logo;
-                    console.log(name);
+                    // console.log(name);
                     if(i==0){
                         $("#Nearshop").append("  <span class=\"Nstitle\">附近其他店铺</span>\n" +
                             "   <ul>\n" +
                             "    <li>\n" +
                             "     <img src=\""+logo+"\">\n" +
                             "     <p>\n" +
-                            "     <span class=\"shopname\" title=\"动态调用完整标题\"><a href=\"detailsp.html\" target=\"_blank\" title=\"肯德基\">"+name+"</a></span>\n" +
+                            "     <span class=\"shopname\" title=\"动态调用完整标题\"><a href=\"shop.html?"+id+"\" target=\"_blank\" title=\"肯德基\">"+name+"</a></span>\n" +
                             "     <span class=\"Discolor\">距离：1.2KM</span>\n" +
                             "     <span title=\"完整地址title\">地址："+restaurantAddress+"</span>\n" +
                             "     </p>\n" +
@@ -543,7 +542,7 @@ Author URI: http://www.deathghost.cn
                             "    <li>\n" +
                             "    <a href=\"detailsp.html\" target=\"_blank\" title=\"清真川菜馆\"><img src=\""+logo+"\"></a>\n" +
                             "    <p>\n" +
-                            "     <span class=\"shopname\" title=\"动态调用完整标题\"><a href=\"detailsp.html\" target=\"_blank\" title=\"正宗陕北小吃城\">"+name+"</a></span>\n" +
+                            "     <span class=\"shopname\" title=\"动态调用完整标题\"><a href=\"shop.html?"+id+"\" target=\"_blank\" title=\"正宗陕北小吃城\">"+name+"</a></span>\n" +
                             "     <span>地址:"+restaurantAddress+"</span>\n" +
                             "    </p>\n" +
                             "    </li>\n" +
@@ -558,7 +557,7 @@ Author URI: http://www.deathghost.cn
         });
         $(function(){
             var user=sessionStorage.getItem("name");
-            console.log(user);
+            // console.log(user);
             if(user==null){
                 $(".LeftNav").append(" <a href=\"login/register.html\">注册</a>/<a href=\"login/login.html\">登录</a><a href=\"#\">QQ客服</a><a href=\"#\">微信客服</a><a href=\"#\">手机客户端</a>");
 

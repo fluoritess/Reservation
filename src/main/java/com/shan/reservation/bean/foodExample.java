@@ -733,6 +733,126 @@ public class foodExample {
             addCriterion("stock not between", value1, value2, "stock");
             return (Criteria) this;
         }
+
+        public Criteria andCumulativeEvaluationIsNull() {
+            addCriterion("cumulative_evaluation is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCumulativeEvaluationIsNotNull() {
+            addCriterion("cumulative_evaluation is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCumulativeEvaluationEqualTo(Integer value) {
+            addCriterion("cumulative_evaluation =", value, "cumulativeEvaluation");
+            return (Criteria) this;
+        }
+
+        public Criteria andCumulativeEvaluationNotEqualTo(Integer value) {
+            addCriterion("cumulative_evaluation <>", value, "cumulativeEvaluation");
+            return (Criteria) this;
+        }
+
+        public Criteria andCumulativeEvaluationGreaterThan(Integer value) {
+            addCriterion("cumulative_evaluation >", value, "cumulativeEvaluation");
+            return (Criteria) this;
+        }
+
+        public Criteria andCumulativeEvaluationGreaterThanOrEqualTo(Integer value) {
+            addCriterion("cumulative_evaluation >=", value, "cumulativeEvaluation");
+            return (Criteria) this;
+        }
+
+        public Criteria andCumulativeEvaluationLessThan(Integer value) {
+            addCriterion("cumulative_evaluation <", value, "cumulativeEvaluation");
+            return (Criteria) this;
+        }
+
+        public Criteria andCumulativeEvaluationLessThanOrEqualTo(Integer value) {
+            addCriterion("cumulative_evaluation <=", value, "cumulativeEvaluation");
+            return (Criteria) this;
+        }
+
+        public Criteria andCumulativeEvaluationIn(List<Integer> values) {
+            addCriterion("cumulative_evaluation in", values, "cumulativeEvaluation");
+            return (Criteria) this;
+        }
+
+        public Criteria andCumulativeEvaluationNotIn(List<Integer> values) {
+            addCriterion("cumulative_evaluation not in", values, "cumulativeEvaluation");
+            return (Criteria) this;
+        }
+
+        public Criteria andCumulativeEvaluationBetween(Integer value1, Integer value2) {
+            addCriterion("cumulative_evaluation between", value1, value2, "cumulativeEvaluation");
+            return (Criteria) this;
+        }
+
+        public Criteria andCumulativeEvaluationNotBetween(Integer value1, Integer value2) {
+            addCriterion("cumulative_evaluation not between", value1, value2, "cumulativeEvaluation");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreIsNull() {
+            addCriterion("score is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreIsNotNull() {
+            addCriterion("score is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreEqualTo(Double value) {
+            addCriterion("score =", value, "score");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreNotEqualTo(Double value) {
+            addCriterion("score <>", value, "score");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreGreaterThan(Double value) {
+            addCriterion("score >", value, "score");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreGreaterThanOrEqualTo(Double value) {
+            addCriterion("score >=", value, "score");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreLessThan(Double value) {
+            addCriterion("score <", value, "score");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreLessThanOrEqualTo(Double value) {
+            addCriterion("score <=", value, "score");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreIn(List<Double> values) {
+            addCriterion("score in", values, "score");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreNotIn(List<Double> values) {
+            addCriterion("score not in", values, "score");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreBetween(Double value1, Double value2) {
+            addCriterion("score between", value1, value2, "score");
+            return (Criteria) this;
+        }
+
+        public Criteria andScoreNotBetween(Double value1, Double value2) {
+            addCriterion("score not between", value1, value2, "score");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
