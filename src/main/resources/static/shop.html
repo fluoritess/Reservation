@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>DeathGhost-我的店铺</title>
+<title id="title"></title>
 <meta name="keywords" content="DeathGhost,DeathGhost.cn,web前端设,移动WebApp开发" />
 <meta name="description" content="DeathGhost.cn::H5 WEB前端设计开发!" />
 <meta name="author" content="DeathGhost"/>
@@ -413,6 +413,7 @@ Author URI: http://www.deathghost.cn
                     "    </span>\n" +
                     "    <span>"+score+"</span>");
                 $("#otherinfor").prepend(" <a href=\"#\" class=\"icoa\"><img src=\"images/collect.png\">收藏店铺（"+collection+"）</a>");
+                $("#title").append("杉杉订餐-"+shopname);
             },
             error: function (message) {
                 $("#request-process-patent").html("获取数据失败！");
