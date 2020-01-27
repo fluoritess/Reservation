@@ -1,3 +1,4 @@
+//原-------------------------------------
 $(document).ready(function () {
 	// 全选        
 	$(".allselect").click(function () {
@@ -69,44 +70,70 @@ function GetCount() {
 		$("#delcart2").click(function(){
 			$("#table2").remove();
 			});
+        $("#delcart3").click(function(){
+            $("#table3").remove();
+        });
+        $("#delcart4").click(function(){
+            $("#table4").remove();
+        });
 		});
-<!---商品加减算总数---->
+// <!---商品加减算总数---->
 	$(function () {
 		var t = $("#text_box2");
 		$("#add2").click(function () {
 			t.val(parseInt(t.val()) + 1)
-			setTotal(); GetCount();
+			// setTotal(); GetCount();
 		})
 		$("#min2").click(function () {
 			t.val(parseInt(t.val(1)) - 1)
 			t.val(1)//初始值防止为负数ADD deathghost
-			setTotal(); GetCount();
+			// setTotal(); GetCount();
 		})
-		function setTotal() {
-			$("#total2").html((parseInt(t.val()) * 59).toFixed(2));
-			$("#newslist-2").val(parseInt(t.val()) * 59);
-		}
-		setTotal();
+		// function setTotal() {
+		// 	$("#total2").html((parseInt(t.val()) * 23).toFixed(2));
+		// 	$("#newslist-2").val(parseInt(t.val()) * 23);
+		// }
+		// setTotal();
 	})
 	$(function () {
 		var t = $("#text_box1");
 		$("#add1").click(function () {
 			t.val(parseInt(t.val()) + 1)
-			setTotal(); GetCount();
+			// setTotal(); GetCount();
 		})
 		$("#min1").click(function () {
 			t.val(parseInt(t.val()) - 1)
 			t.val(1)//初始值防止为负数ADD deathghost
-			setTotal(); GetCount();
+			// setTotal(); GetCount();
 		})
-		function setTotal() {
-
-			$("#total1").html((parseInt(t.val()) * 59).toFixed(2));
-			$("#newslist-1").val(parseInt(t.val()) * 59);
-		}
-		setTotal();
+		// function setTotal() {
+        //
+		// 	$("#total1").html((parseInt(t.val()) * 59).toFixed(2));
+		// 	$("#newslist-1").val(parseInt(t.val()) * 59);
+		// }
+		// setTotal();
 	})
-<!---总数---->
+$(function () {
+    var t = $("#text_box3");
+    $("#add3").click(function () {
+        t.val(parseInt(t.val()) + 1)
+    })
+    $("#min3").click(function () {
+        t.val(parseInt(t.val()) - 1)
+        t.val(1)
+    })
+})
+$(function () {
+    var t = $("#text_box4");
+    $("#add4").click(function () {
+        t.val(parseInt(t.val()) + 1)
+    })
+    $("#min4").click(function () {
+        t.val(parseInt(t.val()) - 1)
+        t.val(1)
+    })
+})
+// <!---总数---->
 	$(function () {
 		$(".quanxun").click(function () {
 			setTotal();

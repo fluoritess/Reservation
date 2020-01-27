@@ -25,6 +25,12 @@ public class food {
 
     private Double score;
 
+    public food(Double foodPrice, String foodName, String foodImage) {
+        this.foodPrice = foodPrice;
+        this.foodName = foodName;
+        this.foodImage = foodImage;
+    }
+
     public food(Integer foodId, Integer restaurantId, Double foodPrice, Double foodBargain, String foodName, Integer categoryId, String foodDescribe, Integer sales, String foodImage, Integer stock, Integer cumulativeEvaluation, Double score) {
         this.foodId = foodId;
         this.restaurantId = restaurantId;

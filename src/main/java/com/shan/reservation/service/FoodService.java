@@ -1,6 +1,7 @@
 package com.shan.reservation.service;
 
 import com.shan.reservation.bean.food;
+import com.shan.reservation.bean.restaurant;
 import com.shan.reservation.bean.restaurantUtil;
 import org.springframework.stereotype.Service;
 
@@ -17,4 +18,5 @@ public interface FoodService {
     List<food> findAllFood();
     //根据餐馆id查询食品
     List<food> findFoodByRestaurant(int restaurantId);
+
 }

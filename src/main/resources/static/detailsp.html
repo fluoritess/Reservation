@@ -112,13 +112,14 @@ $(function(){
       <p>评分</p>
      </li>
    </ul>
-   <form action="cart.html">
+   <form id="form">
+       <!--action="cart.html"-->
    <div class="BuyNo">
-    <span>我要买：<input type="number" name="Number" required autofocus min="1" value="1"/>份</span>
+    <span>我要买：<input id="foodnumber" type="number" name="Number" required autofocus min="1" value="1"/>份</span>
     <span id="kucun"></span>
     <div class="Buybutton">
-     <input name="" type="submit" value="加入购物车" class="BuyB">
-     <a href="shop.html"><span class="Backhome">进入店铺首页</span></a>
+     <input name="" id="insercart" type="submit" value="加入购物车" class="BuyB">
+     <a href="#"><span class="Backhome">进入店铺首页</span></a>
     </div>
    </div>
   </div>
@@ -401,5 +402,35 @@ $(function(){
             $("#request-process-patent").html("获取数据失败！");
         }
     });
+    //加入购物车
+    $("#form").submit(function (e) {
+        e.preventDefault();
+    });
+        $("#insercart").click(function(){
+            var user=sessionStorage.getItem("name");
+            var id = location.href.split("?")[1];
+            var number=$(" #foodnumber ").val();
+            var json = {
+                foodid: id,
+                username: user,
+                number:number
+            };
+            json = JSON.stringify(json);
+            console.log(json);//这里能调用
+            $.ajax({
+                type: "POST",
+                url: "/InsertCartByuser",
+                contentType: "application/json; charset=utf-8",
+                data: json,
+                async: false,
+                dataType: "json",
+                success: function (info) {
+                    window.location.href="http://localhost:8080/cart.html"
+                },
+                error: function (message) {
+                    $("#request-process-patent").html("获取数据失败！");
+                }
+            });
+        });
 </script>
 </html>
