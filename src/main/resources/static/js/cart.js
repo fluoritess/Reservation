@@ -56,7 +56,7 @@ $(document).ready(function () {
 
         var label=document.getElementById("zong1");
         label.innerText=totalprice;
-        var label2=document.getElementById("shuliang");
+        var label2=document.getElementById("zongshu");
         console.log(label2);
         label2.innerText=count;
 
