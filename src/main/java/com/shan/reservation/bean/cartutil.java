@@ -6,8 +6,26 @@ public class cartutil {
     private Double foodPrice;
     private String restaurantName;
     private Double foodBargain;
+    private Integer number;
     public String getFoodName() {
         return foodName;
+    }
+
+    public cartutil(String foodName, String foodImage, Double foodPrice, String restaurantName, Double foodBargain, Integer number) {
+        this.foodName = foodName;
+        this.foodImage = foodImage;
+        this.foodPrice = foodPrice;
+        this.restaurantName = restaurantName;
+        this.foodBargain = foodBargain;
+        this.number = number;
+    }
+
+    public Integer getNumber() {
+        return number;
+    }
+
+    public void setNumber(Integer number) {
+        this.number = number;
     }
 
     public void setFoodName(String foodName) {

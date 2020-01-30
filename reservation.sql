@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50720
 File Encoding         : 65001
 
-Date: 2020-01-25 23:05:16
+Date: 2020-01-29 23:19:20
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -215,7 +215,7 @@ INSERT INTO `food_category` VALUES ('11', '其他菜系');
 -- ----------------------------
 DROP TABLE IF EXISTS `item`;
 CREATE TABLE `item` (
-  `Item_id` int(11) NOT NULL,
+  `Item_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `food_id` int(11) NOT NULL,
   `number` int(11) NOT NULL,
@@ -224,11 +224,15 @@ CREATE TABLE `item` (
   KEY `user_id` (`user_id`),
   CONSTRAINT `item_ibfk_1` FOREIGN KEY (`food_id`) REFERENCES `food` (`food_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `item_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of item
 -- ----------------------------
+INSERT INTO `item` VALUES ('1', '1', '4', '1');
+INSERT INTO `item` VALUES ('2', '1', '5', '1');
+INSERT INTO `item` VALUES ('3', '1', '6', '1');
+INSERT INTO `item` VALUES ('9', '1', '5', '3');
 
 -- ----------------------------
 -- Table structure for `messageboard`

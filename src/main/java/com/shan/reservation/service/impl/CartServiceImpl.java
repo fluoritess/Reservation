@@ -39,7 +39,8 @@ public class CartServiceImpl implements CartService {
                 restaurant restaurant=restaurantMapper.selectByPrimaryKey(restaurantid);
                 String restaurantname=restaurant.getRestaurantName();
                 double foodbar=food.getFoodBargain();
-                cartutil cartuti=new cartutil(foodName,imag,foodPrice,restaurantname,foodbar);
+                int number=item.getNumber();
+                cartutil cartuti=new cartutil(foodName,imag,foodPrice,restaurantname,foodbar,number);
                 tarlist.add(cartuti);
             }
         }

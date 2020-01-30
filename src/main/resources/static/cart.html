@@ -239,6 +239,7 @@ Author URI: http://www.deathghost.cn
                     var foodPrice=info.cart[i].foodPrice;
                     var restaurantName=info.cart[i].restaurantName;
                     var foodBargain=info.cart[i].foodBargain;
+                    var number=info.cart[i].number;
                     var count=i+1;
                    $("#cart").append(" <table cellpadding=\"0\" cellspacing=\"0\" class=\"gwc_tb2\" id=\"table"+count+"\">\n" +
                        "    <tr>\n" +
@@ -250,7 +251,7 @@ Author URI: http://www.deathghost.cn
                        "      <td class=\"tb2_td3\"><a href=\"detailsp.html\" target=\"_blank\">"+foodName+"</a></td>\n" +
                        "      <td class=\"tb1_td4\"><s>￥"+foodPrice+"</s></td>\n" +
                        "      <td class=\"tb1_td5\"><input id=\"min"+count+"\" name=\"\"  style=\"width:30px; height:30px;border:1px solid #ccc;\" type=\"button\" value=\"-\" />\n" +
-                       "        <input id=\"text_box"+count+"\" name=\"\" type=\"text\" value=\"1\" style=\" width:40px;height:28px; text-align:center; border:1px solid #ccc;\" />\n" +
+                       "        <input id=\"text_box"+count+"\" name=\"\" type=\"text\" value=\""+number+"\" style=\" width:40px;height:28px; text-align:center; border:1px solid #ccc;\" />\n" +
                        "        <input id=\"add"+count+"\" name=\"\" style=\"width:30px; height:30px;border:1px solid #ccc;\" type=\"button\" value=\"+\" />\n" +
                        "      </td>\n" +
                        "      <td class=\"tb1_td6\"><label id=\"total"+count+"\" class=\"tot\" style=\"color:#ff5500;font-size:14px; font-weight:bold;\">"+foodBargain+"</label></td>\n" +
