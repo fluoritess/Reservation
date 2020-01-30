@@ -38,6 +38,7 @@ $(document).ready(function () {
     //
 	// 	}
 	// });
+    // 所有复选(:checkbox)框点击事件
     $(".gwc_tb2 input[name=newslist]").click(function () {
         var length=$("#cart").find("table").length ;
         var totalprice=0;
@@ -53,13 +54,12 @@ $(document).ready(function () {
         }
         console.log("当前总数量:"+count);
         console.log("当前总价钱:"+totalprice);
-
         var label=document.getElementById("zong1");
         label.innerText=totalprice;
         var label2=document.getElementById("zongshu");
         console.log(label2);
         label2.innerText=count;
-
+        // GetPrice2();
     });
 
 	// 输出
@@ -68,6 +68,29 @@ $(document).ready(function () {
 		GetCount();
 	});
 });
+// //计算总价钱
+// function GetPrice2(){
+//     var length=$("#cart").find("table").length ;
+//     var totalprice=0;
+//     var count=0;
+//     for(var i=1;i<length-1;i++){
+//         if($("#newslist"+i).prop('checked')){
+//             count=count+1;
+//             var number=$("#text_box"+i).val();
+//             var price=$("#total"+i).html().trim();
+//             var onetotalprice=number*price;
+//             totalprice=totalprice+onetotalprice;
+//         }
+//     }
+//     console.log("当前总数量:"+count);
+//     console.log("当前总价钱:"+totalprice);
+//
+//     var label=document.getElementById("zong1");
+//     label.innerText=totalprice;
+//     var label2=document.getElementById("zongshu");
+//     console.log(label2);
+//     label2.innerText=count;
+// }
 //******************
 function GetCount() {
 	var conts = 0;
@@ -109,10 +132,11 @@ function GetCount() {
             setTotal2();
 		})
 		$("#min2").click(function () {
-			t.val(parseInt(t.val(1)) - 1)
-			t.val(1)//初始值防止为负数ADD deathghost
-            setTotal2();
-			// setTotal(); GetCount();
+            if(t.val()>1){
+                t.val(parseInt(t.val()) - 1)
+                // t.val(1)//初始值防止为负数ADD deathghost
+                setTotal2();
+            }
 		})
 		// function setTotal() {
 		// 	$("#total2").html((parseInt(t.val()) * 23).toFixed(2));
@@ -128,9 +152,12 @@ function GetCount() {
 			// setTotal(); GetCount();
 		})
 		$("#min1").click(function () {
-			t.val(parseInt(t.val()) - 1)
-			t.val(1)//初始值防止为负数ADD deathghost
-            setTotal2();
+		    if(t.val()>1){
+                t.val(parseInt(t.val()) - 1)
+                // t.val(1)//初始值防止为负数ADD deathghost
+                setTotal2();
+            }
+
 			// setTotal(); GetCount();
 		})
 		// function setTotal() {
@@ -147,9 +174,11 @@ $(function () {
         setTotal2();
     })
     $("#min3").click(function () {
-        t.val(parseInt(t.val()) - 1)
-        t.val(1)
-        setTotal2();
+        if(t.val()>1){
+            t.val(parseInt(t.val()) - 1)
+            // t.val(1)//初始值防止为负数ADD deathghost
+            setTotal2();
+        }
     })
 })
 $(function () {
@@ -159,9 +188,11 @@ $(function () {
         setTotal2();
     })
     $("#min4").click(function () {
-        t.val(parseInt(t.val()) - 1)
-        t.val(1)
-        setTotal2();
+        if(t.val()>1){
+            t.val(parseInt(t.val()) - 1)
+            // t.val(1)//初始值防止为负数ADD deathghost
+            setTotal2();
+        }
     })
 })
 // <!---总数---->
