@@ -3,15 +3,19 @@
 <mapper namespace="com.shan.reservation.mapper.orderMapper" >
   <resultMap id="BaseResultMap" type="com.shan.reservation.bean.order" >
     <constructor >
-      <idArg column="order_id" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="order_user" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="order_restaurant" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="order_price" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="create_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-      <arg column="update_time" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-      <arg column="order_food" jdbcType="VARCHAR" javaType="java.lang.String" />
-      <arg column="order_state" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="is_ship" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <idArg column="orderId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="userId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="restaurantId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="price" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="isPay" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="isAppraise" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="isRefund" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="deliverMoney" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+      <arg column="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="deliveryTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="receiveTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="state" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="orderRemarks" jdbcType="VARCHAR" javaType="java.lang.String" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -73,8 +77,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    order_id, order_user, order_restaurant, order_price, create_time, update_time, order_food, 
-    order_state, is_ship
+    orderId, userId, restaurantId, price, isPay, isAppraise, isRefund, deliverMoney, 
+    createTime, deliveryTime, receiveTime, state, orderRemarks
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shan.reservation.bean.orderExample" >
     select
@@ -91,15 +95,15 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
     from order
-    where order_id = #{orderId,jdbcType=VARCHAR}
+    where orderId = #{orderid,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from order
-    where order_id = #{orderId,jdbcType=VARCHAR}
+    where orderId = #{orderid,jdbcType=INTEGER}
   </delete>
   <delete id="deleteByExample" parameterType="com.shan.reservation.bean.orderExample" >
     delete from order
@@ -108,73 +112,99 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.shan.reservation.bean.order" >
-    insert into order (order_id, order_user, order_restaurant, 
-      order_price, create_time, update_time, 
-      order_food, order_state, is_ship
-      )
-    values (#{orderId,jdbcType=VARCHAR}, #{orderUser,jdbcType=INTEGER}, #{orderRestaurant,jdbcType=INTEGER}, 
-      #{orderPrice,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{orderFood,jdbcType=VARCHAR}, #{orderState,jdbcType=INTEGER}, #{isShip,jdbcType=INTEGER}
-      )
+    insert into order (orderId, userId, restaurantId, 
+      price, isPay, isAppraise, 
+      isRefund, deliverMoney, createTime, 
+      deliveryTime, receiveTime, state, 
+      orderRemarks)
+    values (#{orderid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{restaurantid,jdbcType=INTEGER}, 
+      #{price,jdbcType=DECIMAL}, #{ispay,jdbcType=TINYINT}, #{isappraise,jdbcType=TINYINT}, 
+      #{isrefund,jdbcType=TINYINT}, #{delivermoney,jdbcType=DECIMAL}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{deliverytime,jdbcType=TIMESTAMP}, #{receivetime,jdbcType=TIMESTAMP}, #{state,jdbcType=TINYINT}, 
+      #{orderremarks,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.shan.reservation.bean.order" >
     insert into order
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="orderId != null" >
-        order_id,
+      <if test="orderid != null" >
+        orderId,
       </if>
-      <if test="orderUser != null" >
-        order_user,
+      <if test="userid != null" >
+        userId,
       </if>
-      <if test="orderRestaurant != null" >
-        order_restaurant,
+      <if test="restaurantid != null" >
+        restaurantId,
       </if>
-      <if test="orderPrice != null" >
-        order_price,
+      <if test="price != null" >
+        price,
       </if>
-      <if test="createTime != null" >
-        create_time,
+      <if test="ispay != null" >
+        isPay,
       </if>
-      <if test="updateTime != null" >
-        update_time,
+      <if test="isappraise != null" >
+        isAppraise,
       </if>
-      <if test="orderFood != null" >
-        order_food,
+      <if test="isrefund != null" >
+        isRefund,
       </if>
-      <if test="orderState != null" >
-        order_state,
+      <if test="delivermoney != null" >
+        deliverMoney,
       </if>
-      <if test="isShip != null" >
-        is_ship,
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="deliverytime != null" >
+        deliveryTime,
+      </if>
+      <if test="receivetime != null" >
+        receiveTime,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="orderremarks != null" >
+        orderRemarks,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="orderId != null" >
-        #{orderId,jdbcType=VARCHAR},
+      <if test="orderid != null" >
+        #{orderid,jdbcType=INTEGER},
       </if>
-      <if test="orderUser != null" >
-        #{orderUser,jdbcType=INTEGER},
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
       </if>
-      <if test="orderRestaurant != null" >
-        #{orderRestaurant,jdbcType=INTEGER},
+      <if test="restaurantid != null" >
+        #{restaurantid,jdbcType=INTEGER},
       </if>
-      <if test="orderPrice != null" >
-        #{orderPrice,jdbcType=INTEGER},
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
       </if>
-      <if test="createTime != null" >
-        #{createTime,jdbcType=TIMESTAMP},
+      <if test="ispay != null" >
+        #{ispay,jdbcType=TINYINT},
       </if>
-      <if test="updateTime != null" >
-        #{updateTime,jdbcType=TIMESTAMP},
+      <if test="isappraise != null" >
+        #{isappraise,jdbcType=TINYINT},
       </if>
-      <if test="orderFood != null" >
-        #{orderFood,jdbcType=VARCHAR},
+      <if test="isrefund != null" >
+        #{isrefund,jdbcType=TINYINT},
       </if>
-      <if test="orderState != null" >
-        #{orderState,jdbcType=INTEGER},
+      <if test="delivermoney != null" >
+        #{delivermoney,jdbcType=DECIMAL},
       </if>
-      <if test="isShip != null" >
-        #{isShip,jdbcType=INTEGER},
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliverytime != null" >
+        #{deliverytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receivetime != null" >
+        #{receivetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=TINYINT},
+      </if>
+      <if test="orderremarks != null" >
+        #{orderremarks,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -187,32 +217,44 @@
   <update id="updateByExampleSelective" parameterType="map" >
     update order
     <set >
-      <if test="record.orderId != null" >
-        order_id = #{record.orderId,jdbcType=VARCHAR},
+      <if test="record.orderid != null" >
+        orderId = #{record.orderid,jdbcType=INTEGER},
       </if>
-      <if test="record.orderUser != null" >
-        order_user = #{record.orderUser,jdbcType=INTEGER},
+      <if test="record.userid != null" >
+        userId = #{record.userid,jdbcType=INTEGER},
       </if>
-      <if test="record.orderRestaurant != null" >
-        order_restaurant = #{record.orderRestaurant,jdbcType=INTEGER},
+      <if test="record.restaurantid != null" >
+        restaurantId = #{record.restaurantid,jdbcType=INTEGER},
       </if>
-      <if test="record.orderPrice != null" >
-        order_price = #{record.orderPrice,jdbcType=INTEGER},
+      <if test="record.price != null" >
+        price = #{record.price,jdbcType=DECIMAL},
       </if>
-      <if test="record.createTime != null" >
-        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      <if test="record.ispay != null" >
+        isPay = #{record.ispay,jdbcType=TINYINT},
       </if>
-      <if test="record.updateTime != null" >
-        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      <if test="record.isappraise != null" >
+        isAppraise = #{record.isappraise,jdbcType=TINYINT},
       </if>
-      <if test="record.orderFood != null" >
-        order_food = #{record.orderFood,jdbcType=VARCHAR},
+      <if test="record.isrefund != null" >
+        isRefund = #{record.isrefund,jdbcType=TINYINT},
       </if>
-      <if test="record.orderState != null" >
-        order_state = #{record.orderState,jdbcType=INTEGER},
+      <if test="record.delivermoney != null" >
+        deliverMoney = #{record.delivermoney,jdbcType=DECIMAL},
       </if>
-      <if test="record.isShip != null" >
-        is_ship = #{record.isShip,jdbcType=INTEGER},
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.deliverytime != null" >
+        deliveryTime = #{record.deliverytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.receivetime != null" >
+        receiveTime = #{record.receivetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.state != null" >
+        state = #{record.state,jdbcType=TINYINT},
+      </if>
+      <if test="record.orderremarks != null" >
+        orderRemarks = #{record.orderremarks,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -221,15 +263,19 @@
   </update>
   <update id="updateByExample" parameterType="map" >
     update order
-    set order_id = #{record.orderId,jdbcType=VARCHAR},
-      order_user = #{record.orderUser,jdbcType=INTEGER},
-      order_restaurant = #{record.orderRestaurant,jdbcType=INTEGER},
-      order_price = #{record.orderPrice,jdbcType=INTEGER},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-      order_food = #{record.orderFood,jdbcType=VARCHAR},
-      order_state = #{record.orderState,jdbcType=INTEGER},
-      is_ship = #{record.isShip,jdbcType=INTEGER}
+    set orderId = #{record.orderid,jdbcType=INTEGER},
+      userId = #{record.userid,jdbcType=INTEGER},
+      restaurantId = #{record.restaurantid,jdbcType=INTEGER},
+      price = #{record.price,jdbcType=DECIMAL},
+      isPay = #{record.ispay,jdbcType=TINYINT},
+      isAppraise = #{record.isappraise,jdbcType=TINYINT},
+      isRefund = #{record.isrefund,jdbcType=TINYINT},
+      deliverMoney = #{record.delivermoney,jdbcType=DECIMAL},
+      createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      deliveryTime = #{record.deliverytime,jdbcType=TIMESTAMP},
+      receiveTime = #{record.receivetime,jdbcType=TIMESTAMP},
+      state = #{record.state,jdbcType=TINYINT},
+      orderRemarks = #{record.orderremarks,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -237,43 +283,59 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.shan.reservation.bean.order" >
     update order
     <set >
-      <if test="orderUser != null" >
-        order_user = #{orderUser,jdbcType=INTEGER},
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
       </if>
-      <if test="orderRestaurant != null" >
-        order_restaurant = #{orderRestaurant,jdbcType=INTEGER},
+      <if test="restaurantid != null" >
+        restaurantId = #{restaurantid,jdbcType=INTEGER},
       </if>
-      <if test="orderPrice != null" >
-        order_price = #{orderPrice,jdbcType=INTEGER},
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
       </if>
-      <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=TIMESTAMP},
+      <if test="ispay != null" >
+        isPay = #{ispay,jdbcType=TINYINT},
       </if>
-      <if test="updateTime != null" >
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      <if test="isappraise != null" >
+        isAppraise = #{isappraise,jdbcType=TINYINT},
       </if>
-      <if test="orderFood != null" >
-        order_food = #{orderFood,jdbcType=VARCHAR},
+      <if test="isrefund != null" >
+        isRefund = #{isrefund,jdbcType=TINYINT},
       </if>
-      <if test="orderState != null" >
-        order_state = #{orderState,jdbcType=INTEGER},
+      <if test="delivermoney != null" >
+        deliverMoney = #{delivermoney,jdbcType=DECIMAL},
       </if>
-      <if test="isShip != null" >
-        is_ship = #{isShip,jdbcType=INTEGER},
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliverytime != null" >
+        deliveryTime = #{deliverytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receivetime != null" >
+        receiveTime = #{receivetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=TINYINT},
+      </if>
+      <if test="orderremarks != null" >
+        orderRemarks = #{orderremarks,jdbcType=VARCHAR},
       </if>
     </set>
-    where order_id = #{orderId,jdbcType=VARCHAR}
+    where orderId = #{orderid,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.shan.reservation.bean.order" >
     update order
-    set order_user = #{orderUser,jdbcType=INTEGER},
-      order_restaurant = #{orderRestaurant,jdbcType=INTEGER},
-      order_price = #{orderPrice,jdbcType=INTEGER},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      order_food = #{orderFood,jdbcType=VARCHAR},
-      order_state = #{orderState,jdbcType=INTEGER},
-      is_ship = #{isShip,jdbcType=INTEGER}
-    where order_id = #{orderId,jdbcType=VARCHAR}
+    set userId = #{userid,jdbcType=INTEGER},
+      restaurantId = #{restaurantid,jdbcType=INTEGER},
+      price = #{price,jdbcType=DECIMAL},
+      isPay = #{ispay,jdbcType=TINYINT},
+      isAppraise = #{isappraise,jdbcType=TINYINT},
+      isRefund = #{isrefund,jdbcType=TINYINT},
+      deliverMoney = #{delivermoney,jdbcType=DECIMAL},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      deliveryTime = #{deliverytime,jdbcType=TIMESTAMP},
+      receiveTime = #{receivetime,jdbcType=TIMESTAMP},
+      state = #{state,jdbcType=TINYINT},
+      orderRemarks = #{orderremarks,jdbcType=VARCHAR}
+    where orderId = #{orderid,jdbcType=INTEGER}
   </update>
 </mapper>

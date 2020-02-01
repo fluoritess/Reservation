@@ -5,7 +5,7 @@ import java.util.Date;
 public class evaluation {
     private Integer evaluationId;
 
-    private String orderId;
+    private Integer orderId;
 
     private String evaluationContent;
 
@@ -19,7 +19,7 @@ public class evaluation {
 
     private Integer foodId;
 
-    public evaluation(Integer evaluationId, String orderId, String evaluationContent, Date evaluationStart, Date evaluationData, Integer userId, Integer restaurantId, Integer foodId) {
+    public evaluation(Integer evaluationId, Integer orderId, String evaluationContent, Date evaluationStart, Date evaluationData, Integer userId, Integer restaurantId, Integer foodId) {
         this.evaluationId = evaluationId;
         this.orderId = orderId;
         this.evaluationContent = evaluationContent;
@@ -42,12 +42,12 @@ public class evaluation {
         this.evaluationId = evaluationId;
     }
 
-    public String getOrderId() {
+    public Integer getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(String orderId) {
-        this.orderId = orderId == null ? null : orderId.trim();
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
     }
 
     public String getEvaluationContent() {

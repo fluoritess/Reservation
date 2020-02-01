@@ -4,7 +4,7 @@
   <resultMap id="BaseResultMap" type="com.shan.reservation.bean.evaluation" >
     <constructor >
       <idArg column="evaluation_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-      <arg column="order_id" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="order_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="evaluation_content" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="evaluation_start" jdbcType="TIMESTAMP" javaType="java.util.Date" />
       <arg column="evaluation_data" jdbcType="TIMESTAMP" javaType="java.util.Date" />
@@ -110,7 +110,7 @@
     insert into evaluation (evaluation_id, order_id, evaluation_content, 
       evaluation_start, evaluation_data, user_id, 
       restaurant_id, food_id)
-    values (#{evaluationId,jdbcType=INTEGER}, #{orderId,jdbcType=VARCHAR}, #{evaluationContent,jdbcType=VARCHAR}, 
+    values (#{evaluationId,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{evaluationContent,jdbcType=VARCHAR}, 
       #{evaluationStart,jdbcType=TIMESTAMP}, #{evaluationData,jdbcType=TIMESTAMP}, #{userId,jdbcType=INTEGER}, 
       #{restaurantId,jdbcType=INTEGER}, #{foodId,jdbcType=INTEGER})
   </insert>
@@ -147,7 +147,7 @@
         #{evaluationId,jdbcType=INTEGER},
       </if>
       <if test="orderId != null" >
-        #{orderId,jdbcType=VARCHAR},
+        #{orderId,jdbcType=INTEGER},
       </if>
       <if test="evaluationContent != null" >
         #{evaluationContent,jdbcType=VARCHAR},
@@ -182,7 +182,7 @@
         evaluation_id = #{record.evaluationId,jdbcType=INTEGER},
       </if>
       <if test="record.orderId != null" >
-        order_id = #{record.orderId,jdbcType=VARCHAR},
+        order_id = #{record.orderId,jdbcType=INTEGER},
       </if>
       <if test="record.evaluationContent != null" >
         evaluation_content = #{record.evaluationContent,jdbcType=VARCHAR},
@@ -210,7 +210,7 @@
   <update id="updateByExample" parameterType="map" >
     update evaluation
     set evaluation_id = #{record.evaluationId,jdbcType=INTEGER},
-      order_id = #{record.orderId,jdbcType=VARCHAR},
+      order_id = #{record.orderId,jdbcType=INTEGER},
       evaluation_content = #{record.evaluationContent,jdbcType=VARCHAR},
       evaluation_start = #{record.evaluationStart,jdbcType=TIMESTAMP},
       evaluation_data = #{record.evaluationData,jdbcType=TIMESTAMP},
@@ -225,7 +225,7 @@
     update evaluation
     <set >
       <if test="orderId != null" >
-        order_id = #{orderId,jdbcType=VARCHAR},
+        order_id = #{orderId,jdbcType=INTEGER},
       </if>
       <if test="evaluationContent != null" >
         evaluation_content = #{evaluationContent,jdbcType=VARCHAR},
@@ -250,7 +250,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.shan.reservation.bean.evaluation" >
     update evaluation
-    set order_id = #{orderId,jdbcType=VARCHAR},
+    set order_id = #{orderId,jdbcType=INTEGER},
       evaluation_content = #{evaluationContent,jdbcType=VARCHAR},
       evaluation_start = #{evaluationStart,jdbcType=TIMESTAMP},
       evaluation_data = #{evaluationData,jdbcType=TIMESTAMP},

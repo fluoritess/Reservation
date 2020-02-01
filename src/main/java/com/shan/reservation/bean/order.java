@@ -1,111 +1,156 @@
 package com.shan.reservation.bean;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class order {
-    private String orderId;
+    private Integer orderid;
 
-    private Integer orderUser;
+    private Integer userid;
 
-    private Integer orderRestaurant;
+    private Integer restaurantid;
 
-    private Integer orderPrice;
+    private BigDecimal price;
 
-    private Date createTime;
+    private Byte ispay;
 
-    private Date updateTime;
+    private Byte isappraise;
 
-    private String orderFood;
+    private Byte isrefund;
 
-    private Integer orderState;
+    private BigDecimal delivermoney;
 
-    private Integer isShip;
+    private Date createtime;
 
-    public order(String orderId, Integer orderUser, Integer orderRestaurant, Integer orderPrice, Date createTime, Date updateTime, String orderFood, Integer orderState, Integer isShip) {
-        this.orderId = orderId;
-        this.orderUser = orderUser;
-        this.orderRestaurant = orderRestaurant;
-        this.orderPrice = orderPrice;
-        this.createTime = createTime;
-        this.updateTime = updateTime;
-        this.orderFood = orderFood;
-        this.orderState = orderState;
-        this.isShip = isShip;
+    private Date deliverytime;
+
+    private Date receivetime;
+
+    private Byte state;
+
+    private String orderremarks;
+
+    public order(Integer orderid, Integer userid, Integer restaurantid, BigDecimal price, Byte ispay, Byte isappraise, Byte isrefund, BigDecimal delivermoney, Date createtime, Date deliverytime, Date receivetime, Byte state, String orderremarks) {
+        this.orderid = orderid;
+        this.userid = userid;
+        this.restaurantid = restaurantid;
+        this.price = price;
+        this.ispay = ispay;
+        this.isappraise = isappraise;
+        this.isrefund = isrefund;
+        this.delivermoney = delivermoney;
+        this.createtime = createtime;
+        this.deliverytime = deliverytime;
+        this.receivetime = receivetime;
+        this.state = state;
+        this.orderremarks = orderremarks;
     }
 
     public order() {
         super();
     }
 
-    public String getOrderId() {
-        return orderId;
+    public Integer getOrderid() {
+        return orderid;
     }
 
-    public void setOrderId(String orderId) {
-        this.orderId = orderId == null ? null : orderId.trim();
+    public void setOrderid(Integer orderid) {
+        this.orderid = orderid;
     }
 
-    public Integer getOrderUser() {
-        return orderUser;
+    public Integer getUserid() {
+        return userid;
     }
 
-    public void setOrderUser(Integer orderUser) {
-        this.orderUser = orderUser;
+    public void setUserid(Integer userid) {
+        this.userid = userid;
     }
 
-    public Integer getOrderRestaurant() {
-        return orderRestaurant;
+    public Integer getRestaurantid() {
+        return restaurantid;
     }
 
-    public void setOrderRestaurant(Integer orderRestaurant) {
-        this.orderRestaurant = orderRestaurant;
+    public void setRestaurantid(Integer restaurantid) {
+        this.restaurantid = restaurantid;
     }
 
-    public Integer getOrderPrice() {
-        return orderPrice;
+    public BigDecimal getPrice() {
+        return price;
     }
 
-    public void setOrderPrice(Integer orderPrice) {
-        this.orderPrice = orderPrice;
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 
-    public Date getCreateTime() {
-        return createTime;
+    public Byte getIspay() {
+        return ispay;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setIspay(Byte ispay) {
+        this.ispay = ispay;
     }
 
-    public Date getUpdateTime() {
-        return updateTime;
+    public Byte getIsappraise() {
+        return isappraise;
     }
 
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
+    public void setIsappraise(Byte isappraise) {
+        this.isappraise = isappraise;
     }
 
-    public String getOrderFood() {
-        return orderFood;
+    public Byte getIsrefund() {
+        return isrefund;
     }
 
-    public void setOrderFood(String orderFood) {
-        this.orderFood = orderFood == null ? null : orderFood.trim();
+    public void setIsrefund(Byte isrefund) {
+        this.isrefund = isrefund;
     }
 
-    public Integer getOrderState() {
-        return orderState;
+    public BigDecimal getDelivermoney() {
+        return delivermoney;
     }
 
-    public void setOrderState(Integer orderState) {
-        this.orderState = orderState;
+    public void setDelivermoney(BigDecimal delivermoney) {
+        this.delivermoney = delivermoney;
     }
 
-    public Integer getIsShip() {
-        return isShip;
+    public Date getCreatetime() {
+        return createtime;
     }
 
-    public void setIsShip(Integer isShip) {
-        this.isShip = isShip;
+    public void setCreatetime(Date createtime) {
+        this.createtime = createtime;
+    }
+
+    public Date getDeliverytime() {
+        return deliverytime;
+    }
+
+    public void setDeliverytime(Date deliverytime) {
+        this.deliverytime = deliverytime;
+    }
+
+    public Date getReceivetime() {
+        return receivetime;
+    }
+
+    public void setReceivetime(Date receivetime) {
+        this.receivetime = receivetime;
+    }
+
+    public Byte getState() {
+        return state;
+    }
+
+    public void setState(Byte state) {
+        this.state = state;
+    }
+
+    public String getOrderremarks() {
+        return orderremarks;
+    }
+
+    public void setOrderremarks(String orderremarks) {
+        this.orderremarks = orderremarks == null ? null : orderremarks.trim();
     }
 }

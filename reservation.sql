@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50720
 File Encoding         : 65001
 
-Date: 2020-01-29 23:19:20
+Date: 2020-02-01 17:55:56
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -39,6 +39,7 @@ INSERT INTO `address` VALUES ('5', '四川省', '成都', '武侯区', '龙腾�
 INSERT INTO `address` VALUES ('6', '四川省', '成都', '武侯区', '杜甫草堂路45号');
 INSERT INTO `address` VALUES ('7', '四川省', '成都', '龙泉驿区', '十陵上街100号');
 INSERT INTO `address` VALUES ('8', '四川省', '成都', '高新区', '金融街99号');
+INSERT INTO `address` VALUES ('9', '四川省', '成都', '双流区', '机场路66号');
 
 -- ----------------------------
 -- Table structure for `admin`
@@ -129,7 +130,7 @@ CREATE TABLE `coupon` (
 DROP TABLE IF EXISTS `evaluation`;
 CREATE TABLE `evaluation` (
   `evaluation_id` int(11) NOT NULL,
-  `order_id` varchar(32) NOT NULL,
+  `order_id` int(11) NOT NULL,
   `evaluation_content` varchar(255) DEFAULT NULL,
   `evaluation_start` datetime DEFAULT NULL,
   `evaluation_data` datetime DEFAULT NULL,
@@ -137,18 +138,18 @@ CREATE TABLE `evaluation` (
   `restaurant_id` int(11) NOT NULL,
   `food_id` int(11) NOT NULL,
   PRIMARY KEY (`evaluation_id`),
-  KEY `order_id` (`order_id`),
   KEY `user_id` (`user_id`),
   KEY `restaurant_id` (`restaurant_id`),
-  CONSTRAINT `evaluation_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `order` (`order_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  KEY `order_id` (`order_id`),
   CONSTRAINT `evaluation_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `evaluation_ibfk_3` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurant` (`restaurant_id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `evaluation_ibfk_3` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurant` (`restaurant_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `evaluation_ibfk_4` FOREIGN KEY (`order_id`) REFERENCES `order` (`orderId`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of evaluation
 -- ----------------------------
-INSERT INTO `evaluation` VALUES ('1', '1', '还不错，速度挺快,还不错，速度挺快还不错，速度挺快还不错，速度挺快还不错，速度挺快还不错，速度挺快还不错，速度挺快。。。', '2020-01-23 22:19:13', '2020-01-23 22:19:15', '1', '4', '6');
+INSERT INTO `evaluation` VALUES ('1', '1', '非常好', '2020-02-01 17:53:56', '2020-02-01 17:54:01', '1', '9', '8');
 
 -- ----------------------------
 -- Table structure for `food`
@@ -184,6 +185,9 @@ INSERT INTO `food` VALUES ('4', '4', '28.00', '20.00', '回锅肉', '1', '是一
 INSERT INTO `food` VALUES ('5', '4', '26.00', '22.00', '干煸肥肠', '1', '干煸肥肠是用肥肠制作的一道著名的地方佳肴，属于川菜。具有色泽深红、筋韧辣香等口味特点。', '3105', 'upload/food/feichang.jpg', '320', '2983', '4.90');
 INSERT INTO `food` VALUES ('6', '4', '23.00', '18.00', '鱼香肉丝', '1', '鱼香肉丝是一道传统名菜，以鱼香味调味而得名，属于川菜。', '2809', 'upload/food/rousi.jpg', '198', '2769', '4.79');
 INSERT INTO `food` VALUES ('7', '4', '32.00', '30.00', '糖醋里脊', '1', '糖醋里脊是经典传统名菜之一，以猪里脊肉为主材，配以面粉、淀粉、醋等佐料，酸甜可口，让人食欲大开。', '1443', 'upload/food/liji.jpg', '264', '1098', '4.78');
+INSERT INTO `food` VALUES ('8', '9', '15.00', '12.00', '秘制烤鸡腿堡', '2', '华莱士秘制烤鸡腿堡菜单,新鲜嫩滑的鸡腿肉,腌入华莱士秘制五味料,烹制后再淋上一层秘制酱料,配以爽脆的有机蔬菜,味道浓郁,咬一口满满腌制的鸡腿肉', '5980', 'upload/food/jituibao.jpg', '1640', '3895', '4.89');
+INSERT INTO `food` VALUES ('9', '9', '12.00', '10.00', '香辣鸡翅', '2', '香辣鸡翅酥脆可口,肉嫩味美,咬一口,咔呲咔呲,鲜香劲脆!', '5120', 'upload/food/jichi.jpg', '1480', '3758', '4.81');
+INSERT INTO `food` VALUES ('10', '9', '4.00', '3.00', '可乐', '9', '可乐(Cola)，是指有甜味、含咖啡因但不含酒精的碳酸饮料，非常流行。', '4897', 'upload/food/kele.jpg', '1870', '3412', '4.62');
 
 -- ----------------------------
 -- Table structure for `food_category`
@@ -224,15 +228,12 @@ CREATE TABLE `item` (
   KEY `user_id` (`user_id`),
   CONSTRAINT `item_ibfk_1` FOREIGN KEY (`food_id`) REFERENCES `food` (`food_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `item_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of item
 -- ----------------------------
 INSERT INTO `item` VALUES ('1', '1', '4', '1');
-INSERT INTO `item` VALUES ('2', '1', '5', '1');
-INSERT INTO `item` VALUES ('3', '1', '6', '1');
-INSERT INTO `item` VALUES ('9', '1', '5', '3');
 
 -- ----------------------------
 -- Table structure for `messageboard`
@@ -278,26 +279,30 @@ CREATE TABLE `notice` (
 -- ----------------------------
 DROP TABLE IF EXISTS `order`;
 CREATE TABLE `order` (
-  `order_id` varchar(32) NOT NULL,
-  `order_user` int(11) NOT NULL,
-  `order_restaurant` int(11) NOT NULL,
-  `order_price` int(11) NOT NULL,
-  `create_time` datetime NOT NULL,
-  `update_time` datetime DEFAULT NULL,
-  `order_food` varchar(255) NOT NULL,
-  `order_state` int(11) NOT NULL,
-  `is_ship` int(11) NOT NULL,
-  PRIMARY KEY (`order_id`),
-  KEY `order_user` (`order_user`),
-  KEY `order_restaurant` (`order_restaurant`),
-  CONSTRAINT `order_ibfk_1` FOREIGN KEY (`order_user`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `order_ibfk_2` FOREIGN KEY (`order_restaurant`) REFERENCES `restaurant` (`restaurant_id`) ON DELETE CASCADE ON UPDATE CASCADE
+  `orderId` int(11) NOT NULL,
+  `userId` int(11) NOT NULL,
+  `restaurantId` int(11) NOT NULL,
+  `price` decimal(11,2) NOT NULL,
+  `isPay` tinyint(4) DEFAULT NULL,
+  `isAppraise` tinyint(4) DEFAULT NULL,
+  `isRefund` tinyint(4) DEFAULT NULL,
+  `deliverMoney` decimal(11,2) DEFAULT NULL,
+  `createTime` datetime NOT NULL,
+  `deliveryTime` datetime DEFAULT NULL,
+  `receiveTime` datetime DEFAULT NULL,
+  `state` tinyint(4) NOT NULL,
+  `orderRemarks` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`orderId`),
+  KEY `userId` (`userId`),
+  KEY `restaurantId` (`restaurantId`),
+  CONSTRAINT `order_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `order_ibfk_2` FOREIGN KEY (`restaurantId`) REFERENCES `restaurant` (`restaurant_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of order
 -- ----------------------------
-INSERT INTO `order` VALUES ('1', '1', '4', '24', '2020-01-23 22:16:27', '2020-01-23 22:16:30', '1', '1', '1');
+INSERT INTO `order` VALUES ('1', '1', '9', '25.00', '1', '0', '0', '0.00', '2020-02-01 16:53:02', '2020-02-01 16:54:14', '2020-02-01 17:13:22', '2', null);
 
 -- ----------------------------
 -- Table structure for `restaurant`
@@ -336,6 +341,7 @@ INSERT INTO `restaurant` VALUES ('5', '123', '2', '16235613211', '壹级日本�
 INSERT INTO `restaurant` VALUES ('6', '123', '3', '13568900432', '小龙坎', '1', '3', '4.62', 'upload/xiaolongkan.jpg', '4792', null, '9867', '1', '20', null, '70');
 INSERT INTO `restaurant` VALUES ('7', '123', '8', '15678234561', '家常小炒', '1', '1', '4.89', 'upload/03.jpg', '4671', null, '8975', '1', '15', null, '25');
 INSERT INTO `restaurant` VALUES ('8', '123', '2', '13457688934', '书亦烧仙草', '1', '9', '4.78', 'upload/shaoxiancao.jpg', '2369', null, '4826', '1', '18', null, '15');
+INSERT INTO `restaurant` VALUES ('9', '123', '9', '13973683572', '华莱士', '1', '2', '4.89', 'upload/hualaishi.jpg', '7643', '华莱士快餐连锁店，是中国本土最大的一家集产品开发、生产、销售为一体的西式快餐企业。', '10523', '1', '6', 'upload/shop/hualaishi.jpg', '24');
 
 -- ----------------------------
 -- Table structure for `user`
@@ -350,6 +356,7 @@ CREATE TABLE `user` (
   `user_imag` varchar(255) DEFAULT NULL,
   `user_name` varchar(255) NOT NULL,
   `user_state` int(11) NOT NULL,
+  `last_date` datetime DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   KEY `user_address` (`user_address`),
   CONSTRAINT `user_ibfk_1` FOREIGN KEY (`user_address`) REFERENCES `address` (`address_id`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -358,5 +365,5 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', '123', '12341234112', '1', '1', '1', '杉', '1');
-INSERT INTO `user` VALUES ('2', '123', '13224567231', '2', '1', '1', 'fluorites', '1');
+INSERT INTO `user` VALUES ('1', '123', '12341234112', '1', '1', 'upload/user/shan.jpg', '杉', '1', '2020-02-01 17:14:14');
+INSERT INTO `user` VALUES ('2', '123', '13224567231', '2', '1', 'upload/user/fluoritess.jpg', 'fluorites', '1', '2020-01-29 17:14:17');

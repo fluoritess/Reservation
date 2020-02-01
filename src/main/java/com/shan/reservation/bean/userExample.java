@@ -1,6 +1,7 @@
 package com.shan.reservation.bean;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class userExample {
@@ -631,6 +632,66 @@ public class userExample {
 
         public Criteria andUserStateNotBetween(Integer value1, Integer value2) {
             addCriterion("user_state not between", value1, value2, "userState");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastDateIsNull() {
+            addCriterion("last_date is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastDateIsNotNull() {
+            addCriterion("last_date is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastDateEqualTo(Date value) {
+            addCriterion("last_date =", value, "lastDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastDateNotEqualTo(Date value) {
+            addCriterion("last_date <>", value, "lastDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastDateGreaterThan(Date value) {
+            addCriterion("last_date >", value, "lastDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastDateGreaterThanOrEqualTo(Date value) {
+            addCriterion("last_date >=", value, "lastDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastDateLessThan(Date value) {
+            addCriterion("last_date <", value, "lastDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastDateLessThanOrEqualTo(Date value) {
+            addCriterion("last_date <=", value, "lastDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastDateIn(List<Date> values) {
+            addCriterion("last_date in", values, "lastDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastDateNotIn(List<Date> values) {
+            addCriterion("last_date not in", values, "lastDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastDateBetween(Date value1, Date value2) {
+            addCriterion("last_date between", value1, value2, "lastDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andLastDateNotBetween(Date value1, Date value2) {
+            addCriterion("last_date not between", value1, value2, "lastDate");
             return (Criteria) this;
         }
     }

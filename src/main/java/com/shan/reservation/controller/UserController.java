@@ -59,7 +59,7 @@ public class UserController {
     @ResponseBody
     @RequestMapping("/GetUserCityInfo" )
     @ArchivesLog(operationType = "查询信息", operationName = "根据用户name查询用户所属区")
-    public R GetUserInfo(@RequestBody Map<String,String> map,HttpSession httpSession){
+    public R GetUserCityInfo(@RequestBody Map<String,String> map,HttpSession httpSession){
         String name=map.get("name");
         user user=userService.selectUserByNickName(name);
         if(user!=null){
@@ -73,5 +73,13 @@ public class UserController {
             return  R.ok().put("user",info);
         }
         return  R.error();
+    }
+    @ResponseBody
+    @RequestMapping("/GetUserInfo" )
+    @ArchivesLog(operationType = "查询信息", operationName = "根据用户name查询用户信息")
+    public R GetUserInfo(@RequestBody Map<String,String> map,HttpSession httpSession){
+        String name=map.get("name");
+        user user=userService.selectUserByNickName(name);
+        return  R.ok().put("user",user);
     }
 }

@@ -1,5 +1,7 @@
 package com.shan.reservation.bean;
 
+import java.util.Date;
+
 public class user {
     private Integer userId;
 
@@ -17,7 +19,9 @@ public class user {
 
     private Integer userState;
 
-    public user(Integer userId, String userPassword, String userPhone, Integer userAddress, String userSex, String userImag, String userName, Integer userState) {
+    private Date lastDate;
+
+    public user(Integer userId, String userPassword, String userPhone, Integer userAddress, String userSex, String userImag, String userName, Integer userState, Date lastDate) {
         this.userId = userId;
         this.userPassword = userPassword;
         this.userPhone = userPhone;
@@ -26,6 +30,7 @@ public class user {
         this.userImag = userImag;
         this.userName = userName;
         this.userState = userState;
+        this.lastDate = lastDate;
     }
 
     public user() {
@@ -94,5 +99,13 @@ public class user {
 
     public void setUserState(Integer userState) {
         this.userState = userState;
+    }
+
+    public Date getLastDate() {
+        return lastDate;
+    }
+
+    public void setLastDate(Date lastDate) {
+        this.lastDate = lastDate;
     }
 }

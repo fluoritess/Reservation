@@ -3,14 +3,16 @@ package com.shan.reservation.mapper;
 import com.shan.reservation.bean.order;
 import com.shan.reservation.bean.orderExample;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+@Mapper
 public interface orderMapper {
     int countByExample(orderExample example);
 
     int deleteByExample(orderExample example);
 
-    int deleteByPrimaryKey(String orderId);
+    int deleteByPrimaryKey(Integer orderid);
 
     int insert(order record);
 
@@ -18,7 +20,7 @@ public interface orderMapper {
 
     List<order> selectByExample(orderExample example);
 
-    order selectByPrimaryKey(String orderId);
+    order selectByPrimaryKey(Integer orderid);
 
     int updateByExampleSelective(@Param("record") order record, @Param("example") orderExample example);
 

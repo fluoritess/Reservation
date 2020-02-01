@@ -4,7 +4,7 @@
     <resultMap id="BaseResultMap" type="com.shan.reservation.bean.evaluation" >
         <constructor >
             <idArg column="evaluation_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-            <arg column="order_id" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="order_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
             <arg column="evaluation_content" jdbcType="VARCHAR" javaType="java.lang.String" />
             <arg column="evaluation_start" jdbcType="TIMESTAMP" javaType="java.util.Date" />
             <arg column="evaluation_data" jdbcType="TIMESTAMP" javaType="java.util.Date" />
