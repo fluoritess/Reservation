@@ -149,6 +149,7 @@ Author URI: http://www.deathghost.cn
 <script type="text/javascript">
     $(function(){
         var user=sessionStorage.getItem("name");
+        var userId;
         console.log(user);
         if(user==null){
             $(".LeftNav").append(" <a href=\"login/register.html\">注册</a>/<a href=\"login/login.html\">登录</a><a href=\"#\">QQ客服</a><a href=\"#\">微信客服</a><a href=\"#\">手机客户端</a>");
@@ -198,30 +199,66 @@ Author URI: http://www.deathghost.cn
                 async: false,
                 dataType: "json",
                 success: function (info) {
-                  console.log(info);
                   var name=info.user.userName;
                   var lastDate=info.user.lastDate;
                   var userImag=info.user.userImag;
+                  userId=info.user.userId;
                     $(".usercenter").append("  <span class=\"Weltitle Block Font16 CorRed FontW Lineheight35\">Welcome欢迎光临！</span>\n" +
                         "   <div class=\"U-header MT20 Overflow\">\n" +
                         "    <img src=\""+userImag+"\">\n" +
                         "    <p class=\"Font14 FontW\">"+name+" 欢迎您回到 用户中心！</p>\n" +
                         "    <p class=\"Font12\">您的上一次登录时间:<time> "+lastDate+"</time></p>\n" +
                         "    <p class=\"Font12 CorRed FontW\">我的优惠券( 0 ) | 我的积分( 0 )</p>\n" +
-                        "   </div>\n" +
-                        "    <ul class=\"s-States Overflow FontW\" id=\"Lbn\">\n" +
+                        "   </div>\n" );
+                },
+                error: function (message) {
+                    $("#request-process-patent").html("获取数据失败！");
+                }
+            });
+            var json = {
+                userId: userId
+            };
+            json = JSON.stringify(json);
+            $.ajax({
+                type: "POST",
+                url: "/selectOrderByUserId",
+                contentType: "application/json; charset=utf-8",
+                data: json,
+                async: false,
+                dataType: "json",
+                success: function (info) {
+                    var count_fu2=0;
+                    var count0=0;
+                    var count1=0;
+                    var count2=0;
+                    for(var i=0;i<info.order.length;i++){
+                        var state=info.order[i].state;
+                        console.log(state);
+                        if(state==-2){
+                            count_fu2=count_fu2+1;
+                        }
+                        else  if(state==0){
+                            count0=count0+1;
+                        }
+                        else if(state==1){
+                            count1=count1+1;
+                        }
+                        else if(state==2){
+                            count2=count2+1;
+                        }
+                    }
+                    $(".usercenter").append(" <ul class=\"s-States Overflow FontW\" id=\"Lbn\">\n" +
                         "     <li class=\"Font14 FontW\">杉杉订餐在线提醒：</li>\n" +
-                        "     <li><a href=\"#\">待付款( 0 )</a></li>\n" +
-                        "     <li><a href=\"#\">待发货( 0 )</a></li>\n" +
-                        "     <li><a href=\"#\">待收货( 0 )</a></li>\n" +
-                        "     <li><a href=\"#\">待评价( 0 )</a></li>\n" +
+                        "     <li><a href=\"#\">待付款( "+count_fu2+" )</a></li>\n" +
+                        "     <li><a href=\"#\">待发货( "+count0+" )</a></li>\n" +
+                        "     <li><a href=\"#\">待收货( "+count1+" )</a></li>\n" +
+                        "     <li><a href=\"#\">待评价( "+count2+")</a></li>\n" +
                         "    </ul>");
                 },
                 error: function (message) {
                     $("#request-process-patent").html("获取数据失败！");
                 }
             });
-
         }
     });
 </script>

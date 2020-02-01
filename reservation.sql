@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50720
 File Encoding         : 65001
 
-Date: 2020-02-01 17:55:56
+Date: 2020-02-01 19:22:03
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -280,6 +280,7 @@ CREATE TABLE `notice` (
 DROP TABLE IF EXISTS `order`;
 CREATE TABLE `order` (
   `orderId` int(11) NOT NULL,
+  `orderNo` varchar(255) NOT NULL,
   `userId` int(11) NOT NULL,
   `restaurantId` int(11) NOT NULL,
   `price` decimal(11,2) NOT NULL,
@@ -302,7 +303,8 @@ CREATE TABLE `order` (
 -- ----------------------------
 -- Records of order
 -- ----------------------------
-INSERT INTO `order` VALUES ('1', '1', '9', '25.00', '1', '0', '0', '0.00', '2020-02-01 16:53:02', '2020-02-01 16:54:14', '2020-02-01 17:13:22', '2', null);
+INSERT INTO `order` VALUES ('1', '20125468752102', '1', '9', '25.00', '1', '0', '0', '0.00', '2020-02-01 16:53:02', '2020-02-01 16:54:14', '2020-02-01 17:13:22', '2', null);
+INSERT INTO `order` VALUES ('2', '12362134678232', '1', '4', '36.00', '1', '0', '0', null, '2020-02-01 19:21:03', '2020-02-01 19:21:05', '2020-02-01 19:21:08', '1', null);
 
 -- ----------------------------
 -- Table structure for `restaurant`

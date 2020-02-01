@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shan.reservation.mapper.orderUtilMapper" >
+    <resultMap id="BaseResultMap" type="com.shan.reservation.bean.order" >
+        <constructor >
+            <idArg column="orderId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="orderNo" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="userId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="restaurantId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="price" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+            <arg column="isPay" jdbcType="TINYINT" javaType="java.lang.Byte" />
+            <arg column="isAppraise" jdbcType="TINYINT" javaType="java.lang.Byte" />
+            <arg column="isRefund" jdbcType="TINYINT" javaType="java.lang.Byte" />
+            <arg column="deliverMoney" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+            <arg column="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+            <arg column="deliveryTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+            <arg column="receiveTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+            <arg column="state" jdbcType="TINYINT" javaType="java.lang.Byte" />
+            <arg column="orderRemarks" jdbcType="VARCHAR" javaType="java.lang.String" />
+        </constructor>
+    </resultMap>
+    <select id="selectByUserId" resultMap="BaseResultMap" parameterType="com.shan.reservation.bean.orderExample" >
+       select * from `order` WHERE userId =#{userId,jdbcType=INTEGER}
+    </select>
+</mapper>

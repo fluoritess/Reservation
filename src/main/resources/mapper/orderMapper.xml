@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="com.shan.reservation.bean.order" >
     <constructor >
       <idArg column="orderId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="orderNo" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="userId" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="restaurantId" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="price" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
@@ -77,7 +78,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    orderId, userId, restaurantId, price, isPay, isAppraise, isRefund, deliverMoney, 
+    orderId, orderNo, userId, restaurantId, price, isPay, isAppraise, isRefund, deliverMoney, 
     createTime, deliveryTime, receiveTime, state, orderRemarks
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shan.reservation.bean.orderExample" >
@@ -112,22 +113,25 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.shan.reservation.bean.order" >
-    insert into order (orderId, userId, restaurantId, 
-      price, isPay, isAppraise, 
-      isRefund, deliverMoney, createTime, 
-      deliveryTime, receiveTime, state, 
-      orderRemarks)
-    values (#{orderid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{restaurantid,jdbcType=INTEGER}, 
-      #{price,jdbcType=DECIMAL}, #{ispay,jdbcType=TINYINT}, #{isappraise,jdbcType=TINYINT}, 
-      #{isrefund,jdbcType=TINYINT}, #{delivermoney,jdbcType=DECIMAL}, #{createtime,jdbcType=TIMESTAMP}, 
-      #{deliverytime,jdbcType=TIMESTAMP}, #{receivetime,jdbcType=TIMESTAMP}, #{state,jdbcType=TINYINT}, 
-      #{orderremarks,jdbcType=VARCHAR})
+    insert into order (orderId, orderNo, userId, 
+      restaurantId, price, isPay, 
+      isAppraise, isRefund, deliverMoney, 
+      createTime, deliveryTime, receiveTime, 
+      state, orderRemarks)
+    values (#{orderid,jdbcType=INTEGER}, #{orderno,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, 
+      #{restaurantid,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL}, #{ispay,jdbcType=TINYINT}, 
+      #{isappraise,jdbcType=TINYINT}, #{isrefund,jdbcType=TINYINT}, #{delivermoney,jdbcType=DECIMAL}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{deliverytime,jdbcType=TIMESTAMP}, #{receivetime,jdbcType=TIMESTAMP}, 
+      #{state,jdbcType=TINYINT}, #{orderremarks,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.shan.reservation.bean.order" >
     insert into order
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="orderid != null" >
         orderId,
+      </if>
+      <if test="orderno != null" >
+        orderNo,
       </if>
       <if test="userid != null" >
         userId,
@@ -169,6 +173,9 @@
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="orderid != null" >
         #{orderid,jdbcType=INTEGER},
+      </if>
+      <if test="orderno != null" >
+        #{orderno,jdbcType=VARCHAR},
       </if>
       <if test="userid != null" >
         #{userid,jdbcType=INTEGER},
@@ -220,6 +227,9 @@
       <if test="record.orderid != null" >
         orderId = #{record.orderid,jdbcType=INTEGER},
       </if>
+      <if test="record.orderno != null" >
+        orderNo = #{record.orderno,jdbcType=VARCHAR},
+      </if>
       <if test="record.userid != null" >
         userId = #{record.userid,jdbcType=INTEGER},
       </if>
@@ -264,6 +274,7 @@
   <update id="updateByExample" parameterType="map" >
     update order
     set orderId = #{record.orderid,jdbcType=INTEGER},
+      orderNo = #{record.orderno,jdbcType=VARCHAR},
       userId = #{record.userid,jdbcType=INTEGER},
       restaurantId = #{record.restaurantid,jdbcType=INTEGER},
       price = #{record.price,jdbcType=DECIMAL},
@@ -283,6 +294,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.shan.reservation.bean.order" >
     update order
     <set >
+      <if test="orderno != null" >
+        orderNo = #{orderno,jdbcType=VARCHAR},
+      </if>
       <if test="userid != null" >
         userId = #{userid,jdbcType=INTEGER},
       </if>
@@ -324,7 +338,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.shan.reservation.bean.order" >
     update order
-    set userId = #{userid,jdbcType=INTEGER},
+    set orderNo = #{orderno,jdbcType=VARCHAR},
+      userId = #{userid,jdbcType=INTEGER},
       restaurantId = #{restaurantid,jdbcType=INTEGER},
       price = #{price,jdbcType=DECIMAL},
       isPay = #{ispay,jdbcType=TINYINT},

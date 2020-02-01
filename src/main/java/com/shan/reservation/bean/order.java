@@ -6,6 +6,8 @@ import java.util.Date;
 public class order {
     private Integer orderid;
 
+    private String orderno;
+
     private Integer userid;
 
     private Integer restaurantid;
@@ -30,8 +32,9 @@ public class order {
 
     private String orderremarks;
 
-    public order(Integer orderid, Integer userid, Integer restaurantid, BigDecimal price, Byte ispay, Byte isappraise, Byte isrefund, BigDecimal delivermoney, Date createtime, Date deliverytime, Date receivetime, Byte state, String orderremarks) {
+    public order(Integer orderid, String orderno, Integer userid, Integer restaurantid, BigDecimal price, Byte ispay, Byte isappraise, Byte isrefund, BigDecimal delivermoney, Date createtime, Date deliverytime, Date receivetime, Byte state, String orderremarks) {
         this.orderid = orderid;
+        this.orderno = orderno;
         this.userid = userid;
         this.restaurantid = restaurantid;
         this.price = price;
@@ -56,6 +59,14 @@ public class order {
 
     public void setOrderid(Integer orderid) {
         this.orderid = orderid;
+    }
+
+    public String getOrderno() {
+        return orderno;
+    }
+
+    public void setOrderno(String orderno) {
+        this.orderno = orderno == null ? null : orderno.trim();
     }
 
     public Integer getUserid() {

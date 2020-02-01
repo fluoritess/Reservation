@@ -166,6 +166,76 @@ public class orderExample {
             return (Criteria) this;
         }
 
+        public Criteria andOrdernoIsNull() {
+            addCriterion("orderNo is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrdernoIsNotNull() {
+            addCriterion("orderNo is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrdernoEqualTo(String value) {
+            addCriterion("orderNo =", value, "orderno");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrdernoNotEqualTo(String value) {
+            addCriterion("orderNo <>", value, "orderno");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrdernoGreaterThan(String value) {
+            addCriterion("orderNo >", value, "orderno");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrdernoGreaterThanOrEqualTo(String value) {
+            addCriterion("orderNo >=", value, "orderno");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrdernoLessThan(String value) {
+            addCriterion("orderNo <", value, "orderno");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrdernoLessThanOrEqualTo(String value) {
+            addCriterion("orderNo <=", value, "orderno");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrdernoLike(String value) {
+            addCriterion("orderNo like", value, "orderno");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrdernoNotLike(String value) {
+            addCriterion("orderNo not like", value, "orderno");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrdernoIn(List<String> values) {
+            addCriterion("orderNo in", values, "orderno");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrdernoNotIn(List<String> values) {
+            addCriterion("orderNo not in", values, "orderno");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrdernoBetween(String value1, String value2) {
+            addCriterion("orderNo between", value1, value2, "orderno");
+            return (Criteria) this;
+        }
+
+        public Criteria andOrdernoNotBetween(String value1, String value2) {
+            addCriterion("orderNo not between", value1, value2, "orderno");
+            return (Criteria) this;
+        }
+
         public Criteria andUseridIsNull() {
             addCriterion("userId is null");
             return (Criteria) this;
