@@ -248,7 +248,7 @@ Author URI: http://www.deathghost.cn
                                 "      <td>"+user+"</td>\n" +
                                 "      <td>￥"+price+"</td>\n" +
                                 "      <td>未付款,未发货</td>\n" +
-                                "      <td><a href=\"#\">取消订单</a> | <a href=\"#\">付款</a></td>\n" +
+                                "      <td><a href=\"#\" class=\"quxiao\"id="+orderno+" >取消订单</a> | <a href=\"#\">付款</a></td>\n" +
                                 "     </tr>");
                         }
                         else  if(state==0){
@@ -259,7 +259,7 @@ Author URI: http://www.deathghost.cn
                                 "      <td>"+user+"</td>\n" +
                                 "      <td>￥"+price+"</td>\n" +
                                 "      <td>已付款,未发货</td>\n" +
-                                "      <td><a href=\"#\">取消订单</a>" +
+                                "      <td><a href=\"#\" class=\"quxiao\" id="+orderno+">取消订单</a>" +
                                 "     </tr>");
                         }
                         else if(state==1){
@@ -270,7 +270,7 @@ Author URI: http://www.deathghost.cn
                                 "      <td>"+user+"</td>\n" +
                                 "      <td>￥"+price+"</td>\n" +
                                 "      <td>已发货,配送中</td>\n" +
-                                "      <td><a href=\"#\">取消订单</a> " +
+                                "      <td><a href=\"#\" class=\"quxiao\" id="+orderno+">取消订单</a> " +
                                 "     </tr>");
                         }
                         else if(state==2){
@@ -281,7 +281,7 @@ Author URI: http://www.deathghost.cn
                                 "      <td>"+user+"</td>\n" +
                                 "      <td>￥"+price+"</td>\n" +
                                 "      <td>确认收货,未评价</td>\n" +
-                                "      <td><a href=\"#\">取消订单</a> " +
+                                "      <td><a href=\"#\" class=\"quxiao\" id="+orderno+">取消订单</a> " +
                                 "     </tr>");
                         }
 
@@ -291,6 +291,27 @@ Author URI: http://www.deathghost.cn
                     $("#request-process-patent").html("获取数据失败！");
                 }
             });
+            $(".quxiao").click(function () {
+                var orderno=$(this).attr('id');
+                var json = {
+                    orderno: orderno
+                };
+                json = JSON.stringify(json);
+                $.ajax({
+                    type: "POST",
+                    url: "/deleteOrderByNo2",
+                    contentType: "application/json; charset=utf-8",
+                    data: json,
+                    async: false,
+                    dataType: "json",
+                    success: function (info) {
+                        window.location.href="user_orderlist.html";
+                    },
+                    error: function (message) {
+                        $("#request-process-patent").html("获取数据失败！");
+                    }
+                });
+            })
         }
     });
 </script>

@@ -9,4 +9,6 @@ import java.util.List;
 @Mapper
 public interface orderUtilMapper {
     List<order> selectByUserId(int userId);
+    void deleteByNo(String orderno);
+    void updateByNo(String orderno);
 }

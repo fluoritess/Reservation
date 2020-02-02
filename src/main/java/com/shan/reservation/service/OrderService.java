@@ -14,4 +14,7 @@ import java.util.List;
 @Service
 public interface OrderService {
     List<order> selectByUserId(int userId);
+    void deleteByNo(String orderNo);
+    //修改状态为-1
+    void deleteByNo2(String orderNo);
 }

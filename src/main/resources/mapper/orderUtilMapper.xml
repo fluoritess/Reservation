@@ -22,4 +22,11 @@
     <select id="selectByUserId" resultMap="BaseResultMap" parameterType="com.shan.reservation.bean.orderExample" >
        select * from `order` WHERE userId =#{userId,jdbcType=INTEGER}
     </select>
+    <delete id="deleteByNo" parameterType="com.shan.reservation.bean.orderExample" >
+        delete  from `order` where  orderNo=#{orderNo,jdbcType=VARCHAR}
+    </delete>
+    <update id="updateByNo" parameterType="com.shan.reservation.bean.orderExample" >
+       update `order` SET state=-1 WHERE orderNo=#{orderNo,jdbcType=VARCHAR}
+    </update>
+
 </mapper>

@@ -34,6 +34,21 @@ public class OrderController {
         List<order> list=OrderService.selectByUserId(userId);
         return  R.ok().put("order",list);
     }
-
+    @ResponseBody
+    @RequestMapping("/deleteOrderByNo" )
+    @ArchivesLog(operationType = "删除信息", operationName = "删除订单")
+    public R deleteOrderByNo(@RequestBody Map<String,String> map, HttpSession httpSession){
+        String orderNo=map.get("orderno");
+        OrderService.deleteByNo(orderNo);
+        return  R.ok();
+    }
+    @ResponseBody
+    @RequestMapping("/deleteOrderByNo2" )
+    @ArchivesLog(operationType = "删除信息", operationName = "删除订单")
+    public R deleteOrderByNo2(@RequestBody Map<String,String> map, HttpSession httpSession){
+        String orderNo=map.get("orderno");
+        OrderService.deleteByNo2(orderNo);
+        return  R.ok();
+    }
 
 }

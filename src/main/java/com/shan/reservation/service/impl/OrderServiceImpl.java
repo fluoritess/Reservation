@@ -17,4 +17,14 @@ public class OrderServiceImpl implements OrderService {
         List<order> list=orderUtilMapper.selectByUserId(userId);
         return list;
     }
+
+    @Override
+    public void deleteByNo(String orderNo) {
+        orderUtilMapper.deleteByNo(orderNo);
+    }
+
+    @Override
+    public void deleteByNo2(String orderNo) {
+        orderUtilMapper.updateByNo(orderNo);
+    }
 }
