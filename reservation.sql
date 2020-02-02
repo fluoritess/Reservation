@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50720
 File Encoding         : 65001
 
-Date: 2020-02-01 19:22:03
+Date: 2020-02-02 17:27:23
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -25,21 +25,22 @@ CREATE TABLE `address` (
   `address_city` varchar(32) NOT NULL,
   `address_district` varchar(32) NOT NULL,
   `address_street` varchar(32) NOT NULL,
+  `userId` int(11) NOT NULL,
   PRIMARY KEY (`address_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of address
 -- ----------------------------
-INSERT INTO `address` VALUES ('1', '四川省', '成都', '武侯区', '龙腾中路125号');
-INSERT INTO `address` VALUES ('2', '四川省', '成都', '青阳区', '青阳路222号');
-INSERT INTO `address` VALUES ('3', '四川省', '成都', '锦江区', '靖江路45号');
-INSERT INTO `address` VALUES ('4', '四川省', '成都', '金牛区', '人民路35号');
-INSERT INTO `address` VALUES ('5', '四川省', '成都', '武侯区', '龙腾上路23号');
-INSERT INTO `address` VALUES ('6', '四川省', '成都', '武侯区', '杜甫草堂路45号');
-INSERT INTO `address` VALUES ('7', '四川省', '成都', '龙泉驿区', '十陵上街100号');
-INSERT INTO `address` VALUES ('8', '四川省', '成都', '高新区', '金融街99号');
-INSERT INTO `address` VALUES ('9', '四川省', '成都', '双流区', '机场路66号');
+INSERT INTO `address` VALUES ('1', '四川省', '成都', '武侯区', '龙腾中路125号', '1');
+INSERT INTO `address` VALUES ('2', '四川省', '成都', '青阳区', '青阳路222号', '2');
+INSERT INTO `address` VALUES ('3', '四川省', '成都', '锦江区', '靖江路45号', '1');
+INSERT INTO `address` VALUES ('4', '四川省', '成都', '金牛区', '人民路35号', '2');
+INSERT INTO `address` VALUES ('5', '四川省', '成都', '武侯区', '龙腾上路23号', '3');
+INSERT INTO `address` VALUES ('6', '四川省', '成都', '武侯区', '杜甫草堂路45号', '3');
+INSERT INTO `address` VALUES ('7', '四川省', '成都', '龙泉驿区', '十陵上街100号', '4');
+INSERT INTO `address` VALUES ('8', '四川省', '成都', '高新区', '金融街99号', '4');
+INSERT INTO `address` VALUES ('9', '四川省', '成都', '双流区', '机场路66号', '5');
 
 -- ----------------------------
 -- Table structure for `admin`
@@ -228,12 +229,13 @@ CREATE TABLE `item` (
   KEY `user_id` (`user_id`),
   CONSTRAINT `item_ibfk_1` FOREIGN KEY (`food_id`) REFERENCES `food` (`food_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `item_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of item
 -- ----------------------------
 INSERT INTO `item` VALUES ('1', '1', '4', '1');
+INSERT INTO `item` VALUES ('2', '1', '5', '1');
 
 -- ----------------------------
 -- Table structure for `messageboard`
@@ -303,8 +305,9 @@ CREATE TABLE `order` (
 -- ----------------------------
 -- Records of order
 -- ----------------------------
-INSERT INTO `order` VALUES ('1', '20125468752102', '1', '9', '25.00', '1', '0', '0', '0.00', '2020-02-01 16:53:02', '2020-02-01 16:54:14', '2020-02-01 17:13:22', '2', null);
-INSERT INTO `order` VALUES ('2', '12362134678232', '1', '4', '36.00', '1', '0', '0', null, '2020-02-01 19:21:03', '2020-02-01 19:21:05', '2020-02-01 19:21:08', '1', null);
+INSERT INTO `order` VALUES ('1', '20205468752102', '1', '9', '25.00', '1', '0', '0', '0.00', '2020-02-01 16:53:02', '2020-02-01 16:54:14', '2020-02-01 17:13:22', '0', null);
+INSERT INTO `order` VALUES ('2', '20202134678232', '1', '4', '36.00', '1', '0', '0', '0.00', '2020-02-01 19:21:03', '2020-02-01 19:21:05', '2020-02-01 19:21:08', '1', null);
+INSERT INTO `order` VALUES ('3', '20208034689321', '1', '4', '32.00', '1', '0', '0', '0.00', '2020-02-01 19:25:19', '2020-02-01 19:25:23', '2020-02-01 19:25:26', '-2', null);
 
 -- ----------------------------
 -- Table structure for `restaurant`
@@ -356,6 +359,7 @@ CREATE TABLE `user` (
   `user_address` int(11) DEFAULT NULL,
   `user_sex` varchar(32) DEFAULT NULL,
   `user_imag` varchar(255) DEFAULT NULL,
+  `realName` varchar(32) NOT NULL,
   `user_name` varchar(255) NOT NULL,
   `user_state` int(11) NOT NULL,
   `last_date` datetime DEFAULT NULL,
@@ -367,5 +371,5 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', '123', '12341234112', '1', '1', 'upload/user/shan.jpg', '杉', '1', '2020-02-01 17:14:14');
-INSERT INTO `user` VALUES ('2', '123', '13224567231', '2', '1', 'upload/user/fluoritess.jpg', 'fluorites', '1', '2020-01-29 17:14:17');
+INSERT INTO `user` VALUES ('1', '123', '12341234112', '1', '1', 'upload/user/shan.jpg', '王杉杉', '杉', '1', '2020-02-01 17:14:14');
+INSERT INTO `user` VALUES ('2', '123', '13224567231', '2', '1', 'upload/user/fluoritess.jpg', 'LiHua', 'fluorites', '1', '2020-01-29 17:14:17');

@@ -11,12 +11,15 @@ public class address {
 
     private String addressStreet;
 
-    public address(Integer addressId, String addressProvence, String addressCity, String addressDistrict, String addressStreet) {
+    private Integer userid;
+
+    public address(Integer addressId, String addressProvence, String addressCity, String addressDistrict, String addressStreet, Integer userid) {
         this.addressId = addressId;
         this.addressProvence = addressProvence;
         this.addressCity = addressCity;
         this.addressDistrict = addressDistrict;
         this.addressStreet = addressStreet;
+        this.userid = userid;
     }
 
     public address() {
@@ -61,5 +64,13 @@ public class address {
 
     public void setAddressStreet(String addressStreet) {
         this.addressStreet = addressStreet == null ? null : addressStreet.trim();
+    }
+
+    public Integer getUserid() {
+        return userid;
+    }
+
+    public void setUserid(Integer userid) {
+        this.userid = userid;
     }
 }

@@ -15,19 +15,22 @@ public class user {
 
     private String userImag;
 
+    private String realname;
+
     private String userName;
 
     private Integer userState;
 
     private Date lastDate;
 
-    public user(Integer userId, String userPassword, String userPhone, Integer userAddress, String userSex, String userImag, String userName, Integer userState, Date lastDate) {
+    public user(Integer userId, String userPassword, String userPhone, Integer userAddress, String userSex, String userImag, String realname, String userName, Integer userState, Date lastDate) {
         this.userId = userId;
         this.userPassword = userPassword;
         this.userPhone = userPhone;
         this.userAddress = userAddress;
         this.userSex = userSex;
         this.userImag = userImag;
+        this.realname = realname;
         this.userName = userName;
         this.userState = userState;
         this.lastDate = lastDate;
@@ -83,6 +86,14 @@ public class user {
 
     public void setUserImag(String userImag) {
         this.userImag = userImag == null ? null : userImag.trim();
+    }
+
+    public String getRealname() {
+        return realname;
+    }
+
+    public void setRealname(String realname) {
+        this.realname = realname == null ? null : realname.trim();
     }
 
     public String getUserName() {

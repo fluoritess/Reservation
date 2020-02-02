@@ -8,6 +8,7 @@
       <arg column="address_city" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="address_district" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="address_street" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="userId" jdbcType="INTEGER" javaType="java.lang.Integer" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -69,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    address_id, address_provence, address_city, address_district, address_street
+    address_id, address_provence, address_city, address_district, address_street, userId
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shan.reservation.bean.addressExample" >
     select
@@ -104,9 +105,11 @@
   </delete>
   <insert id="insert" parameterType="com.shan.reservation.bean.address" >
     insert into address (address_id, address_provence, address_city, 
-      address_district, address_street)
+      address_district, address_street, userId
+      )
     values (#{addressId,jdbcType=INTEGER}, #{addressProvence,jdbcType=VARCHAR}, #{addressCity,jdbcType=VARCHAR}, 
-      #{addressDistrict,jdbcType=VARCHAR}, #{addressStreet,jdbcType=VARCHAR})
+      #{addressDistrict,jdbcType=VARCHAR}, #{addressStreet,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.shan.reservation.bean.address" >
     insert into address
@@ -126,6 +129,9 @@
       <if test="addressStreet != null" >
         address_street,
       </if>
+      <if test="userid != null" >
+        userId,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="addressId != null" >
@@ -142,6 +148,9 @@
       </if>
       <if test="addressStreet != null" >
         #{addressStreet,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -169,6 +178,9 @@
       <if test="record.addressStreet != null" >
         address_street = #{record.addressStreet,jdbcType=VARCHAR},
       </if>
+      <if test="record.userid != null" >
+        userId = #{record.userid,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -180,7 +192,8 @@
       address_provence = #{record.addressProvence,jdbcType=VARCHAR},
       address_city = #{record.addressCity,jdbcType=VARCHAR},
       address_district = #{record.addressDistrict,jdbcType=VARCHAR},
-      address_street = #{record.addressStreet,jdbcType=VARCHAR}
+      address_street = #{record.addressStreet,jdbcType=VARCHAR},
+      userId = #{record.userid,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -200,6 +213,9 @@
       <if test="addressStreet != null" >
         address_street = #{addressStreet,jdbcType=VARCHAR},
       </if>
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
     </set>
     where address_id = #{addressId,jdbcType=INTEGER}
   </update>
@@ -208,7 +224,8 @@
     set address_provence = #{addressProvence,jdbcType=VARCHAR},
       address_city = #{addressCity,jdbcType=VARCHAR},
       address_district = #{addressDistrict,jdbcType=VARCHAR},
-      address_street = #{addressStreet,jdbcType=VARCHAR}
+      address_street = #{addressStreet,jdbcType=VARCHAR},
+      userId = #{userid,jdbcType=INTEGER}
     where address_id = #{addressId,jdbcType=INTEGER}
   </update>
 </mapper>

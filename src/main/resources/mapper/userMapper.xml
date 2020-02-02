@@ -9,6 +9,7 @@
       <arg column="user_address" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="user_sex" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="user_imag" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="realName" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="user_name" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="user_state" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="last_date" jdbcType="TIMESTAMP" javaType="java.util.Date" />
@@ -73,8 +74,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    user_id, user_password, user_phone, user_address, user_sex, user_imag, user_name, 
-    user_state, last_date
+    user_id, user_password, user_phone, user_address, user_sex, user_imag, realName, 
+    user_name, user_state, last_date
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shan.reservation.bean.userExample" >
     select
@@ -110,12 +111,12 @@
   <insert id="insert" parameterType="com.shan.reservation.bean.user" >
     insert into user (user_id, user_password, user_phone, 
       user_address, user_sex, user_imag, 
-      user_name, user_state, last_date
-      )
+      realName, user_name, user_state, 
+      last_date)
     values (#{userId,jdbcType=INTEGER}, #{userPassword,jdbcType=VARCHAR}, #{userPhone,jdbcType=VARCHAR}, 
       #{userAddress,jdbcType=INTEGER}, #{userSex,jdbcType=VARCHAR}, #{userImag,jdbcType=VARCHAR}, 
-      #{userName,jdbcType=VARCHAR}, #{userState,jdbcType=INTEGER}, #{lastDate,jdbcType=TIMESTAMP}
-      )
+      #{realname,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{userState,jdbcType=INTEGER}, 
+      #{lastDate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.shan.reservation.bean.user" >
     insert into user
@@ -137,6 +138,9 @@
       </if>
       <if test="userImag != null" >
         user_imag,
+      </if>
+      <if test="realname != null" >
+        realName,
       </if>
       <if test="userName != null" >
         user_name,
@@ -166,6 +170,9 @@
       </if>
       <if test="userImag != null" >
         #{userImag,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null" >
+        #{realname,jdbcType=VARCHAR},
       </if>
       <if test="userName != null" >
         #{userName,jdbcType=VARCHAR},
@@ -205,6 +212,9 @@
       <if test="record.userImag != null" >
         user_imag = #{record.userImag,jdbcType=VARCHAR},
       </if>
+      <if test="record.realname != null" >
+        realName = #{record.realname,jdbcType=VARCHAR},
+      </if>
       <if test="record.userName != null" >
         user_name = #{record.userName,jdbcType=VARCHAR},
       </if>
@@ -227,6 +237,7 @@
       user_address = #{record.userAddress,jdbcType=INTEGER},
       user_sex = #{record.userSex,jdbcType=VARCHAR},
       user_imag = #{record.userImag,jdbcType=VARCHAR},
+      realName = #{record.realname,jdbcType=VARCHAR},
       user_name = #{record.userName,jdbcType=VARCHAR},
       user_state = #{record.userState,jdbcType=INTEGER},
       last_date = #{record.lastDate,jdbcType=TIMESTAMP}
@@ -252,6 +263,9 @@
       <if test="userImag != null" >
         user_imag = #{userImag,jdbcType=VARCHAR},
       </if>
+      <if test="realname != null" >
+        realName = #{realname,jdbcType=VARCHAR},
+      </if>
       <if test="userName != null" >
         user_name = #{userName,jdbcType=VARCHAR},
       </if>
@@ -271,6 +285,7 @@
       user_address = #{userAddress,jdbcType=INTEGER},
       user_sex = #{userSex,jdbcType=VARCHAR},
       user_imag = #{userImag,jdbcType=VARCHAR},
+      realName = #{realname,jdbcType=VARCHAR},
       user_name = #{userName,jdbcType=VARCHAR},
       user_state = #{userState,jdbcType=INTEGER},
       last_date = #{lastDate,jdbcType=TIMESTAMP}

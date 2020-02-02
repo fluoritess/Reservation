@@ -505,6 +505,76 @@ public class userExample {
             return (Criteria) this;
         }
 
+        public Criteria andRealnameIsNull() {
+            addCriterion("realName is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRealnameIsNotNull() {
+            addCriterion("realName is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRealnameEqualTo(String value) {
+            addCriterion("realName =", value, "realname");
+            return (Criteria) this;
+        }
+
+        public Criteria andRealnameNotEqualTo(String value) {
+            addCriterion("realName <>", value, "realname");
+            return (Criteria) this;
+        }
+
+        public Criteria andRealnameGreaterThan(String value) {
+            addCriterion("realName >", value, "realname");
+            return (Criteria) this;
+        }
+
+        public Criteria andRealnameGreaterThanOrEqualTo(String value) {
+            addCriterion("realName >=", value, "realname");
+            return (Criteria) this;
+        }
+
+        public Criteria andRealnameLessThan(String value) {
+            addCriterion("realName <", value, "realname");
+            return (Criteria) this;
+        }
+
+        public Criteria andRealnameLessThanOrEqualTo(String value) {
+            addCriterion("realName <=", value, "realname");
+            return (Criteria) this;
+        }
+
+        public Criteria andRealnameLike(String value) {
+            addCriterion("realName like", value, "realname");
+            return (Criteria) this;
+        }
+
+        public Criteria andRealnameNotLike(String value) {
+            addCriterion("realName not like", value, "realname");
+            return (Criteria) this;
+        }
+
+        public Criteria andRealnameIn(List<String> values) {
+            addCriterion("realName in", values, "realname");
+            return (Criteria) this;
+        }
+
+        public Criteria andRealnameNotIn(List<String> values) {
+            addCriterion("realName not in", values, "realname");
+            return (Criteria) this;
+        }
+
+        public Criteria andRealnameBetween(String value1, String value2) {
+            addCriterion("realName between", value1, value2, "realname");
+            return (Criteria) this;
+        }
+
+        public Criteria andRealnameNotBetween(String value1, String value2) {
+            addCriterion("realName not between", value1, value2, "realname");
+            return (Criteria) this;
+        }
+
         public Criteria andUserNameIsNull() {
             addCriterion("user_name is null");
             return (Criteria) this;

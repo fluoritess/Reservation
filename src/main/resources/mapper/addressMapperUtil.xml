@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shan.reservation.mapper.addressMapperUtil" >
+    <resultMap id="BaseResultMap" type="com.shan.reservation.bean.address" >
+        <constructor >
+            <idArg column="address_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="address_provence" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="address_city" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="address_district" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="address_street" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="userId" jdbcType="INTEGER" javaType="java.lang.Integer" />
+        </constructor>
+    </resultMap>
+    <select id="getAddressByUser" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+     SELECT * from address where userId=#{userId,jdbcType=INTEGER}
+    </select>
+</mapper>
