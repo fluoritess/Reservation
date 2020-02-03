@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>DeathGhost-用户中心</title>
+<title>杉杉订餐-用户中心</title>
 <meta name="keywords" content="DeathGhost,DeathGhost.cn,web前端设,移动WebApp开发" />
 <meta name="description" content="DeathGhost.cn::H5 WEB前端设计开发!" />
 <meta name="author" content="DeathGhost"/>
@@ -44,7 +44,7 @@ Author URI: http://www.deathghost.cn
    <input type="submit" class="searchbutton" value="搜 索" />
    </div>
    </form>
-      <p class="hotkeywords"><a href="#" title="酸辣土豆丝">干煸肥肠</a><a href="#" title="这里是产品名称">鱼香肉丝</a><a href="#" title="这里是产品名称">烤芝士沙拉</a><a href="#" title="这里是产品名称">烧仙草</a><a href="#" title="这里是产品名称">滑蛋虾仁</a><a href="#" title="这里是产品名称">糖醋里脊</a></p>
+      <p class="hotkeywords"><a href="#" title="酸辣土豆丝">干煸肥肠</a><a href="#" title="这里是产品名称">鱼香肉丝</a><a href="#" title="这里是产品名称">烤芝士沙拉</a><a href="#" title="这里是产品名称">烧仙草</a><a href="#" title="这里是产品名称">秘制烤鸡腿堡</a><a href="#" title="这里是产品名称">糖醋里脊</a></p>
   </div>
  </div>
  <nav class="menu_bg">
@@ -309,7 +309,7 @@ Author URI: http://www.deathghost.cn
                                 "    </tr>\n" +
                                 "    <tr>\n" +
                                 "     <td width=\"30%\" class=\"Font14 FontW Lineheight35\" align=\"right\">收件人姓名：</td>\n" +
-                                "     <td><input type=\"text\" name=\"\" required value=\"DeathGhost\" class=\"input_name\"></td>\n" +
+                                "     <td><input type=\"text\" name=\"\" required value=\""+realName+"\" class=\"input_name\"></td>\n" +
                                 "    </tr>\n" +
                                 "    <tr>\n" +
                                 "     <td width=\"30%\" class=\"Font14 FontW Lineheight35\" align=\"right\">街道地址：</td>\n" +
@@ -330,6 +330,44 @@ Author URI: http://www.deathghost.cn
                                 "   </table>\n" +
                                 "   </form>");
                     }
+                    $("#content").append(" <form action=\"#\">\n" +
+                        "    <table style=\"margin-top:10px;\">\n" +
+                        "    <tr>\n" +
+                        "     <td width=\"30%\" class=\"Font14 FontW Lineheight35\" align=\"right\">选择所在地：</td>\n" +
+                        "     <td>\n" +
+                        "     <select name=\"\" class=\"select_ssq\">\n" +
+                        "      <option>"+addressProvence+"</option>\n" +
+                        "     </select>\n" +
+                        "     <select name=\"\" class=\"select_ssq\">\n" +
+                        "     <option>"+addressCity+"</option>\n" +
+                        "     </select>\n" +
+                        "     <select name=\"\" class=\"select_ssq\">\n" +
+                        "     <option>"+addressDistrict+"</option>\n" +
+                        "     </select>\n" +
+                        "     </td>\n" +
+                        "    </tr>\n" +
+                        "    <tr>\n" +
+                        "     <td width=\"30%\" class=\"Font14 FontW Lineheight35\" align=\"right\">收件人姓名：</td>\n" +
+                        "     <td><input type=\"text\" name=\"\" required  class=\"input_name\"></td>\n" +
+                        "    </tr>\n" +
+                        "    <tr>\n" +
+                        "     <td width=\"30%\" class=\"Font14 FontW Lineheight35\" align=\"right\">街道地址：</td>\n" +
+                        "     <td><input type=\"text\" required  class=\"input_addr\"></td>\n" +
+                        "    </tr>\n" +
+                        "    <tr>\n" +
+                        "     <td width=\"30%\" class=\"Font14 FontW Lineheight35\" align=\"right\">邮政编码：</td>\n" +
+                        "     <td><input type=\"text\" required pattern=\"[0-9]{6}\"  class=\"input_zipcode\"></td>\n" +
+                        "    </tr>\n" +
+                        "    <tr>\n" +
+                        "     <td width=\"30%\" class=\"Font14 FontW Lineheight35\" align=\"right\">手机号码：</td>\n" +
+                        "     <td><input type=\"text\" name=\"\" required pattern=\"[0-9]{11}\" class=\"input_tel\"></td>\n" +
+                        "    </tr>\n" +
+                        "    <tr>\n" +
+                        "     <td width=\"30%\" class=\"Font14 FontW Lineheight35\" align=\"right\"></td>\n" +
+                        "     <td class=\"Font14 Font Lineheight35\"><input name=\"\" type=\"submit\" value=\"新增收货地址\"  class=\"Submit\"></td>\n" +
+                        "    </tr>\n" +
+                        "   </table>\n" +
+                        "   </form>");
                 },
                 error: function (message) {
                     $("#request-process-patent").html("获取数据失败！");

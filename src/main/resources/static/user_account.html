@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>DeathGhost-用户中心</title>
+<title>杉杉订餐-用户中心</title>
 <meta name="keywords" content="DeathGhost,DeathGhost.cn,web前端设,移动WebApp开发" />
 <meta name="description" content="DeathGhost.cn::H5 WEB前端设计开发!" />
 <meta name="author" content="DeathGhost"/>
@@ -18,21 +18,21 @@ Author URI: http://www.deathghost.cn
 <body>
 <header>
  <section class="Topmenubg">
-  <div class="Topnav">
-   <div class="LeftNav">
-    <a href="register.html">注册</a>/<a href="login.html">登录</a><a href="#">QQ客服</a><a href="#">微信客服</a><a href="#">手机客户端</a>
-   </div>
-   <div class="RightNav">
-    <a href="user_center.html">用户中心</a> <a href="user_orderlist.html" target="_blank" title="我的订单">我的订单</a> <a href="cart.html">购物车（0）</a> <a href="user_favorites.html" target="_blank" title="我的收藏">我的收藏</a> <a href="#">商家入驻</a>
-   </div>
-  </div>
+     <div class="Topnav">
+         <div class="LeftNav">
+             <!--<a href="login/register.html">注册</a>/<a href="login/login.html">登录</a><a href="#">QQ客服</a><a href="#">微信客服</a><a href="#">手机客户端</a>-->
+         </div>
+         <div class="RightNav">
+             <a href="user_center.html">用户中心</a> <a href="user_orderlist.html" target="_blank" title="我的订单">我的订单</a> <a href="cart.html">购物车（0）</a> <a href="user_favorites.html" target="_blank" title="我的收藏">我的收藏</a> <a href="#">商家入驻</a>
+         </div>
+     </div>
  </section>
  <div class="Logo_search">
-  <div class="Logo">
-   <img src="images/logo.jpg" title="DeathGhost" alt="模板">
-   <i></i>
-   <span>西安市 [ <a href="#">莲湖区</a> ]</span>
-  </div>
+     <div class="Logo">
+         <a href="index.html"><img src="login/images/logo.png" title="杉杉订餐" alt="模板"></a>
+         <i></i>
+         <span id="distict"></span>
+     </div>
   <div class="Search"> 
    <form method="get" id="main_a_serach" onsubmit="return check_search(this)">
    <div class="Search_nav" id="selectsearch">
@@ -44,7 +44,7 @@ Author URI: http://www.deathghost.cn
    <input type="submit" class="searchbutton" value="搜 索" />
    </div>
    </form>
-   <p class="hotkeywords"><a href="#" title="酸辣土豆丝">酸辣土豆丝</a><a href="#" title="这里是产品名称">螃蟹炒年糕</a><a href="#" title="这里是产品名称">牛奶炖蛋</a><a href="#" title="这里是产品名称">芝麻酱凉面</a><a href="#" title="这里是产品名称">滑蛋虾仁</a><a href="#" title="这里是产品名称">蒜汁茄子</a></p>
+      <p class="hotkeywords"><a href="#" title="酸辣土豆丝">干煸肥肠</a><a href="#" title="这里是产品名称">鱼香肉丝</a><a href="#" title="这里是产品名称">烤芝士沙拉</a><a href="#" title="这里是产品名称">烧仙草</a><a href="#" title="这里是产品名称">秘制烤鸡腿堡</a><a href="#" title="这里是产品名称">糖醋里脊</a></p>
   </div>
  </div>
  <nav class="menu_bg">
@@ -106,12 +106,12 @@ Author URI: http://www.deathghost.cn
 </section>
 <!--End content-->
 <div class="F-link">
-  <span>友情链接：</span>
-  <a href="http://www.deathghost.cn" target="_blank" title="DeathGhost">DeathGhost</a>
-  <a href="http://www.17sucai.com/pins/15966.html" target="_blank" title="免费后台管理模板">绿色清爽版通用型后台管理模板免费下载</a>
-  <a href="http://www.17sucai.com/pins/17567.html" target="_blank" title="果蔬菜类模板源码">HTML5果蔬菜类模板源码</a>
-  <a href="http://www.17sucai.com/pins/14931.html" target="_blank" title="黑色的cms商城网站后台管理模板">黑色的cms商城网站后台管理模板</a>
- </div>
+    <span>友情链接：</span>
+    <a href="http://localhost:8080/index.html" target="_blank" title="杉杉订餐">杉杉订餐</a>
+    <a href="http://www.caixiangyuan.com/" target="_blank" title="菜香源主页">菜香源川菜馆官网</a>
+    <a href="http://www.jidongzs.com/?bd_vid=8764546780220336850" target="_blank" title="烧仙草挂网">悸动烧仙草挂网</a>
+    <a href="http://www.sohu.com/a/161665425_125537" target="_blank" title="香霏牛排官网">香霏牛排官网</a>
+</div>
 <footer>
  <section class="Otherlink">
   <aside>
@@ -160,5 +160,70 @@ Author URI: http://www.deathghost.cn
  </section>
 <div class="copyright">© 版权所有 2016 DeathGhost 技术支持：<a href="http://www.deathghost.cn" title="DeathGhost">DeathGhost</a></div>
 </footer>
+<script type="text/javascript">
+    $(function(){
+        var user=sessionStorage.getItem("name");
+        var userId;
+        var realName;
+        console.log(user);
+        if(user==null){
+            $(".LeftNav").append(" <a href=\"login/register.html\">注册</a>/<a href=\"login/login.html\">登录</a><a href=\"#\">QQ客服</a><a href=\"#\">微信客服</a><a href=\"#\">手机客户端</a>");
+            $(".seekarea").append(" <a href=\"#\">碑林区</a>\n" +
+                "     <a href=\"#\">新城区</a>\n" +
+                "     <a href=\"#\">未央区</a>\n" +
+                "     <a href=\"#\">雁塔区</a>\n" +
+                "     <a href=\"#\">莲湖区</a>\n" +
+                "     <a href=\"#\">高新区</a>\n" +
+                "     <a href=\"#\">灞桥区</a>\n" +
+                "     <a href=\"#\">高陵区</a>\n" +
+                "     <a href=\"#\">阎良区</a>\n" +
+                "     <a href=\"#\">临潼区</a>\n" +
+                "     <a href=\"#\">长安区</a>\n" +
+                "     <a href=\"#\">周至县</a>\n" +
+                "     <a href=\"#\">蓝田县 </a>");
+        }
+        else{
+            $(".LeftNav").append(" <a href=\"index.html\">退出登录</a><a href=\"#\">QQ客服</a><a href=\"#\">微信客服</a><a href=\"#\">手机客户端</a>");
+            var json = {
+                name: user
+            };
+            json = JSON.stringify(json);
+            var cityname=null;
+            $.ajax({
+                type: "POST",
+                url: "/GetUserCityInfo",
+                contentType: "application/json; charset=utf-8",
+                data: json,
+                async: false,
+                dataType: "json",
+                success: function (info) {
+                    var city=info.user.city;
+                    cityname=city;
+                    var distict=info.user.distict;
+                    $("#distict").append(city+ "[ <a href=\"#\">"+distict+"</a> ]");
+                },
+                error: function (message) {
+                    $("#request-process-patent").html("获取数据失败！");
+                }
+            });
+
+            $.ajax({
+                type: "POST",
+                url: "/GetUserInfo",
+                contentType: "application/json; charset=utf-8",
+                data: json,
+                async: false,
+                dataType: "json",
+                success: function (info) {
+                    userId=info.user.userId;
+                    realName=info.user.realname;
+                },
+                error: function (message) {
+                    $("#request-process-patent").html("获取数据失败！");
+                }
+            });
+        }
+    });
+</script>
 </body>
 </html>

@@ -44,7 +44,7 @@ Author URI: http://www.deathghost.cn
    <input type="submit" class="searchbutton" value="搜 索" />
    </div>
    </form>
-      <p class="hotkeywords"><a href="#" title="酸辣土豆丝">干煸肥肠</a><a href="#" title="这里是产品名称">鱼香肉丝</a><a href="#" title="这里是产品名称">烤芝士沙拉</a><a href="#" title="这里是产品名称">烧仙草</a><a href="#" title="这里是产品名称">滑蛋虾仁</a><a href="#" title="这里是产品名称">糖醋里脊</a></p>
+      <p class="hotkeywords"><a href="#" title="酸辣土豆丝">干煸肥肠</a><a href="#" title="这里是产品名称">鱼香肉丝</a><a href="#" title="这里是产品名称">烤芝士沙拉</a><a href="#" title="这里是产品名称">烧仙草</a><a href="#" title="这里是产品名称">秘制烤鸡腿堡</a><a href="#" title="这里是产品名称">糖醋里脊</a></p>
   </div>
  </div>
  <nav class="menu_bg">
@@ -159,6 +159,20 @@ Author URI: http://www.deathghost.cn
 <div class="copyright">© 版权所有 2016 DeathGhost 技术支持：<a href="http://www.deathghost.cn" title="DeathGhost">DeathGhost</a></div>
 </footer>
 <script type="text/javascript">
+    function add0(m){return m<10?'0'+m:m }
+    function format(timestamp)
+    {
+        //timestamp是整数，否则要parseInt转换,不会出现少个0的情况
+
+        var time = new Date(timestamp);
+        var year = time.getFullYear();
+        var month = time.getMonth()+1;
+        var date = time.getDate();
+        var hours = time.getHours();
+        var minutes = time.getMinutes();
+        var seconds = time.getSeconds();
+        return year+'-'+add0(month)+'-'+add0(date)+' '+add0(hours)+':'+add0(minutes)+':'+add0(seconds);
+    }
     $(function(){
         var user=sessionStorage.getItem("name");
         var userId;
@@ -237,7 +251,8 @@ Author URI: http://www.deathghost.cn
                     for(var i=0;i<info.order.length;i++){
                         var state=info.order[i].state;
                         var orderno=info.order[i].orderno;
-                        var createtime=info.order[i].createtime;
+                        var createtime1=info.order[i].createtime;
+                        var createtime=format(createtime1);
                         var price=info.order[i].price;
                         console.log(state);
                         if(state==-2){
