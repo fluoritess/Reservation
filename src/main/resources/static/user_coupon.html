@@ -74,15 +74,15 @@ Author URI: http://www.deathghost.cn
   <!--user Coupon-->
   <section class="M-coupon Overflow">
    <span class="coupontitle Block Font14 FontW Lineheight35">我的优惠券</span>
-   <ul>
-    <a href="shop.html" class="Fontfff" target="_blank">
-    <li>
-     <p class="U-price FontW"><i>￥</i>20<span class="Font14 FontW">全店通用</span></p>
-     <p>发行店铺：好味来快餐店</p>
-     <p>使用条件：满299元即可使用</p>
-     <p>有效期：2014-09-21至2014-09-30</p>
-    </li>
-    </a>
+   <ul id="ul">
+    <!--<a href="shop.html" class="Fontfff" target="_blank">-->
+    <!--<li>-->
+     <!--<p class="U-price FontW"><i>￥</i>20<span class="Font14 FontW">全店通用</span></p>-->
+     <!--<p>发行店铺：好味来快餐店</p>-->
+     <!--<p>使用条件：满299元即可使用</p>-->
+     <!--<p>有效期：2014-09-21至2014-09-30</p>-->
+    <!--</li>-->
+    <!--</a>-->
    </ul>
   </section>
  </article>
@@ -144,6 +144,20 @@ Author URI: http://www.deathghost.cn
 <div class="copyright">© 版权所有 2016 DeathGhost 技术支持：<a href="http://www.deathghost.cn" title="DeathGhost">DeathGhost</a></div>
 </footer>
 <script type="text/javascript">
+    function add0(m){return m<10?'0'+m:m }
+    function format(timestamp)
+    {
+        //timestamp是整数，否则要parseInt转换,不会出现少个0的情况
+
+        var time = new Date(timestamp);
+        var year = time.getFullYear();
+        var month = time.getMonth()+1;
+        var date = time.getDate();
+        var hours = time.getHours();
+        var minutes = time.getMinutes();
+        var seconds = time.getSeconds();
+        return year+'-'+add0(month)+'-'+add0(date)+' '+add0(hours)+':'+add0(minutes)+':'+add0(seconds);
+    }
     $(function(){
         var user=sessionStorage.getItem("name");
         var userId;
@@ -200,6 +214,41 @@ Author URI: http://www.deathghost.cn
                 success: function (info) {
                     userId=info.user.userId;
                     realName=info.user.realname;
+                },
+                error: function (message) {
+                    $("#request-process-patent").html("获取数据失败！");
+                }
+            });
+            var json = {
+                userId: userId
+            };
+            json = JSON.stringify(json);
+            $.ajax({
+                type: "POST",
+                url: "/selectCouPonByUser",
+                contentType: "application/json; charset=utf-8",
+                data: json,
+                async: false,
+                dataType: "json",
+                success: function (info) {
+                   console.log(info);
+                   for(var i=0;i<info.coupon.length;i++){
+                       var price=info.coupon[i].price;
+                       var restaurantName=info.coupon[i].restaurantName;
+                        var instructions=info.coupon[i].instructions;
+                        var endDate1=info.coupon[i].endDate;
+                        var startDate1=info.coupon[i].startDate;
+                        var endDate=format(endDate1);
+                        var startDate=format(startDate1);
+                        $("#ul").append("   <a href=\"shop.html\" class=\"Fontfff\" target=\"_blank\">\n" +
+                            "    <li>\n" +
+                            "     <p class=\"U-price FontW\"><i>￥</i>"+price+"<span class=\"Font14 FontW\">"+restaurantName+"</span></p>\n" +
+                            "     <p>发行店铺："+restaurantName+"</p>\n" +
+                            "     <p>优惠卷说明："+instructions+"</p>\n" +
+                            "     <p>有效期："+startDate+"至"+endDate+"</p>\n" +
+                            "    </li>\n" +
+                            "    </a>");
+                   }
                 },
                 error: function (message) {
                     $("#request-process-patent").html("获取数据失败！");
