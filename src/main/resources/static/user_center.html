@@ -208,7 +208,7 @@ Author URI: http://www.deathghost.cn
                         "    <img src=\""+userImag+"\">\n" +
                         "    <p class=\"Font14 FontW\">"+name+" 欢迎您回到 用户中心！</p>\n" +
                         "    <p class=\"Font12\">您的上一次登录时间:<time> "+lastDate+"</time></p>\n" +
-                        "    <p class=\"Font12 CorRed FontW\">我的优惠券( 0 ) | 我的积分( 0 )</p>\n" +
+                        "    <p class=\"Font12 CorRed FontW\" id=\"youhuijuan\"></p>\n" +
                         "   </div>\n" );
                 },
                 error: function (message) {
@@ -221,6 +221,21 @@ Author URI: http://www.deathghost.cn
             json = JSON.stringify(json);
             $.ajax({
                 type: "POST",
+                url: "/selectCouPonByUser",
+                contentType: "application/json; charset=utf-8",
+                data: json,
+                async: false,
+                dataType: "json",
+                success: function (info) {
+                    var number=info.coupon.length;
+                    $("#youhuijuan").append("我的优惠券( "+number+" )");
+                },
+                error: function (message) {
+                    $("#request-process-patent").html("获取数据失败！");
+                }
+            });
+            $.ajax({
+                type: "POST",
                 url: "/selectOrderByUserId",
                 contentType: "application/json; charset=utf-8",
                 data: json,
@@ -231,6 +246,8 @@ Author URI: http://www.deathghost.cn
                     var count0=0;
                     var count1=0;
                     var count2=0;
+                    var number=info.order.length;
+                    $("#youhuijuan").append("| 我的订单( "+number+" )");
                     for(var i=0;i<info.order.length;i++){
                         var state=info.order[i].state;
                         console.log(state);
