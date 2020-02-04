@@ -9,4 +9,5 @@ import java.util.List;
 @Service
 public interface CollectService {
     List<collectUtil> selectByUser(int user_id);
+    List<collect> selectByUserAndRe(int user_id,int reId);
 }

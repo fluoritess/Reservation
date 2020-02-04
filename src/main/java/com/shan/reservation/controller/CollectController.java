@@ -34,4 +34,14 @@ public class CollectController {
         List<collectUtil> list=CollectService.selectByUser(user_id);
         return  R.ok().put("collect",list);
     }
+    @ResponseBody
+    @RequestMapping("/selectByUserAndRe" )
+    @ArchivesLog(operationType = "查询信息", operationName = "查询收藏夹信息")
+    public R selectByUserAndRe(@RequestBody Map<String,String> map, HttpSession httpSession){
+        int user_id=Integer.parseInt(map.get("userId"));
+        int re_id=Integer.parseInt(map.get("id"));
+        List<collect> list=CollectService.selectByUserAndRe(user_id,re_id);
+        return  R.ok().put("collect",list);
+    }
+
 }

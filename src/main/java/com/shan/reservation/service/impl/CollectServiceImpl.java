@@ -35,4 +35,10 @@ public class CollectServiceImpl implements CollectService {
         }
         return tar;
     }
+
+    @Override
+    public List<collect> selectByUserAndRe(int user_id, int restaurantId) {
+        List<collect> list=collectUtilMapper.selectByUserAndRe(user_id,restaurantId);
+        return list;
+    }
 }

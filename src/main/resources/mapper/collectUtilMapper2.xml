@@ -12,4 +12,9 @@
     <select id="selectByUser" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
       select * from collect where user_id= #{userId,jdbcType=INTEGER}
     </select>
+
+    <select id="selectByUserAndRe" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+       select * from collect where user_id= #{userId,jdbcType=INTEGER} And restaurant_id= #{restaurantId,jdbcType=INTEGER}
+    </select>
+
 </mapper>

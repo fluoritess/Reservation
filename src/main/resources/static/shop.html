@@ -365,6 +365,53 @@ Author URI: http://www.deathghost.cn
     <div class="copyright">© 版权所有 2020 杉杉订餐 技术支持：<a href="http://www.deathghost.cn" title="DeathGhost">DeathGhost</a></div>
 </footer>
 <script type="text/javascript">
+        //判断是否收藏标志
+        var collect=0;
+        //获取商铺id
+        var id = location.href.split("?")[1];
+        //获取用户id
+        var user=sessionStorage.getItem("name");
+        var userId;
+        var json = {
+            name: user
+        };
+        json = JSON.stringify(json);
+        $.ajax({
+            type: "POST",
+            url: "/GetUserInfo",
+            contentType: "application/json; charset=utf-8",
+            data: json,
+            async: false,
+            dataType: "json",
+            success: function (info) {
+                userId=info.user.userId;
+            },
+            error: function (message) {
+                $("#request-process-patent").html("获取数据失败！");
+            }
+        });
+        var json = {
+            userId: userId,
+            id:id
+        };
+        json = JSON.stringify(json);
+        $.ajax({
+            type: "POST",
+            url: "/selectByUserAndRe",
+            contentType: "application/json; charset=utf-8",
+            data: json,
+            async: false,
+            dataType: "json",
+            success: function (info) {
+                if(info.collect.length>0){
+                    collect=1;
+                }
+            },
+            error: function (message) {
+                $("#request-process-patent").html("获取数据失败！");
+            }
+        });
+        //获取商铺id
         var id = location.href.split("?")[1];
         var json = {
             id: id
@@ -380,38 +427,75 @@ Author URI: http://www.deathghost.cn
             dataType: "json",
             success: function (info) {
                 // console.log(info);
-                var name=info.restaurant.restaurantAddress;
-                var phone=info.restaurant.restaurantPhone;
-                var image=info.restaurant.restaurantImage;
-                var addrress=info.restaurant.restaurantAddress;
-                var score=info.restaurant.score;
-                var shopname=info.restaurant.restaurantName;
-                var collection=info.restaurant.collection;
-                var parkingspace=info.restaurant.parkingspace;
-                var restaurantDescribe=info.restaurant.restaurantDescribe;
-                var averageprice=info.restaurant.averageprice;
-                var logo=info.restaurant.logo;
-                $(".shoptext").prepend(" <p><span>地址：</span>"+addrress+"</p>\n" +
-                    "        <p><span>电话：</span>"+phone+"</p>\n" +
-                    "        <p><span>店家简介：</span>"+restaurantDescribe+"</p>\n" +
-                    "        <p><span>优惠活动：</span>暂无信息</p>\n" +
-                    "        <p><span>停车位：</span>"+parkingspace+"个停车位（免费）</p>\n" +
-                    "        <p><span>WIFI：</span>免费WIFI</p>\n" +
-                    "        <p><span>单人平均消费价格：</span>"+averageprice+"元</p>");
-                $(".shopimg").prepend("<img src=\""+image+"\" id=\"showimg\">");
-                $(".smallpic").append("<li><img src=\""+image+"\" onmouseover=\"show(this)\" onmouseout=\"hide()\"></li>");
-                $("#shopname").append("<img src=\""+logo+"\" class=\"shop-ico\">\n" +
-                    "    <span>"+shopname+"</span>\n" +
-                    "    <span>\n" +
-                    "     <img src=\"images/star-on.png\">\n" +
-                    "     <img src=\"images/star-on.png\">\n" +
-                    "     <img src=\"images/star-on.png\">\n" +
-                    "     <img src=\"images/star-on.png\">\n" +
-                    "     <img src=\"images/star-off.png\">\n" +
-                    "    </span>\n" +
-                    "    <span>"+score+"</span>");
-                $("#otherinfor").prepend(" <a href=\"#\" class=\"icoa\"><img src=\"images/collect.png\">收藏店铺（"+collection+"）</a>");
-                $("#title").append("杉杉订餐-"+shopname);
+                if(collect==0){//判断是否收藏
+                    var name=info.restaurant.restaurantAddress;
+                    var phone=info.restaurant.restaurantPhone;
+                    var image=info.restaurant.restaurantImage;
+                    var addrress=info.restaurant.restaurantAddress;
+                    var score=info.restaurant.score;
+                    var shopname=info.restaurant.restaurantName;
+                    var collection=info.restaurant.collection;
+                    var parkingspace=info.restaurant.parkingspace;
+                    var restaurantDescribe=info.restaurant.restaurantDescribe;
+                    var averageprice=info.restaurant.averageprice;
+                    var logo=info.restaurant.logo;
+                    $(".shoptext").prepend(" <p><span>地址：</span>"+addrress+"</p>\n" +
+                        "        <p><span>电话：</span>"+phone+"</p>\n" +
+                        "        <p><span>店家简介：</span>"+restaurantDescribe+"</p>\n" +
+                        "        <p><span>优惠活动：</span>暂无信息</p>\n" +
+                        "        <p><span>停车位：</span>"+parkingspace+"个停车位（免费）</p>\n" +
+                        "        <p><span>WIFI：</span>免费WIFI</p>\n" +
+                        "        <p><span>单人平均消费价格：</span>"+averageprice+"元</p>");
+                    $(".shopimg").prepend("<img src=\""+image+"\" id=\"showimg\">");
+                    $(".smallpic").append("<li><img src=\""+image+"\" onmouseover=\"show(this)\" onmouseout=\"hide()\"></li>");
+                    $("#shopname").append("<img src=\""+logo+"\" class=\"shop-ico\">\n" +
+                        "    <span>"+shopname+"</span>\n" +
+                        "    <span>\n" +
+                        "     <img src=\"images/star-on.png\">\n" +
+                        "     <img src=\"images/star-on.png\">\n" +
+                        "     <img src=\"images/star-on.png\">\n" +
+                        "     <img src=\"images/star-on.png\">\n" +
+                        "     <img src=\"images/star-off.png\">\n" +
+                        "    </span>\n" +
+                        "    <span>"+score+"</span>");
+                    $("#otherinfor").prepend(" <a href=\"#\" class=\"icoa\" id=\"shoucang\"><img src=\"images/collect.png\">收藏店铺（"+collection+"）</a>");
+                    $("#title").append("杉杉订餐-"+shopname);
+                }
+                else{
+                    var name=info.restaurant.restaurantAddress;
+                    var phone=info.restaurant.restaurantPhone;
+                    var image=info.restaurant.restaurantImage;
+                    var addrress=info.restaurant.restaurantAddress;
+                    var score=info.restaurant.score;
+                    var shopname=info.restaurant.restaurantName;
+                    var collection=info.restaurant.collection;
+                    var parkingspace=info.restaurant.parkingspace;
+                    var restaurantDescribe=info.restaurant.restaurantDescribe;
+                    var averageprice=info.restaurant.averageprice;
+                    var logo=info.restaurant.logo;
+                    $(".shoptext").prepend(" <p><span>地址：</span>"+addrress+"</p>\n" +
+                        "        <p><span>电话：</span>"+phone+"</p>\n" +
+                        "        <p><span>店家简介：</span>"+restaurantDescribe+"</p>\n" +
+                        "        <p><span>优惠活动：</span>暂无信息</p>\n" +
+                        "        <p><span>停车位：</span>"+parkingspace+"个停车位（免费）</p>\n" +
+                        "        <p><span>WIFI：</span>免费WIFI</p>\n" +
+                        "        <p><span>单人平均消费价格：</span>"+averageprice+"元</p>");
+                    $(".shopimg").prepend("<img src=\""+image+"\" id=\"showimg\">");
+                    $(".smallpic").append("<li><img src=\""+image+"\" onmouseover=\"show(this)\" onmouseout=\"hide()\"></li>");
+                    $("#shopname").append("<img src=\""+logo+"\" class=\"shop-ico\">\n" +
+                        "    <span>"+shopname+"</span>\n" +
+                        "    <span>\n" +
+                        "     <img src=\"images/star-on.png\">\n" +
+                        "     <img src=\"images/star-on.png\">\n" +
+                        "     <img src=\"images/star-on.png\">\n" +
+                        "     <img src=\"images/star-on.png\">\n" +
+                        "     <img src=\"images/star-off.png\">\n" +
+                        "    </span>\n" +
+                        "    <span>"+score+"</span>");
+                    $("#otherinfor").prepend(" <a href=\"#\" class=\"icoa\" id=\"quxiao\"><img src=\"images/collect.png\">取消收藏（"+collection+"）</a>");
+                    $("#title").append("杉杉订餐-"+shopname);
+                }
+
             },
             error: function (message) {
                 $("#request-process-patent").html("获取数据失败！");

@@ -8,4 +8,5 @@ import java.util.List;
 @Mapper
 public interface collectUtilMapper {
     List<collect> selectByUser(int user_id);
+    List<collect> selectByUserAndRe(int userId,int restaurantId);
 }
