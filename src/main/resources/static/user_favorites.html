@@ -75,13 +75,13 @@ Author URI: http://www.deathghost.cn
   <!--user Favorites-->
   <section class="ShopFav Overflow">
    <span class="ShopFavtitle Block Font14 FontW Lineheight35">我的收藏</span>
-   <ul>
-    <a href="shop.html" target="_blank">
-    <li>
-     <img src="upload/cc.jpg">
-     <p>好味来快餐店 ( 删除 )</p>
-    </li>
-    </a>
+   <ul id="ul">
+    <!--<a href="shop.html" target="_blank">-->
+    <!--<li>-->
+     <!--<img src="upload/cc.jpg">-->
+     <!--<p>好味来快餐店 ( 删除 )</p>-->
+    <!--</li>-->
+    <!--</a>-->
    </ul>
   </section>
  </article>
@@ -199,6 +199,36 @@ Author URI: http://www.deathghost.cn
                 success: function (info) {
                     userId=info.user.userId;
                     realName=info.user.realname;
+                },
+                error: function (message) {
+                    $("#request-process-patent").html("获取数据失败！");
+                }
+            });
+            var json = {
+                userId: userId
+            };
+            json = JSON.stringify(json);
+            $.ajax({
+                type: "POST",
+                url: "/selectCollectByUser",
+                contentType: "application/json; charset=utf-8",
+                data: json,
+                async: false,
+                dataType: "json",
+                success: function (info) {
+                    console.log(info);
+                    for(var i=0;i<info.collect.length;i++){
+                        var restaurantId=info.collect[i].restaurantId;
+                        var restaurantName=info.collect[i].restaurantName;
+                        var restaurantImage=info.collect[i].restaurantImage;
+                        $("#ul").append("  <a href=\"shop.html?"+restaurantId+"\" target=\"_blank\">\n" +
+                            "    <li>\n" +
+                            "     <img src=\""+restaurantImage+"\">\n" +
+                            "     <p>"+restaurantName+"</p>\n" +
+                            "    </li>\n" +
+                            "    </a>");
+                    }
+
                 },
                 error: function (message) {
                     $("#request-process-patent").html("获取数据失败！");

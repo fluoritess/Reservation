@@ -72,35 +72,35 @@ Author URI: http://www.deathghost.cn
  </nav>
  <article class="U-article Overflow">
   <!--user Account-->
-  <section class="AccManage Overflow">
+  <section class="AccManage Overflow" id="AccManage">
    <span class="AMTitle Block Font14 FontW Lineheight35">账户管理</span>
-   <p>登陆邮箱：232***413@qq.com ( <a href="#" target="_blank">更换手机号码</a> )</p>
-   <p>手机号码：183****5673 ( <a href="#" target="_blank">更换手机号码</a> ) ( <a href="#" target="_blank">解绑手机</a> )</p>
-   <p>上次登陆：2014年09月22日 11:40:36( *如非本人登陆，请立即<a href="#" target="_blank">修改您的密码</a>！ )</p>
-   <form>
-    <table>
-    <tr>
-    <td width="30%" align="right">*修改头像：</td>
-    <td><input name="" type="file"><button>确定</button></td>
-    </tr>
-    <tr>
-    <td width="30%" align="right">*昵称：</td>
-    <td><input type="text" name="" value="DeathGhost"></td>
-    </tr>
-    <tr>
-    <td width="30%" align="right">*邮箱：</td>
-    <td><input type="email" name="" value="232650413@qq.com"></td>
-    </tr>
-    <tr>
-    <td width="30%" align="right">*手机：</td>
-    <td><input type="tel" name="" value="18309275673"></td>
-    </tr>
-    <tr>
-    <td></td>
-    <td><input name="" type="submit" value="保 存"></td>
-    </tr>
-    </table>
-   </form>
+   <!--<p>登陆邮箱：232***413@qq.com ( <a href="#" target="_blank">更换手机号码</a> )</p>-->
+   <!--<p>手机号码：183****5673 ( <a href="#" target="_blank">更换手机号码</a> ) ( <a href="#" target="_blank">解绑手机</a> )</p>-->
+   <!--<p>上次登陆：2014年09月22日 11:40:36( *如非本人登陆，请立即<a href="#" target="_blank">修改您的密码</a>！ )</p>-->
+   <!--<form>-->
+    <!--<table>-->
+    <!--<tr>-->
+    <!--<td width="30%" align="right">*修改头像：</td>-->
+    <!--<td><input name="" type="file"><button>确定</button></td>-->
+    <!--</tr>-->
+    <!--<tr>-->
+    <!--<td width="30%" align="right">*昵称：</td>-->
+    <!--<td><input type="text" name="" value="DeathGhost"></td>-->
+    <!--</tr>-->
+    <!--<tr>-->
+    <!--<td width="30%" align="right">*邮箱：</td>-->
+    <!--<td><input type="email" name="" value="232650413@qq.com"></td>-->
+    <!--</tr>-->
+    <!--<tr>-->
+    <!--<td width="30%" align="right">*手机：</td>-->
+    <!--<td><input type="tel" name="" value="18309275673"></td>-->
+    <!--</tr>-->
+    <!--<tr>-->
+    <!--<td></td>-->
+    <!--<td><input name="" type="submit" value="保 存"></td>-->
+    <!--</tr>-->
+    <!--</table>-->
+   <!--</form>-->
   </section>
  </article>
 </section>
@@ -161,6 +161,20 @@ Author URI: http://www.deathghost.cn
 <div class="copyright">© 版权所有 2016 DeathGhost 技术支持：<a href="http://www.deathghost.cn" title="DeathGhost">DeathGhost</a></div>
 </footer>
 <script type="text/javascript">
+    function add0(m){return m<10?'0'+m:m }
+    function format(timestamp)
+    {
+        //timestamp是整数，否则要parseInt转换,不会出现少个0的情况
+
+        var time = new Date(timestamp);
+        var year = time.getFullYear();
+        var month = time.getMonth()+1;
+        var date = time.getDate();
+        var hours = time.getHours();
+        var minutes = time.getMinutes();
+        var seconds = time.getSeconds();
+        return year+'-'+add0(month)+'-'+add0(date)+' '+add0(hours)+':'+add0(minutes)+':'+add0(seconds);
+    }
     $(function(){
         var user=sessionStorage.getItem("name");
         var userId;
@@ -215,8 +229,41 @@ Author URI: http://www.deathghost.cn
                 async: false,
                 dataType: "json",
                 success: function (info) {
+                    console.log(info);
                     userId=info.user.userId;
                     realName=info.user.realname;
+                    var userEmail=info.user.userEmail;
+                    var userPhone=info.user.userPhone;
+                    var lastDate1=info.user.lastDate;
+                    var userName=info.user.userName;
+                    var lastDate=format(lastDate1);
+                    $("#AccManage").append("   <p>登陆邮箱："+userEmail+" ( <a href=\"#\" target=\"_blank\">更换手机号码</a> )</p>\n" +
+                        "   <p>手机号码："+userPhone+" ( <a href=\"#\" target=\"_blank\">更换手机号码</a> ) ( <a href=\"#\" target=\"_blank\">解绑手机</a> )</p>\n" +
+                        "   <p>上次登陆："+lastDate+"( *如非本人登陆，请立即<a href=\"#\" target=\"_blank\">修改您的密码</a>！ )</p>\n" +
+                        "   <form>\n" +
+                        "    <table>\n" +
+                        "    <tr>\n" +
+                        "    <td width=\"30%\" align=\"right\">*修改头像：</td>\n" +
+                        "    <td><input name=\"\" type=\"file\"><button>确定</button></td>\n" +
+                        "    </tr>\n" +
+                        "    <tr>\n" +
+                        "    <td width=\"30%\" align=\"right\">*昵称：</td>\n" +
+                        "    <td><input type=\"text\" name=\"\" value=\""+userName+"\"></td>\n" +
+                        "    </tr>\n" +
+                        "    <tr>\n" +
+                        "    <td width=\"30%\" align=\"right\">*邮箱：</td>\n" +
+                        "    <td><input type=\"email\" name=\"\" value=\""+userEmail+"\"></td>\n" +
+                        "    </tr>\n" +
+                        "    <tr>\n" +
+                        "    <td width=\"30%\" align=\"right\">*手机：</td>\n" +
+                        "    <td><input type=\"tel\" name=\"\" value=\""+userPhone+"\"></td>\n" +
+                        "    </tr>\n" +
+                        "    <tr>\n" +
+                        "    <td></td>\n" +
+                        "    <td><input name=\"\" type=\"submit\" value=\"保 存\"></td>\n" +
+                        "    </tr>\n" +
+                        "    </table>\n" +
+                        "   </form>");
                 },
                 error: function (message) {
                     $("#request-process-patent").html("获取数据失败！");

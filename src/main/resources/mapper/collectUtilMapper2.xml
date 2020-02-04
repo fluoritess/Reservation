@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shan.reservation.mapper.collectUtilMapper" >
+    <resultMap id="BaseResultMap" type="com.shan.reservation.bean.collect" >
+        <constructor >
+            <idArg column="collecte_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="restaurant_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="food_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+        </constructor>
+    </resultMap>
+    <select id="selectByUser" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+      select * from collect where user_id= #{userId,jdbcType=INTEGER}
+    </select>
+</mapper>

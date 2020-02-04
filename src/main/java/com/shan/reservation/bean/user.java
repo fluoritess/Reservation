@@ -23,7 +23,9 @@ public class user {
 
     private Date lastDate;
 
-    public user(Integer userId, String userPassword, String userPhone, Integer userAddress, String userSex, String userImag, String realname, String userName, Integer userState, Date lastDate) {
+    private String userEmail;
+
+    public user(Integer userId, String userPassword, String userPhone, Integer userAddress, String userSex, String userImag, String realname, String userName, Integer userState, Date lastDate, String userEmail) {
         this.userId = userId;
         this.userPassword = userPassword;
         this.userPhone = userPhone;
@@ -34,6 +36,7 @@ public class user {
         this.userName = userName;
         this.userState = userState;
         this.lastDate = lastDate;
+        this.userEmail = userEmail;
     }
 
     public user() {
@@ -118,5 +121,13 @@ public class user {
 
     public void setLastDate(Date lastDate) {
         this.lastDate = lastDate;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail == null ? null : userEmail.trim();
     }
 }

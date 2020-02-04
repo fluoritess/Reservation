@@ -13,6 +13,7 @@
       <arg column="user_name" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="user_state" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="last_date" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+      <arg column="user_email" jdbcType="VARCHAR" javaType="java.lang.String" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -75,7 +76,7 @@
   </sql>
   <sql id="Base_Column_List" >
     user_id, user_password, user_phone, user_address, user_sex, user_imag, realName, 
-    user_name, user_state, last_date
+    user_name, user_state, last_date, user_email
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shan.reservation.bean.userExample" >
     select
@@ -112,11 +113,11 @@
     insert into user (user_id, user_password, user_phone, 
       user_address, user_sex, user_imag, 
       realName, user_name, user_state, 
-      last_date)
+      last_date, user_email)
     values (#{userId,jdbcType=INTEGER}, #{userPassword,jdbcType=VARCHAR}, #{userPhone,jdbcType=VARCHAR}, 
       #{userAddress,jdbcType=INTEGER}, #{userSex,jdbcType=VARCHAR}, #{userImag,jdbcType=VARCHAR}, 
       #{realname,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{userState,jdbcType=INTEGER}, 
-      #{lastDate,jdbcType=TIMESTAMP})
+      #{lastDate,jdbcType=TIMESTAMP}, #{userEmail,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.shan.reservation.bean.user" >
     insert into user
@@ -151,6 +152,9 @@
       <if test="lastDate != null" >
         last_date,
       </if>
+      <if test="userEmail != null" >
+        user_email,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="userId != null" >
@@ -182,6 +186,9 @@
       </if>
       <if test="lastDate != null" >
         #{lastDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userEmail != null" >
+        #{userEmail,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -224,6 +231,9 @@
       <if test="record.lastDate != null" >
         last_date = #{record.lastDate,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.userEmail != null" >
+        user_email = #{record.userEmail,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -240,7 +250,8 @@
       realName = #{record.realname,jdbcType=VARCHAR},
       user_name = #{record.userName,jdbcType=VARCHAR},
       user_state = #{record.userState,jdbcType=INTEGER},
-      last_date = #{record.lastDate,jdbcType=TIMESTAMP}
+      last_date = #{record.lastDate,jdbcType=TIMESTAMP},
+      user_email = #{record.userEmail,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -275,6 +286,9 @@
       <if test="lastDate != null" >
         last_date = #{lastDate,jdbcType=TIMESTAMP},
       </if>
+      <if test="userEmail != null" >
+        user_email = #{userEmail,jdbcType=VARCHAR},
+      </if>
     </set>
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
@@ -288,7 +302,8 @@
       realName = #{realname,jdbcType=VARCHAR},
       user_name = #{userName,jdbcType=VARCHAR},
       user_state = #{userState,jdbcType=INTEGER},
-      last_date = #{lastDate,jdbcType=TIMESTAMP}
+      last_date = #{lastDate,jdbcType=TIMESTAMP},
+      user_email = #{userEmail,jdbcType=VARCHAR}
     where user_id = #{userId,jdbcType=INTEGER}
   </update>
 </mapper>
