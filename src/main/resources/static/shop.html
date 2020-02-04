@@ -223,17 +223,17 @@ Author URI: http://www.deathghost.cn
     </div>
     <!--case4-->
     <div class="menutab">
-     <div class="shopdetails">
-     <div class="shopmaparea">
-      <img src="upload/testimg.jpg"><!--此处占位图调用动态地图后将其删除即可-->
-     </div>
-     <div class="shopdetailsT">
-      <p><span>店铺：外婆家</span></p>
-      <p><span>地址：</span>陕西省西安市雁塔区丈八北路***号</p>
-      <p><span>电话：</span>029-88888888</p>
-      <p><span>乘车路线：</span>300路、115路、14路、800路到西辛庄站下车往东100米</p>
-      <p><span>店铺介绍：</span>***于2005年3月28日开业，立于西安市碑林区***于2005年3月28日开业，立于西安市碑林区***于2005年3月28日开业，立于西安市碑林区***于2005年3月28日开业，立于西安市碑林区***</p>
-     </div>
+     <div class="shopdetails" id="shopdetails">
+     <!--<div class="shopmaparea">-->
+      <!--<img src="upload/testimg.jpg">&lt;!&ndash;此处占位图调用动态地图后将其删除即可&ndash;&gt;-->
+     <!--</div>-->
+     <!--<div class="shopdetailsT">-->
+      <!--<p><span>店铺：外婆家</span></p>-->
+      <!--<p><span>地址：</span>陕西省西安市雁塔区丈八北路***号</p>-->
+      <!--<p><span>电话：</span>029-88888888</p>-->
+      <!--<p><span>乘车路线：</span>300路、115路、14路、800路到西辛庄站下车往东100米</p>-->
+      <!--<p><span>店铺介绍：</span>***于2005年3月28日开业，立于西安市碑林区***于2005年3月28日开业，立于西安市碑林区***于2005年3月28日开业，立于西安市碑林区***于2005年3月28日开业，立于西安市碑林区***</p>-->
+     <!--</div>-->
     </div>
     </div>
     <!--case5-->
@@ -418,6 +418,7 @@ Author URI: http://www.deathghost.cn
         };
         json = JSON.stringify(json);
         var cityname=null;
+        //填充店铺基本信息-------------------------------------------------------------------------------------------------------------------
         $.ajax({
             type: "POST",
             url: "/findRestaurantById",
@@ -501,7 +502,7 @@ Author URI: http://www.deathghost.cn
                 $("#request-process-patent").html("获取数据失败！");
             }
         });
-        //获取评论
+        //获取评论-------------------------------------------------------------------------------------------------------------------
         $.ajax({
             type: "POST",
             url: "/selectReId",
@@ -565,6 +566,7 @@ Author URI: http://www.deathghost.cn
                 $("#request-process-patent").html("获取数据失败！");
             }
         });
+        //获取food菜单-------------------------------------------------------------------------------------------------------------------
         $.ajax({
             type: "POST",
             url: "/findFoodByRestaurant",
@@ -597,6 +599,7 @@ Author URI: http://www.deathghost.cn
                 $("#request-process-patent").html("获取数据失败！");
             }
         });
+        //附近商店-------------------------------------------------------------------------------------------------------------------
         $.ajax({
             type: "POST",
             url: "/findAllRestaurant",
@@ -647,6 +650,50 @@ Author URI: http://www.deathghost.cn
                 $("#request-process-patent").html("获取数据失败！");
             }
         });
+        //获取商铺id
+        var id = location.href.split("?")[1];
+        var json = {
+            id: id
+        };
+        json = JSON.stringify(json);
+        var cityname=null;
+        //填充店铺详细信息-------------------------------------------------------------------------------------------------------------------
+        $.ajax({
+            type: "POST",
+            url: "/findRestaurantById",
+            contentType: "application/json; charset=utf-8",
+            data: json,
+            async: false,
+            dataType: "json",
+            success: function (info) {
+                    var name=info.restaurant.restaurantName;
+                    var phone=info.restaurant.restaurantPhone;
+                    var image=info.restaurant.restaurantImage;
+                    var addrress=info.restaurant.restaurantAddress;
+                    var score=info.restaurant.score;
+                    var shopname=info.restaurant.restaurantName;
+                    var collection=info.restaurant.collection;
+                    var parkingspace=info.restaurant.parkingspace;
+                    var restaurantDescribe=info.restaurant.restaurantDescribe;
+                    var averageprice=info.restaurant.averageprice;
+                    var logo=info.restaurant.logo;
+                    $("#shopdetails").append("    <div class=\"shopmaparea\">\n" +
+                        "      <img src=\"upload/testimg.jpg\"><!--此处占位图调用动态地图后将其删除即可-->\n" +
+                        "     </div>\n" +
+                        "     <div class=\"shopdetailsT\">\n" +
+                        "      <p><span>店铺："+name+"</span></p>\n" +
+                        "      <p><span>地址：</span>"+addrress+"</p>\n" +
+                        "      <p><span>电话：</span>"+phone+"</p>\n" +
+                        "      <p><span>乘车路线：</span>33路、66路、99路、233路到天府大道站下车往东100米</p>\n" +
+                        "      <p><span>店铺介绍：</span>"+restaurantDescribe+"</p>\n" +
+                        "     </div>");
+
+            },
+            error: function (message) {
+                $("#request-process-patent").html("获取数据失败！");
+            }
+        });
+        //用户基本信息-------------------------------------------------------------------------------------------------------------------
         $(function(){
             var user=sessionStorage.getItem("name");
             // console.log(user);
@@ -680,6 +727,7 @@ Author URI: http://www.deathghost.cn
                 });
             }
         });
+
 </script>
 </body>
 </html>
