@@ -52,4 +52,13 @@ public class CollectController {
        CollectService.deleteCollect(user_id,re_id);
         return  R.ok();
     }
+    @ResponseBody
+    @RequestMapping("/insertCollect" )
+    @ArchivesLog(operationType = "添加操作", operationName = "收藏")
+    public R insertCollect(@RequestBody Map<String,String> map, HttpSession httpSession){
+        int user_id=Integer.parseInt(map.get("userId"));
+        int re_id=Integer.parseInt(map.get("id"));
+        CollectService.insert(user_id,re_id);
+        return  R.ok();
+    }
 }

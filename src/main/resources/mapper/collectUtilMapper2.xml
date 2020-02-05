@@ -19,4 +19,8 @@
     <delete id="deleteCollect" parameterType="com.shan.reservation.bean.orderExample" >
         DELETE FROM collect WHERE user_id= #{userId,jdbcType=INTEGER} And restaurant_id= #{restaurantId,jdbcType=INTEGER}
     </delete>
+    <insert id="insert" parameterType="com.shan.reservation.bean.collect" >
+    insert into collect (user_id, restaurant_id )
+    values (#{userId,jdbcType=INTEGER}, #{restaurantId,jdbcType=INTEGER})
+  </insert>
 </mapper>

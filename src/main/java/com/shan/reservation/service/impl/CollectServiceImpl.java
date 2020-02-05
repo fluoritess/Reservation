@@ -46,4 +46,9 @@ public class CollectServiceImpl implements CollectService {
     public void deleteCollect(int user_id, int reId) {
         collectUtilMapper.deleteCollect(user_id,reId);
     }
+
+    @Override
+    public void insert(int userId, int restaurantId) {
+        collectUtilMapper.insert(userId,restaurantId);
+    }
 }
