@@ -10,4 +10,5 @@ import java.util.List;
 public interface CollectService {
     List<collectUtil> selectByUser(int user_id);
     List<collect> selectByUserAndRe(int user_id,int reId);
+    void deleteCollect(int user_id,int reId);
 }

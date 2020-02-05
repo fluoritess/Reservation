@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,6 +52,9 @@ public class UserController {
         if(user!=null){
            if(user.getUserPassword().equals(password)){
 //               httpSession.setAttribute("user",user);
+               Date date=new Date();
+               System.out.print(date);
+               userService.updateByName(name,date);
                return  R.ok().put("user",user);
            }
         }

@@ -3,6 +3,7 @@ package com.shan.reservation.service;
 import com.shan.reservation.bean.user;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 /**
  * @author wsw
@@ -16,4 +17,6 @@ public interface UserService {
     user selectUserByNickName(String nickname);
     //根据id查询用户
     user selectUserById(int userid);
+    //更新最近登录时间
+    void updateByName(String name, Date date);
 }

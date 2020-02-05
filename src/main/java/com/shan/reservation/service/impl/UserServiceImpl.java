@@ -2,11 +2,13 @@ package com.shan.reservation.service.impl;
 
 import com.shan.reservation.bean.user;
 import com.shan.reservation.mapper.userMapper;
+import com.shan.reservation.mapper.userMapperUtil;
 import com.shan.reservation.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 /**
@@ -19,7 +21,8 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     @Autowired
     userMapper userMapper;
-
+    @Autowired
+    userMapperUtil  userMapperUtil;
     @Override
     public user selectUserByNickName(String nickname) {
         List<user> list=userMapper.selectByExample(null);
@@ -37,4 +40,11 @@ public class UserServiceImpl implements UserService {
     public user selectUserById(int userid) {
         return userMapper.selectByPrimaryKey(userid);
     }
+
+    @Override
+    public void updateByName(String name, Date date) {
+        userMapperUtil.updateByName(name,date);
+    }
+
+
 }

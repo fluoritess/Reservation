@@ -43,5 +43,13 @@ public class CollectController {
         List<collect> list=CollectService.selectByUserAndRe(user_id,re_id);
         return  R.ok().put("collect",list);
     }
-
+    @ResponseBody
+    @RequestMapping("/deleteCollect" )
+    @ArchivesLog(operationType = "删除操作", operationName = "取消收藏")
+    public R deleteCollect(@RequestBody Map<String,String> map, HttpSession httpSession){
+        int user_id=Integer.parseInt(map.get("userId"));
+        int re_id=Integer.parseInt(map.get("id"));
+       CollectService.deleteCollect(user_id,re_id);
+        return  R.ok();
+    }
 }

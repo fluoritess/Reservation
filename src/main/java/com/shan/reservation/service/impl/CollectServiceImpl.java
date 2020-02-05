@@ -41,4 +41,9 @@ public class CollectServiceImpl implements CollectService {
         List<collect> list=collectUtilMapper.selectByUserAndRe(user_id,restaurantId);
         return list;
     }
+
+    @Override
+    public void deleteCollect(int user_id, int reId) {
+        collectUtilMapper.deleteCollect(user_id,reId);
+    }
 }

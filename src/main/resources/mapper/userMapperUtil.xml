@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shan.reservation.mapper.userMapperUtil" >
+    <resultMap id="BaseResultMap" type="com.shan.reservation.bean.user" >
+        <constructor >
+            <idArg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="user_password" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="user_phone" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="user_address" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="user_sex" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="user_imag" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="realName" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="user_name" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="user_state" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="last_date" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+            <arg column="user_email" jdbcType="VARCHAR" javaType="java.lang.String" />
+        </constructor>
+    </resultMap>
+    <update id="updateByName" parameterType="com.shan.reservation.bean.orderExample" >
+       update `user` SET last_date= #{lastDate}    WHERE user_name=#{userName,jdbcType=VARCHAR}
+    </update>
+</mapper>

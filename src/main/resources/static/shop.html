@@ -739,6 +739,26 @@ Author URI: http://www.deathghost.cn
                 });
             }
         });
+        //删除收藏店铺---------------------------------------------------------------------------------------------------------
+        $("#quxiao").click(function () {
+            console.log("quxiao");
+            var json = {
+                userId: userId,
+                id:id
+            };
+            json = JSON.stringify(json);
+            $.ajax({
+                type: "POST",
+                url: "/deleteCollect",
+                contentType: "application/json; charset=utf-8",
+                data: json,
+                async: false,
+                dataType: "json",
+                success: function (info) {
+                    window.location.href="shop.html?"+id;
+                }
+            });
+        })
 
 </script>
 </body>

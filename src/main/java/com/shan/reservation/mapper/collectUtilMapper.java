@@ -9,4 +9,5 @@ import java.util.List;
 public interface collectUtilMapper {
     List<collect> selectByUser(int user_id);
     List<collect> selectByUserAndRe(int userId,int restaurantId);
+    void deleteCollect(int userId,int restaurantId);
 }
