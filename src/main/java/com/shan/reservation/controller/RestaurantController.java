@@ -1,9 +1,11 @@
 package com.shan.reservation.controller;
 
 import com.shan.reservation.bean.city_info;
+import com.shan.reservation.bean.food;
 import com.shan.reservation.bean.restaurant;
 import com.shan.reservation.bean.restaurantUtil;
 import com.shan.reservation.mapper.restaurantMapper;
+import com.shan.reservation.service.FoodService;
 import com.shan.reservation.service.RestaurantService;
 import com.shan.reservation.util.ArchivesLog;
 import com.shan.reservation.util.R;
@@ -77,5 +79,13 @@ public class RestaurantController {
     public R findHotRestaurant(HttpSession httpSession){
         List<restaurantUtil> restaurant= RestaurantService.findhotshop();
         return  R.ok().put("restaurant",restaurant);
+    }
+    @ResponseBody
+    @RequestMapping("/selectResByName" )
+    @ArchivesLog(operationType = "查询信息", operationName = "根据食物名称查询食物")
+    public R selectByName(@RequestBody Map<String,String> map, HttpSession httpSession){
+        String restaurantName=map.get("restaurantName");
+        List<restaurantUtil> restaurantUtil= RestaurantService.selectByName(restaurantName);
+        return  R.ok().put("restaurant",restaurantUtil);
     }
 }

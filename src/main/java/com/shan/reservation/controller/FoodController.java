@@ -54,7 +54,7 @@ public class FoodController {
     }
 
     @ResponseBody
-    @RequestMapping("/selectByName" )
+    @RequestMapping("/selectFoodByName" )
     @ArchivesLog(operationType = "查询信息", operationName = "根据食物名称查询食物")
     public R selectByName(@RequestBody Map<String,String> map, HttpSession httpSession){
         String foodName=map.get("foodName");
