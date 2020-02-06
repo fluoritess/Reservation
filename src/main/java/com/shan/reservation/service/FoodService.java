@@ -18,5 +18,6 @@ public interface FoodService {
     List<food> findAllFood();
     //根据餐馆id查询食品
     List<food> findFoodByRestaurant(int restaurantId);
-
+    //根据食物名称查询
+    List<food> selectByName(String foodName);
 }

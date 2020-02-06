@@ -2,6 +2,7 @@ package com.shan.reservation.service.impl;
 
 import com.shan.reservation.bean.food;
 import com.shan.reservation.mapper.foodMapper;
+import com.shan.reservation.mapper.foodUtilMapper;
 import com.shan.reservation.mapper.restaurantMapper;
 import com.shan.reservation.service.FoodService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ public class FoodServiceImpl implements FoodService {
     foodMapper foodMapper;
     @Autowired
     restaurantMapper  restaurantMapper;
+    @Autowired
+    foodUtilMapper foodUtilMapper;
     @Override
     public List<food> findAllFood() {
         List<food> food=foodMapper.selectByExample(null);
@@ -37,4 +40,11 @@ public class FoodServiceImpl implements FoodService {
         }
         return tar;
     }
+
+    @Override
+    public List<food> selectByName(String foodName) {
+        List<food> selectByName=foodUtilMapper.selectByName(foodName);
+        return selectByName;
+    }
+
 }

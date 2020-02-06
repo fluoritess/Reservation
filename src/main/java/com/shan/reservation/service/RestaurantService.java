@@ -27,4 +27,5 @@ public interface RestaurantService {
     restaurantUtil findRestaurantById(int id);
     //查询最热餐馆
     List<restaurantUtil> findhotshop();
+    List<restaurantUtil> selectByName(String restaurantName);
 }

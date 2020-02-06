@@ -33,5 +33,8 @@
     <select id="findhotshop" resultMap="BaseResultMap" >
        SELECT * from restaurant   order by sales desc limit 2;
     </select>
+    <select id="selectByName" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+         select * from restaurant WHERE restaurant_name=#{restaurantName,jdbcType=VARCHAR}
+    </select>
 
 </mapper>

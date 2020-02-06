@@ -36,12 +36,14 @@ Author URI: http://www.deathghost.cn
   <div class="Search"> 
    <form method="get" id="main_a_serach" onsubmit="return check_search(this)">
    <div class="Search_nav" id="selectsearch">
-    <a href="javascript:;" onClick="selectsearch(this,'restaurant_name')" class="choose">餐厅</a>
-    <a href="javascript:;" onClick="selectsearch(this,'food_name')">食物名</a>
+    <!--<a href="javascript:;" onClick="selectsearch(this,'restaurant_name')" class="choose">餐厅</a>-->
+    <!--<a href="javascript:;" onClick="selectsearch(this,'food_name')">食物名</a>-->
+       <a href="javascript:;" onClick="selectsearch(this,'restaurant_name')" class="choose" id="res">餐厅</a>
+       <a href="javascript:;" onClick="selectsearch(this,'food_name')" id="food">食物名</a>
    </div>
    <div class="Search_area"> 
    <input type="search" id="fkeyword" name="keyword" placeholder="请输入您所需查找的餐厅名称或食物名称..." class="searchbox" />
-   <input type="submit" class="searchbutton" value="搜 索" />
+   <input type="submit" class="searchbutton" id="shousuo" value="搜 索" />
    </div>
    </form>
       <p class="hotkeywords"><a href="#" title="酸辣土豆丝">干煸肥肠</a><a href="#" title="这里是产品名称">鱼香肉丝</a><a href="#" title="这里是产品名称">烤芝士沙拉</a><a href="#" title="这里是产品名称">烧仙草</a><a href="#" title="这里是产品名称">秘制烤鸡腿堡</a><a href="#" title="这里是产品名称">糖醋里脊</a></p>
@@ -184,6 +186,9 @@ Author URI: http://www.deathghost.cn
 <div class="copyright">© 版权所有 2016 DeathGhost 技术支持：<a href="http://www.deathghost.cn" title="DeathGhost">DeathGhost</a></div>
 </footer>
 <script type="text/javascript">
+    $("#main_a_serach").submit(function (e) {
+        e.preventDefault();
+    });
     $(function(){
         var user=sessionStorage.getItem("name");
         var userId;
@@ -247,6 +252,44 @@ Author URI: http://www.deathghost.cn
         window.sessionStorage.clear();
         window.location.href="index.html";
 
+    })
+    $("#shousuo").click(function () {
+        if($("#food").prop('class')=='choose'){
+            var foodName=$("#fkeyword").val();
+            var json = {
+                foodName: foodName
+            };
+            json = JSON.stringify(json);
+            $.ajax({
+                type: "POST",
+                url: "/selectByName",
+                contentType: "application/json; charset=utf-8",
+                data: json,
+                async: false,
+                dataType: "json",
+                success: function (info) {
+                    console.log(info);
+                }
+            });
+        }
+        else if($("#res").prop('class')=='choose'){
+            var resName=$("#fkeyword").val();
+            var json = {
+                resName: resName
+            };
+            json = JSON.stringify(json);
+            $.ajax({
+                type: "POST",
+                url: "/selectByName",
+                contentType: "application/json; charset=utf-8",
+                data: json,
+                async: false,
+                dataType: "json",
+                success: function (info) {
+                    console.log(info);
+                }
+            });
+        }
     })
 </script>
 </body>

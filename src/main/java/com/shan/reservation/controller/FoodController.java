@@ -53,4 +53,13 @@ public class FoodController {
         return  R.ok().put("food",food);
     }
 
+    @ResponseBody
+    @RequestMapping("/selectByName" )
+    @ArchivesLog(operationType = "查询信息", operationName = "根据食物名称查询食物")
+    public R selectByName(@RequestBody Map<String,String> map, HttpSession httpSession){
+        String foodName=map.get("foodName");
+        List<food> food= FoodService.selectByName(foodName);
+        return  R.ok().put("food",food);
+    }
+
 }
