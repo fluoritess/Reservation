@@ -232,6 +232,34 @@ function setTotal2(){
     // value=totalprice;
 }
 
+var redirect = (function () {
+    var length=$("#cart").find("table").length ;
+    var totalprice=0;
+    var count=0;
+    var  foodlist = [];
+    for(var i=1;i<length-1;i++){
+        if($("#newslist"+i).prop('checked')){
+            count=count+1;
+            var name=$("#name"+i).val();
+            var number=$("#text_box"+i).val();
+            var price=$("#total"+i).html().trim();
+            var onetotalprice=number*price;
+            var food = {};
+            food.name=name;
+            food.number=number;
+            food.price=price;
+            food.onetotalprice=onetotalprice;
+            foodlist.push(food);
+            totalprice=totalprice+onetotalprice;
+        }
+    }
+    var foodcount={}
+    foodcount.name=foodlist;
+    sessionStorage.setItem("foodlist", foodcount);
+    console.log("当前总数量:"+count);
+    console.log("当前总价钱:"+totalprice);
+    window.location.href ="confirm_order.html";
+})
 //计算总价钱
 // $(function () {
 //     var length=$("#cart").find("table").length ;

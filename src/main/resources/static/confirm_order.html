@@ -238,6 +238,12 @@ $(document).ready(function(){
 </body>
 <script type="text/javascript">
     $(function(){
+        var foodlist=sessionStorage.getItem("foodlist");
+        console.log(foodlist);
+        var jsonData = JSON.stringify(foodlist);// 转成JSON格式
+        console.log(jsonData);
+        var result = jQuery.parseJSON(jsonData);
+        console.log(result);
         var user=sessionStorage.getItem("name");
         console.log(user);
         if(user==null){
