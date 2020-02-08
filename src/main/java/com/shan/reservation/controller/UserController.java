@@ -34,14 +34,7 @@ public class UserController {
     UserService userService;
     @Autowired
     AddressService addressService;
-    @ResponseBody
-    @RequestMapping("/test" )
-    public R updateImg(@RequestBody Map<String,String> map){
-            int id=Integer.parseInt(map.get("id"));
-            user user=userService.selectUserById(id);
-            return R.ok().put("user",user);
 
-    }
     @ResponseBody
     @RequestMapping("/Login" )
     @ArchivesLog(operationType = "用户操作", operationName = "用户登陆")

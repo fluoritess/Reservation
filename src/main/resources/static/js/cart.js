@@ -240,16 +240,19 @@ var redirect = (function () {
     for(var i=1;i<length-1;i++){
         if($("#newslist"+i).prop('checked')){
             count=count+1;
-            var name=$("#name"+i).val();
+            var name=$("#name"+i).html();
             var number=$("#text_box"+i).val();
             var price=$("#total"+i).html().trim();
             var onetotalprice=number*price;
+            console.log("商品名称:"+name+"商品数量:"+number+"商品价钱:"+price+"此商品总价:"+onetotalprice);
             var food = {};
             food.name=name;
             food.number=number;
             food.price=price;
             food.onetotalprice=onetotalprice;
+            console.log(food);
             foodlist.push(food);
+            console.log(foodlist);
             totalprice=totalprice+onetotalprice;
         }
     }

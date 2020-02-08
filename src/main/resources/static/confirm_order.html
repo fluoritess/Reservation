@@ -19,7 +19,7 @@
                 <!--<a href="register.html">注册</a>/<a href="login.html">登录</a><a href="#">QQ客服</a><a href="#">微信客服</a><a href="#">手机客户端</a>-->
             </div>
             <div class="RightNav">
-                <a href="user_center.html">用户中心</a> <a href="user_orderlist.html" target="_blank" title="我的订单">我的订单</a> <a href="cart.html">购物车（0）</a> <a href="user_favorites.html" target="_blank" title="我的收藏">我的收藏</a> <a href="#">商家入驻</a>
+                <!--<a href="user_center.html">用户中心</a> <a href="user_orderlist.html" target="_blank" title="我的订单">我的订单</a> <a href="cart.html">购物车（0）</a> <a href="user_favorites.html" target="_blank" title="我的收藏">我的收藏</a> <a href="#">商家入驻</a>-->
             </div>
         </div>
     </section>
@@ -242,12 +242,14 @@ $(document).ready(function(){
         console.log(foodlist);
         var jsonData = JSON.stringify(foodlist);// 转成JSON格式
         console.log(jsonData);
-        var result = jQuery.parseJSON(jsonData);
+        var result = jQuery.parseJSON(jsonData);//
         console.log(result);
         var user=sessionStorage.getItem("name");
         console.log(user);
         if(user==null){
             jQuery(".LeftNav").append(" <a href=\"login/register.html\">注册</a>/<a href=\"login/login.html\">登录</a><a href=\"#\">QQ客服</a><a href=\"#\">微信客服</a><a href=\"#\">手机客户端</a>");
+            jQuery(".RightNav").append(" <a href=\"user_center.html\">用户中心</a> <a href=\"user_orderlist.html\" target=\"_blank\" title=\"我的订单\">我的订单</a> <a href=\"cart.html\">购物车（0）</a> <a href=\"user_favorites.html\" target=\"_blank\" title=\"我的收藏\">我的收藏</a> <a href=\"#\">商家入驻</a>");
+
         }
         else{
             jQuery(".LeftNav").append(" <a href=\"index.html\">退出登录</a><a href=\"#\">QQ客服</a><a href=\"#\">微信客服</a><a href=\"#\">手机客户端</a>");
@@ -271,6 +273,18 @@ $(document).ready(function(){
                 },
                 error: function (message) {
                     jQuery("#request-process-patent").html("获取数据失败！");
+                }
+            });
+            jQuery.ajax({
+                type: "POST",
+                url: "/findCartByuser",
+                contentType: "application/json; charset=utf-8",
+                data: json,
+                async: false,
+                dataType: "json",
+                success: function (info) {
+                    var length=info.cart.length;
+                    jQuery(".RightNav").append("<a href=\"user_center.html\">用户中心</a> <a href=\"user_orderlist.html\" target=\"_blank\" title=\"我的订单\">我的订单</a> <a href=\"cart.html\">购物车（"+length+"）</a> <a href=\"user_favorites.html\" target=\"_blank\" title=\"我的收藏\">我的收藏</a> <a href=\"#\">商家入驻</a>");
                 }
             });
         }
