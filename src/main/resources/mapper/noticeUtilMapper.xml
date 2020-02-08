@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shan.reservation.mapper.noticeUtilMapper" >
+    <resultMap id="BaseResultMap" type="com.shan.reservation.bean.notice" >
+        <constructor >
+            <idArg column="notice_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="admin_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="notice_title" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="notice_content" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="notice_data" jdbcType="TIMESTAMP" javaType="java.util.Date" />
+        </constructor>
+    </resultMap>
+    <select id="selectNoticeByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
+     select * from notice where notice_title= #{noticeTitle,jdbcType=VARCHAR}
+    </select>
+</mapper>

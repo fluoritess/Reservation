@@ -10,6 +10,7 @@
 <script type="text/javascript" src="js/public.js"></script>
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/jqpublic.js"></script>
+    <script type="text/javascript" src="js/normal.js"></script>
 <!--
 Author: DeathGhost
 Author URI: http://www.deathghost.cn
@@ -174,7 +175,7 @@ Author URI: http://www.deathghost.cn
                 "     <a href=\"#\">蓝田县 </a>");
         }
         else{
-            $(".LeftNav").append(" <a href=\"index.html\" id=\"tuichu\">退出登录</a><a href=\"#\">QQ客服</a><a href=\"#\">微信客服</a><a href=\"#\">手机客户端</a>");
+            $(".LeftNav").append(" <a href=\"javascript:redirect();\" id=\"tuichu\">退出登录</a><a href=\"#\">QQ客服</a><a href=\"#\">微信客服</a><a href=\"#\">手机客户端</a>");
             var json = {
                 name: user
             };

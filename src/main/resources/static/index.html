@@ -9,6 +9,7 @@
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/jqpublic.js"></script>
     <script src="layui/layui.js"></script>
+    <script type="text/javascript" src="js/normal.js"></script>
     <link rel="stylesheet" href="layui/css/layui.css" media="all">
 <!--
 Author: DeathGhost
@@ -86,7 +87,7 @@ Author URI: http://www.deathghost.cn
  <aside class="N-right">
   <div class="N-title">公司新闻 <i>COMPANY NEWS</i></div>
   <ul class="Newslist">
-   <li><i></i><a href="article_read.html" target="_blank" title="这里调用新闻标题...">网络订餐全程监管 维护消费者“舌尖上的安全”</a></li>
+   <li><i></i><a href="article_read.html?网络订餐全程监管 维护消费者“舌尖上的安全”" target="_blank" title="这里调用新闻标题...">网络订餐全程监管 维护消费者“舌尖上的安全”</a></li>
    <li><i></i><a href="article_read.html" target="_blank" title="这里调用新闻标题...">杉杉订餐网站会员注册突破100万</a></li>
   </ul>
   <ul class="Orderlist" id="UpRoll">
@@ -494,7 +495,7 @@ Author URI: http://www.deathghost.cn
         else{
             //
 
-            $(".LeftNav").append(" <a href=\"index.html\">退出登录</a><a href=\"#\">QQ客服</a><a href=\"#\">微信客服</a><a href=\"#\">手机客户端</a>");
+            $(".LeftNav").append(" <a href=\"javascript:redirect();\" id=\"tuichu\">退出登录</a><a href=\"#\">QQ客服</a><a href=\"#\">微信客服</a><a href=\"#\">手机客户端</a>");
 
 
             var json = {
