@@ -232,7 +232,7 @@ function setTotal2(){
     // value=totalprice;
 }
 
-var redirect = (function () {
+var jz1 = (function () {
     var length=$("#cart").find("table").length ;
     var totalprice=0;
     var count=0;

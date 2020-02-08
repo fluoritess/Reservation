@@ -7,6 +7,8 @@
 	<link rel="stylesheet" href="css/load.css">
     <script type="text/javascript" src="../js/jquery.js"></script>
     <script type="text/javascript" src="common.js"></script>
+    <link rel="stylesheet" href="../layui/css/layui.css" media="all">
+    <script src="../layui/lay/modules/layer.js"></script>
 </head>
 <body>
 	<header id="headNav">
@@ -100,7 +102,7 @@
                         window.location.href="http://localhost:8080/login/login.html"
                     }
                     else if(name=='admin'){
-                        alert("管理员"+name+"登录成功")
+                        alert("管理员"+name+"登录成功");
                         sessionStorage.setItem("name", name);
                         window.location.href="http://localhost:8080/index.html"
                     }

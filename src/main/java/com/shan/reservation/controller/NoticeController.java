@@ -30,7 +30,8 @@ public class NoticeController {
     @RequestMapping("/selectNoticeByName" )
     @ArchivesLog(operationType = "查询信息", operationName = "查询新闻")
     public R selectNoticeByName(@RequestBody Map<String,String> map, HttpSession httpSession){
-        String title=map.get("title");
+//        String title=map.get("title");
+        String title="网络订餐全程监管 维护消费者“舌尖上的安全”";
         notice notice=NoticeService.selectNoticeByName(title);
         return  R.ok().put("notice",notice);
     }
