@@ -13,6 +13,7 @@
 
 </head>
 <body>
+<div id="pay">
 <header>
     <section class="Topmenubg">
         <div class="Topnav">
@@ -157,7 +158,7 @@
     <div class="Sum_infor">
     <p class="p1">配送费用：￥0.00+商品费用：￥177.00-优惠券：￥10.00</p>
     <p class="p2">合计：<span>￥167.00</span></p>
-    <input type="submit" value="提交订单" / class="p3button">
+    <input type="submit" value="提交订单" class="p3button" id="tijiao">
     </div>
    </div>
    </form>
@@ -178,9 +179,9 @@ $(document).ready(function(){
   <p class="Font14 Lineheight35 FontW">恭喜你！订单提交成功！</p>
   <p class="Font14 Lineheight35 FontW">您的订单编号为：<span class="CorRed">201409205134</span></p>
   <p class="Font14 Lineheight35 FontW">共计金额：<span class="CorRed">￥359</span></p>
-  <p><button type="button" class="Lineheight35"><a href="#" target="_blank">支付宝立即支付</a></button><button type="button" class="Lineheight35"><a href="user_center.html">进入用户中心</button></p>
+  <p><button type="button" class="Lineheight35"><a href="javascript:zhifu();" target="_blank" id="zhifu">支付宝立即支付</a></button><button type="button" class="Lineheight35"><a href="user_center.html">进入用户中心</button></p>
 </section>
-<!--End content-->
+End content
 <div class="F-link">
     <span>友情链接：</span>
     <a href="http://localhost:8080/index.html" target="_blank" title="杉杉订餐">杉杉订餐</a>
@@ -236,8 +237,29 @@ $(document).ready(function(){
  </section>
 <div class="copyright">© 版权所有 2016 DeathGhost 技术支持：<a href="http://www.deathghost.cn" title="DeathGhost">DeathGhost</a></div>
 </footer>
+</div>
 </body>
 <script type="text/javascript">
+    var zhifu= (function () {
+        jQuery.ajax({
+            type: "POST",
+            url: "/getPagePay2",
+            contentType: "application/json; charset=utf-8",
+            data: null,
+            async: false,
+            dataType: "json",
+            success: function (info) {
+                console.log(info);
+                var pay=info.pays.pay;
+                jQuery("#pay").empty();
+                jQuery("#pay").append(pay);
+            },
+            error: function (message) {
+                jQuery("#request-process-patent").html("获取数据失败！");
+            }
+        });
+
+    })
     $(function(){
         var foodlist=sessionStorage.getItem("foodlist");
         console.log(foodlist);
@@ -288,6 +310,7 @@ $(document).ready(function(){
                     jQuery(".RightNav").append("<a href=\"user_center.html\">用户中心</a> <a href=\"user_orderlist.html\" target=\"_blank\" title=\"我的订单\">我的订单</a> <a href=\"cart.html\">购物车（"+length+"）</a> <a href=\"user_favorites.html\" target=\"_blank\" title=\"我的收藏\">我的收藏</a> <a href=\"#\">商家入驻</a>");
                 }
             });
+
         }
     });
 </script>

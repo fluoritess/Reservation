@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="js/jquery.js"></script>
+</head>
+<body>
+    <div id="pay">
+        <a href="#" id="test">支付</a>
+    </div>
+</body>
+<script>
+    $("#test").click(function () {
+        $.ajax({
+            type: "POST",
+            url: "/getPagePay2",
+            contentType: "application/json; charset=utf-8",
+            data: null,
+            async: false,
+            dataType: "json",
+            success: function (info) {
+                console.log(info);
+               var pay=info.pays.pay;
+               $("#pay").append(pay);
+            },
+            error: function (message) {
+                $("#request-process-patent").html("获取数据失败！");
+            }
+        });
+
+    })
+
+</script>
+</html>
