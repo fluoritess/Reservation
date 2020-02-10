@@ -126,7 +126,7 @@
     </ul>
    </form>
   </div>
-  <form action="#">
+  <form action="#" id="form1">
   <div class="inforlist">
    <span class="flow_title">商品清单</span>
    <table>
@@ -240,12 +240,40 @@ End content
 </div>
 </body>
 <script type="text/javascript">
+    $("#form1").submit(function (e) {
+        e.preventDefault();
+    });
+    var user=sessionStorage.getItem("name");
+    var userId;
+    var json = {
+        name: user
+    };
+    json = JSON.stringify(json);
+    $.ajax({
+        type: "POST",
+        url: "/GetUserInfo",
+        contentType: "application/json; charset=utf-8",
+        data: json,
+        async: false,
+        dataType: "json",
+        success: function (info) {
+            userId=info.user.userId;
+        },
+        error: function (message) {
+            $("#request-process-patent").html("获取数据失败！");
+        }
+    });
     var zhifu= (function () {
+        var json = {
+            userId: userId,
+            price:33.6
+        };
+        json = JSON.stringify(json);
         jQuery.ajax({
             type: "POST",
             url: "/getPagePay2",
             contentType: "application/json; charset=utf-8",
-            data: null,
+            data: json,
             async: false,
             dataType: "json",
             success: function (info) {

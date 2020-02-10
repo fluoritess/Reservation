@@ -11,4 +11,5 @@ public interface orderUtilMapper {
     List<order> selectByUserId(int userId);
     void deleteByNo(String orderno);
     void updateByNo(String orderno);
+    int insert(order record);
 }

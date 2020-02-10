@@ -15,7 +15,7 @@
             <arg column="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
             <arg column="deliveryTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
             <arg column="receiveTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-            <arg column="state" jdbcType="TINYINT" javaType="java.lang.Byte" />
+            <arg column="orderState" jdbcType="TINYINT" javaType="java.lang.Byte" />
             <arg column="orderRemarks" jdbcType="VARCHAR" javaType="java.lang.String" />
         </constructor>
     </resultMap>
@@ -26,7 +26,16 @@
         delete  from `order` where  orderNo=#{orderNo,jdbcType=VARCHAR}
     </delete>
     <update id="updateByNo" parameterType="com.shan.reservation.bean.orderExample" >
-       update `order` SET state=-1 WHERE orderNo=#{orderNo,jdbcType=VARCHAR}
+       update `order` SET orderstate=-1 WHERE orderNo=#{orderNo,jdbcType=VARCHAR}
     </update>
-
+    <insert id="insert" parameterType="com.shan.reservation.bean.order" >
+    insert into `order` (orderNo, userId,
+      restaurantId, price,
+      createTime,
+      orderState )
+    values ( #{orderno,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER},
+      #{restaurantid,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL},
+      #{createtime,jdbcType=TIMESTAMP},
+      #{orderstate,jdbcType=TINYINT})
+  </insert>
 </mapper>

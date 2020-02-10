@@ -3,8 +3,10 @@ package com.shan.reservation.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.alipay.api.AlipayApiException;
 import com.shan.reservation.bean.cartutil;
+import com.shan.reservation.bean.order;
 import com.shan.reservation.bean.user;
 import com.shan.reservation.service.AlipayService;
+import com.shan.reservation.service.OrderService;
 import com.shan.reservation.service.UserService;
 import com.shan.reservation.util.ArchivesLog;
 import com.shan.reservation.util.R;
@@ -14,18 +16,24 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 /**
- * 支付宝
- * @author lcc
- * @data :2018年6月4日 上午10:55:46
+ * @author wsw
+ * @Package com.gabe.mychat.controller
+ * @Description:支付controller
+ * @date 2020年2月9日 15:41:27
  */
 @Controller
 public class AlipayController {
-
+    @Autowired
+    OrderService orderService;
     @Autowired
     @Qualifier("alipayService")
     private AlipayService alipayService;
@@ -56,13 +64,25 @@ public class AlipayController {
     @ResponseBody
     @RequestMapping("/getPagePay2" )
     @ArchivesLog(operationType = "查询信息", operationName = "根据用户id查询购物车")
-    public R getPagePay2( HttpSession httpSession){
+    public R getPagePay2( @RequestBody Map<String,String> map,HttpSession httpSession){
         System.out.print("调用支付接口");
-        /** 模仿数据库，从后台调数据*/
-        String outTradeNo = "19960310621211";
+        //获取订单基本信息
+        String orderNo_user=map.get("userId");
+        Integer user_id=Integer.parseInt(map.get("userId"));
+        Integer res_id=9;
+       String price2= map.get("price");
+        BigDecimal price=new BigDecimal(price2);
+        Date date=new Date();
+        Byte state=0;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+        String orderNo_date = sdf.format(date);
+        String orderNo=orderNo_date+orderNo_user;
+        order order=new order(orderNo,user_id,res_id,price,date,state);
+        //创建订单
+        orderService.addOrder(order);
+        String outTradeNo = orderNo;
         Integer totalAmount = 1;
-        String subject = "苹果28";
-
+        String subject = "红烧肥肠";
         String pay = null;
         try {
             pay = alipayService.webPagePay(outTradeNo, totalAmount, subject);

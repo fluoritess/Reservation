@@ -28,11 +28,20 @@ public class order {
 
     private Date receivetime;
 
-    private Byte state;
+    private Byte orderstate;
 
     private String orderremarks;
 
-    public order(Integer orderid, String orderno, Integer userid, Integer restaurantid, BigDecimal price, Byte ispay, Byte isappraise, Byte isrefund, BigDecimal delivermoney, Date createtime, Date deliverytime, Date receivetime, Byte state, String orderremarks) {
+    public order(String orderno, Integer userid, Integer restaurantid, BigDecimal price, Date createtime, Byte orderstate) {
+        this.orderno = orderno;
+        this.userid = userid;
+        this.restaurantid = restaurantid;
+        this.price = price;
+        this.createtime = createtime;
+        this.orderstate = orderstate;
+    }
+
+    public order(Integer orderid, String orderno, Integer userid, Integer restaurantid, BigDecimal price, Byte ispay, Byte isappraise, Byte isrefund, BigDecimal delivermoney, Date createtime, Date deliverytime, Date receivetime, Byte orderstate, String orderremarks) {
         this.orderid = orderid;
         this.orderno = orderno;
         this.userid = userid;
@@ -45,7 +54,7 @@ public class order {
         this.createtime = createtime;
         this.deliverytime = deliverytime;
         this.receivetime = receivetime;
-        this.state = state;
+        this.orderstate = orderstate;
         this.orderremarks = orderremarks;
     }
 
@@ -149,12 +158,12 @@ public class order {
         this.receivetime = receivetime;
     }
 
-    public Byte getState() {
-        return state;
+    public Byte getOrderstate() {
+        return orderstate;
     }
 
-    public void setState(Byte state) {
-        this.state = state;
+    public void setOrderstate(Byte orderstate) {
+        this.orderstate = orderstate;
     }
 
     public String getOrderremarks() {

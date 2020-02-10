@@ -3,9 +3,10 @@ package com.shan.reservation.service;
 import com.alipay.api.AlipayApiException;
 
 /**
- * 支付接口
- * @author lcc
- * @data :2018年6月4日 上午10:18:39
+ * @author wsw
+ * @Package com.gabe.mychat.controller
+ * @Description:支付接口
+ * @date 2020年2月9日 15:19:22
  */
 public interface AlipayService {
 

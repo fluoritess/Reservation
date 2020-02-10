@@ -836,63 +836,63 @@ public class orderExample {
             return (Criteria) this;
         }
 
-        public Criteria andStateIsNull() {
-            addCriterion("state is null");
+        public Criteria andOrderstateIsNull() {
+            addCriterion("orderState is null");
             return (Criteria) this;
         }
 
-        public Criteria andStateIsNotNull() {
-            addCriterion("state is not null");
+        public Criteria andOrderstateIsNotNull() {
+            addCriterion("orderState is not null");
             return (Criteria) this;
         }
 
-        public Criteria andStateEqualTo(Byte value) {
-            addCriterion("state =", value, "state");
+        public Criteria andOrderstateEqualTo(Byte value) {
+            addCriterion("orderState =", value, "orderstate");
             return (Criteria) this;
         }
 
-        public Criteria andStateNotEqualTo(Byte value) {
-            addCriterion("state <>", value, "state");
+        public Criteria andOrderstateNotEqualTo(Byte value) {
+            addCriterion("orderState <>", value, "orderstate");
             return (Criteria) this;
         }
 
-        public Criteria andStateGreaterThan(Byte value) {
-            addCriterion("state >", value, "state");
+        public Criteria andOrderstateGreaterThan(Byte value) {
+            addCriterion("orderState >", value, "orderstate");
             return (Criteria) this;
         }
 
-        public Criteria andStateGreaterThanOrEqualTo(Byte value) {
-            addCriterion("state >=", value, "state");
+        public Criteria andOrderstateGreaterThanOrEqualTo(Byte value) {
+            addCriterion("orderState >=", value, "orderstate");
             return (Criteria) this;
         }
 
-        public Criteria andStateLessThan(Byte value) {
-            addCriterion("state <", value, "state");
+        public Criteria andOrderstateLessThan(Byte value) {
+            addCriterion("orderState <", value, "orderstate");
             return (Criteria) this;
         }
 
-        public Criteria andStateLessThanOrEqualTo(Byte value) {
-            addCriterion("state <=", value, "state");
+        public Criteria andOrderstateLessThanOrEqualTo(Byte value) {
+            addCriterion("orderState <=", value, "orderstate");
             return (Criteria) this;
         }
 
-        public Criteria andStateIn(List<Byte> values) {
-            addCriterion("state in", values, "state");
+        public Criteria andOrderstateIn(List<Byte> values) {
+            addCriterion("orderState in", values, "orderstate");
             return (Criteria) this;
         }
 
-        public Criteria andStateNotIn(List<Byte> values) {
-            addCriterion("state not in", values, "state");
+        public Criteria andOrderstateNotIn(List<Byte> values) {
+            addCriterion("orderState not in", values, "orderstate");
             return (Criteria) this;
         }
 
-        public Criteria andStateBetween(Byte value1, Byte value2) {
-            addCriterion("state between", value1, value2, "state");
+        public Criteria andOrderstateBetween(Byte value1, Byte value2) {
+            addCriterion("orderState between", value1, value2, "orderstate");
             return (Criteria) this;
         }
 
-        public Criteria andStateNotBetween(Byte value1, Byte value2) {
-            addCriterion("state not between", value1, value2, "state");
+        public Criteria andOrderstateNotBetween(Byte value1, Byte value2) {
+            addCriterion("orderState not between", value1, value2, "orderstate");
             return (Criteria) this;
         }
 

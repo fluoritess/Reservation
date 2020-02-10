@@ -15,7 +15,7 @@
       <arg column="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
       <arg column="deliveryTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
       <arg column="receiveTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
-      <arg column="state" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="orderState" jdbcType="TINYINT" javaType="java.lang.Byte" />
       <arg column="orderRemarks" jdbcType="VARCHAR" javaType="java.lang.String" />
     </constructor>
   </resultMap>
@@ -79,7 +79,7 @@
   </sql>
   <sql id="Base_Column_List" >
     orderId, orderNo, userId, restaurantId, price, isPay, isAppraise, isRefund, deliverMoney, 
-    createTime, deliveryTime, receiveTime, state, orderRemarks
+    createTime, deliveryTime, receiveTime, orderState, orderRemarks
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shan.reservation.bean.orderExample" >
     select
@@ -117,12 +117,12 @@
       restaurantId, price, isPay, 
       isAppraise, isRefund, deliverMoney, 
       createTime, deliveryTime, receiveTime, 
-      state, orderRemarks)
+      orderState, orderRemarks)
     values (#{orderid,jdbcType=INTEGER}, #{orderno,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, 
       #{restaurantid,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL}, #{ispay,jdbcType=TINYINT}, 
       #{isappraise,jdbcType=TINYINT}, #{isrefund,jdbcType=TINYINT}, #{delivermoney,jdbcType=DECIMAL}, 
       #{createtime,jdbcType=TIMESTAMP}, #{deliverytime,jdbcType=TIMESTAMP}, #{receivetime,jdbcType=TIMESTAMP}, 
-      #{state,jdbcType=TINYINT}, #{orderremarks,jdbcType=VARCHAR})
+      #{orderstate,jdbcType=TINYINT}, #{orderremarks,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.shan.reservation.bean.order" >
     insert into order
@@ -163,8 +163,8 @@
       <if test="receivetime != null" >
         receiveTime,
       </if>
-      <if test="state != null" >
-        state,
+      <if test="orderstate != null" >
+        orderState,
       </if>
       <if test="orderremarks != null" >
         orderRemarks,
@@ -207,8 +207,8 @@
       <if test="receivetime != null" >
         #{receivetime,jdbcType=TIMESTAMP},
       </if>
-      <if test="state != null" >
-        #{state,jdbcType=TINYINT},
+      <if test="orderstate != null" >
+        #{orderstate,jdbcType=TINYINT},
       </if>
       <if test="orderremarks != null" >
         #{orderremarks,jdbcType=VARCHAR},
@@ -260,8 +260,8 @@
       <if test="record.receivetime != null" >
         receiveTime = #{record.receivetime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.state != null" >
-        state = #{record.state,jdbcType=TINYINT},
+      <if test="record.orderstate != null" >
+        orderState = #{record.orderstate,jdbcType=TINYINT},
       </if>
       <if test="record.orderremarks != null" >
         orderRemarks = #{record.orderremarks,jdbcType=VARCHAR},
@@ -285,7 +285,7 @@
       createTime = #{record.createtime,jdbcType=TIMESTAMP},
       deliveryTime = #{record.deliverytime,jdbcType=TIMESTAMP},
       receiveTime = #{record.receivetime,jdbcType=TIMESTAMP},
-      state = #{record.state,jdbcType=TINYINT},
+      orderState = #{record.orderstate,jdbcType=TINYINT},
       orderRemarks = #{record.orderremarks,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -327,8 +327,8 @@
       <if test="receivetime != null" >
         receiveTime = #{receivetime,jdbcType=TIMESTAMP},
       </if>
-      <if test="state != null" >
-        state = #{state,jdbcType=TINYINT},
+      <if test="orderstate != null" >
+        orderState = #{orderstate,jdbcType=TINYINT},
       </if>
       <if test="orderremarks != null" >
         orderRemarks = #{orderremarks,jdbcType=VARCHAR},
@@ -349,7 +349,7 @@
       createTime = #{createtime,jdbcType=TIMESTAMP},
       deliveryTime = #{deliverytime,jdbcType=TIMESTAMP},
       receiveTime = #{receivetime,jdbcType=TIMESTAMP},
-      state = #{state,jdbcType=TINYINT},
+      orderState = #{orderstate,jdbcType=TINYINT},
       orderRemarks = #{orderremarks,jdbcType=VARCHAR}
     where orderId = #{orderid,jdbcType=INTEGER}
   </update>

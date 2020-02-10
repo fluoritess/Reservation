@@ -17,4 +17,6 @@ public interface OrderService {
     void deleteByNo(String orderNo);
     //修改状态为-1
     void deleteByNo2(String orderNo);
+    //添加订单
+    void addOrder(order order);
 }
