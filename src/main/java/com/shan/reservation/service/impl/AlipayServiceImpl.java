@@ -9,6 +9,8 @@ import com.shan.reservation.config.AlipayConfig;
 import com.shan.reservation.service.AlipayService;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+
 /**
  * 支付实现类
  * @author lcc
@@ -27,7 +29,7 @@ public class AlipayServiceImpl implements AlipayService {
 
 
     @Override
-    public String webPagePay(String outTradeNo, Integer totalAmount, String subject) throws Exception {
+    public String webPagePay(String outTradeNo, BigDecimal totalAmount, String subject) throws Exception {
 
         AlipayTradePagePayRequest alipayRequest = new AlipayTradePagePayRequest();
         /** 同步通知，支付完成后，支付成功页面*/
@@ -96,7 +98,7 @@ public class AlipayServiceImpl implements AlipayService {
     }
 
     @Override
-    public String appPagePay(String outTradeNo, Integer totalAmount, String subject) throws Exception {
+    public String appPagePay(String outTradeNo, BigDecimal totalAmount, String subject) throws Exception {
         AlipayTradeWapPayRequest alipayRequest=new AlipayTradeWapPayRequest();
 
         /** 同步通知，支付完成后，支付成功页面*/

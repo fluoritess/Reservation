@@ -82,8 +82,8 @@
   <!--已保存的地址列表-->
   <form action="#">
    <ul class="address">
-    <li id="style1"><input type="radio" value="" id="1" name="rdColor" onclick="changeColor(1)"/><label for="1"> 浙江省 杭州市 余杭区 航海路1588号（孙先生收）<span class="fontcolor">183092***73</span></label></li>
-    <li id="style2"><input type="radio" value="" id="2" name="rdColor" onclick="changeColor(2)"/><label for="2"> 陕西省 西安市 雁塔区 丈八路22号（孙先生收）<span class="fontcolor">183092***73</span></label></li>
+    <li id="style1"><input type="radio" value="" id="1" name="rdColor" onclick="changeColor(1)"/><label for="1" id="label1"> </label></li>
+    <li id="style2"><input type="radio" value="" id="2" name="rdColor" onclick="changeColor(2)"/><label for="2" id="label2"> <span class="fontcolor"></span></label></li>
     <li><a href = "javascript:void(0)" onclick = "document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'"><img src="images/newaddress.png"/></a></li>
    </ul>
    </form>
@@ -128,36 +128,36 @@
   </div>
   <form action="#" id="form1">
   <div class="inforlist">
-   <span class="flow_title">商品清单</span>
-   <table>
-    <th>名称</th>
-    <th>数量</th>
-    <th>价格</th>
-    <th>小计</th>
-    <tr>
-     <td>酸辣土豆丝</td>
-     <td>2</td>
-     <td>￥59</td>
-     <td>￥118</td>
-    </tr>
-    <tr>
-     <td>鱼香肉丝</td>
-     <td>1</td>
-     <td>￥59</td>
-     <td>￥59</td>
-    </tr>
-   </table>
+   <!--<span class="flow_title">商品清单</span>-->
+   <!--<table>-->
+    <!--<th>名称</th>-->
+    <!--<th>数量</th>-->
+    <!--<th>价格</th>-->
+    <!--<th>小计</th>-->
+    <!--<tr>-->
+     <!--<td>酸辣土豆丝</td>-->
+     <!--<td>2</td>-->
+     <!--<td>￥59</td>-->
+     <!--<td>￥118</td>-->
+    <!--</tr>-->
+    <!--<tr>-->
+     <!--<td>鱼香肉丝</td>-->
+     <!--<td>1</td>-->
+     <!--<td>￥59</td>-->
+     <!--<td>￥59</td>-->
+    <!--</tr>-->
+   <!--</table>-->
     <div class="Order_M">
      <p><em>订单附言:</em><input name=""  type="text"></p>
      <p><em>优惠券:</em>
      <select name="">
-      <option>￥10元优惠券</option>
+         <option id="youhuijuan">￥10元优惠券</option>
      </select>
      </p>
     </div>
     <div class="Sum_infor">
-    <p class="p1">配送费用：￥0.00+商品费用：￥177.00-优惠券：￥10.00</p>
-    <p class="p2">合计：<span>￥167.00</span></p>
+    <p class="p1" id="p1"></p>
+    <p class="p2" id="p2">合计：<span></span></p>
     <input type="submit" value="提交订单" class="p3button" id="tijiao">
     </div>
    </div>
@@ -178,10 +178,10 @@ $(document).ready(function(){
   <!-- 订单提交成功后则显示如下 -->
   <p class="Font14 Lineheight35 FontW">恭喜你！订单提交成功！</p>
   <p class="Font14 Lineheight35 FontW">您的订单编号为：<span class="CorRed">201409205134</span></p>
-  <p class="Font14 Lineheight35 FontW">共计金额：<span class="CorRed">￥359</span></p>
+    <pan class="Font14 Lineheight35 FontW">共计金额：<pan class="CorRed">￥<pan class="CorRed" id="totalprice"></pan></pan></p>
   <p><button type="button" class="Lineheight35"><a href="javascript:zhifu();" target="_blank" id="zhifu">支付宝立即支付</a></button><button type="button" class="Lineheight35"><a href="user_center.html">进入用户中心</button></p>
 </section>
-End content
+
 <div class="F-link">
     <span>友情链接：</span>
     <a href="http://localhost:8080/index.html" target="_blank" title="杉杉订餐">杉杉订餐</a>
@@ -235,16 +235,20 @@ End content
     </div>
   </section>
  </section>
-<div class="copyright">© 版权所有 2016 DeathGhost 技术支持：<a href="http://www.deathghost.cn" title="DeathGhost">DeathGhost</a></div>
+    <div class="copyright">© 版权所有 2016 DeathGhost 技术支持：<a href="http://www.deathghost.cn" title="587工作室">587工作室</a></div>
 </footer>
 </div>
 </body>
 <script type="text/javascript">
+    //禁止表单默认行为--------------------------------------------------------------
     $("#form1").submit(function (e) {
         e.preventDefault();
     });
+    //获取用户基本信息----------------------------------------------------------------
     var user=sessionStorage.getItem("name");
     var userId;
+    var userPhone;
+
     var json = {
         name: user
     };
@@ -257,16 +261,50 @@ End content
         async: false,
         dataType: "json",
         success: function (info) {
+            console.log(info);
             userId=info.user.userId;
+            userPhone=info.user.userPhone;
         },
         error: function (message) {
             $("#request-process-patent").html("获取数据失败！");
         }
     });
+    //获取用户地址----------------------------------------------------------
+    var json = {
+        id: userId
+    };
+    json = JSON.stringify(json);
+    $.ajax({
+        type: "POST",
+        url: "/getAddressByUser",
+        contentType: "application/json; charset=utf-8",
+        data: json,
+        async: false,
+        dataType: "json",
+        success: function (info) {
+            var count=0;
+            for(var i=0;i<info.address.length;i++){
+                var addressProvence=info.address[i].addressProvence;
+                var addressCity=info.address[i].addressCity;
+                var addressDistrict=info.address[i].addressDistrict;
+                var addressStreet=info.address[i].addressStreet;
+                count=i+1;
+                var phone=userPhone.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2');
+                $("#label"+count).append(addressProvence+"  "+addressCity+"市   "+addressDistrict+"  "+addressStreet+ "  "+"（"+user+ " 先生）"+"<span class=\"fontcolor\">"+phone+"</span>");
+            }
+
+        },
+        error: function (message) {
+            $("#request-process-patent").html("获取数据失败！");
+        }
+    });
+    //用户支付------------------------------------------------------------------------
     var zhifu= (function () {
+        var price=jQuery("#totalprice").html();
+        console.log(price);
         var json = {
             userId: userId,
-            price:33.6
+            price:price
         };
         json = JSON.stringify(json);
         jQuery.ajax({
@@ -289,14 +327,23 @@ End content
 
     })
     $(function(){
-        var foodlist=sessionStorage.getItem("foodlist");
-        console.log(foodlist);
-        var jsonData = JSON.stringify(foodlist);// 转成JSON格式
-        console.log(jsonData);
-        var result = jQuery.parseJSON(jsonData);//
-        console.log(result);
+        // var foodlist=sessionStorage.getItem("foodlist");
+        // console.log(foodlist);
+        // var jsonData = JSON.stringify(foodlist);// 转成JSON格式
+        // console.log(jsonData);
+        // var result = jQuery.parseJSON(jsonData);//
+        // console.log(result);
         var user=sessionStorage.getItem("name");
         console.log(user);
+        var totalprice=sessionStorage.getItem("totalprice");
+        jQuery("#p1").append("配送费用：￥0.00+商品费用：￥"+totalprice+"-优惠券：￥10.00");
+        var youhuijuan=jQuery("#youhuijuan").html();
+        console.log(youhuijuan);
+        var youhuiprice=youhuijuan.replace(/[^0-9]/ig,"");
+        console.log(youhuiprice);
+        var totalprice2=totalprice-youhuiprice;
+        jQuery("#p2").append("￥"+totalprice2+"");
+        jQuery("#totalprice").append(totalprice2);
         if(user==null){
             jQuery(".LeftNav").append(" <a href=\"login/register.html\">注册</a>/<a href=\"login/login.html\">登录</a><a href=\"#\">QQ客服</a><a href=\"#\">微信客服</a><a href=\"#\">手机客户端</a>");
             jQuery(".RightNav").append(" <a href=\"user_center.html\">用户中心</a> <a href=\"user_orderlist.html\" target=\"_blank\" title=\"我的订单\">我的订单</a> <a href=\"cart.html\">购物车（0）</a> <a href=\"user_favorites.html\" target=\"_blank\" title=\"我的收藏\">我的收藏</a> <a href=\"#\">商家入驻</a>");

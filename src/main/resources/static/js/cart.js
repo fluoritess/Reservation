@@ -258,10 +258,11 @@ var jz1 = (function () {
     }
     var foodcount={}
     foodcount.name=foodlist;
+    sessionStorage.setItem("totalprice", totalprice);
     sessionStorage.setItem("foodlist", foodcount);
     console.log("当前总数量:"+count);
     console.log("当前总价钱:"+totalprice);
-    window.location.href ="confirm_order.html";
+    window.location.href ="confirm_order2.html";
 })
 //计算总价钱
 // $(function () {

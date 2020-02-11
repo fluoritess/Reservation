@@ -32,6 +32,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public void uodateByNo1(String orderNo) {
+        orderUtilMapper.updateByNo2(orderNo);
+    }
+
+    @Override
     public void addOrder(order order) {
         orderUtilMapper.insert(order);
     }

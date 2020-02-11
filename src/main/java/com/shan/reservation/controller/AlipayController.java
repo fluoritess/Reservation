@@ -5,6 +5,7 @@ import com.alipay.api.AlipayApiException;
 import com.shan.reservation.bean.cartutil;
 import com.shan.reservation.bean.order;
 import com.shan.reservation.bean.user;
+import com.shan.reservation.mapper.userMapper;
 import com.shan.reservation.service.AlipayService;
 import com.shan.reservation.service.OrderService;
 import com.shan.reservation.service.UserService;
@@ -35,6 +36,8 @@ public class AlipayController {
     @Autowired
     OrderService orderService;
     @Autowired
+    userMapper userMapper;
+    @Autowired
     @Qualifier("alipayService")
     private AlipayService alipayService;
 
@@ -45,7 +48,7 @@ public class AlipayController {
     public Map<Object, Object> getPagePay() {
         /** 模仿数据库，从后台调数据*/
         String outTradeNo = "19960310621211";
-        Integer totalAmount = 1;
+        BigDecimal totalAmount =new BigDecimal("1.22");
         String subject = "苹果28";
 
         String pay = null;
@@ -69,6 +72,8 @@ public class AlipayController {
         //获取订单基本信息
         String orderNo_user=map.get("userId");
         Integer user_id=Integer.parseInt(map.get("userId"));
+        user user=userMapper.selectByPrimaryKey(user_id);
+        String user_name=user.getUserName();
         Integer res_id=9;
        String price2= map.get("price");
         BigDecimal price=new BigDecimal(price2);
@@ -82,10 +87,42 @@ public class AlipayController {
         orderService.addOrder(order);
         String outTradeNo = orderNo;
         Integer totalAmount = 1;
-        String subject = "红烧肥肠";
+        String subject = user_name+"先生";
         String pay = null;
         try {
-            pay = alipayService.webPagePay(outTradeNo, totalAmount, subject);
+            pay = alipayService.webPagePay(outTradeNo, price, subject);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println(pay);
+
+        Map<Object, Object> pays = new HashMap<>();
+        pays.put("pay", pay);
+
+        return R.ok().put("pays",pays);
+    }
+    @ResponseBody
+    @RequestMapping("/getPagePay3" )
+    @ArchivesLog(operationType = "查询信息", operationName = "根据用户id查询购物车")
+    public R getPagePay3( @RequestBody Map<String,String> map,HttpSession httpSession){
+        System.out.print("调用支付接口");
+        //获取订单基本信息
+        String orderNo_user=map.get("userId");
+        Integer user_id=Integer.parseInt(map.get("userId"));
+        user user=userMapper.selectByPrimaryKey(user_id);
+        String user_name=user.getUserName();
+        String orderNo=map.get("orderNo");
+        String price2= map.get("price");
+        BigDecimal price=new BigDecimal(price2);
+
+        //修改订单
+        orderService.uodateByNo1(orderNo);
+        String outTradeNo = orderNo;
+        Integer totalAmount = 1;
+        String subject = user_name+"先生";
+        String pay = null;
+        try {
+            pay = alipayService.webPagePay(outTradeNo, price, subject);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -103,7 +140,7 @@ public class AlipayController {
     public R getAppPagePay() throws Exception{
         /** 模仿数据库，从后台调数据*/
         String outTradeNo = "131233";
-        Integer totalAmount = 1000;
+        BigDecimal totalAmount =new BigDecimal("1000")  ;
         String subject = "天猫超市012";
 
         String pay = alipayService.appPagePay(outTradeNo, totalAmount, subject);

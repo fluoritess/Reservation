@@ -2,6 +2,8 @@ package com.shan.reservation.controller;
 
 import com.shan.reservation.bean.food;
 import com.shan.reservation.bean.order;
+import com.shan.reservation.bean.user;
+import com.shan.reservation.mapper.userMapper;
 import com.shan.reservation.service.FoodService;
 import com.shan.reservation.service.OrderService;
 import com.shan.reservation.util.ArchivesLog;
@@ -13,6 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,6 +32,8 @@ import java.util.Map;
 public class OrderController {
     @Autowired
     OrderService OrderService;
+    @Autowired
+    userMapper userMapper;
     @ResponseBody
     @RequestMapping("/selectOrderByUserId" )
     @ArchivesLog(operationType = "查询信息", operationName = "查询用户订单信息")
@@ -50,5 +58,26 @@ public class OrderController {
         OrderService.deleteByNo2(orderNo);
         return  R.ok();
     }
-
+    @ResponseBody
+    @RequestMapping("/AddOrder" )
+    @ArchivesLog(operationType = "添加信息", operationName = "创建订单")
+    public R AddOrder(@RequestBody Map<String,String> map, HttpSession httpSession){
+        //获取订单基本信息
+        String orderNo_user=map.get("userId");
+        Integer user_id=Integer.parseInt(map.get("userId"));
+        user user= userMapper.selectByPrimaryKey(user_id);
+        String user_name=user.getUserName();
+        Integer res_id=9;
+        String price2= map.get("price");
+        BigDecimal price=new BigDecimal(price2);
+        Date date=new Date();
+        Byte state=0;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+        String orderNo_date = sdf.format(date);
+        String orderNo=orderNo_date+orderNo_user;
+        order order=new order(orderNo,user_id,res_id,price,date,state);
+        //创建订单
+        OrderService.addOrder(order);
+        return R.ok().put("order",order);
+    }
 }
