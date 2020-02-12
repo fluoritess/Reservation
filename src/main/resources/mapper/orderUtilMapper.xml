@@ -41,4 +41,8 @@
       #{createtime,jdbcType=TIMESTAMP},
       #{orderstate,jdbcType=TINYINT})
   </insert>
+    <select id="selectOrder" resultMap="BaseResultMap" parameterType="com.shan.reservation.bean.orderExample" >
+       select * from `order` WHERE orderNo =#{orderNo,jdbcType=VARCHAR}
+    </select>
+
 </mapper>

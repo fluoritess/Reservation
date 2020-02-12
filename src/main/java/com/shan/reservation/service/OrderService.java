@@ -21,4 +21,6 @@ public interface OrderService {
     void uodateByNo1(String orderNo);
     //添加订单
     void addOrder(order order);
+    //查询订单
+    order selectOrder(String orderNo);
 }

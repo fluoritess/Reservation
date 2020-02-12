@@ -40,4 +40,9 @@ public class OrderServiceImpl implements OrderService {
     public void addOrder(order order) {
         orderUtilMapper.insert(order);
     }
+
+    @Override
+    public order selectOrder(String orderNo) {
+        return orderUtilMapper.selectOrder(orderNo);
+    }
 }

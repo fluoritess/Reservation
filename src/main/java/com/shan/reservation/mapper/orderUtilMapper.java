@@ -13,4 +13,5 @@ public interface orderUtilMapper {
     void updateByNo(String orderno);
     void updateByNo2(String orderno);
     int insert(order record);
+    order selectOrder(String orderNo);
 }

@@ -264,24 +264,25 @@ Author URI: http://www.deathghost.cn
                     for(var i=0;i<info.order.length;i++){
                         var state=info.order[i].orderstate;
                         var orderno=info.order[i].orderno;
+                        var orderno_=orderno+"f";
                         var createtime1=info.order[i].createtime;
                         var createtime=format(createtime1);
                         var price=info.order[i].price;
                         console.log(state);
                         if(state==0){//0未付款，未发货
                             count_fu2=count_fu2+1;
-                            $(".Myorder").append(" <tr>\n" +
+                            $(".Myorder").append(" <tr id=\"tr"+i+"\">\n" +
                                 "      <td class=\"FontW\"><a href=\"user_order.html\">"+orderno+"</a></td>\n" +
                                 "      <td>"+createtime+"</td>\n" +
                                 "      <td>"+user+"</td>\n" +
                                 "      <td>￥"+price+"</td>\n" +
                                 "      <td>未付款,未发货</td>\n" +
-                                "      <td><a href=\"#\" class=\"quxiao\"id="+orderno+" >取消订单</a> | <a href=\"#\">付款</a></td>\n" +
+                                "      <td><a href=\"#\" class=\"quxiao\"id="+orderno+" >取消订单</a> | <a href=\"#\" class=\"fukuan\" id="+orderno_+">付款</a></td>\n" +
                                 "     </tr>");
                         }
                         else  if(state==1){//1已付款,未发货
                             count0=count0+1;
-                            $(".Myorder").append(" <tr>\n" +
+                            $(".Myorder").append(" <tr id=\"tr"+i+"\">\n" +
                                 "      <td class=\"FontW\"><a href=\"user_order.html\">"+orderno+"</a></td>\n" +
                                 "      <td>"+createtime+"</td>\n" +
                                 "      <td>"+user+"</td>\n" +
@@ -292,7 +293,7 @@ Author URI: http://www.deathghost.cn
                         }
                         else if(state==2){//2已发货,配送中
                             count1=count1+1;
-                            $(".Myorder").append(" <tr>\n" +
+                            $(".Myorder").append(" <tr id=\"tr"+i+"\">\n" +
                                 "      <td class=\"FontW\"><a href=\"user_order.html\">"+orderno+"</a></td>\n" +
                                 "      <td>"+createtime+"</td>\n" +
                                 "      <td>"+user+"</td>\n" +
@@ -303,13 +304,13 @@ Author URI: http://www.deathghost.cn
                         }
                         else if(state==3){//确认收货,未评价
                             count2=count2+1;
-                            $(".Myorder").append(" <tr>\n" +
+                            $(".Myorder").append(" <tr id=\"tr"+i+"\">\n" +
                                 "      <td class=\"FontW\"><a href=\"user_order.html\">"+orderno+"</a></td>\n" +
                                 "      <td>"+createtime+"</td>\n" +
                                 "      <td>"+user+"</td>\n" +
                                 "      <td>￥"+price+"</td>\n" +
                                 "      <td>确认收货,未评价</td>\n" +
-                                "      <td><a href=\"#\" class=\"quxiao\" id="+orderno+">取消订单</a> " +
+                                "      <td><a href=\"#\" class=\"pingjia\" id="+orderno+">给予评价</a> " +
                                 "     </tr>");
                         }
 
@@ -334,6 +335,31 @@ Author URI: http://www.deathghost.cn
                     dataType: "json",
                     success: function (info) {
                         window.location.href="user_orderlist.html";
+                    },
+                    error: function (message) {
+                        $("#request-process-patent").html("获取数据失败！");
+                    }
+                });
+            });
+            $(".fukuan").click(function () {
+                var orderno_=$(this).attr("id");
+                var orderno=orderno_.split("f")[0];
+                var json = {
+                    orderNo: orderno
+                };
+                json = JSON.stringify(json);
+                $.ajax({
+                    type: "POST",
+                    url: "/selectOrder",
+                    contentType: "application/json; charset=utf-8",
+                    data: json,
+                    async: false,
+                    dataType: "json",
+                    success: function (info) {
+                        console.log(info);
+                        var orderno=info.order.orderno;
+                        var price=info.order.price;
+                        window.location.href ="confirm_ordered.html?"+orderno+"a"+price;
                     },
                     error: function (message) {
                         $("#request-process-patent").html("获取数据失败！");

@@ -80,4 +80,12 @@ public class OrderController {
         OrderService.addOrder(order);
         return R.ok().put("order",order);
     }
+    @ResponseBody
+    @RequestMapping("/selectOrder" )
+    @ArchivesLog(operationType = "查询信息", operationName = "查询订单")
+    public R selectOrder(@RequestBody Map<String,String> map, HttpSession httpSession){
+        String orderNo=map.get("orderNo");
+        order order=OrderService.selectOrder(orderNo);
+        return R.ok().put("order",order);
+    }
 }
