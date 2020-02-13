@@ -3,6 +3,7 @@ package com.shan.reservation.controller;
 import com.shan.reservation.bean.address;
 import com.shan.reservation.bean.cartutil;
 import com.shan.reservation.bean.user;
+import com.shan.reservation.mapper.addressMapper;
 import com.shan.reservation.service.AddressService;
 import com.shan.reservation.service.UserService;
 import com.shan.reservation.util.ArchivesLog;
@@ -27,6 +28,8 @@ import java.util.Map;
 public class AddressController {
     @Autowired
     AddressService AddressService;
+    @Autowired
+    addressMapper addressMapper;
     @ResponseBody
     @RequestMapping("/getAddressByUser" )
     @ArchivesLog(operationType = "查询信息", operationName = "查询用户收货地址")
@@ -34,5 +37,13 @@ public class AddressController {
         int userid=Integer.parseInt(map.get("id"));
         List<address> list=AddressService.getAddressByUser(userid);
         return  R.ok().put("address",list);
+    }
+    @ResponseBody
+    @RequestMapping("/getAddressById" )
+    @ArchivesLog(operationType = "查询信息", operationName = "根据id查询用户收货地址")
+    public R getAddressById(@RequestBody Map<String,String> map, HttpSession httpSession){
+        int addressId=Integer.parseInt(map.get("addressId"));
+        address address=addressMapper.selectByPrimaryKey(addressId);
+        return  R.ok().put("address",address);
     }
 }

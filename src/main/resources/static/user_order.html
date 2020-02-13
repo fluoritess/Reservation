@@ -84,15 +84,15 @@ Author URI: http://www.deathghost.cn
     <th>付款方式</th>
        <th>订单状态</th>
     <tr>
-     <td>201409243195</td>
+     <td id="bianhao"></td>
      <!--<td><a href="detailsp.html" target="_blank" title="酸辣土豆丝">酸辣土豆丝</a></td>-->
      <!--<td>1</td>-->
      <!--<td>￥8.00</td>-->
      <!--<td>￥8.00</td>-->
      <!--<td>￥2.00</td>-->
-     <td>￥10.00</td>
+     <td id="price">￥</td>
      <td>支付宝</td>
-        <td>已支付</td>
+        <td id="state"></td>
      <!--如果未付款，则显示立即付款按钮-->
      <td style="display:none;"><a href="#" target="_blank">立即付款</a></td>
     </tr>
@@ -104,13 +104,13 @@ Author URI: http://www.deathghost.cn
      <td width="30%" align="right" class="FontW">收件地址：</td>
      <td>
      <select name="" class="select_ssq">
-      <option>陕西省</option>
+      <option id="provence"></option>
      </select>
      <select name="" class="select_ssq">
-      <option>西安市</option>
+      <option id="city"></option>
      </select>
      <select name="" class="select_ssq">
-      <option>雁塔区</option>
+      <option id="district"></option>
      </select>
      </td>
     </tr>
@@ -120,19 +120,19 @@ Author URI: http://www.deathghost.cn
     <!--</tr>-->
     <tr>
      <td width="30%" align="right" class="FontW">街道地址：</td>
-     <td><input type="text" name="" class="input_addr" value="丈八北路2000集" required></td>
+     <td id="street"></td>
     </tr>
     <tr>
      <td width="30%" align="right" class="FontW">收件人姓名：</td>
-     <td><input type="text" name="" class="input_name" value="deathghost" required></td>
+     <td id="username"></td>
     </tr>
     <tr>
      <td width="30%" align="right" class="FontW">手机号码：</td>
-     <td><input type="text" name="" class="input_tel" value="1582551819" required pattern="[0-9]{11}"></td>
+     <td id="phone"></td>
     </tr>
     <tr>
      <td width="30%" align="right" class="FontW">订单备注：</td>
-     <td><input type="text" name="" class="input_mark" value="...速度送货哦...谢谢~"></td>
+     <td id="remark"></td>
     </tr>
     <tr>
      <td width="30%" align="right"></td>
@@ -197,7 +197,93 @@ Author URI: http://www.deathghost.cn
     </div>
   </section>
  </section>
- <div class="copyright">© 版权所有 2016 DeathGhost 技术支持：<a href="http://www.deathghost.cn" title="DeathGhost">DeathGhost</a></div>
+    <div class="copyright">© 版权所有 2016 DeathGhost 技术支持：<a href="http://www.deathghost.cn" title="587工作室">587工作室</a></div>
 </footer>
+<script>
+    var no = location.href.split("?")[1];
+    var addressId;
+    var json = {
+        orderNo: no
+    };
+    json = JSON.stringify(json);
+    $.ajax({
+        type: "POST",
+        url: "/selectOrder",
+        contentType: "application/json; charset=utf-8",
+        data: json,
+        async: false,
+        dataType: "json",
+        success: function (info) {
+            addressId=info.order.addressId;
+            var price=info.order.price;
+            var state=info.order.orderstate;
+            var orderremarks=info.order.orderremarks;
+            $("#bianhao").append(no);
+            $("#price").append(price);
+            if(state==0){//0未付款，未发货
+              $("#state").append("未付款，未发货");
+            }
+            else  if(state==1){//1已付款,未发货
+                $("#state").append("已付款,未发货");
+            }
+            else if(state==2){//2已发货,配送中
+                $("#state").append("已发货,配送中");
+            }
+            else if(state==3){//确认收货,未评价
+                $("#state").append("确认收货,未评价");
+            }
+            if(orderremarks!=null){
+                $("#remark").append("<input type=\"text\" name=\"\" class=\"input_mark\" value=\""+orderremarks+"\">");
+            }
+           else {
+                $("#remark").append("<input type=\"text\" name=\"\" class=\"input_mark\" value=\"无\">");
+            }
+        }
+    });
+    var json = {
+        addressId: addressId
+    };
+    json = JSON.stringify(json);
+    $.ajax({
+        type: "POST",
+        url: "/getAddressById",
+        contentType: "application/json; charset=utf-8",
+        data: json,
+        async: false,
+        dataType: "json",
+        success: function (info) {
+            var addressProvence=info.address.addressProvence;
+            var addressCity=info.address.addressCity;
+            var addressDistrict=info.address.addressDistrict;
+            var addressStreet=info.address.addressStreet;
+            $("#provence").append(addressProvence);
+            $("#city").append(addressCity);
+            $("#district").append(addressDistrict);
+            $("#street").append("<input type=\"text\" name=\"\" class=\"input_addr\" value=\""+addressStreet+"\" required>");
+        }
+    });
+    var user=sessionStorage.getItem("name");
+    $("#username").append("<input type=\"text\" name=\"\" class=\"input_name\" value=\""+user+"\" required>");
+    var json = {
+        name: user
+    };
+    json = JSON.stringify(json);
+    $.ajax({
+        type: "POST",
+        url: "/GetUserInfo",
+        contentType: "application/json; charset=utf-8",
+        data: json,
+        async: false,
+        dataType: "json",
+        success: function (info) {
+                console.log(info);
+                var userPhone=info.user.userPhone;
+                $("#phone").append("<input type=\"text\" name=\"\" class=\"input_tel\" value=\""+userPhone+"\" required pattern=\"[0-9]{11}\">");
+        },
+        error: function (message) {
+            $("#request-process-patent").html("获取数据失败！");
+        }
+    });
+</script>
 </body>
 </html>

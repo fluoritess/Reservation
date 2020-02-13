@@ -272,7 +272,7 @@ Author URI: http://www.deathghost.cn
                         if(state==0){//0未付款，未发货
                             count_fu2=count_fu2+1;
                             $(".Myorder").append(" <tr id=\"tr"+i+"\">\n" +
-                                "      <td class=\"FontW\"><a href=\"user_order.html\">"+orderno+"</a></td>\n" +
+                                "      <td class=\"FontW\"><a href=\"user_order.html?"+orderno+"\">"+orderno+"</a></td>\n" +
                                 "      <td>"+createtime+"</td>\n" +
                                 "      <td>"+user+"</td>\n" +
                                 "      <td>￥"+price+"</td>\n" +
@@ -283,7 +283,7 @@ Author URI: http://www.deathghost.cn
                         else  if(state==1){//1已付款,未发货
                             count0=count0+1;
                             $(".Myorder").append(" <tr id=\"tr"+i+"\">\n" +
-                                "      <td class=\"FontW\"><a href=\"user_order.html\">"+orderno+"</a></td>\n" +
+                                "      <td class=\"FontW\"><a href=\"user_order.html?"+orderno+"\">"+orderno+"</a></td>\n" +
                                 "      <td>"+createtime+"</td>\n" +
                                 "      <td>"+user+"</td>\n" +
                                 "      <td>￥"+price+"</td>\n" +
@@ -294,7 +294,7 @@ Author URI: http://www.deathghost.cn
                         else if(state==2){//2已发货,配送中
                             count1=count1+1;
                             $(".Myorder").append(" <tr id=\"tr"+i+"\">\n" +
-                                "      <td class=\"FontW\"><a href=\"user_order.html\">"+orderno+"</a></td>\n" +
+                                "      <td class=\"FontW\"><a href=\"user_order.html?"+orderno+"\">"+orderno+"</a></td>\n" +
                                 "      <td>"+createtime+"</td>\n" +
                                 "      <td>"+user+"</td>\n" +
                                 "      <td>￥"+price+"</td>\n" +
@@ -305,7 +305,7 @@ Author URI: http://www.deathghost.cn
                         else if(state==3){//确认收货,未评价
                             count2=count2+1;
                             $(".Myorder").append(" <tr id=\"tr"+i+"\">\n" +
-                                "      <td class=\"FontW\"><a href=\"user_order.html\">"+orderno+"</a></td>\n" +
+                                "      <td class=\"FontW\"><a href=\"user_order.html?"+orderno+"\">"+orderno+"</a></td>\n" +
                                 "      <td>"+createtime+"</td>\n" +
                                 "      <td>"+user+"</td>\n" +
                                 "      <td>￥"+price+"</td>\n" +
