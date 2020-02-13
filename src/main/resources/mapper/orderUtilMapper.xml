@@ -17,6 +17,7 @@
             <arg column="receiveTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
             <arg column="orderState" jdbcType="TINYINT" javaType="java.lang.Byte" />
             <arg column="orderRemarks" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="address_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
         </constructor>
     </resultMap>
     <select id="selectByUserId" resultMap="BaseResultMap" parameterType="com.shan.reservation.bean.orderExample" >
@@ -35,11 +36,11 @@
     insert into `order` (orderNo, userId,
       restaurantId, price,
       createTime,
-      orderState )
+      orderState,address_id )
     values ( #{orderno,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER},
       #{restaurantid,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL},
       #{createtime,jdbcType=TIMESTAMP},
-      #{orderstate,jdbcType=TINYINT})
+      #{orderstate,jdbcType=TINYINT},#{addressId,jdbcType=INTEGER})
   </insert>
     <select id="selectOrder" resultMap="BaseResultMap" parameterType="com.shan.reservation.bean.orderExample" >
        select * from `order` WHERE orderNo =#{orderNo,jdbcType=VARCHAR}

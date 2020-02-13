@@ -65,13 +65,13 @@
                 <p>
                     <i>选择所在地：</i>
                     <select name="">
-                        <option>陕西省</option>
+                        <option>四川省</option>
                     </select>
                     <select name="">
-                        <option>西安市</option>
+                        <option>成都市</option>
                     </select>
                     <select name="">
-                        <option>莲湖区</option>
+                        <option>武侯区</option>
                     </select>
                 </p>
                 <p><i>街道地址：</i><input type="text" required size="50"></p>
@@ -252,6 +252,7 @@
         }
     });
     //获取用户地址----------------------------------------------------------
+    var addressId;
     var json = {
         id: userId
     };
@@ -266,6 +267,8 @@
         success: function (info) {
             var count=0;
             for(var i=0;i<info.address.length;i++){
+                console.log(info);
+                addressId=info.address[i].addressId;
                 var addressProvence=info.address[i].addressProvence;
                 var addressCity=info.address[i].addressCity;
                 var addressDistrict=info.address[i].addressDistrict;
@@ -273,6 +276,7 @@
                 count=i+1;
                 var phone=userPhone.replace(/(\d{3})\d{4}(\d{4})/, '$1****$2');
                 $("#label"+count).append(addressProvence+"  "+addressCity+"市   "+addressDistrict+"  "+addressStreet+ "  "+"（"+user+ " 先生）"+"<span class=\"fontcolor\">"+phone+"</span>");
+                $("#"+count).addClass(addressId);
             }
 
         },
@@ -287,7 +291,8 @@
         console.log(price);
         var json = {
             userId: userId,
-            price:youhuiprice
+            price:youhuiprice,
+            addressId:addressId
         };
         json = JSON.stringify(json);
         jQuery.ajax({

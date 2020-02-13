@@ -66,6 +66,7 @@ public class OrderController {
         String orderNo_user=map.get("userId");
         Integer user_id=Integer.parseInt(map.get("userId"));
         user user= userMapper.selectByPrimaryKey(user_id);
+        Integer address_id=Integer.parseInt(map.get("addressId"));
         String user_name=user.getUserName();
         Integer res_id=9;
         String price2= map.get("price");
@@ -75,7 +76,7 @@ public class OrderController {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
         String orderNo_date = sdf.format(date);
         String orderNo=orderNo_date+orderNo_user;
-        order order=new order(orderNo,user_id,res_id,price,date,state);
+        order order=new order(orderNo,user_id,res_id,price,date,state,address_id);
         //创建订单
         OrderService.addOrder(order);
         return R.ok().put("order",order);

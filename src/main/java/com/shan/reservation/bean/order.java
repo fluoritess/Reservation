@@ -32,6 +32,7 @@ public class order {
 
     private String orderremarks;
 
+    private Integer addressId;
     public order(String orderno, Integer userid, Integer restaurantid, BigDecimal price, Date createtime, Byte orderstate) {
         this.orderno = orderno;
         this.userid = userid;
@@ -41,7 +42,17 @@ public class order {
         this.orderstate = orderstate;
     }
 
-    public order(Integer orderid, String orderno, Integer userid, Integer restaurantid, BigDecimal price, Byte ispay, Byte isappraise, Byte isrefund, BigDecimal delivermoney, Date createtime, Date deliverytime, Date receivetime, Byte orderstate, String orderremarks) {
+    public order(String orderno, Integer userid, Integer restaurantid, BigDecimal price, Date createtime, Byte orderstate, Integer addressId) {
+        this.orderno = orderno;
+        this.userid = userid;
+        this.restaurantid = restaurantid;
+        this.price = price;
+        this.createtime = createtime;
+        this.orderstate = orderstate;
+        this.addressId = addressId;
+    }
+
+    public order(Integer orderid, String orderno, Integer userid, Integer restaurantid, BigDecimal price, Byte ispay, Byte isappraise, Byte isrefund, BigDecimal delivermoney, Date createtime, Date deliverytime, Date receivetime, Byte orderstate, String orderremarks, Integer addressId) {
         this.orderid = orderid;
         this.orderno = orderno;
         this.userid = userid;
@@ -56,6 +67,7 @@ public class order {
         this.receivetime = receivetime;
         this.orderstate = orderstate;
         this.orderremarks = orderremarks;
+        this.addressId = addressId;
     }
 
     public order() {
@@ -172,5 +184,13 @@ public class order {
 
     public void setOrderremarks(String orderremarks) {
         this.orderremarks = orderremarks == null ? null : orderremarks.trim();
+    }
+
+    public Integer getAddressId() {
+        return addressId;
+    }
+
+    public void setAddressId(Integer addressId) {
+        this.addressId = addressId;
     }
 }

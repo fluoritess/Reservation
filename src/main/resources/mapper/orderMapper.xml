@@ -17,6 +17,7 @@
       <arg column="receiveTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
       <arg column="orderState" jdbcType="TINYINT" javaType="java.lang.Byte" />
       <arg column="orderRemarks" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="address_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -79,7 +80,7 @@
   </sql>
   <sql id="Base_Column_List" >
     orderId, orderNo, userId, restaurantId, price, isPay, isAppraise, isRefund, deliverMoney, 
-    createTime, deliveryTime, receiveTime, orderState, orderRemarks
+    createTime, deliveryTime, receiveTime, orderState, orderRemarks, address_id
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shan.reservation.bean.orderExample" >
     select
@@ -117,12 +118,14 @@
       restaurantId, price, isPay, 
       isAppraise, isRefund, deliverMoney, 
       createTime, deliveryTime, receiveTime, 
-      orderState, orderRemarks)
+      orderState, orderRemarks, address_id
+      )
     values (#{orderid,jdbcType=INTEGER}, #{orderno,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, 
       #{restaurantid,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL}, #{ispay,jdbcType=TINYINT}, 
       #{isappraise,jdbcType=TINYINT}, #{isrefund,jdbcType=TINYINT}, #{delivermoney,jdbcType=DECIMAL}, 
       #{createtime,jdbcType=TIMESTAMP}, #{deliverytime,jdbcType=TIMESTAMP}, #{receivetime,jdbcType=TIMESTAMP}, 
-      #{orderstate,jdbcType=TINYINT}, #{orderremarks,jdbcType=VARCHAR})
+      #{orderstate,jdbcType=TINYINT}, #{orderremarks,jdbcType=VARCHAR}, #{addressId,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.shan.reservation.bean.order" >
     insert into order
@@ -169,6 +172,9 @@
       <if test="orderremarks != null" >
         orderRemarks,
       </if>
+      <if test="addressId != null" >
+        address_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="orderid != null" >
@@ -212,6 +218,9 @@
       </if>
       <if test="orderremarks != null" >
         #{orderremarks,jdbcType=VARCHAR},
+      </if>
+      <if test="addressId != null" >
+        #{addressId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -266,6 +275,9 @@
       <if test="record.orderremarks != null" >
         orderRemarks = #{record.orderremarks,jdbcType=VARCHAR},
       </if>
+      <if test="record.addressId != null" >
+        address_id = #{record.addressId,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -286,7 +298,8 @@
       deliveryTime = #{record.deliverytime,jdbcType=TIMESTAMP},
       receiveTime = #{record.receivetime,jdbcType=TIMESTAMP},
       orderState = #{record.orderstate,jdbcType=TINYINT},
-      orderRemarks = #{record.orderremarks,jdbcType=VARCHAR}
+      orderRemarks = #{record.orderremarks,jdbcType=VARCHAR},
+      address_id = #{record.addressId,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -333,6 +346,9 @@
       <if test="orderremarks != null" >
         orderRemarks = #{orderremarks,jdbcType=VARCHAR},
       </if>
+      <if test="addressId != null" >
+        address_id = #{addressId,jdbcType=INTEGER},
+      </if>
     </set>
     where orderId = #{orderid,jdbcType=INTEGER}
   </update>
@@ -350,7 +366,8 @@
       deliveryTime = #{deliverytime,jdbcType=TIMESTAMP},
       receiveTime = #{receivetime,jdbcType=TIMESTAMP},
       orderState = #{orderstate,jdbcType=TINYINT},
-      orderRemarks = #{orderremarks,jdbcType=VARCHAR}
+      orderRemarks = #{orderremarks,jdbcType=VARCHAR},
+      address_id = #{addressId,jdbcType=INTEGER}
     where orderId = #{orderid,jdbcType=INTEGER}
   </update>
 </mapper>
