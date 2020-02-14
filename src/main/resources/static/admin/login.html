@@ -26,7 +26,7 @@
 					<div class='icon'>
 						<img alt="" src='img/user_icon_copy.png'>
 					</div>
-					<input name="login" placeholder='用户名' maxlength="16" type='text' autocomplete="off" value="admin" />
+					<input name="login" placeholder='用户名' maxlength="16" type='text' autocomplete="off" value="admin" id="name"/>
 					<div class='validation'>
 						<img alt="" src='img/tick.png'>
 					</div>
@@ -35,7 +35,7 @@
 					<div class='icon'>
 						<img alt="" src='img/lock_icon_copy.png'>
 					</div>
-					<input name="pwd" placeholder='密码' maxlength="16" type='text' autocomplete="off">
+					<input name="pwd" placeholder='密码' maxlength="16" type='text' autocomplete="off" id="password">
 					<div class='validation'>
 						<img alt="" src='img/tick.png'>
 					</div>
@@ -50,7 +50,7 @@
 					</div>
 				</div>
 				<div class='login_fields__submit'>
-					<input type='button' value='登录'>
+					<input type='button' value='登录'id="button">
 				</div>
 			</div>
 			<div class='success'>
@@ -170,7 +170,7 @@
 						};
 						//$.post("url",JsonData,function(data) {
 						console.log(111);
-						alert("登录成功");
+						// alert("登录成功");
 						//window.location.href = 'http://127.0.0.1:8020/jQueryLogin/index.html?__hbt=1567408106021';
 						//});						
 					}
@@ -309,6 +309,38 @@
 				renderer.render(scene, camera)
 			}
 		</script>
+    <script>
+        $("#button").click(function() {
+            var json = {
+                adminName: $("#name").val(),
+                password:$("#password").val()
+            };
+            json = JSON.stringify(json);
+            $.ajax({
+                type: "POST",
+                url: "/AdminLogin",
+                contentType: "application/json; charset=utf-8",
+                data: json,
+                async: false,
+                dataType: "json",
+                success: function (info) {
+                    console.log(info);
+                    var name=info.admin.adminName;
+                    if(name == '' || name == null || name == undefined){
+                        alert("密码或账号错误")
+
+                    }
+                    else{
+                        alert("管理员"+name+"登录成功");
+                        sessionStorage.setItem("name", name);
+                    }
+                },
+                error: function (message) {
+                    $("#request-process-patent").html("提交数据失败！");
+                }
+            });
+        });
+    </script>
 	</body>
 
 </html>
