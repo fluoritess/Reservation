@@ -14,4 +14,5 @@ public interface orderUtilMapper {
     void updateByNo2(String orderno);
     int insert(order record);
     order selectOrder(String orderNo);
+    List<order> ResSelectOrder(int restaurantid);
 }

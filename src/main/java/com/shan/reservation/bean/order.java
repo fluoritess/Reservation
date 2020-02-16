@@ -14,10 +14,6 @@ public class order {
 
     private BigDecimal price;
 
-    private Byte ispay;
-
-    private Byte isappraise;
-
     private Byte isrefund;
 
     private BigDecimal delivermoney;
@@ -52,14 +48,12 @@ public class order {
         this.addressId = addressId;
     }
 
-    public order(Integer orderid, String orderno, Integer userid, Integer restaurantid, BigDecimal price, Byte ispay, Byte isappraise, Byte isrefund, BigDecimal delivermoney, Date createtime, Date deliverytime, Date receivetime, Byte orderstate, String orderremarks, Integer addressId) {
+    public order(Integer orderid, String orderno, Integer userid, Integer restaurantid, BigDecimal price, Byte isrefund, BigDecimal delivermoney, Date createtime, Date deliverytime, Date receivetime, Byte orderstate, String orderremarks, Integer addressId) {
         this.orderid = orderid;
         this.orderno = orderno;
         this.userid = userid;
         this.restaurantid = restaurantid;
         this.price = price;
-        this.ispay = ispay;
-        this.isappraise = isappraise;
         this.isrefund = isrefund;
         this.delivermoney = delivermoney;
         this.createtime = createtime;
@@ -112,22 +106,6 @@ public class order {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
-    }
-
-    public Byte getIspay() {
-        return ispay;
-    }
-
-    public void setIspay(Byte ispay) {
-        this.ispay = ispay;
-    }
-
-    public Byte getIsappraise() {
-        return isappraise;
-    }
-
-    public void setIsappraise(Byte isappraise) {
-        this.isappraise = isappraise;
     }
 
     public Byte getIsrefund() {

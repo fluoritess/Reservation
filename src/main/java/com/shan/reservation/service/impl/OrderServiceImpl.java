@@ -45,4 +45,9 @@ public class OrderServiceImpl implements OrderService {
     public order selectOrder(String orderNo) {
         return orderUtilMapper.selectOrder(orderNo);
     }
+
+    @Override
+    public List<order> ResSelectOrder(int restaurantid) {
+        return orderUtilMapper.ResSelectOrder(restaurantid);
+    }
 }

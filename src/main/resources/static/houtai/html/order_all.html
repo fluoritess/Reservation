@@ -1,0 +1,266 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>无标题文档</title>
+    <link href="../css/eys_stly.css" rel="stylesheet" type="text/css" />
+    <link href="../css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="../ss/css/bootstrap-table.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+        .left_p_table{
+            width:96%;
+            height:auto;
+            border-collapse:collapse;
+            margin-left:2%;
+            border:1px solid #eee;
+        }
+        .left_p_table tr{
+            height:40px;
+            text-align:center;}
+    </style>
+</head>
+
+<body>
+<div class="index2">
+    <h5>所在位置：<a>订单信息</a></h5>
+    <p class="index2_p1"><a href="#" class="a2_stlye">订单信息</a><a href="#">待审核订单</a><a href="#">待财务审核</a><a href="#">待出库</a><a href="#">待发货</a><a href="#">已收货确认</a><a href="#">已完成</a><a href="#">已作废</a></p>
+    <div class="index2_con1">
+        <p class="p_line"><input type="text" class="form-control" value="请输入订单编号" /> <select class="form-control">
+            <option>网点编号</option>
+            <option>网点站名</option>
+
+        </select><input type="text" class="form-control" /><select class="form-control">
+            <option>商品名称</option>
+            <option>单品编号</option>
+
+        </select><input type="text" class="form-control" /></select><select class="form-control">
+            <option>收货人电话</option>
+            <option>收货人名称</option>
+            <option>物流编号</option>
+
+        </select><input type="text" class="form-control" /><button class=" button_style">查询</button></p>
+        <p><button class="button_style2">批量导出</button><button class="button_style2">批量打印</button></p>
+
+        <!-- <p > <table data-url="json/data.json" id="table" style="margin: 0 auto">
+          </table></p> -->
+        <table width="200" border="1" class="left_p_table" id="table">
+            <tr class="left_tr1">
+                <td>订单编号</td>
+                <td>订单金额</td>
+                <td>网点用户名</td>
+                <td>用户姓名</td>
+                <td>下单时间</td>
+                <td>订单状态</td>
+                <td>操作</td>
+            </tr>
+            <!--<tr>-->
+                <!--<td >今日</td>-->
+                <!--<td>10笔</td>-->
+                <!--<td>2000￥</td>-->
+                <!--<td>1</td>-->
+                <!--<td>20￥</td>-->
+                <!--<td>1</td>-->
+                <!--<td>20￥</td>-->
+            <!--</tr>-->
+        </table>
+    </div>
+</div>
+<script src="../js/jquery.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../ss/js/bootstrap-table.js"></script>
+<script src="../ss/js/bootstrap-table-zh-CN.min.js"></script>
+<script>
+    function add0(m){return m<10?'0'+m:m }
+    function format(timestamp)
+    {
+        //timestamp是整数，否则要parseInt转换,不会出现少个0的情况
+        var time = new Date(timestamp);
+        var year = time.getFullYear();
+        var month = time.getMonth()+1;
+        var date = time.getDate();
+        var hours = time.getHours();
+        var minutes = time.getMinutes();
+        var seconds = time.getSeconds();
+        return year+'-'+add0(month)+'-'+add0(date)+' '+add0(hours)+':'+add0(minutes)+':'+add0(seconds);
+    }
+    var json = {
+        restaurantid: 9
+    };
+    json = JSON.stringify(json);
+    $.ajax({
+        type: "POST",
+        url: "/ResSelectOrder",
+        contentType: "application/json; charset=utf-8",
+        data: json,
+        async: false,
+        dataType: "json",
+        success: function (info) {
+            console.log(info);
+            for(var i=0;i<info.order.length;i++){
+                var orderno=info.order[i].orderno;
+                var createtime=info.order[i].createtime;
+                var orderstate=info.order[i].orderstate;
+                var price=info.order[i].price;
+                var userName=info.order[i].userName;
+                var userPhone=info.order[i].userPhone;
+                var nickName=info.order[i].nickName;
+                var createtime_=format(createtime);
+                if(orderstate==-1){
+                    $("#table").append(" <tr>\n" +
+                        "                <td >"+orderno+"</td>\n" +
+                        "                <td>￥"+price+"</td>\n" +
+                        "                <td>"+nickName+"</td>\n" +
+                        "                <td>"+userName+"</td>\n" +
+                        "                <td>"+createtime_+"</td>\n" +
+                        "                <td>已完成取消</td>\n" +
+                        "                <td>无</td>\n" +
+                        "            </tr>");
+                }
+                else if(orderstate==0){
+                    $("#table").append(" <tr>\n" +
+                        "                <td >"+orderno+"</td>\n" +
+                        "                <td>￥"+price+"</td>\n" +
+                        "                <td>"+nickName+"</td>\n" +
+                        "                <td>"+userName+"</td>\n" +
+                        "                <td>"+createtime_+"</td>\n" +
+                        "                <td>未付款，未发货</td>\n" +
+                        "                <td>无</td>\n" +
+                        "            </tr>");
+                }
+                else if(orderstate==1){
+                    $("#table").append(" <tr>\n" +
+                        "                <td >"+orderno+"</td>\n" +
+                        "                <td>￥"+price+"</td>\n" +
+                        "                <td>"+nickName+"</td>\n" +
+                        "                <td>"+userName+"</td>\n" +
+                        "                <td>"+createtime_+"</td>\n" +
+                        "                <td>已付款,未发货</td>\n" +
+                        "                <td><button>发货</button></td>\n" +
+                        "            </tr>");
+                }
+                else if(orderstate==2){
+                    $("#table").append(" <tr>\n" +
+                        "                <td >"+orderno+"</td>\n" +
+                        "                <td>￥"+price+"</td>\n" +
+                        "                <td>"+nickName+"</td>\n" +
+                        "                <td>"+userName+"</td>\n" +
+                        "                <td>"+createtime_+"</td>\n" +
+                        "                <td>已发货,配送中</td>\n" +
+                        "                <td>无</td>\n" +
+                        "            </tr>");
+                }
+                else if(orderstate==3){
+                    $("#table").append(" <tr>\n" +
+                        "                <td >"+orderno+"</td>\n" +
+                        "                <td>￥"+price+"</td>\n" +
+                        "                <td>"+nickName+"</td>\n" +
+                        "                <td>"+userName+"</td>\n" +
+                        "                <td>"+createtime_+"</td>\n" +
+                        "                <td>确认收货,未评价</td>\n" +
+                        "                <td><button>提醒评价</button></td>\n" +
+                        "            </tr>");
+                }
+                else if(orderstate==4){
+                    $("#table").append(" <tr>\n" +
+                        "                <td >"+orderno+"</td>\n" +
+                        "                <td>￥"+price+"</td>\n" +
+                        "                <td>"+nickName+"</td>\n" +
+                        "                <td>"+userName+"</td>\n" +
+                        "                <td>"+createtime_+"</td>\n" +
+                        "                <td>订单已完成</td>\n" +
+                        "                <td>无</td>\n" +
+                        "            </tr>");
+                }
+                else if(orderstate==5){
+                    $("#table").append(" <tr>\n" +
+                        "                <td >"+orderno+"</td>\n" +
+                        "                <td>￥"+price+"</td>\n" +
+                        "                <td>"+nickName+"</td>\n" +
+                        "                <td>"+userName+"</td>\n" +
+                        "                <td>"+createtime_+"</td>\n" +
+                        "                <td>订单取消中</td>\n" +
+                        "                <td>无</td>\n" +
+                        "            </tr>");
+                }
+            }
+
+        },
+        error: function (message) {
+            $("#request-process-patent").html("获取数据失败！");
+        }
+    });
+</script>
+<!-- <script type="text/javascript">
+          $(function () {
+              $('#table').bootstrapTable({
+                  method: "get",
+                  striped: true,
+                  singleSelect: false,
+                  url: "json/data.json",
+                  dataType: "json",
+                  pagination: true, //分页
+                  pageSize: 10,
+                  pageNumber: 1,
+                  search: false, //显示搜索框
+                  contentType: "application/x-www-form-urlencoded",
+                  queryParams: null,
+                  columns: [
+                  //  {
+                  //         checkbox: "true",
+                  //         field: 'name',
+                  //         align: 'center',
+                  //         valign: 'middle'
+                  //     }
+                  // 	,
+                      {
+                          title: "订单编号",
+                          field: 'orderno',
+                          align: 'center',
+                          valign: 'middle'
+                      },
+                      {
+                          title: '订单金额',
+                          field: 'price',
+                          align: 'center',
+                          valign: 'middle'
+                      },
+                      {
+                          title: '店名',
+                          field: 'restaurantName',
+                          align: 'center'
+                      },
+                      {
+                          title: '网点用户名',
+                          field: 'userName',
+                          align: 'center'
+                      },
+                      {
+                          title: '下单时间',
+                          field: 'createtime',
+                          align: 'center'
+                      },
+                       {
+                          title: "订单状态",
+                          field: 'orderstate',
+                          align: 'center',
+                          valign: 'middle'
+                      },
+                      {
+                          title: '操作',
+                          field: 'id',
+                          align: 'center',
+                          formatter: function (value, row) {
+                              var e = '<a href="#" mce_href="#" onclick="edit(\'' + row.id + '\')">处置</a> ';
+                              var d = '<a href="#" mce_href="#" onclick="edit(\'' + row.id + '\')">关闭</a> ';
+                              var c = '<a href="#" mce_href="#" onclick="edit(\'' + row.id + '\')">预案</a> ';
+                              return e + d + c;
+                          }
+                      }
+                  ]
+              });
+          })
+
+      </script> -->
+
+</body>
+</html>

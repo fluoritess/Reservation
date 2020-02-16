@@ -302,7 +302,7 @@ Author URI: http://www.deathghost.cn
                                 "      <td><a href=\"#\" class=\"quxiao\" id="+orderno+">取消订单</a> " +
                                 "     </tr>");
                         }
-                        else if(state==3){//确认收货,未评价
+                        else if(state==3){//3确认收货,未评价
                             count2=count2+1;
                             $(".Myorder").append(" <tr id=\"tr"+i+"\">\n" +
                                 "      <td class=\"FontW\"><a href=\"user_order.html?"+orderno+"\">"+orderno+"</a></td>\n" +
@@ -313,7 +313,28 @@ Author URI: http://www.deathghost.cn
                                 "      <td><a href=\"#\" class=\"pingjia\" id="+orderno+">给予评价</a> " +
                                 "     </tr>");
                         }
-
+                        // else if(state==4){//4确认收货,完成评价
+                        //     count2=count2+1;
+                        //     $(".Myorder").append(" <tr id=\"tr"+i+"\">\n" +
+                        //         "      <td class=\"FontW\"><a href=\"user_order.html?"+orderno+"\">"+orderno+"</a></td>\n" +
+                        //         "      <td>"+createtime+"</td>\n" +
+                        //         "      <td>"+user+"</td>\n" +
+                        //         "      <td>￥"+price+"</td>\n" +
+                        //         "      <td>确认收货,未评价</td>\n" +
+                        //         "      <td><a href=\"#\" class=\"pingjia\" id="+orderno+">给予评价</a> " +
+                        //         "     </tr>");
+                        // }
+                        else if(state==5){//5申请取消中
+                            count2=count2+1;
+                            $(".Myorder").append(" <tr id=\"tr"+i+"\">\n" +
+                                "      <td class=\"FontW\"><a href=\"user_order.html?"+orderno+"\">"+orderno+"</a></td>\n" +
+                                "      <td>"+createtime+"</td>\n" +
+                                "      <td>"+user+"</td>\n" +
+                                "      <td>￥"+price+"</td>\n" +
+                                "      <td>订餐正在取消中...</td>\n" +
+                                "      <td><a href=\"#\" class=\"pingjia\" id="+orderno+">给予评价</a> " +
+                                "     </tr>");
+                        }
                     }
                 },
                 error: function (message) {

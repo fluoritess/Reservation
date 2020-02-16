@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="../css/eys_stly.css" rel="stylesheet" type="text/css" />
+<link href="../css/bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="../ss/css/bootstrap-table.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<div class="index2">
+<h5>所在位置：<a>营销中心</a></h5>
+<p>满额 / 满件促销</p>
+<p class="marker_ceter_p"><i>满减</i><a href="#">购指定商品满一定金额获得优惠 <br/><span>例：满99元减5元</span></a><i>满折</i><a href="#">购指定商品满一定金额获得折扣 <br/><span>例：满99元打九折</span></a><i>满邮</i><a href="#">购指定商品满一定金额免邮费 <br/><span>例：满99元免邮</span></a></p>
+<p class="marker_ceter_p "><i>满金额赠</i><a href="#">购指定商品满一定金额获得赠品 <br/><span>例：满99元获得赠品</span></a><i>满数量赠</i><a href="#">购指定商品满一定数量获得赠品<br/><span>例：满10个送赠品</span></a></p>
+<p>优惠券促销</p>
+<p class="marker_ceter_p p_blur"><i>注册赠劵</i><a href="#">单品/会员促销 <br/><span>例：注册送10元优惠券</span></a><i>购物赠劵</i><a href="#">购指定商品满一定金额获得代金劵 <br/><span>例：满99元送10元</span></a><i>全场赠劵</i><a href="#">在全场各地可获得优惠券 <br/><span>例：全场送5元，限限领3张</span></a></p>
+<p class="marker_ceter_p p_blur"><i>会员赠劵</i><a href="#">指定会员可获得优惠券品 <br/><span>例：会员xxx获得30元优惠劵</span></a></p>
+<p>单品 / 会员促销</p>
+<p class="marker_ceter_p p_green"><i>限购</i><a href="#">对畅销产品指定购买数量 <br/><span>例：xxx产品限购2件</span></a><i>积分</i><a href="#">会员通过注册/交易/登获取积分 <br/><span>例:注册送10个积分</span></a><i>注册邀请</i><a href="#">发放注册码邀请送积分 <br/><span>例：注册邀请送30积分</span></a></p>
+
+
+</div>
+<script src="../js/jquery.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../ss/js/bootstrap-table.js"></script>
+<script src="../ss/js/bootstrap-table-zh-CN.min.js"></script>
+  <script type="text/javascript">
+            $(function () {
+                $('#table').bootstrapTable({
+                    method: "get",
+                    striped: true,
+                    singleSelect: false,
+                    url: "json/data.json",
+                    dataType: "json",
+                    pagination: true, //分页
+                    pageSize: 10,
+                    pageNumber: 1,
+                    search: false, //显示搜索框
+                    contentType: "application/x-www-form-urlencoded",
+                    queryParams: null,
+                    columns: [
+					 {
+                            checkbox: "true",
+                            field: 'name',
+                            align: 'center',
+                            valign: 'middle'
+                        }
+						,
+						
+                        {
+                            title: "图片",
+                            field: 'name',
+                            align: 'center',
+                            valign: 'middle'
+                        },
+						
+                        {
+                            title: "商品名称",
+                            field: 'name',
+                            align: 'center',
+                            valign: 'middle'
+                        },
+                        {
+                            title: '属性',
+                            field: 'status',
+                            align: 'center',
+                            valign: 'middle'
+                        },
+                        {
+                            title: '成本价',
+                            field: 'participationCounts',
+                            align: 'center'
+                        },
+                        {
+                            title: '销售价',
+                            field: 'totalCounts',
+                            align: 'center'
+                        },
+                        {
+                            title: '可销售库存',
+                            field: 'startTime',
+                            align: 'center'
+                        },
+                       
+                        {
+                            title: '操作',
+                            field: 'id',
+                            align: 'center',
+                            formatter: function (value, row) {
+                                var e = '<a href="#" mce_href="#" onclick="edit(\'' + row.id + '\')">处置</a> ';
+                                var d = '<a href="#" mce_href="#" onclick="edit(\'' + row.id + '\')">关闭</a> ';
+                                var c = '<a href="#" mce_href="#" onclick="edit(\'' + row.id + '\')">预案</a> ';
+                                return e + d + c;
+                            }
+                        }
+                    ]
+                });
+            })
+
+        </script>
+
+</body>
+</html>

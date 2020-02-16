@@ -8,8 +8,6 @@
       <arg column="userId" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="restaurantId" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="price" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
-      <arg column="isPay" jdbcType="TINYINT" javaType="java.lang.Byte" />
-      <arg column="isAppraise" jdbcType="TINYINT" javaType="java.lang.Byte" />
       <arg column="isRefund" jdbcType="TINYINT" javaType="java.lang.Byte" />
       <arg column="deliverMoney" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
       <arg column="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
@@ -79,8 +77,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    orderId, orderNo, userId, restaurantId, price, isPay, isAppraise, isRefund, deliverMoney, 
-    createTime, deliveryTime, receiveTime, orderState, orderRemarks, address_id
+    orderId, orderNo, userId, restaurantId, price, isRefund, deliverMoney, createTime, 
+    deliveryTime, receiveTime, orderState, orderRemarks, address_id
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shan.reservation.bean.orderExample" >
     select
@@ -115,17 +113,15 @@
   </delete>
   <insert id="insert" parameterType="com.shan.reservation.bean.order" >
     insert into order (orderId, orderNo, userId, 
-      restaurantId, price, isPay, 
-      isAppraise, isRefund, deliverMoney, 
-      createTime, deliveryTime, receiveTime, 
-      orderState, orderRemarks, address_id
-      )
+      restaurantId, price, isRefund, 
+      deliverMoney, createTime, deliveryTime, 
+      receiveTime, orderState, orderRemarks, 
+      address_id)
     values (#{orderid,jdbcType=INTEGER}, #{orderno,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER}, 
-      #{restaurantid,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL}, #{ispay,jdbcType=TINYINT}, 
-      #{isappraise,jdbcType=TINYINT}, #{isrefund,jdbcType=TINYINT}, #{delivermoney,jdbcType=DECIMAL}, 
-      #{createtime,jdbcType=TIMESTAMP}, #{deliverytime,jdbcType=TIMESTAMP}, #{receivetime,jdbcType=TIMESTAMP}, 
-      #{orderstate,jdbcType=TINYINT}, #{orderremarks,jdbcType=VARCHAR}, #{addressId,jdbcType=INTEGER}
-      )
+      #{restaurantid,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL}, #{isrefund,jdbcType=TINYINT}, 
+      #{delivermoney,jdbcType=DECIMAL}, #{createtime,jdbcType=TIMESTAMP}, #{deliverytime,jdbcType=TIMESTAMP}, 
+      #{receivetime,jdbcType=TIMESTAMP}, #{orderstate,jdbcType=TINYINT}, #{orderremarks,jdbcType=VARCHAR}, 
+      #{addressId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.shan.reservation.bean.order" >
     insert into order
@@ -144,12 +140,6 @@
       </if>
       <if test="price != null" >
         price,
-      </if>
-      <if test="ispay != null" >
-        isPay,
-      </if>
-      <if test="isappraise != null" >
-        isAppraise,
       </if>
       <if test="isrefund != null" >
         isRefund,
@@ -191,12 +181,6 @@
       </if>
       <if test="price != null" >
         #{price,jdbcType=DECIMAL},
-      </if>
-      <if test="ispay != null" >
-        #{ispay,jdbcType=TINYINT},
-      </if>
-      <if test="isappraise != null" >
-        #{isappraise,jdbcType=TINYINT},
       </if>
       <if test="isrefund != null" >
         #{isrefund,jdbcType=TINYINT},
@@ -248,12 +232,6 @@
       <if test="record.price != null" >
         price = #{record.price,jdbcType=DECIMAL},
       </if>
-      <if test="record.ispay != null" >
-        isPay = #{record.ispay,jdbcType=TINYINT},
-      </if>
-      <if test="record.isappraise != null" >
-        isAppraise = #{record.isappraise,jdbcType=TINYINT},
-      </if>
       <if test="record.isrefund != null" >
         isRefund = #{record.isrefund,jdbcType=TINYINT},
       </if>
@@ -290,8 +268,6 @@
       userId = #{record.userid,jdbcType=INTEGER},
       restaurantId = #{record.restaurantid,jdbcType=INTEGER},
       price = #{record.price,jdbcType=DECIMAL},
-      isPay = #{record.ispay,jdbcType=TINYINT},
-      isAppraise = #{record.isappraise,jdbcType=TINYINT},
       isRefund = #{record.isrefund,jdbcType=TINYINT},
       deliverMoney = #{record.delivermoney,jdbcType=DECIMAL},
       createTime = #{record.createtime,jdbcType=TIMESTAMP},
@@ -318,12 +294,6 @@
       </if>
       <if test="price != null" >
         price = #{price,jdbcType=DECIMAL},
-      </if>
-      <if test="ispay != null" >
-        isPay = #{ispay,jdbcType=TINYINT},
-      </if>
-      <if test="isappraise != null" >
-        isAppraise = #{isappraise,jdbcType=TINYINT},
       </if>
       <if test="isrefund != null" >
         isRefund = #{isrefund,jdbcType=TINYINT},
@@ -358,8 +328,6 @@
       userId = #{userid,jdbcType=INTEGER},
       restaurantId = #{restaurantid,jdbcType=INTEGER},
       price = #{price,jdbcType=DECIMAL},
-      isPay = #{ispay,jdbcType=TINYINT},
-      isAppraise = #{isappraise,jdbcType=TINYINT},
       isRefund = #{isrefund,jdbcType=TINYINT},
       deliverMoney = #{delivermoney,jdbcType=DECIMAL},
       createTime = #{createtime,jdbcType=TIMESTAMP},

@@ -23,4 +23,6 @@ public interface OrderService {
     void addOrder(order order);
     //查询订单
     order selectOrder(String orderNo);
+    //商家查询订单
+    List<order> ResSelectOrder(int restaurantid);
 }

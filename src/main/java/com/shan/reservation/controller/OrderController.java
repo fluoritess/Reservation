@@ -17,10 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author wsw
@@ -83,10 +80,41 @@ public class OrderController {
     }
     @ResponseBody
     @RequestMapping("/selectOrder" )
-    @ArchivesLog(operationType = "查询信息", operationName = "查询订单")
+    @ArchivesLog(operationType = "查询信息", operationName = "根据编号查询订单")
     public R selectOrder(@RequestBody Map<String,String> map, HttpSession httpSession){
         String orderNo=map.get("orderNo");
         order order=OrderService.selectOrder(orderNo);
         return R.ok().put("order",order);
+    }
+    @ResponseBody
+    @RequestMapping("/ResSelectOrder" )
+    @ArchivesLog(operationType = "查询信息", operationName = "商家查询订单")
+    public R ResSelectOrder(@RequestBody Map<String,String> map, HttpSession httpSession){
+        Integer restaurantid=Integer.parseInt(map.get("restaurantid"));
+        List<order> order=OrderService.ResSelectOrder(restaurantid);
+        List tarlist=new ArrayList();
+        Iterator it=order.iterator();
+        while(it.hasNext()){
+            Map tarmap=new HashMap();
+            order order1=(order)it.next();
+            String orderno=order1.getOrderno();
+            BigDecimal price=order1.getPrice();
+            int user=order1.getUserid();
+            user user1=userMapper.selectByPrimaryKey(user);
+            String nickName=user1.getUserName();
+            String userName=user1.getRealname();
+            String userPhone=user1.getUserPhone();
+            Date createtime=order1.getCreatetime();
+            Byte orderstate=order1.getOrderstate();
+            tarmap.put("orderno",orderno);
+            tarmap.put("price",price);
+            tarmap.put("userName",userName);
+            tarmap.put("nickName",nickName);
+            tarmap.put("userPhone",userPhone);
+            tarmap.put("createtime",createtime);
+            tarmap.put("orderstate",orderstate);
+            tarlist.add(tarmap);
+        }
+        return R.ok().put("order",tarlist);
     }
 }

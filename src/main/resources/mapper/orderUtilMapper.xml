@@ -8,8 +8,6 @@
             <arg column="userId" jdbcType="INTEGER" javaType="java.lang.Integer" />
             <arg column="restaurantId" jdbcType="INTEGER" javaType="java.lang.Integer" />
             <arg column="price" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
-            <arg column="isPay" jdbcType="TINYINT" javaType="java.lang.Byte" />
-            <arg column="isAppraise" jdbcType="TINYINT" javaType="java.lang.Byte" />
             <arg column="isRefund" jdbcType="TINYINT" javaType="java.lang.Byte" />
             <arg column="deliverMoney" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
             <arg column="createTime" jdbcType="TIMESTAMP" javaType="java.util.Date" />
@@ -45,5 +43,7 @@
     <select id="selectOrder" resultMap="BaseResultMap" parameterType="com.shan.reservation.bean.orderExample" >
        select * from `order` WHERE orderNo =#{orderNo,jdbcType=VARCHAR}
     </select>
-
+    <select id="ResSelectOrder" resultMap="BaseResultMap" parameterType="com.shan.reservation.bean.orderExample" >
+       select * from `order` WHERE restaurantid =#{restaurantid,jdbcType=INTEGER}
+    </select>
 </mapper>

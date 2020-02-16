@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="../css/eys_stly.css" rel="stylesheet" type="text/css" />
+<link href="../css/bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="../ss/css/bootstrap-table.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<div class="index2">
+<h5>所在位置：<a>商品入库</a></h5>
+
+
+<p class="p_line"> <select class="form-control">
+         <option>全部类型</option>
+         <option>分类一</option>
+         <option>分类二</option>
+         
+      </select>
+      <a  class="a_location_color">开始时间：</a><input type="date" class="form-control"/> <a class="a_location_color" >结束时间：</a><input type="date" class="form-control"/>
+      <button class=" button_style">查询</button></p>
+      <p> <button class="button_style button_location">制作出库单</button><span class="shop_span"><a href="#" class="shop_stley_a">图标模式</a><a href="#">列表模式</a></span></p>
+      <p > <table data-url="json/data.json" id="table" style="margin: 0 auto">
+        </table></p>
+
+</div>
+<script src="../js/jquery.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../ss/js/bootstrap-table.js"></script>
+<script src="../ss/js/bootstrap-table-zh-CN.min.js"></script>
+  <script type="text/javascript">
+            $(function () {
+                $('#table').bootstrapTable({
+                    method: "get",
+                    striped: true,
+                    singleSelect: false,
+                    url: "json/data.json",
+                    dataType: "json",
+                    pagination: true, //分页
+                    pageSize: 10,
+                    pageNumber: 1,
+                    search: false, //显示搜索框
+                    contentType: "application/x-www-form-urlencoded",
+                    queryParams: null,
+                    columns: [
+					 {
+                            checkbox: "true",
+                            field: 'name',
+                            align: 'center',
+                            valign: 'middle'
+                        }
+						,
+						
+                        {
+                            title: "类型",
+                            field: 'name',
+                            align: 'center',
+                            valign: 'middle'
+                        },
+						
+                        {
+                            title: "单号",
+                            field: 'name',
+                            align: 'center',
+                            valign: 'middle'
+                        },
+                        {
+                            title: '制单人',
+                            field: 'status',
+                            align: 'center',
+                            valign: 'middle'
+                        },
+                        {
+                            title: '日期',
+                            field: 'participationCounts',
+                            align: 'center'
+                        },
+                        
+                       
+                        {
+                            title: '操作',
+                            field: 'id',
+                            align: 'center',
+                            formatter: function (value, row) {
+                                var e = '<a href="#" mce_href="#" onclick="edit(\'' + row.id + '\')">处置</a> ';
+                                var d = '<a href="#" mce_href="#" onclick="edit(\'' + row.id + '\')">关闭</a> ';
+                                var c = '<a href="#" mce_href="#" onclick="edit(\'' + row.id + '\')">预案</a> ';
+                                return e + d + c;
+                            }
+                        }
+                    ]
+                });
+            })
+
+        </script>
+
+</body>
+</html>
