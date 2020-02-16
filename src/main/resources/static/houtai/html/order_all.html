@@ -6,6 +6,8 @@
     <link href="../css/eys_stly.css" rel="stylesheet" type="text/css" />
     <link href="../css/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="../ss/css/bootstrap-table.css" rel="stylesheet" type="text/css" />
+    <link href="../ss/css/bootstrap-table.css" rel="stylesheet" type="text/css" />
+    <link href="../../layui/css/layui.css" rel="stylesheet" type="text/css" />
     <style type="text/css">
         .left_p_table{
             width:96%;
@@ -25,8 +27,10 @@
     <h5>所在位置：<a>订单信息</a></h5>
     <p class="index2_p1"><a href="#" class="a2_stlye">订单信息</a><a href="#">待审核订单</a><a href="#">待财务审核</a><a href="#">待出库</a><a href="#">待发货</a><a href="#">已收货确认</a><a href="#">已完成</a><a href="#">已作废</a></p>
     <div class="index2_con1">
-        <p class="p_line"><input type="text" class="form-control" value="请输入订单编号" /> <select class="form-control">
-            <option>网点编号</option>
+        <p class="p_line">
+            <!--<input type="text" class="form-control" value="请输入订单编号" /> -->
+            <select class="form-control">
+            <option>订单编号</option>
             <option>网点站名</option>
 
         </select><input type="text" class="form-control" /><select class="form-control">
@@ -59,7 +63,7 @@
                 <!--<td>2000￥</td>-->
                 <!--<td>1</td>-->
                 <!--<td>20￥</td>-->
-                <!--<td>1</td>-->
+                <!--<td><button class="layui-btn"></button></td>-->
                 <!--<td>20￥</td>-->
             <!--</tr>-->
         </table>
@@ -135,7 +139,7 @@
                         "                <td>"+userName+"</td>\n" +
                         "                <td>"+createtime_+"</td>\n" +
                         "                <td>已付款,未发货</td>\n" +
-                        "                <td><button>发货</button></td>\n" +
+                        "                <td><button class=\"layui-btn\">发货</button></td>\n" +
                         "            </tr>");
                 }
                 else if(orderstate==2){
@@ -157,7 +161,7 @@
                         "                <td>"+userName+"</td>\n" +
                         "                <td>"+createtime_+"</td>\n" +
                         "                <td>确认收货,未评价</td>\n" +
-                        "                <td><button>提醒评价</button></td>\n" +
+                        "                <td><button class=\"layui-btn\">提醒评价</button></td>\n" +
                         "            </tr>");
                 }
                 else if(orderstate==4){
