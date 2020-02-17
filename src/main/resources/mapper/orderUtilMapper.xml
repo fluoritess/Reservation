@@ -46,4 +46,19 @@
     <select id="ResSelectOrder" resultMap="BaseResultMap" parameterType="com.shan.reservation.bean.orderExample" >
        select * from `order` WHERE restaurantid =#{restaurantid,jdbcType=INTEGER}
     </select>
+    <select id="OrderLimitOneDay" resultMap="BaseResultMap" parameterType="com.shan.reservation.bean.orderExample" >
+        SELECT * from `order` WHERE restaurantId=#{restaurantid,jdbcType=INTEGER} AND TO_DAYS(now())-TO_DAYS(createTime)&lt;1 ORDER BY createTime
+    </select>
+    <select id="OrderLimitOneWeek" resultMap="BaseResultMap" parameterType="com.shan.reservation.bean.orderExample" >
+        SELECT * from `order` WHERE restaurantId=#{restaurantid,jdbcType=INTEGER} AND TO_DAYS(now())-TO_DAYS(createTime)&lt;7 ORDER BY createTime
+    </select>
+    <select id="OrderState1" resultMap="BaseResultMap" parameterType="com.shan.reservation.bean.orderExample" >
+        SELECT * from `order` WHERE restaurantId=#{restaurantid,jdbcType=INTEGER} AND orderState=1
+    </select>
+    <select id="OrderState3" resultMap="BaseResultMap" parameterType="com.shan.reservation.bean.orderExample" >
+        SELECT * from `order` WHERE restaurantId=#{restaurantid,jdbcType=INTEGER} AND orderState=3
+    </select>
+    <select id="OrderState5" resultMap="BaseResultMap" parameterType="com.shan.reservation.bean.orderExample" >
+        SELECT * from `order` WHERE restaurantId=#{restaurantid,jdbcType=INTEGER} AND orderState=5
+    </select>
 </mapper>

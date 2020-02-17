@@ -10,7 +10,7 @@
 <div class="index">
 <div class="index_con_box">
 <h5><a>所在位置：</a><a>首页</a></h5>
-<p class="index_p_top"><ul class="top_ul"><li><img src="../image/index_top_bg.png"/><span class="img_span1">7天订单</span><span class="img_span2">10</span></li><li><img src="../image/index_top_bg.png"/><span class="img_span1">今日交易额</span><span class="img_span2">10</span></li><li><img src="../image/index_top_bg.png"/><span class="img_span1">待审核</span><span class="img_span2">10</span></li><li><img src="../image/index_top_bg.png"/><span class="img_span1">待付款</span><span class="img_span2">10</span></li><li><img src="../image/index_top_bg.png"/><span class="img_span1">退货申请</span><span class="img_span2">10</span></li></ul></p></div>
+<p class="index_p_top"><ul class="top_ul"><li><img src="../image/index_top_bg.png"/><span class="img_span1">7天订单</span><span class="img_span2" id="week"></span></li><li><img src="../image/index_top_bg.png"/><span class="img_span1">今日交易额</span><span class="img_span2" id="day"></span></li><li><img src="../image/index_top_bg.png"/><span class="img_span1">待出货</span><span class="img_span2" id="chuhuo"></span></li><li><img src="../image/index_top_bg.png"/><span class="img_span1">待评价</span><span class="img_span2" id="pingjia"></span></li><li><img src="../image/index_top_bg.png"/><span class="img_span1">退货申请</span><span class="img_span2" id="tuihuo"></span></li></ul></p></div>
 <div class="index_con_box">
 <div class="index_con_left">
 <h3 class="h3_style">统计简报</h3>
@@ -129,6 +129,80 @@
 <script src="../js/jquery.js"></script>
 <script src="../js/jquery.jqChart.min.js"></script>
 <script>
+    var json = {
+        restaurantid: 9
+    };
+    json = JSON.stringify(json);
+    $.ajax({
+        type: "POST",
+        url: "/OrderLimitOneWeek",
+        contentType: "application/json; charset=utf-8",
+        data: json,
+        async: false,
+        dataType: "json",
+        success: function (info) {
+            $("#week").append(info.order.length);
+        },
+        error: function (message) {
+            $("#request-process-patent").html("获取数据失败！");
+        }
+    });
+    $.ajax({
+        type: "POST",
+        url: "/OrderLimitOneDay",
+        contentType: "application/json; charset=utf-8",
+        data: json,
+        async: false,
+        dataType: "json",
+        success: function (info) {
+            $("#day").append(info.order.length);
+        },
+        error: function (message) {
+            $("#request-process-patent").html("获取数据失败！");
+        }
+    });
+    $.ajax({
+        type: "POST",
+        url: "/OrderState1",
+        contentType: "application/json; charset=utf-8",
+        data: json,
+        async: false,
+        dataType: "json",
+        success: function (info) {
+            $("#chuhuo").append(info.order.length);
+        },
+        error: function (message) {
+            $("#request-process-patent").html("获取数据失败！");
+        }
+    });
+    $.ajax({
+        type: "POST",
+        url: "/OrderState3",
+        contentType: "application/json; charset=utf-8",
+        data: json,
+        async: false,
+        dataType: "json",
+        success: function (info) {
+            $("#pingjia").append(info.order.length);
+        },
+        error: function (message) {
+            $("#request-process-patent").html("获取数据失败！");
+        }
+    });
+    $.ajax({
+        type: "POST",
+        url: "/OrderState5",
+        contentType: "application/json; charset=utf-8",
+        data: json,
+        async: false,
+        dataType: "json",
+        success: function (info) {
+            $("#tuihuo").append(info.order.length);
+        },
+        error: function (message) {
+            $("#request-process-patent").html("获取数据失败！");
+        }
+    });
 $(function(){  
    
    $('#char_line').jqChart({

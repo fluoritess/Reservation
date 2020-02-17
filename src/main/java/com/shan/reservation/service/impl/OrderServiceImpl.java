@@ -50,4 +50,29 @@ public class OrderServiceImpl implements OrderService {
     public List<order> ResSelectOrder(int restaurantid) {
         return orderUtilMapper.ResSelectOrder(restaurantid);
     }
+
+    @Override
+    public List<order> OrderLimitOneDay(int restaurantid) {
+        return orderUtilMapper.OrderLimitOneDay(restaurantid);
+    }
+
+    @Override
+    public List<order> OrderLimitOneWeek(int restaurantid) {
+        return orderUtilMapper.OrderLimitOneWeek(restaurantid);
+    }
+
+    @Override
+    public List<order> OrderState1(int restaurantid) {
+        return orderUtilMapper.OrderState1(restaurantid);
+    }
+
+    @Override
+    public List<order> OrderState3(int restaurantid) {
+        return orderUtilMapper.OrderState3(restaurantid);
+    }
+
+    @Override
+    public List<order> OrderState5(int restaurantid) {
+        return orderUtilMapper.OrderState5(restaurantid);
+    }
 }

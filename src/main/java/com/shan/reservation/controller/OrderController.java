@@ -117,4 +117,45 @@ public class OrderController {
         }
         return R.ok().put("order",tarlist);
     }
+    @ResponseBody
+    @RequestMapping("/OrderLimitOneDay" )
+    @ArchivesLog(operationType = "查询信息", operationName = "商家查询一天内订单")
+    public R OrderLimitOneDay(@RequestBody Map<String,String> map, HttpSession httpSession){
+        Integer restaurantid=Integer.parseInt(map.get("restaurantid"));
+        List<order> order=OrderService.OrderLimitOneDay(restaurantid);
+        return R.ok().put("order",order);
+    }
+    @ResponseBody
+    @RequestMapping("/OrderLimitOneWeek" )
+    @ArchivesLog(operationType = "查询信息", operationName = "商家查询一周内订单")
+    public R OrderLimitOneWeek(@RequestBody Map<String,String> map, HttpSession httpSession){
+        Integer restaurantid=Integer.parseInt(map.get("restaurantid"));
+        List<order> order=OrderService.OrderLimitOneWeek(restaurantid);
+        return R.ok().put("order",order);
+    }
+    @ResponseBody
+    @RequestMapping("/OrderState1" )
+    @ArchivesLog(operationType = "查询信息", operationName = "商家查询未出货订单")
+    public R OrderState1(@RequestBody Map<String,String> map, HttpSession httpSession){
+        Integer restaurantid=Integer.parseInt(map.get("restaurantid"));
+        List<order> order=OrderService.OrderState1(restaurantid);
+        return R.ok().put("order",order);
+    }
+    @ResponseBody
+    @RequestMapping("/OrderState3")
+    @ArchivesLog(operationType = "查询信息", operationName = "商家查询未评价订单")
+    public R OrderState3(@RequestBody Map<String,String> map, HttpSession httpSession){
+        Integer restaurantid=Integer.parseInt(map.get("restaurantid"));
+        List<order> order=OrderService.OrderState3(restaurantid);
+        return R.ok().put("order",order);
+    }
+    @ResponseBody
+    @RequestMapping("/OrderState5" )
+    @ArchivesLog(operationType = "查询信息", operationName = "商家查询退后申请订单")
+    public R OrderState5(@RequestBody Map<String,String> map, HttpSession httpSession){
+        Integer restaurantid=Integer.parseInt(map.get("restaurantid"));
+        List<order> order=OrderService.OrderState5(restaurantid);
+        return R.ok().put("order",order);
+    }
+
 }

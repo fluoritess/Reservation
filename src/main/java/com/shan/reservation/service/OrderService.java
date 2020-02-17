@@ -25,4 +25,12 @@ public interface OrderService {
     order selectOrder(String orderNo);
     //商家查询订单
     List<order> ResSelectOrder(int restaurantid);
+    //商家查询一天内订单
+    List<order> OrderLimitOneDay(int restaurantid);
+    //商家查询一周内订单
+    List<order> OrderLimitOneWeek(int restaurantid);
+    List<order> OrderState1(int restaurantid);
+    List<order> OrderState3(int restaurantid);
+    List<order> OrderState5(int restaurantid);
+
 }
