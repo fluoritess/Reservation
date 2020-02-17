@@ -16,7 +16,7 @@
 <h3 class="h3_style">统计简报</h3>
 <p class="left_p">
 <table width="200" border="1" class="left_p_table">
-  <tr class="left_tr1">
+  <tr class="left_tr1" id="table1">
     <td>时间</td>
     <td>订货单</td>
     <td>订货金额</td>
@@ -25,22 +25,22 @@
   </tr>
   <tr>
     <td>今日</td>
-    <td>10笔</td>
-    <td>2000￥</td>
+    <td id="dayxiaoshou">笔</td>
+    <td id="daytotal">￥</td>
     <td>1</td>
     <td>20￥</td>
   </tr>
   <tr>
-    <td>本月</td>
-    <td>100笔</td>
-    <td>20000￥</td>
+    <td>本周</td>
+    <td id="weekxiaoshou">笔</td>
+    <td id="weektotal">￥</td>
     <td>10</td>
     <td>200￥</td>
   </tr>
   <tr>
-    <td>本年</td>
-    <td>1000笔</td>
-    <td>20000￥</td>
+    <td>本月</td>
+    <td id="monthxiaoshou">笔</td>
+    <td id="monthtotal">￥</td>
     <td>100</td>
     <td>200￥</td>
   </tr>
@@ -142,6 +142,7 @@
         dataType: "json",
         success: function (info) {
             $("#week").append(info.order.length);
+            $("#weekxiaoshou").prepend(info.order.length);
         },
         error: function (message) {
             $("#request-process-patent").html("获取数据失败！");
@@ -156,6 +157,21 @@
         dataType: "json",
         success: function (info) {
             $("#day").append(info.order.length);
+            $("#dayxiaoshou").prepend(info.order.length);
+        },
+        error: function (message) {
+            $("#request-process-patent").html("获取数据失败！");
+        }
+    });
+    $.ajax({
+        type: "POST",
+        url: "/OrderLimitOneMonth",
+        contentType: "application/json; charset=utf-8",
+        data: json,
+        async: false,
+        dataType: "json",
+        success: function (info) {
+           $("#monthxiaoshou").prepend(info.order.length);
         },
         error: function (message) {
             $("#request-process-patent").html("获取数据失败！");
@@ -198,6 +214,48 @@
         dataType: "json",
         success: function (info) {
             $("#tuihuo").append(info.order.length);
+        },
+        error: function (message) {
+            $("#request-process-patent").html("获取数据失败！");
+        }
+    });
+    $.ajax({
+        type: "POST",
+        url: "/SalePriceOneDay",
+        contentType: "application/json; charset=utf-8",
+        data: json,
+        async: false,
+        dataType: "json",
+        success: function (info) {
+           $("#daytotal").append(info.price);
+        },
+        error: function (message) {
+            $("#request-process-patent").html("获取数据失败！");
+        }
+    });
+    $.ajax({
+        type: "POST",
+        url: "/SalePriceOneWeek",
+        contentType: "application/json; charset=utf-8",
+        data: json,
+        async: false,
+        dataType: "json",
+        success: function (info) {
+            $("#weektotal").append(info.price);
+        },
+        error: function (message) {
+            $("#request-process-patent").html("获取数据失败！");
+        }
+    });
+    $.ajax({
+        type: "POST",
+        url: "/SalePriceOneMonth",
+        contentType: "application/json; charset=utf-8",
+        data: json,
+        async: false,
+        dataType: "json",
+        success: function (info) {
+            $("#monthtotal").append(info.price);
         },
         error: function (message) {
             $("#request-process-patent").html("获取数据失败！");

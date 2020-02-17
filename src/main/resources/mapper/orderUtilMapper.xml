@@ -52,6 +52,9 @@
     <select id="OrderLimitOneWeek" resultMap="BaseResultMap" parameterType="com.shan.reservation.bean.orderExample" >
         SELECT * from `order` WHERE restaurantId=#{restaurantid,jdbcType=INTEGER} AND TO_DAYS(now())-TO_DAYS(createTime)&lt;7 ORDER BY createTime
     </select>
+    <select id="OrderLimitOneMonth" resultMap="BaseResultMap" parameterType="com.shan.reservation.bean.orderExample" >
+        SELECT * from `order` WHERE restaurantId=#{restaurantid,jdbcType=INTEGER} AND TO_DAYS(now())-TO_DAYS(createTime)&lt;30 ORDER BY createTime
+    </select>
     <select id="OrderState1" resultMap="BaseResultMap" parameterType="com.shan.reservation.bean.orderExample" >
         SELECT * from `order` WHERE restaurantId=#{restaurantid,jdbcType=INTEGER} AND orderState=1
     </select>
@@ -61,4 +64,7 @@
     <select id="OrderState5" resultMap="BaseResultMap" parameterType="com.shan.reservation.bean.orderExample" >
         SELECT * from `order` WHERE restaurantId=#{restaurantid,jdbcType=INTEGER} AND orderState=5
     </select>
+    <update id="updateState2" parameterType="com.shan.reservation.bean.orderExample" >
+       update `order` SET orderstate=2 WHERE orderNo=#{orderNo,jdbcType=VARCHAR}
+    </update>
 </mapper>

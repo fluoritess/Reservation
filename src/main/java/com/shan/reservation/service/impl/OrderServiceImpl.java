@@ -7,6 +7,8 @@ import com.shan.reservation.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.util.Iterator;
 import java.util.List;
 
 @Service
@@ -62,6 +64,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public List<order> OrderLimitOneMonth(int restaurantid) {
+        return orderUtilMapper.OrderLimitOneMonth(restaurantid);
+    }
+
+    @Override
     public List<order> OrderState1(int restaurantid) {
         return orderUtilMapper.OrderState1(restaurantid);
     }
@@ -74,5 +81,49 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<order> OrderState5(int restaurantid) {
         return orderUtilMapper.OrderState5(restaurantid);
+    }
+
+    @Override
+    public void updateState2(String orderno) {
+        orderUtilMapper.updateState2(orderno);
+    }
+
+    @Override
+    public BigDecimal SalePriceOneDay(int restaurantid) {
+        List<order> list= orderUtilMapper.OrderLimitOneDay(restaurantid);
+        Iterator it=list.iterator();
+        BigDecimal totalPrice=new BigDecimal(0);
+        while(it.hasNext()){
+            order order=(order)it.next();
+            BigDecimal price=order.getPrice();
+            totalPrice=totalPrice.add(price);
+        }
+        return totalPrice;
+    }
+
+    @Override
+    public BigDecimal SalePriceOneWeek(int restaurantid) {
+        List<order> list= orderUtilMapper.OrderLimitOneWeek(restaurantid);
+        Iterator it=list.iterator();
+        BigDecimal totalPrice=new BigDecimal(0);
+        while(it.hasNext()){
+            order order=(order)it.next();
+            BigDecimal price=order.getPrice();
+            totalPrice=totalPrice.add(price);
+        }
+        return totalPrice;
+    }
+
+    @Override
+    public BigDecimal SalePriceOneMonth(int restaurantid) {
+        List<order> list= orderUtilMapper.OrderLimitOneMonth(restaurantid);
+        Iterator it=list.iterator();
+        BigDecimal totalPrice=new BigDecimal(0);
+        while(it.hasNext()){
+            order order=(order)it.next();
+            BigDecimal price=order.getPrice();
+            totalPrice=totalPrice.add(price);
+        }
+        return totalPrice;
     }
 }

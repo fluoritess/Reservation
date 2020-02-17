@@ -3,6 +3,7 @@ package com.shan.reservation.controller;
 import com.shan.reservation.bean.food;
 import com.shan.reservation.bean.order;
 import com.shan.reservation.bean.user;
+import com.shan.reservation.mapper.orderUtilMapper;
 import com.shan.reservation.mapper.userMapper;
 import com.shan.reservation.service.FoodService;
 import com.shan.reservation.service.OrderService;
@@ -134,6 +135,15 @@ public class OrderController {
         return R.ok().put("order",order);
     }
     @ResponseBody
+    @RequestMapping("/OrderLimitOneMonth" )
+    @ArchivesLog(operationType = "查询信息", operationName = "商家查询一月内订单")
+    public R OrderLimitOneMonth(@RequestBody Map<String,String> map, HttpSession httpSession){
+        Integer restaurantid=Integer.parseInt(map.get("restaurantid"));
+        List<order> order=OrderService.OrderLimitOneMonth(restaurantid);
+        return R.ok().put("order",order);
+    }
+
+    @ResponseBody
     @RequestMapping("/OrderState1" )
     @ArchivesLog(operationType = "查询信息", operationName = "商家查询未出货订单")
     public R OrderState1(@RequestBody Map<String,String> map, HttpSession httpSession){
@@ -157,5 +167,36 @@ public class OrderController {
         List<order> order=OrderService.OrderState5(restaurantid);
         return R.ok().put("order",order);
     }
-
+    @ResponseBody
+    @RequestMapping("/updateState2" )
+    @ArchivesLog(operationType = "更新信息", operationName = "商家发货")
+    public R updateState2(@RequestBody Map<String,String> map, HttpSession httpSession){
+       String orderNo=map.get("orderNo");
+        OrderService.updateState2(orderNo);
+        return R.ok();
+    }
+    @ResponseBody
+    @RequestMapping("/SalePriceOneDay" )
+    @ArchivesLog(operationType = "查询信息", operationName = "商家查询一天销售额")
+    public R SalePriceOneDay(@RequestBody Map<String,String> map, HttpSession httpSession){
+        Integer restaurantid=Integer.parseInt(map.get("restaurantid"));
+        BigDecimal price=OrderService.SalePriceOneDay(restaurantid);
+        return R.ok().put("price",price);
+    }
+    @ResponseBody
+    @RequestMapping("/SalePriceOneWeek" )
+    @ArchivesLog(operationType = "查询信息", operationName = "商家查询一周销售额")
+    public R SalePriceOneWeek(@RequestBody Map<String,String> map, HttpSession httpSession){
+        Integer restaurantid=Integer.parseInt(map.get("restaurantid"));
+        BigDecimal price=OrderService.SalePriceOneWeek(restaurantid);
+        return R.ok().put("price",price);
+    }
+    @ResponseBody
+    @RequestMapping("/SalePriceOneMonth" )
+    @ArchivesLog(operationType = "查询信息", operationName = "商家查询一月销售额")
+    public R SalePriceOneMonth(@RequestBody Map<String,String> map, HttpSession httpSession){
+        Integer restaurantid=Integer.parseInt(map.get("restaurantid"));
+        BigDecimal price=OrderService.SalePriceOneMonth(restaurantid);
+        return R.ok().put("price",price);
+    }
 }

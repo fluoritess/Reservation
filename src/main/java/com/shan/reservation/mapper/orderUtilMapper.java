@@ -17,7 +17,9 @@ public interface orderUtilMapper {
     List<order> ResSelectOrder(int restaurantid);
     List<order> OrderLimitOneDay(int restaurantid);
     List<order> OrderLimitOneWeek(int restaurantid);
+    List<order> OrderLimitOneMonth(int restaurantid);
     List<order> OrderState1(int restaurantid);
     List<order> OrderState3(int restaurantid);
     List<order> OrderState5(int restaurantid);
+    void updateState2(String orderno);
 }

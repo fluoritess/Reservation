@@ -139,7 +139,7 @@
                         "                <td>"+userName+"</td>\n" +
                         "                <td>"+createtime_+"</td>\n" +
                         "                <td>已付款,未发货</td>\n" +
-                        "                <td><button class=\"layui-btn\">发货</button></td>\n" +
+                        "                <td><button class=\"layui-btn\" id="+orderno+">发货</button></td>\n" +
                         "            </tr>");
                 }
                 else if(orderstate==2){
@@ -193,6 +193,27 @@
             $("#request-process-patent").html("获取数据失败！");
         }
     });
+    $(".layui-btn").click(function () {
+        var orderno=$(this).attr('id');
+        var json = {
+            orderNo: orderno
+        };
+        json = JSON.stringify(json);
+        $.ajax({
+            type: "POST",
+            url: "/updateState2",
+            contentType: "application/json; charset=utf-8",
+            data: json,
+            async: false,
+            dataType: "json",
+            success: function (info) {
+                window.location.href="order_all.html";
+            },
+            error: function (message) {
+                $("#request-process-patent").html("获取数据失败！");
+            }
+        });
+    })
 </script>
 <!-- <script type="text/javascript">
           $(function () {
