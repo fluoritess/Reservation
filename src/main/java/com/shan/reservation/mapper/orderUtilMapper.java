@@ -22,4 +22,7 @@ public interface orderUtilMapper {
     List<order> OrderState3(int restaurantid);
     List<order> OrderState5(int restaurantid);
     void updateState2(String orderno);
+    List<order>  OrderState6OneDay(int restaurantid);
+    List<order>  OrderState6OneWeek(int restaurantid);
+    List<order>  OrderState6OneMonth(int restaurantid);
 }

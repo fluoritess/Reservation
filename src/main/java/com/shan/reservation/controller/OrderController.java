@@ -199,4 +199,52 @@ public class OrderController {
         BigDecimal price=OrderService.SalePriceOneMonth(restaurantid);
         return R.ok().put("price",price);
     }
+    @ResponseBody
+    @RequestMapping("/OrderState6OneDay" )
+    @ArchivesLog(operationType = "查询信息", operationName = "商家查询一天内退货订单")
+    public R OrderState6OneDay(@RequestBody Map<String,String> map, HttpSession httpSession){
+        Integer restaurantid=Integer.parseInt(map.get("restaurantid"));
+        List<order> order=OrderService.OrderState6OneDay(restaurantid);
+        return R.ok().put("order",order);
+    }
+    @ResponseBody
+    @RequestMapping("/OrderState6OneWeek" )
+    @ArchivesLog(operationType = "查询信息", operationName = "商家查询一周内退货订单")
+    public R OrderState6OneWeek(@RequestBody Map<String,String> map, HttpSession httpSession){
+        Integer restaurantid=Integer.parseInt(map.get("restaurantid"));
+        List<order> order=OrderService.OrderState6OneWeek(restaurantid);
+        return R.ok().put("order",order);
+    }
+    @ResponseBody
+    @RequestMapping("/OrderState6OneMonth" )
+    @ArchivesLog(operationType = "查询信息", operationName = "商家一月内退货订单")
+    public R OrderState6OneMonth(@RequestBody Map<String,String> map, HttpSession httpSession){
+        Integer restaurantid=Integer.parseInt(map.get("restaurantid"));
+        List<order> order=OrderService.OrderState6OneMonth(restaurantid);
+        return R.ok().put("order",order);
+    }
+    @ResponseBody
+    @RequestMapping("/OrderState6OneDayPrice" )
+    @ArchivesLog(operationType = "查询信息", operationName = "商家查询一天内退货订单价钱")
+    public R OrderState6OneDayPrice(@RequestBody Map<String,String> map, HttpSession httpSession){
+        Integer restaurantid=Integer.parseInt(map.get("restaurantid"));
+        BigDecimal price=OrderService.OrderState6OneDayPrice(restaurantid);
+        return R.ok().put("price",price);
+    }
+    @ResponseBody
+    @RequestMapping("/OrderState6OneWeekPrice" )
+    @ArchivesLog(operationType = "查询信息", operationName = "商家查询一周内退货订单价钱")
+    public R OrderState6OneWeekPrice(@RequestBody Map<String,String> map, HttpSession httpSession){
+        Integer restaurantid=Integer.parseInt(map.get("restaurantid"));
+        BigDecimal price=OrderService.OrderState6OneWeekPrice(restaurantid);
+        return R.ok().put("price",price);
+    }
+    @ResponseBody
+    @RequestMapping("/OrderState6OneMonthPrice" )
+    @ArchivesLog(operationType = "查询信息", operationName = "商家查询一月内退货订单价钱")
+    public R OrderState6OneMonthPrice(@RequestBody Map<String,String> map, HttpSession httpSession){
+        Integer restaurantid=Integer.parseInt(map.get("restaurantid"));
+        BigDecimal price=OrderService.OrderState6OneMonthPrice(restaurantid);
+        return R.ok().put("price",price);
+    }
 }

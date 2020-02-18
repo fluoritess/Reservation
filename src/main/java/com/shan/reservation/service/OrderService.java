@@ -46,4 +46,16 @@ public interface OrderService {
     BigDecimal SalePriceOneWeek(int restaurantid);
     //计算一月内销售总额
     BigDecimal SalePriceOneMonth(int restaurantid);
+    //查询一天内退货订单
+    List<order> OrderState6OneDay(int restaurantid);
+    //查询一周内退货订单
+    List<order> OrderState6OneWeek(int restaurantid);
+    //查询一月内退货订单
+    List<order> OrderState6OneMonth(int restaurantid);
+    //查询一天内退货订单价钱
+    BigDecimal OrderState6OneDayPrice(int restaurantid);
+    //查询一周内退货订单价钱
+    BigDecimal OrderState6OneWeekPrice(int restaurantid);
+    //查询一月内退货订单价钱
+    BigDecimal OrderState6OneMonthPrice(int restaurantid);
 }

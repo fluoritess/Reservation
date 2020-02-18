@@ -27,22 +27,22 @@
     <td>今日</td>
     <td id="dayxiaoshou">笔</td>
     <td id="daytotal">￥</td>
-    <td>1</td>
-    <td>20￥</td>
+    <td id="daytuihuo"></td>
+    <td id="daytuiprice">￥</td>
   </tr>
   <tr>
     <td>本周</td>
     <td id="weekxiaoshou">笔</td>
     <td id="weektotal">￥</td>
-    <td>10</td>
-    <td>200￥</td>
+    <td id="weektuihuo"></td>
+    <td id="weektuiprice">￥</td>
   </tr>
   <tr>
     <td>本月</td>
     <td id="monthxiaoshou">笔</td>
     <td id="monthtotal">￥</td>
-    <td>100</td>
-    <td>200￥</td>
+    <td id="monthtuihuo"></td>
+    <td id="monthtuiprice">￥</td>
   </tr>
 </table>
 </p>
@@ -50,23 +50,23 @@
 <div class="index_con_right"><h3 class="h3_style">待处理订单</h3>
 <p><table width="200" border="1" class="left_p_table">
   <tr>
-    <td class="td_style"> 待订单审核</td>
-    <td>2</td>
-    <td class="td_style">待财务审核</td>
-    <td>1</td>
-  </tr>
-  <tr>
-    <td class="td_style">待出库</td>
-    <td>1</td>
-    <td class="td_style">待发货</td>
-    <td>1</td>
-  </tr>
-  <tr>
+    <td class="td_style"> 待发货</td>
+    <td id="chuhuo2"></td>
     <td class="td_style">待确认收货</td>
     <td>1</td>
-    <td class="td_style"> 待退货确认</td>
-    <td>0</td>
   </tr>
+  <tr>
+    <td class="td_style">待评价</td>
+    <td id="pingjia2"></td>
+    <td class="td_style">待退货确认</td>
+    <td id="tuihuo2"></td>
+  </tr>
+  <!--<tr>-->
+    <!--<td class="td_style">待确认收货</td>-->
+    <!--<td>1</td>-->
+    <!--<td class="td_style"> 待退货确认</td>-->
+    <!--<td>0</td>-->
+  <!--</tr>-->
   <tr><td></td>
   <td></td>
   <td></td>
@@ -76,43 +76,43 @@
 </div>
 <div class="index_left2">
 <h3 class="h3_style">业务简报<span class="h3_span"><input name="" type="radio" value="" /><a>月</a><input name="" type="radio" value="" /><a>半年</a><input name="" type="radio" value="" /><a>年</a></span></h3>
-<p><table width="200" border="1" class="left_p_table">
-  <tr class="left_tr1">
-    <td>商品名称</td>
-    <td>销售量</td>
-    <td>销售额</td>
-    <td>退货量</td>
-    <td>退货金额</td>
-  </tr>
-  <tr>
-    <td>串珠001</td>
-    <td>10笔</td>
-    <td>2000￥</td>
-    <td>1</td>
-    <td>20￥</td>
-  </tr>
-  <tr>
-    <td>串珠002</td>
-    <td>10笔</td>
-    <td>2000￥</td>
-    <td>1</td>
-    <td>20￥</td>
-  </tr>
- <tr>
-    <td>串珠003</td>
-    <td>10笔</td>
-    <td>2000￥</td>
-    <td>1</td>
-    <td>20￥</td>
-  </tr>
-   <tr>
-    <td>串珠004</td>
-    <td>10笔</td>
-    <td>2000￥</td>
-    <td>1</td>
-    <td>20￥</td>
-  </tr>
-</table></p>
+<!--<p><table width="200" border="1" class="left_p_table">-->
+  <!--<tr class="left_tr1">-->
+    <!--<td>商品名称</td>-->
+    <!--<td>销售量</td>-->
+    <!--<td>销售额</td>-->
+    <!--<td>退货量</td>-->
+    <!--<td>退货金额</td>-->
+  <!--</tr>-->
+  <!--<tr>-->
+    <!--<td>串珠001</td>-->
+    <!--<td>10笔</td>-->
+    <!--<td>2000￥</td>-->
+    <!--<td>1</td>-->
+    <!--<td>20￥</td>-->
+  <!--</tr>-->
+  <!--<tr>-->
+    <!--<td>串珠002</td>-->
+    <!--<td>10笔</td>-->
+    <!--<td>2000￥</td>-->
+    <!--<td>1</td>-->
+    <!--<td>20￥</td>-->
+  <!--</tr>-->
+ <!--<tr>-->
+    <!--<td>串珠003</td>-->
+    <!--<td>10笔</td>-->
+    <!--<td>2000￥</td>-->
+    <!--<td>1</td>-->
+    <!--<td>20￥</td>-->
+  <!--</tr>-->
+   <!--<tr>-->
+    <!--<td>串珠004</td>-->
+    <!--<td>10笔</td>-->
+    <!--<td>2000￥</td>-->
+    <!--<td>1</td>-->
+    <!--<td>20￥</td>-->
+  <!--</tr>-->
+<!--</table></p>-->
 <p class="p_bottom"><a href="#">查看更多</a></p>
 </div>
 <div class="index_right2">
@@ -133,6 +133,7 @@
         restaurantid: 9
     };
     json = JSON.stringify(json);
+    //查询一周内订单
     $.ajax({
         type: "POST",
         url: "/OrderLimitOneWeek",
@@ -148,6 +149,7 @@
             $("#request-process-patent").html("获取数据失败！");
         }
     });
+    //查询一天内订单
     $.ajax({
         type: "POST",
         url: "/OrderLimitOneDay",
@@ -163,6 +165,7 @@
             $("#request-process-patent").html("获取数据失败！");
         }
     });
+    //查询一月内订单
     $.ajax({
         type: "POST",
         url: "/OrderLimitOneMonth",
@@ -177,6 +180,7 @@
             $("#request-process-patent").html("获取数据失败！");
         }
     });
+    //查询未发货的订单
     $.ajax({
         type: "POST",
         url: "/OrderState1",
@@ -186,11 +190,13 @@
         dataType: "json",
         success: function (info) {
             $("#chuhuo").append(info.order.length);
+            $("#chuhuo2").append(info.order.length);
         },
         error: function (message) {
             $("#request-process-patent").html("获取数据失败！");
         }
     });
+    //查询未评价的订单
     $.ajax({
         type: "POST",
         url: "/OrderState3",
@@ -200,11 +206,13 @@
         dataType: "json",
         success: function (info) {
             $("#pingjia").append(info.order.length);
+            $("#pingjia2").append(info.order.length);
         },
         error: function (message) {
             $("#request-process-patent").html("获取数据失败！");
         }
     });
+    //查询申请取消的订单
     $.ajax({
         type: "POST",
         url: "/OrderState5",
@@ -214,11 +222,13 @@
         dataType: "json",
         success: function (info) {
             $("#tuihuo").append(info.order.length);
+            $("#tuihuo2").append(info.order.length);
         },
         error: function (message) {
             $("#request-process-patent").html("获取数据失败！");
         }
     });
+    //查询一天内销售总额
     $.ajax({
         type: "POST",
         url: "/SalePriceOneDay",
@@ -233,6 +243,7 @@
             $("#request-process-patent").html("获取数据失败！");
         }
     });
+    //查询一周内销售总额
     $.ajax({
         type: "POST",
         url: "/SalePriceOneWeek",
@@ -247,6 +258,7 @@
             $("#request-process-patent").html("获取数据失败！");
         }
     });
+    //查询一月内销售总额
     $.ajax({
         type: "POST",
         url: "/SalePriceOneMonth",
@@ -261,7 +273,97 @@
             $("#request-process-patent").html("获取数据失败！");
         }
     });
-$(function(){  
+    //商家查询一天内退货订单
+    $.ajax({
+        type: "POST",
+        url: "/OrderState6OneDay",
+        contentType: "application/json; charset=utf-8",
+        data: json,
+        async: false,
+        dataType: "json",
+        success: function (info) {
+          $("#daytuihuo").append(info.order.length);
+        },
+        error: function (message) {
+            $("#request-process-patent").html("获取数据失败！");
+        }
+    });
+    //商家查询一周内退货订单
+    $.ajax({
+        type: "POST",
+        url: "/OrderState6OneWeek",
+        contentType: "application/json; charset=utf-8",
+        data: json,
+        async: false,
+        dataType: "json",
+        success: function (info) {
+            $("#weektuihuo").append(info.order.length);
+        },
+        error: function (message) {
+            $("#request-process-patent").html("获取数据失败！");
+        }
+    });
+    //商家查询一月内退货订单
+    $.ajax({
+        type: "POST",
+        url: "/OrderState6OneMonth",
+        contentType: "application/json; charset=utf-8",
+        data: json,
+        async: false,
+        dataType: "json",
+        success: function (info) {
+            $("#monthtuihuo").append(info.order.length);
+        },
+        error: function (message) {
+            $("#request-process-patent").html("获取数据失败！");
+        }
+    });
+    //商家查询一天内退货订单价钱
+    $.ajax({
+        type: "POST",
+        url: "/OrderState6OneDayPrice",
+        contentType: "application/json; charset=utf-8",
+        data: json,
+        async: false,
+        dataType: "json",
+        success: function (info) {
+            $("#daytuiprice").append(info.price);
+        },
+        error: function (message) {
+            $("#request-process-patent").html("获取数据失败！");
+        }
+    });
+    //商家查询一周内退货订单价钱
+    $.ajax({
+        type: "POST",
+        url: "/OrderState6OneWeekPrice",
+        contentType: "application/json; charset=utf-8",
+        data: json,
+        async: false,
+        dataType: "json",
+        success: function (info) {
+            $("#weektuiprice").append(info.price);
+        },
+        error: function (message) {
+            $("#request-process-patent").html("获取数据失败！");
+        }
+    });
+    //商家查询一月内退货订单价钱
+    $.ajax({
+        type: "POST",
+        url: "/OrderState6OneMonthPrice",
+        contentType: "application/json; charset=utf-8",
+        data: json,
+        async: false,
+        dataType: "json",
+        success: function (info) {
+            $("#monthtuiprice").append(info.price);
+        },
+        error: function (message) {
+            $("#request-process-patent").html("获取数据失败！");
+        }
+    });
+    $(function(){
    
    $('#char_line').jqChart({
                 title: { text: '按区域统计线状图' },//图表标题

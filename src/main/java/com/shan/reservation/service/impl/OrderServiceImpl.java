@@ -126,4 +126,58 @@ public class OrderServiceImpl implements OrderService {
         }
         return totalPrice;
     }
+
+    @Override
+    public List<order> OrderState6OneDay(int restaurantid) {
+        return orderUtilMapper.OrderState6OneDay(restaurantid);
+    }
+
+    @Override
+    public List<order> OrderState6OneWeek(int restaurantid) {
+        return orderUtilMapper.OrderState6OneWeek(restaurantid);
+    }
+
+    @Override
+    public List<order> OrderState6OneMonth(int restaurantid) {
+        return orderUtilMapper.OrderState6OneMonth(restaurantid);
+    }
+
+    @Override
+    public BigDecimal OrderState6OneDayPrice(int restaurantid) {
+        List<order> list= orderUtilMapper.OrderState6OneDay(restaurantid);
+        Iterator it=list.iterator();
+        BigDecimal totalPrice=new BigDecimal(0);
+        while(it.hasNext()){
+            order order=(order)it.next();
+            BigDecimal price=order.getPrice();
+            totalPrice=totalPrice.add(price);
+        }
+        return totalPrice;
+    }
+
+    @Override
+    public BigDecimal OrderState6OneWeekPrice(int restaurantid) {
+        List<order> list= orderUtilMapper.OrderState6OneWeek(restaurantid);
+        Iterator it=list.iterator();
+        BigDecimal totalPrice=new BigDecimal(0);
+        while(it.hasNext()){
+            order order=(order)it.next();
+            BigDecimal price=order.getPrice();
+            totalPrice=totalPrice.add(price);
+        }
+        return totalPrice;
+    }
+
+    @Override
+    public BigDecimal OrderState6OneMonthPrice(int restaurantid) {
+        List<order> list= orderUtilMapper.OrderState6OneMonth(restaurantid);
+        Iterator it=list.iterator();
+        BigDecimal totalPrice=new BigDecimal(0);
+        while(it.hasNext()){
+            order order=(order)it.next();
+            BigDecimal price=order.getPrice();
+            totalPrice=totalPrice.add(price);
+        }
+        return totalPrice;
+    }
 }
