@@ -6,6 +6,26 @@
 <link href="../css/eys_stly.css" rel="stylesheet" type="text/css" />
 <link href="../css/bootstrap.css" rel="stylesheet" type="text/css" />
 <link href="../ss/css/bootstrap-table.css" rel="stylesheet" type="text/css" />
+    <!--<link rel="stylesheet" href="//res.layui.com/layui/dist/css/layui.css"  media="all">-->
+    <link href="../../layui/css/layui.css" rel="stylesheet" type="text/css" />
+    <script src="../../layui/layui.js" charset="utf-8"></script>
+    <style type="text/css">
+        .left_p_table{
+            width:96%;
+            height:auto;
+            border-collapse:collapse;
+            margin-left:2%;
+            border:1px solid #eee;
+        }
+        .left_p_table tr{
+            height:76px;
+            text-align:center;
+        }
+        .left_p_table img{
+            width: 86px;
+            height: 76px;
+        }
+    </style>
 </head>
 
 <body>
@@ -51,11 +71,20 @@
             <td><input type="checkbox"/>全选</td>
             <td>图片</td>
             <td>商品名称</td>
-            <td>成本价</td>
             <td>销售价</td>
+            <td>促销价</td>
             <td>可销售库存</td>
             <td>操作</td>
         </tr>
+     <!--<tr>-->
+        <!--<td><input type="checkbox"/></td>-->
+        <!--<td><img src="../../upload/food/jituibaotaocan.jpg" alt=""/></td>-->
+        <!--<td>秘制烤鸡腿堡</td>-->
+        <!--<td>15</td>-->
+        <!--<td>12</td>-->
+        <!--<td>1640</td>-->
+        <!--<td>修改</td>-->
+        <!--</tr>-->
         <!--<tr>-->
         <!--<td >今日</td>-->
         <!--<td>10笔</td>-->
@@ -65,7 +94,13 @@
         <!--<td><button class="layui-btn"></button></td>-->
         <!--<td>20￥</td>-->
         <!--</tr>-->
+
     </table>
+    <!--<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">-->
+        <!--<legend>总页数大于页码总数</legend>-->
+    <!--</fieldset>-->
+    <div id="demo1"></div>
+
     </p>
 
 </div>
@@ -73,6 +108,57 @@
 <script src="../js/bootstrap.min.js"></script>
 <script src="../ss/js/bootstrap-table.js"></script>
 <script src="../ss/js/bootstrap-table-zh-CN.min.js"></script>
+<script>
+    var json = {
+        id: 9
+    };
+    json = JSON.stringify(json);
+    $.ajax({
+        type: "POST",
+        url: "/findFoodByRestaurant",
+        contentType: "application/json; charset=utf-8",
+        data: json,
+        async: false,
+        dataType: "json",
+        success: function (info) {
+          console.log(info);
+          for(var i=0;i<info.food.length;i++){
+              var foodName=info.food[i].foodName;
+              var foodPrice=info.food[i].foodPrice;
+              var foodBargain=info.food[i].foodBargain;
+              var stock=info.food[i].stock;
+              var foodId=info.food[i].foodId;
+              var foodImage=info.food[i].foodImage;
+              var url="../../";
+              var image=url+foodImage;
+                    $("#table").append("    <tr>\n" +
+                        "        <td><input type=\"checkbox\"/></td>\n" +
+                        "        <td><img src=\""+image+"\" alt=\"\"/></td>\n" +
+                        "        <td>"+foodName+"</td>\n" +
+                        "        <td>"+foodPrice+"</td>\n" +
+                        "        <td>"+foodBargain+"</td>\n" +
+                        "        <td>"+stock+"</td>\n" +
+                        "                <td><button class=\"layui-btn\" id="+foodId+">修改</button></td>\n" +
+                        "        </tr>");
+          }
+        },
+        error: function (message) {
+            $("#request-process-patent").html("获取数据失败！");
+        }
+    });
+    layui.use(['laypage', 'layer'], function(){
+        var laypage = layui.laypage
+            ,layer = layui.layer;
+        //总页数大于页码总数
+        laypage.render({
+            elem: 'demo1'
+            ,count: 70 //数据总数
+            ,jump: function(obj){
+                console.log(obj)
+            }
+        });
+    })
+</script>
   <!--<script type="text/javascript">-->
             <!--$(function () {-->
                 <!--$('#table').bootstrapTable({-->
