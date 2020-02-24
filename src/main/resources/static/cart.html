@@ -10,6 +10,12 @@
 <script type="text/javascript" src="js/jqpublic.js"></script>
 <script type="text/javascript" src="js/cart.js"></script>
     <script type="text/javascript" src="js/normal.js"></script>
+    <style type="text/css">
+       img{
+           height: 96px;
+           width: 106px;
+       }
+    </style>
 <!--
 Author: DeathGhost
 Author URI: http://www.deathghost.cn
@@ -270,7 +276,7 @@ Author URI: http://www.deathghost.cn
                        "        <input id=\"add"+count+"\" name=\"\" style=\"width:30px; height:30px;border:1px solid #ccc;\" type=\"button\" value=\"+\" />\n" +
                        "      </td>\n" +
                        "      <td class=\"tb1_td6\"><label id=\"total"+count+"\" class=\"tot\" style=\"color:#ff5500;font-size:14px; font-weight:bold;\">"+foodBargain+"</label></td>\n" +
-                       "      <td class=\"tb1_td7\"><a href=\"#\" id=\"delcart"+count+"\">删除</a></td>\n" +
+                       "      <td class=\"tb1_td7\"><a href=\"#\" class=\"shanchu\" id=\""+foodName+"\">删除</a></td>\n" +
                        "    </tr>\n" +
                        "  </table>");
 
@@ -299,6 +305,24 @@ Author URI: http://www.deathghost.cn
             }
         });
 
+        $(".shanchu").click(function () {
+            var id=$(this).attr('id');
+            var json = {
+                name: id
+            };
+            json = JSON.stringify(json);
+            $.ajax({
+                type: "POST",
+                url: "/deleteItem",
+                contentType: "application/json; charset=utf-8",
+                data: json,
+                async: false,
+                dataType: "json",
+                success: function (info) {
+
+                }
+            });
+        })
     }
 
 </script>

@@ -109,6 +109,7 @@
 <script src="../ss/js/bootstrap-table.js"></script>
 <script src="../ss/js/bootstrap-table-zh-CN.min.js"></script>
 <script>
+    var count=0;
     var json = {
         id: 9
     };
@@ -122,6 +123,7 @@
         dataType: "json",
         success: function (info) {
           console.log(info);
+          count=info.food.length;
           for(var i=0;i<info.food.length;i++){
               var foodName=info.food[i].foodName;
               var foodPrice=info.food[i].foodPrice;
@@ -152,11 +154,15 @@
         //总页数大于页码总数
         laypage.render({
             elem: 'demo1'
-            ,count: 70 //数据总数
+            ,count: count //数据总数
             ,jump: function(obj){
                 console.log(obj)
             }
         });
+    })
+    $(".layui-btn").click(function () {
+      var id=$(this).attr('id');
+        window.location.href="foodupdate.html?"+id;
     })
 </script>
   <!--<script type="text/javascript">-->
