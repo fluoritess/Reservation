@@ -853,6 +853,66 @@ public class foodExample {
             addCriterion("score not between", value1, value2, "score");
             return (Criteria) this;
         }
+
+        public Criteria andFoodStateIsNull() {
+            addCriterion("food_state is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFoodStateIsNotNull() {
+            addCriterion("food_state is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andFoodStateEqualTo(Integer value) {
+            addCriterion("food_state =", value, "foodState");
+            return (Criteria) this;
+        }
+
+        public Criteria andFoodStateNotEqualTo(Integer value) {
+            addCriterion("food_state <>", value, "foodState");
+            return (Criteria) this;
+        }
+
+        public Criteria andFoodStateGreaterThan(Integer value) {
+            addCriterion("food_state >", value, "foodState");
+            return (Criteria) this;
+        }
+
+        public Criteria andFoodStateGreaterThanOrEqualTo(Integer value) {
+            addCriterion("food_state >=", value, "foodState");
+            return (Criteria) this;
+        }
+
+        public Criteria andFoodStateLessThan(Integer value) {
+            addCriterion("food_state <", value, "foodState");
+            return (Criteria) this;
+        }
+
+        public Criteria andFoodStateLessThanOrEqualTo(Integer value) {
+            addCriterion("food_state <=", value, "foodState");
+            return (Criteria) this;
+        }
+
+        public Criteria andFoodStateIn(List<Integer> values) {
+            addCriterion("food_state in", values, "foodState");
+            return (Criteria) this;
+        }
+
+        public Criteria andFoodStateNotIn(List<Integer> values) {
+            addCriterion("food_state not in", values, "foodState");
+            return (Criteria) this;
+        }
+
+        public Criteria andFoodStateBetween(Integer value1, Integer value2) {
+            addCriterion("food_state between", value1, value2, "foodState");
+            return (Criteria) this;
+        }
+
+        public Criteria andFoodStateNotBetween(Integer value1, Integer value2) {
+            addCriterion("food_state not between", value1, value2, "foodState");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

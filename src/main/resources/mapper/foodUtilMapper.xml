@@ -15,6 +15,7 @@
             <arg column="stock" jdbcType="INTEGER" javaType="java.lang.Integer" />
             <arg column="cumulative_evaluation" jdbcType="INTEGER" javaType="java.lang.Integer" />
             <arg column="score" jdbcType="DOUBLE" javaType="java.lang.Double" />
+            <arg column="food_state" jdbcType="INTEGER" javaType="java.lang.Integer" />
         </constructor>
     </resultMap>
     <select id="selectByName" resultMap="BaseResultMap" parameterType="java.lang.String" >

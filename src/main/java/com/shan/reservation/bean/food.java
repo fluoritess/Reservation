@@ -25,13 +25,13 @@ public class food {
 
     private Double score;
 
+    private Integer foodState;
     public food(Double foodPrice, String foodName, String foodImage) {
         this.foodPrice = foodPrice;
         this.foodName = foodName;
         this.foodImage = foodImage;
     }
-
-    public food(Integer foodId, Integer restaurantId, Double foodPrice, Double foodBargain, String foodName, Integer categoryId, String foodDescribe, Integer sales, String foodImage, Integer stock, Integer cumulativeEvaluation, Double score) {
+    public food(Integer foodId, Integer restaurantId, Double foodPrice, Double foodBargain, String foodName, Integer categoryId, String foodDescribe, Integer sales, String foodImage, Integer stock, Integer cumulativeEvaluation, Double score, Integer foodState) {
         this.foodId = foodId;
         this.restaurantId = restaurantId;
         this.foodPrice = foodPrice;
@@ -44,6 +44,7 @@ public class food {
         this.stock = stock;
         this.cumulativeEvaluation = cumulativeEvaluation;
         this.score = score;
+        this.foodState = foodState;
     }
 
     public food() {
@@ -144,5 +145,13 @@ public class food {
 
     public void setScore(Double score) {
         this.score = score;
+    }
+
+    public Integer getFoodState() {
+        return foodState;
+    }
+
+    public void setFoodState(Integer foodState) {
+        this.foodState = foodState;
     }
 }
