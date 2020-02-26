@@ -101,7 +101,7 @@
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
-                <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                <button class="layui-btn" lay-submit lay-filter="formDemo" data-method="confirmTrans" id="tijiao">立即提交</button>
                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>
             </div>
         </div>
@@ -111,6 +111,7 @@
         var id = location.href.split("?")[1];
         var context=$("#shangxiajia em").html();
         var categoryId="";
+        var CateName="";
         console.log(context);
         var json = {
             id: id
@@ -157,8 +158,7 @@
             async: false,
             dataType: "json",
             success: function (info) {
-
-                var CateName=info.CateName;
+                CateName=info.CateName;
                 console.log(CateName)
                 $("#0").text(CateName);
             },
@@ -166,6 +166,38 @@
                 $("#request-process-patent").html("获取数据失败！");
             }
         });
+        $("#tijiao").click(function () {
+            var name=$("#mingcheng").val();
+            var xiaoshou=$("#xiaoshoujia").val();
+            var chuxiaojia=$("#chuxiaojia").val();
+            var jianjie=$("#jianjie").val();
+            var kucun=$("#kucun").val();
+            var json = {
+                categoryId: categoryId,
+                foodPrice:xiaoshou,
+                foodBargain:chuxiaojia,
+                foodDescribe:jianjie,
+                foodName:name,
+                stock:kucun
+            };
+            json = JSON.stringify(json);
+            $.ajax({
+                type: "POST",
+                url: "/restaurantUpdateFood",
+                contentType: "application/json; charset=utf-8",
+                data: json,
+                async: false,
+                dataType: "json",
+                success: function (info) {
+                    CateName=info.CateName;
+                    console.log(CateName)
+                    $("#0").text(CateName);
+                },
+                error: function (message) {
+                    $("#request-process-patent").html("获取数据失败！");
+                }
+            });
+        })
         //Demo
         layui.use('form', function(){
             var form = layui.form;
@@ -175,7 +207,18 @@
                 layer.msg(JSON.stringify(data.field));
                 return false;
             });
+            // //触发事件
+            // var active = {
+            //     confirmTrans: function(){
+            //         //配置一个透明的询问框
+            //         layer.msg( {
+            //             time: 20000, //20s后自动关闭
+            //             btn: ['明白了', '知道了', '哦']
+            //         });
+            //     }
+            // }
         });
+
     </script>
     </body>
 </html>

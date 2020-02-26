@@ -21,5 +21,9 @@
     <select id="selectByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
        select * from food WHERE food_name= #{foodName,jdbcType=VARCHAR}
     </select>
-
+    <update id="shopUpdateFood" parameterType="com.shan.reservation.bean.orderExample" >
+     update food SET food_name=#{foodName,jdbcType=VARCHAR},food_bargain= #{foodBargain,jdbcType=DOUBLE},food_price= #{foodPrice,jdbcType=DOUBLE},
+      category_id=#{categoryId,jdbcType=INTEGER}, food_describe= #{foodDescribe,jdbcType=VARCHAR}, stock=#{stock,jdbcType=INTEGER},food_state= #{foodState,jdbcType=INTEGER}
+      WHERE food_id=10
+    </update>
 </mapper>

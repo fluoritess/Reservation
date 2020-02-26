@@ -4,6 +4,7 @@ import com.shan.reservation.bean.city_info;
 import com.shan.reservation.bean.food;
 import com.shan.reservation.bean.restaurant;
 import com.shan.reservation.bean.restaurantUtil;
+import com.shan.reservation.mapper.foodUtilMapper;
 import com.shan.reservation.mapper.restaurantMapper;
 import com.shan.reservation.service.FoodService;
 import com.shan.reservation.service.RestaurantService;
@@ -29,6 +30,8 @@ import java.util.Map;
 public class RestaurantController {
     @Autowired
     RestaurantService RestaurantService;
+    @Autowired
+    foodUtilMapper foodUtilMapper;
     @ResponseBody
     @RequestMapping("/findAllRestaurant" )
     @ArchivesLog(operationType = "查询信息", operationName = "查询所有餐馆")
@@ -88,4 +91,19 @@ public class RestaurantController {
         List<restaurantUtil> restaurantUtil= RestaurantService.selectByName(restaurantName);
         return  R.ok().put("restaurant",restaurantUtil);
     }
+    @ResponseBody
+    @RequestMapping("/restaurantUpdateFood" )
+    @ArchivesLog(operationType = "修改信息", operationName = "餐馆更新食物信息")
+    public R restaurantUpdateFood(@RequestBody Map<String,String> map, HttpSession httpSession){
+        String foodName=map.get("foodName");
+//        Double foodPrice, Double foodBargain, String foodName, Integer categoryId, String foodDescribe, Integer stock, Integer foodState
+        Integer categoryId=Integer.parseInt(map.get("categoryId"));
+        Double foodPrice=Double.parseDouble(map.get("foodPrice"));
+        Double foodBargain=Double.parseDouble(map.get("foodBargain"));
+        String foodDescribe=map.get("foodDescribe");
+        Integer stock=Integer.parseInt(map.get("stock"));
+        foodUtilMapper.shopUpdateFood(foodPrice,foodBargain,foodName,categoryId,foodDescribe,stock,1);
+        return  R.ok();
+    }
+
 }

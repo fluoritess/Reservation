@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50720
 File Encoding         : 65001
 
-Date: 2020-02-13 18:26:57
+Date: 2020-02-26 17:46:16
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -58,6 +58,7 @@ CREATE TABLE `admin` (
 -- Records of admin
 -- ----------------------------
 INSERT INTO `admin` VALUES ('1', '123', '2020-02-08 14:37:33', '森');
+INSERT INTO `admin` VALUES ('2', '123', '2020-02-14 17:43:12', 'admin');
 
 -- ----------------------------
 -- Table structure for `advertisement`
@@ -195,6 +196,7 @@ CREATE TABLE `food` (
   `stock` int(11) NOT NULL,
   `cumulative_evaluation` int(11) DEFAULT NULL,
   `score` double(11,2) DEFAULT NULL,
+  `food_state` int(11) NOT NULL,
   PRIMARY KEY (`food_id`),
   KEY `restaurant_id` (`restaurant_id`),
   KEY `category_id` (`category_id`),
@@ -205,17 +207,17 @@ CREATE TABLE `food` (
 -- ----------------------------
 -- Records of food
 -- ----------------------------
-INSERT INTO `food` VALUES ('1', '1', '108.00', '89.00', '黑胡椒牛排', '2', '黑胡椒牛排是以牛里脊肉为主要食材的大众菜，口味咸鲜', '241', 'upload/food/niupai.jpg', '29', '198', '4.77');
-INSERT INTO `food` VALUES ('2', '2', '42.00', '30.00', '烤芝士沙拉', '7', '烤芝士配上蔬菜沙拉,口味新颖，很别样的感觉! ', '303', 'upload/shala2.jpg', '42', '278', '4.86');
-INSERT INTO `food` VALUES ('3', '8', '16.00', '10.00', '烧仙草', '9', '烧仙草', '2011', 'upload/food/shaoxiancao.jpg', '230', '1672', '4.67');
-INSERT INTO `food` VALUES ('4', '4', '28.00', '20.00', '回锅肉', '1', '是一种四川传统菜式中家常（味型）菜肴的代表菜肴之一，属于川菜系列。', '1526', 'upload/food/huiguorou.jpg', '226', '1482', '4.87');
-INSERT INTO `food` VALUES ('5', '4', '26.00', '22.00', '干煸肥肠', '1', '干煸肥肠是用肥肠制作的一道著名的地方佳肴，属于川菜。具有色泽深红、筋韧辣香等口味特点。', '3105', 'upload/food/feichang.jpg', '320', '2983', '4.90');
-INSERT INTO `food` VALUES ('6', '4', '23.00', '18.00', '鱼香肉丝', '1', '鱼香肉丝是一道传统名菜，以鱼香味调味而得名，属于川菜。', '2809', 'upload/food/rousi.jpg', '198', '2769', '4.79');
-INSERT INTO `food` VALUES ('7', '4', '32.00', '30.00', '糖醋里脊', '1', '糖醋里脊是经典传统名菜之一，以猪里脊肉为主材，配以面粉、淀粉、醋等佐料，酸甜可口，让人食欲大开。', '1443', 'upload/food/liji.jpg', '264', '1098', '4.78');
-INSERT INTO `food` VALUES ('8', '9', '15.00', '12.00', '秘制烤鸡腿堡', '2', '华莱士秘制烤鸡腿堡菜单,新鲜嫩滑的鸡腿肉,腌入华莱士秘制五味料,烹制后再淋上一层秘制酱料,配以爽脆的有机蔬菜,味道浓郁,咬一口满满腌制的鸡腿肉', '5980', 'upload/food/jituibao.jpg', '1640', '3895', '4.89');
-INSERT INTO `food` VALUES ('9', '9', '12.00', '10.00', '香辣鸡翅', '2', '香辣鸡翅酥脆可口,肉嫩味美,咬一口,咔呲咔呲,鲜香劲脆!', '5120', 'upload/food/jichi.jpg', '1480', '3758', '4.81');
-INSERT INTO `food` VALUES ('10', '9', '4.00', '3.00', '可乐', '9', '可乐(Cola)，是指有甜味、含咖啡因但不含酒精的碳酸饮料，非常流行。', '4897', 'upload/food/kele.jpg', '1870', '3412', '4.62');
-INSERT INTO `food` VALUES ('11', '9', '20.00', '16.50', '秘制烤鸡腿堡套餐', '2', '华莱士秘制烤鸡腿堡菜单,新鲜嫩滑的鸡腿肉,腌入华莱士秘制五味料,烹制后再淋上一层秘制酱料,配以爽脆的有机蔬菜,味道浓郁,咬一口满满腌制的鸡腿肉', '8051', 'upload/food/jituibaotaocan.jpg', '4052', '4687', '4.88');
+INSERT INTO `food` VALUES ('1', '1', '108.00', '89.00', '黑胡椒牛排', '2', '黑胡椒牛排是以牛里脊肉为主要食材的大众菜，口味咸鲜', '241', 'upload/food/niupai.jpg', '29', '198', '4.77', '1');
+INSERT INTO `food` VALUES ('2', '2', '42.00', '30.00', '烤芝士沙拉', '7', '烤芝士配上蔬菜沙拉,口味新颖，很别样的感觉! ', '303', 'upload/shala2.jpg', '42', '278', '4.86', '1');
+INSERT INTO `food` VALUES ('3', '8', '16.00', '10.00', '烧仙草', '9', '烧仙草', '2011', 'upload/food/shaoxiancao.jpg', '230', '1672', '4.67', '1');
+INSERT INTO `food` VALUES ('4', '4', '28.00', '20.00', '回锅肉', '1', '是一种四川传统菜式中家常（味型）菜肴的代表菜肴之一，属于川菜系列。', '1526', 'upload/food/huiguorou.jpg', '226', '1482', '4.87', '1');
+INSERT INTO `food` VALUES ('5', '4', '26.00', '22.00', '干煸肥肠', '1', '干煸肥肠是用肥肠制作的一道著名的地方佳肴，属于川菜。具有色泽深红、筋韧辣香等口味特点。', '3105', 'upload/food/feichang.jpg', '320', '2983', '4.90', '1');
+INSERT INTO `food` VALUES ('6', '4', '23.00', '18.00', '鱼香肉丝', '1', '鱼香肉丝是一道传统名菜，以鱼香味调味而得名，属于川菜。', '2809', 'upload/food/rousi.jpg', '198', '2769', '4.79', '1');
+INSERT INTO `food` VALUES ('7', '4', '32.00', '30.00', '糖醋里脊', '1', '糖醋里脊是经典传统名菜之一，以猪里脊肉为主材，配以面粉、淀粉、醋等佐料，酸甜可口，让人食欲大开。', '1443', 'upload/food/liji.jpg', '264', '1098', '4.78', '1');
+INSERT INTO `food` VALUES ('8', '9', '15.00', '12.00', '秘制烤鸡腿堡', '2', '华莱士秘制烤鸡腿堡菜单,新鲜嫩滑的鸡腿肉,腌入华莱士秘制五味料,烹制后再淋上一层秘制酱料,配以爽脆的有机蔬菜,味道浓郁,咬一口满满腌制的鸡腿肉', '5980', 'upload/food/jituibao.jpg', '1640', '3895', '4.89', '1');
+INSERT INTO `food` VALUES ('9', '9', '12.00', '10.00', '香辣鸡翅', '2', '香辣鸡翅酥脆可口,肉嫩味美,咬一口,咔呲咔呲,鲜香劲脆!', '5120', 'upload/food/jichi.jpg', '1480', '3758', '4.81', '1');
+INSERT INTO `food` VALUES ('10', '9', '4.00', '3.00', '可乐', '9', '可乐(Cola)，是指有甜味、含咖啡因但不含酒精的碳酸饮料，非常流行。', '4897', 'upload/food/kele.jpg', '1870', '3412', '4.62', '1');
+INSERT INTO `food` VALUES ('11', '9', '20.00', '16.50', '秘制烤鸡腿堡套餐', '2', '华莱士秘制烤鸡腿堡菜单,新鲜嫩滑的鸡腿肉,腌入华莱士秘制五味料,烹制后再淋上一层秘制酱料,配以爽脆的有机蔬菜,味道浓郁,咬一口满满腌制的鸡腿肉', '8051', 'upload/food/jituibaotaocan.jpg', '4052', '4687', '4.88', '1');
 
 -- ----------------------------
 -- Table structure for `food_category`
@@ -256,15 +258,14 @@ CREATE TABLE `item` (
   KEY `user_id` (`user_id`),
   CONSTRAINT `item_ibfk_1` FOREIGN KEY (`food_id`) REFERENCES `food` (`food_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `item_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of item
 -- ----------------------------
-INSERT INTO `item` VALUES ('1', '1', '4', '1');
-INSERT INTO `item` VALUES ('2', '1', '5', '1');
-INSERT INTO `item` VALUES ('5', '1', '2', '1');
-INSERT INTO `item` VALUES ('6', '1', '8', '3');
+INSERT INTO `item` VALUES ('9', '1', '10', '8');
+INSERT INTO `item` VALUES ('11', '1', '9', '2');
+INSERT INTO `item` VALUES ('12', '1', '5', '1');
 
 -- ----------------------------
 -- Table structure for `messageboard`
@@ -316,8 +317,6 @@ CREATE TABLE `order` (
   `userId` int(11) NOT NULL,
   `restaurantId` int(11) NOT NULL,
   `price` decimal(11,2) NOT NULL,
-  `isPay` tinyint(4) unsigned zerofill DEFAULT NULL,
-  `isAppraise` tinyint(4) unsigned zerofill DEFAULT NULL,
   `isRefund` tinyint(4) unsigned zerofill DEFAULT NULL,
   `deliverMoney` decimal(11,2) unsigned zerofill DEFAULT NULL,
   `createTime` datetime NOT NULL,
@@ -333,26 +332,19 @@ CREATE TABLE `order` (
   CONSTRAINT `order_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `order_ibfk_2` FOREIGN KEY (`restaurantId`) REFERENCES `restaurant` (`restaurant_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `order_ibfk_3` FOREIGN KEY (`address_id`) REFERENCES `address` (`address_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of order
 -- ----------------------------
-INSERT INTO `order` VALUES ('1', '202054687521022', '1', '9', '25.00', '0001', '0000', '0000', '000000000.00', '2020-02-01 16:53:02', '2020-02-01 16:54:14', '2020-02-01 17:13:22', '3', null, '1');
-INSERT INTO `order` VALUES ('2', '202021346782322', '1', '4', '36.00', '0001', '0000', '0000', '000000000.00', '2020-02-01 19:21:03', '2020-02-01 19:21:05', '2020-02-01 19:21:08', '2', null, '1');
-INSERT INTO `order` VALUES ('3', '202080346893212', '1', '4', '32.00', '0001', '0000', '0000', '000000000.00', '2020-02-01 19:25:19', '2020-02-01 19:25:23', '2020-02-01 19:25:26', '-2', null, '1');
-INSERT INTO `order` VALUES ('10', '202002101724021', '1', '9', '66.28', null, null, null, null, '2020-02-10 17:24:03', null, null, '-1', null, '1');
-INSERT INTO `order` VALUES ('11', '202002111715411', '1', '9', '10.00', null, null, null, null, '2020-02-11 17:15:42', null, null, '-1', null, '1');
-INSERT INTO `order` VALUES ('12', '202002111716051', '1', '9', '10.00', null, null, null, null, '2020-02-11 17:16:05', null, null, '-1', null, '1');
-INSERT INTO `order` VALUES ('13', '202002111719331', '1', '9', '48.00', null, null, null, null, '2020-02-11 17:19:34', null, null, '-1', null, '1');
-INSERT INTO `order` VALUES ('14', '202002111736261', '1', '9', '46.00', null, null, null, null, '2020-02-11 17:36:26', null, null, '-1', null, '1');
-INSERT INTO `order` VALUES ('15', '202002111745191', '1', '9', '56.00', null, null, null, null, '2020-02-11 17:45:20', null, null, '-1', null, '1');
-INSERT INTO `order` VALUES ('16', '202002111747211', '1', '9', '48.00', null, null, null, null, '2020-02-11 17:47:21', null, null, '-1', null, '1');
-INSERT INTO `order` VALUES ('17', '202002111753581', '1', '9', '56.00', null, null, null, null, '2020-02-11 17:53:59', null, null, '-1', null, '1');
-INSERT INTO `order` VALUES ('18', '202002111758311', '1', '9', '48.00', null, null, null, null, '2020-02-11 17:58:32', null, null, '1', null, '1');
-INSERT INTO `order` VALUES ('19', '202002111809131', '1', '9', '48.00', null, null, null, null, '2020-02-11 18:09:14', null, null, '-1', null, '1');
-INSERT INTO `order` VALUES ('20', '202002121454281', '1', '9', '56.00', null, null, null, null, '2020-02-12 14:54:29', null, null, '-1', null, '1');
-INSERT INTO `order` VALUES ('21', '202002131825551', '1', '9', '26.00', null, null, null, null, '2020-02-13 18:25:55', null, null, '1', null, '3');
+INSERT INTO `order` VALUES ('1', '202054687521022', '1', '9', '25.00', '0000', '000000000.00', '2020-02-01 16:53:02', '2020-02-01 16:54:14', '2020-02-01 17:13:22', '3', null, '1');
+INSERT INTO `order` VALUES ('2', '202021346782322', '1', '4', '36.00', '0000', '000000000.00', '2020-02-01 19:21:03', '2020-02-01 19:21:05', '2020-02-01 19:21:08', '6', null, '1');
+INSERT INTO `order` VALUES ('3', '202080346893212', '1', '4', '32.00', '0000', '000000000.00', '2020-02-01 19:25:19', '2020-02-01 19:25:23', '2020-02-01 19:25:26', '-2', null, '1');
+INSERT INTO `order` VALUES ('21', '202002131825551', '1', '9', '26.00', null, null, '2020-02-13 18:25:55', null, null, '6', null, '3');
+INSERT INTO `order` VALUES ('22', '202002131909391', '1', '9', '40.00', null, null, '2020-02-13 19:09:39', null, null, '-1', null, '3');
+INSERT INTO `order` VALUES ('23', '202002151625491', '1', '9', '56.00', null, null, '2020-02-15 16:25:50', null, null, '1', null, '3');
+INSERT INTO `order` VALUES ('24', '202002161544171', '1', '2', '79.00', null, null, '2020-02-16 15:44:18', null, null, '0', null, '3');
+INSERT INTO `order` VALUES ('25', '202002231706511', '1', '9', '12.00', null, null, '2020-02-23 17:06:52', null, null, '1', null, '3');
 
 -- ----------------------------
 -- Table structure for `restaurant`
@@ -389,7 +381,7 @@ INSERT INTO `restaurant` VALUES ('3', '123', '7', '13245677893', '小郡干火�
 INSERT INTO `restaurant` VALUES ('4', '123', '4', '13245674425', '菜香源川菜馆', '1', '1', '4.77', 'upload/jiachang.jpg', '4427', '“闻之口生津，菜香源头寻”。这正是菜香源川菜馆赋予“新概念川菜”的全新内涵。', '7654', '1', '22', 'upload/shop/chuancai.jpg', '20');
 INSERT INTO `restaurant` VALUES ('5', '123', '2', '16235613211', '壹级日本料理', '1', '5', '4.74', 'upload/riliao.jpg', '782', '日料吃的就是一个新鲜和精致!超级刺身大拼盘,低调中透露着奢华,每款都很吸睛,摆盘更是仙气十足~', '1983', '1', '8', 'upload/shop/riliao.jpg', '90');
 INSERT INTO `restaurant` VALUES ('6', '123', '3', '13568900432', '小龙坎', '1', '3', '4.62', 'upload/xiaolongkan.jpg', '4792', null, '9867', '1', '20', null, '70');
-INSERT INTO `restaurant` VALUES ('7', '123', '8', '15678234561', '家常小炒', '1', '1', '4.89', 'upload/03.jpg', '4671', null, '8975', '1', '15', null, '25');
+INSERT INTO `restaurant` VALUES ('7', '123', '8', '15678234561', '家常小炒', '1', '1', '4.89', 'upload/jiachangxiaochao.jpg', '4671', null, '8975', '1', '15', 'upload/jiachangxiaochao.jpg', '25');
 INSERT INTO `restaurant` VALUES ('8', '123', '2', '13457688934', '书亦烧仙草', '1', '9', '4.78', 'upload/shaoxiancao.jpg', '2369', null, '4826', '1', '18', null, '15');
 INSERT INTO `restaurant` VALUES ('9', '123', '9', '13973683572', '华莱士', '1', '2', '4.89', 'upload/hualaishi.jpg', '7643', '华莱士快餐连锁店，是中国本土最大的一家集产品开发、生产、销售为一体的西式快餐企业。', '10523', '1', '6', 'upload/shop/hualaishi.jpg', '24');
 
@@ -417,5 +409,5 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', '123', '12341234112', '1', '1', 'upload/user/shan.jpg', '王杉杉', '杉', '1', '2020-02-13 17:51:52', '253681597@qq.com');
+INSERT INTO `user` VALUES ('1', '123', '12341234112', '1', '1', 'upload/user/shan.jpg', '王杉杉', '杉', '1', '2020-02-26 17:14:10', '253681597@qq.com');
 INSERT INTO `user` VALUES ('2', '123', '13224567231', '2', '1', 'upload/user/fluoritess.jpg', 'LiHua', 'fluorites', '1', '2020-01-29 17:14:17', '308751395@qq.com');
