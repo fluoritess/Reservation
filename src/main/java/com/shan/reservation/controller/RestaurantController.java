@@ -98,11 +98,12 @@ public class RestaurantController {
         String foodName=map.get("foodName");
 //        Double foodPrice, Double foodBargain, String foodName, Integer categoryId, String foodDescribe, Integer stock, Integer foodState
         Integer categoryId=Integer.parseInt(map.get("categoryId"));
+        Integer foodId=Integer.parseInt(map.get("foodId"));
         Double foodPrice=Double.parseDouble(map.get("foodPrice"));
         Double foodBargain=Double.parseDouble(map.get("foodBargain"));
         String foodDescribe=map.get("foodDescribe");
         Integer stock=Integer.parseInt(map.get("stock"));
-        foodUtilMapper.shopUpdateFood(foodPrice,foodBargain,foodName,categoryId,foodDescribe,stock,1);
+        foodUtilMapper.shopUpdateFood(foodPrice,foodBargain,foodName,categoryId,foodDescribe,stock,1,foodId);
         return  R.ok();
     }
 
