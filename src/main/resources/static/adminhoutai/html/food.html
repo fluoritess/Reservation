@@ -1,0 +1,255 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="../css/eys_stly.css" rel="stylesheet" type="text/css" />
+<link href="../css/bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="../ss/css/bootstrap-table.css" rel="stylesheet" type="text/css" />
+    <!--<link rel="stylesheet" href="//res.layui.com/layui/dist/css/layui.css"  media="all">-->
+    <link href="../../layui/css/layui.css" rel="stylesheet" type="text/css" />
+    <script src="../../layui/layui.js" charset="utf-8"></script>
+    <style type="text/css">
+        .left_p_table{
+            width:96%;
+            height:auto;
+            border-collapse:collapse;
+            margin-left:2%;
+            border:1px solid #eee;
+        }
+        .left_p_table tr{
+            height:76px;
+            text-align:center;
+        }
+        .left_p_table img{
+            width: 86px;
+            height: 76px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="index2">
+<h5>所在位置：<a>商品信息</a></h5>
+
+
+<p class="p_line"><input type="text" class="form-control" value="请输入商品名称" />
+    <!--<input type="text" class="form-control" value="SPU商家编码" /> -->
+    <select class="form-control">
+         <option>展示分类</option>
+        <option value="1">家常菜谱</option>
+        <option value="2">西式快餐</option>
+        <option value="3">火锅/干锅</option>
+        <option value="4">米面菜谱</option>
+        <option value="5">日本料理</option>
+        <option value="6">东南亚菜</option>
+        <option value="7">意大利餐</option>
+        <option value="8">法国菜谱</option>
+        <option value="9">时尚饮品</option>
+        <option value="10">甜点点心</option>
+        <option value="11">其他菜系</option>
+         
+      </select>
+      <!--<select class="form-control">-->
+         <!--<option>商品品牌</option>-->
+         <!--<option>品牌一</option>-->
+          <!--<option>品牌二</option>-->
+         <!---->
+      <!--</select>-->
+      <!--<select class="form-control">-->
+         <!--<option>分销状态</option>-->
+         <!--<option>待上架</option>-->
+          <!--<option>已上架</option>-->
+         <!---->
+      <!--</select>-->
+    <select class="form-control">
+         <option>库存状态</option>
+         <option>库存充足</option>
+          <option>库存告警</option>
+         
+      </select><button class=" button_style">查询</button></p>
+      <p> <select class="form-control select_button">
+         <option>批量操作</option>
+
+          <option>批量上架</option><option>批量下架</option></select><span class="shop_span"><a href="#" class="shop_stley_a">商品视图</a><a href="#">单品视图</a></span></p>
+      <p >
+    <!--<table data-url="json/data.json" id="table" style="margin: 0 auto">-->
+        <!--</table>-->
+    <table width="200" border="1" class="left_p_table" id="table">
+        <tr class="left_tr1">
+            <td><input type="checkbox"/>全选</td>
+            <td>图片</td>
+            <td>商品名称</td>
+            <td>销售价</td>
+            <td>促销价</td>
+            <td>可销售库存</td>
+            <td>操作</td>
+        </tr>
+     <!--<tr>-->
+        <!--<td><input type="checkbox"/></td>-->
+        <!--<td><img src="../../upload/food/jituibaotaocan.jpg" alt=""/></td>-->
+        <!--<td>秘制烤鸡腿堡</td>-->
+        <!--<td>15</td>-->
+        <!--<td>12</td>-->
+        <!--<td>1640</td>-->
+        <!--<td>修改</td>-->
+        <!--</tr>-->
+        <!--<tr>-->
+        <!--<td >今日</td>-->
+        <!--<td>10笔</td>-->
+        <!--<td>2000￥</td>-->
+        <!--<td>1</td>-->
+        <!--<td>20￥</td>-->
+        <!--<td><button class="layui-btn"></button></td>-->
+        <!--<td>20￥</td>-->
+        <!--</tr>-->
+
+    </table>
+    <!--<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">-->
+        <!--<legend>总页数大于页码总数</legend>-->
+    <!--</fieldset>-->
+    <div id="demo1"></div>
+
+    </p>
+
+</div>
+<script src="../js/jquery.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../ss/js/bootstrap-table.js"></script>
+<script src="../ss/js/bootstrap-table-zh-CN.min.js"></script>
+<script>
+    var count=0;
+    var json = {
+        id: 9
+    };
+    json = JSON.stringify(json);
+    $.ajax({
+        type: "POST",
+        url: "/findAllFood",
+        contentType: "application/json; charset=utf-8",
+        data: null,
+        async: false,
+        dataType: "json",
+        success: function (info) {
+          console.log(info);
+          count=info.food.length;
+          for(var i=0;i<info.food.length;i++){
+              var foodName=info.food[i].foodName;
+              var foodPrice=info.food[i].foodPrice;
+              var foodBargain=info.food[i].foodBargain;
+              var stock=info.food[i].stock;
+              var foodId=info.food[i].foodId;
+              var foodImage=info.food[i].foodImage;
+              var url="../../";
+              var image=url+foodImage;
+                    $("#table").append("    <tr>\n" +
+                        "        <td><input type=\"checkbox\"/></td>\n" +
+                        "        <td><img src=\""+image+"\" alt=\"\"/></td>\n" +
+                        "        <td>"+foodName+"</td>\n" +
+                        "        <td>"+foodPrice+"</td>\n" +
+                        "        <td>"+foodBargain+"</td>\n" +
+                        "        <td>"+stock+"</td>\n" +
+                        "                <td><button class=\"layui-btn\" id="+foodId+">修改</button></td>\n" +
+                        "        </tr>");
+          }
+        },
+        error: function (message) {
+            $("#request-process-patent").html("获取数据失败！");
+        }
+    });
+    layui.use(['laypage', 'layer'], function(){
+        var laypage = layui.laypage
+            ,layer = layui.layer;
+        //总页数大于页码总数
+        laypage.render({
+            elem: 'demo1'
+            ,count: count //数据总数
+            ,limit:6
+            ,jump: function(obj){
+                console.log(obj)
+            }
+
+        });
+    })
+    $(".layui-btn").click(function () {
+      var id=$(this).attr('id');
+        window.location.href="foodupdate.html?"+id;
+    })
+</script>
+  <!--<script type="text/javascript">-->
+            <!--$(function () {-->
+                <!--$('#table').bootstrapTable({-->
+                    <!--method: "get",-->
+                    <!--striped: true,-->
+                    <!--singleSelect: false,-->
+                    <!--url: "json/data.json",-->
+                    <!--dataType: "json",-->
+                    <!--pagination: true, //分页-->
+                    <!--pageSize: 10,-->
+                    <!--pageNumber: 1,-->
+                    <!--search: false, //显示搜索框-->
+                    <!--contentType: "application/x-www-form-urlencoded",-->
+                    <!--queryParams: null,-->
+                    <!--columns: [-->
+					 <!--{-->
+                            <!--checkbox: "true",-->
+                            <!--field: 'name',-->
+                            <!--align: 'center',-->
+                            <!--valign: 'middle'-->
+                        <!--}-->
+						<!--,-->
+						<!---->
+                        <!--{-->
+                            <!--title: "图片",-->
+                            <!--field: 'name',-->
+                            <!--align: 'center',-->
+                            <!--valign: 'middle'-->
+                        <!--},-->
+						<!---->
+                        <!--{-->
+                            <!--title: "商品名称",-->
+                            <!--field: 'name',-->
+                            <!--align: 'center',-->
+                            <!--valign: 'middle'-->
+                        <!--},-->
+                        <!--{-->
+                            <!--title: '属性',-->
+                            <!--field: 'status',-->
+                            <!--align: 'center',-->
+                            <!--valign: 'middle'-->
+                        <!--},-->
+                        <!--{-->
+                            <!--title: '成本价',-->
+                            <!--field: 'participationCounts',-->
+                            <!--align: 'center'-->
+                        <!--},-->
+                        <!--{-->
+                            <!--title: '销售价',-->
+                            <!--field: 'totalCounts',-->
+                            <!--align: 'center'-->
+                        <!--},-->
+                        <!--{-->
+                            <!--title: '可销售库存',-->
+                            <!--field: 'startTime',-->
+                            <!--align: 'center'-->
+                        <!--},-->
+                       <!---->
+                        <!--{-->
+                            <!--title: '操作',-->
+                            <!--field: 'id',-->
+                            <!--align: 'center',-->
+                            <!--formatter: function (value, row) {-->
+                                <!--var e = '<a href="#" mce_href="#" onclick="edit(\'' + row.id + '\')">处置</a> ';-->
+                                <!--var d = '<a href="#" mce_href="#" onclick="edit(\'' + row.id + '\')">关闭</a> ';-->
+                                <!--var c = '<a href="#" mce_href="#" onclick="edit(\'' + row.id + '\')">预案</a> ';-->
+                                <!--return e + d + c;-->
+                            <!--}-->
+                        <!--}-->
+                    <!--]-->
+                <!--});-->
+            <!--})-->
+
+        <!--</script>-->
+
+</body>
+</html>

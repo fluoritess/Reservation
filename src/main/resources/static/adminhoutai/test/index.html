@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <!-- 引入 echarts.js -->
+  <script type="text/javascript" src="js/echarts.min.js"></script>
+  <!-- 引入jquery.js -->
+  <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript"
+      src="js/bootstrap-table.js"></script>
+  <script type="text/javascript"
+      src="js/bootstrap-table-zh-CN.min.js"></script>
+</head>
+<body>
+<div class="mdsd-content">
+  <div class="panel panel-info" style="background: none;">
+    <div class="panel-body" style="width: 100%;">
+      <table id="table-javascript"
+          class="table table-hover table-responsive "></table>
+    </div>
+  </div>
+</div>
+  
+<script type="text/javascript">
+  $('#table-javascript').bootstrapTable({
+    method : 'get',
+    url : ContextUtil.zutnlp_spark_info,
+    cache : false,
+    pagination : true,
+    root : 'workers',
+    total : 'totalElements',
+    sidePagination : 'server',
+    columns : [ {
+      field : 'address',
+      title : 'Address',
+      align : 'center',
+      valign : 'middle'
+    }, {
+      field : 'state',
+      title : 'State',
+      align : 'center',
+      valign : 'middle',
+    } ]
+  });
+  $(window).resize(function() {
+    $('#table-javascript').bootstrapTable('resetView');
+  });
+</script>
+</body>
+</html>

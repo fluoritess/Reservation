@@ -24,7 +24,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/advertisement" )
-public class advertisementController {
+public class AdvertisementController {
     @Autowired
     advertisementService advertisementService;
     @ResponseBody

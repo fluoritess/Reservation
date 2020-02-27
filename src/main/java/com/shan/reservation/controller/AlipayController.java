@@ -32,6 +32,7 @@ import java.util.Map;
  * @date 2020年2月9日 15:41:27
  */
 @Controller
+@RequestMapping("/Alipay" )
 public class AlipayController {
     @Autowired
     OrderService orderService;
@@ -42,7 +43,7 @@ public class AlipayController {
     private AlipayService alipayService;
 
     /**
-     * web 订单支付
+     * web 订单支付  报废
      */
     @GetMapping("getPagePay")
     public Map<Object, Object> getPagePay() {
@@ -64,6 +65,7 @@ public class AlipayController {
 
         return pays;
     }
+    //报废
     @ResponseBody
     @RequestMapping("/getPagePay2" )
     @ArchivesLog(operationType = "查询信息", operationName = "根据用户id查询购物车")
