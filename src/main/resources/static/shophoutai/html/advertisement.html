@@ -23,7 +23,7 @@
         }
         .left_p_table img{
             width: 86px;
-            height: 76px;
+            height: 116px;
         }
     </style>
 </head>
@@ -74,19 +74,12 @@
         <!--<td><img src="../../upload/food/jituibaotaocan.jpg" alt=""/></td>-->
         <!--<td>秘制烤鸡腿堡</td>-->
         <!--<td>15</td>-->
-        <!--<td>12</td>-->
+        <!--<td>12312</td>-->
         <!--<td>1640</td>-->
-        <!--<td>修改</td>-->
+            <!--<td>1640</td>-->
+        <!--<td><button class="layui-btn">修改</button></td>-->
         <!--</tr>-->
-        <!--<tr>-->
-        <!--<td >今日</td>-->
-        <!--<td>10笔</td>-->
-        <!--<td>2000￥</td>-->
-        <!--<td>1</td>-->
-        <!--<td>20￥</td>-->
-        <!--<td><button class="layui-btn"></button></td>-->
-        <!--<td>20￥</td>-->
-        <!--</tr>-->
+
 
     </table>
     <!--<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">-->
@@ -102,6 +95,20 @@
 <script src="../ss/js/bootstrap-table.js"></script>
 <script src="../ss/js/bootstrap-table-zh-CN.min.js"></script>
 <script>
+    function add0(m){return m<10?'0'+m:m }
+    function format(timestamp)
+    {
+        //timestamp是整数，否则要parseInt转换,不会出现少个0的情况
+
+        var time = new Date(timestamp);
+        var year = time.getFullYear();
+        var month = time.getMonth()+1;
+        var date = time.getDate();
+        var hours = time.getHours();
+        var minutes = time.getMinutes();
+        var seconds = time.getSeconds();
+        return year+'-'+add0(month)+'-'+add0(date)+' '+add0(hours)+':'+add0(minutes)+':'+add0(seconds);
+    }
     var count=9;
 
     layui.use(['laypage', 'layer'], function(){
@@ -116,82 +123,54 @@
             }
         });
     })
+    var json = {
+        re_id: 9
+    };
+    json = JSON.stringify(json);
+    $.ajax({
+        type: "POST",
+        url: "/advertisement/resTaurantSelectAdvertise",
+        contentType: "application/json; charset=utf-8",
+        data: json,
+        async: false,
+        dataType: "json",
+        success: function (info) {
+            console.log(info);
+            for(var i=0;i<info.advertisement.length;i++){
+                var advertisementState=info.advertisement[i].advertisementState;
+                var advertisementTitle=info.advertisement[i].advertisementTitle;
+                var advertisementContent=info.advertisement[i].advertisementContent;
+                var advertisementImag=info.advertisement[i].advertisementImag;
+                var adenddate=info.advertisement[i].adenddate;
+                var adstartdate=info.advertisement[i].adstartdate;
+                if(advertisementState==1){
+                    adenddate=format(adenddate);
+                    adstartdate=format(adstartdate);
+                    var advertisementPrice=info.advertisement[i].advertisementPrice;
+                    var url="../image/";
+                    advertisementImag=url+advertisementImag;
+                    console.log(advertisementImag);
+                    $("#table").append("   <tr>\n" +
+                        "        <td><input type=\"checkbox\"/></td>\n" +
+                        "        <td><img src=\""+advertisementImag+"\" alt=\"\"/></td>\n" +
+                        "        <td>"+advertisementTitle+"</td>\n" +
+                        "        <td>"+advertisementPrice+"</td>\n" +
+                        "        <td>"+advertisementContent+"</td>\n" +
+                        "        <td>"+adstartdate+"</td>\n" +
+                        "            <td>"+adenddate+"</td>\n" +
+                        "        <td><button class=\"layui-btn\">查看</button></td>\n" +
+                        "        </tr>");
+                }
 
+            }
+
+        },
+        error: function (message) {
+            $("#request-process-patent").html("获取数据失败！");
+        }
+    });
 </script>
-<!--<script type="text/javascript">-->
-<!--$(function () {-->
-<!--$('#table').bootstrapTable({-->
-<!--method: "get",-->
-<!--striped: true,-->
-<!--singleSelect: false,-->
-<!--url: "json/data.json",-->
-<!--dataType: "json",-->
-<!--pagination: true, //分页-->
-<!--pageSize: 10,-->
-<!--pageNumber: 1,-->
-<!--search: false, //显示搜索框-->
-<!--contentType: "application/x-www-form-urlencoded",-->
-<!--queryParams: null,-->
-<!--columns: [-->
-<!--{-->
-<!--checkbox: "true",-->
-<!--field: 'name',-->
-<!--align: 'center',-->
-<!--valign: 'middle'-->
-<!--}-->
-<!--,-->
-<!---->
-<!--{-->
-<!--title: "图片",-->
-<!--field: 'name',-->
-<!--align: 'center',-->
-<!--valign: 'middle'-->
-<!--},-->
-<!---->
-<!--{-->
-<!--title: "商品名称",-->
-<!--field: 'name',-->
-<!--align: 'center',-->
-<!--valign: 'middle'-->
-<!--},-->
-<!--{-->
-<!--title: '属性',-->
-<!--field: 'status',-->
-<!--align: 'center',-->
-<!--valign: 'middle'-->
-<!--},-->
-<!--{-->
-<!--title: '成本价',-->
-<!--field: 'participationCounts',-->
-<!--align: 'center'-->
-<!--},-->
-<!--{-->
-<!--title: '销售价',-->
-<!--field: 'totalCounts',-->
-<!--align: 'center'-->
-<!--},-->
-<!--{-->
-<!--title: '可销售库存',-->
-<!--field: 'startTime',-->
-<!--align: 'center'-->
-<!--},-->
-<!---->
-<!--{-->
-<!--title: '操作',-->
-<!--field: 'id',-->
-<!--align: 'center',-->
-<!--formatter: function (value, row) {-->
-<!--var e = '<a href="#" mce_href="#" onclick="edit(\'' + row.id + '\')">处置</a> ';-->
-<!--var d = '<a href="#" mce_href="#" onclick="edit(\'' + row.id + '\')">关闭</a> ';-->
-<!--var c = '<a href="#" mce_href="#" onclick="edit(\'' + row.id + '\')">预案</a> ';-->
-<!--return e + d + c;-->
-<!--}-->
-<!--}-->
-<!--]-->
-<!--});-->
-<!--})-->
 
-<!--</script>-->
 
 </body>
 </html>
