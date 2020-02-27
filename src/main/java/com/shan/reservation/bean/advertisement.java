@@ -1,5 +1,8 @@
 package com.shan.reservation.bean;
 
+import java.math.BigDecimal;
+import java.util.Date;
+
 public class advertisement {
     private Integer advertisementId;
 
@@ -13,13 +16,22 @@ public class advertisement {
 
     private Integer advertisementState;
 
-    public advertisement(Integer advertisementId, String advertisementTitle, String advertisementImag, String advertisementContent, Integer restaurantId, Integer advertisementState) {
+    private Date adstartdate;
+
+    private Date adenddate;
+
+    private BigDecimal advertisementPrice;
+
+    public advertisement(Integer advertisementId, String advertisementTitle, String advertisementImag, String advertisementContent, Integer restaurantId, Integer advertisementState, Date adstartdate, Date adenddate, BigDecimal advertisementPrice) {
         this.advertisementId = advertisementId;
         this.advertisementTitle = advertisementTitle;
         this.advertisementImag = advertisementImag;
         this.advertisementContent = advertisementContent;
         this.restaurantId = restaurantId;
         this.advertisementState = advertisementState;
+        this.adstartdate = adstartdate;
+        this.adenddate = adenddate;
+        this.advertisementPrice = advertisementPrice;
     }
 
     public advertisement() {
@@ -72,5 +84,29 @@ public class advertisement {
 
     public void setAdvertisementState(Integer advertisementState) {
         this.advertisementState = advertisementState;
+    }
+
+    public Date getAdstartdate() {
+        return adstartdate;
+    }
+
+    public void setAdstartdate(Date adstartdate) {
+        this.adstartdate = adstartdate;
+    }
+
+    public Date getAdenddate() {
+        return adenddate;
+    }
+
+    public void setAdenddate(Date adenddate) {
+        this.adenddate = adenddate;
+    }
+
+    public BigDecimal getAdvertisementPrice() {
+        return advertisementPrice;
+    }
+
+    public void setAdvertisementPrice(BigDecimal advertisementPrice) {
+        this.advertisementPrice = advertisementPrice;
     }
 }

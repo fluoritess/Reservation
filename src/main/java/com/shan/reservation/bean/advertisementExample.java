@@ -1,6 +1,9 @@
 package com.shan.reservation.bean;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 public class advertisementExample {
@@ -102,6 +105,32 @@ public class advertisementExample {
                 throw new RuntimeException("Between values for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value1, value2));
+        }
+
+        protected void addCriterionForJDBCDate(String condition, Date value, String property) {
+            if (value == null) {
+                throw new RuntimeException("Value for " + property + " cannot be null");
+            }
+            addCriterion(condition, new java.sql.Date(value.getTime()), property);
+        }
+
+        protected void addCriterionForJDBCDate(String condition, List<Date> values, String property) {
+            if (values == null || values.size() == 0) {
+                throw new RuntimeException("Value list for " + property + " cannot be null or empty");
+            }
+            List<java.sql.Date> dateList = new ArrayList<java.sql.Date>();
+            Iterator<Date> iter = values.iterator();
+            while (iter.hasNext()) {
+                dateList.add(new java.sql.Date(iter.next().getTime()));
+            }
+            addCriterion(condition, dateList, property);
+        }
+
+        protected void addCriterionForJDBCDate(String condition, Date value1, Date value2, String property) {
+            if (value1 == null || value2 == null) {
+                throw new RuntimeException("Between values for " + property + " cannot be null");
+            }
+            addCriterion(condition, new java.sql.Date(value1.getTime()), new java.sql.Date(value2.getTime()), property);
         }
 
         public Criteria andAdvertisementIdIsNull() {
@@ -491,6 +520,186 @@ public class advertisementExample {
 
         public Criteria andAdvertisementStateNotBetween(Integer value1, Integer value2) {
             addCriterion("advertisement_state not between", value1, value2, "advertisementState");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdstartdateIsNull() {
+            addCriterion("adStartDate is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdstartdateIsNotNull() {
+            addCriterion("adStartDate is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdstartdateEqualTo(Date value) {
+            addCriterionForJDBCDate("adStartDate =", value, "adstartdate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdstartdateNotEqualTo(Date value) {
+            addCriterionForJDBCDate("adStartDate <>", value, "adstartdate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdstartdateGreaterThan(Date value) {
+            addCriterionForJDBCDate("adStartDate >", value, "adstartdate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdstartdateGreaterThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("adStartDate >=", value, "adstartdate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdstartdateLessThan(Date value) {
+            addCriterionForJDBCDate("adStartDate <", value, "adstartdate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdstartdateLessThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("adStartDate <=", value, "adstartdate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdstartdateIn(List<Date> values) {
+            addCriterionForJDBCDate("adStartDate in", values, "adstartdate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdstartdateNotIn(List<Date> values) {
+            addCriterionForJDBCDate("adStartDate not in", values, "adstartdate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdstartdateBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("adStartDate between", value1, value2, "adstartdate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdstartdateNotBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("adStartDate not between", value1, value2, "adstartdate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdenddateIsNull() {
+            addCriterion("adEndDate is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdenddateIsNotNull() {
+            addCriterion("adEndDate is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdenddateEqualTo(Date value) {
+            addCriterionForJDBCDate("adEndDate =", value, "adenddate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdenddateNotEqualTo(Date value) {
+            addCriterionForJDBCDate("adEndDate <>", value, "adenddate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdenddateGreaterThan(Date value) {
+            addCriterionForJDBCDate("adEndDate >", value, "adenddate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdenddateGreaterThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("adEndDate >=", value, "adenddate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdenddateLessThan(Date value) {
+            addCriterionForJDBCDate("adEndDate <", value, "adenddate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdenddateLessThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("adEndDate <=", value, "adenddate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdenddateIn(List<Date> values) {
+            addCriterionForJDBCDate("adEndDate in", values, "adenddate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdenddateNotIn(List<Date> values) {
+            addCriterionForJDBCDate("adEndDate not in", values, "adenddate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdenddateBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("adEndDate between", value1, value2, "adenddate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdenddateNotBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("adEndDate not between", value1, value2, "adenddate");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdvertisementPriceIsNull() {
+            addCriterion("advertisement_price is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdvertisementPriceIsNotNull() {
+            addCriterion("advertisement_price is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdvertisementPriceEqualTo(BigDecimal value) {
+            addCriterion("advertisement_price =", value, "advertisementPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdvertisementPriceNotEqualTo(BigDecimal value) {
+            addCriterion("advertisement_price <>", value, "advertisementPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdvertisementPriceGreaterThan(BigDecimal value) {
+            addCriterion("advertisement_price >", value, "advertisementPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdvertisementPriceGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("advertisement_price >=", value, "advertisementPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdvertisementPriceLessThan(BigDecimal value) {
+            addCriterion("advertisement_price <", value, "advertisementPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdvertisementPriceLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("advertisement_price <=", value, "advertisementPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdvertisementPriceIn(List<BigDecimal> values) {
+            addCriterion("advertisement_price in", values, "advertisementPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdvertisementPriceNotIn(List<BigDecimal> values) {
+            addCriterion("advertisement_price not in", values, "advertisementPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdvertisementPriceBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("advertisement_price between", value1, value2, "advertisementPrice");
+            return (Criteria) this;
+        }
+
+        public Criteria andAdvertisementPriceNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("advertisement_price not between", value1, value2, "advertisementPrice");
             return (Criteria) this;
         }
     }

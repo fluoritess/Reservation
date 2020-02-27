@@ -9,6 +9,9 @@
       <arg column="advertisement_content" jdbcType="VARCHAR" javaType="java.lang.String" />
       <arg column="restaurant_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="advertisement_state" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="adStartDate" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="adEndDate" jdbcType="DATE" javaType="java.util.Date" />
+      <arg column="advertisement_price" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -71,7 +74,7 @@
   </sql>
   <sql id="Base_Column_List" >
     advertisement_id, advertisement_title, advertisement_imag, advertisement_content, 
-    restaurant_id, advertisement_state
+    restaurant_id, advertisement_state, adStartDate, adEndDate, advertisement_price
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.shan.reservation.bean.advertisementExample" >
     select
@@ -107,10 +110,12 @@
   <insert id="insert" parameterType="com.shan.reservation.bean.advertisement" >
     insert into advertisement (advertisement_id, advertisement_title, 
       advertisement_imag, advertisement_content, 
-      restaurant_id, advertisement_state)
+      restaurant_id, advertisement_state, adStartDate, 
+      adEndDate, advertisement_price)
     values (#{advertisementId,jdbcType=INTEGER}, #{advertisementTitle,jdbcType=VARCHAR}, 
       #{advertisementImag,jdbcType=VARCHAR}, #{advertisementContent,jdbcType=VARCHAR}, 
-      #{restaurantId,jdbcType=INTEGER}, #{advertisementState,jdbcType=INTEGER})
+      #{restaurantId,jdbcType=INTEGER}, #{advertisementState,jdbcType=INTEGER}, #{adstartdate,jdbcType=DATE}, 
+      #{adenddate,jdbcType=DATE}, #{advertisementPrice,jdbcType=DECIMAL})
   </insert>
   <insert id="insertSelective" parameterType="com.shan.reservation.bean.advertisement" >
     insert into advertisement
@@ -133,6 +138,15 @@
       <if test="advertisementState != null" >
         advertisement_state,
       </if>
+      <if test="adstartdate != null" >
+        adStartDate,
+      </if>
+      <if test="adenddate != null" >
+        adEndDate,
+      </if>
+      <if test="advertisementPrice != null" >
+        advertisement_price,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="advertisementId != null" >
@@ -152,6 +166,15 @@
       </if>
       <if test="advertisementState != null" >
         #{advertisementState,jdbcType=INTEGER},
+      </if>
+      <if test="adstartdate != null" >
+        #{adstartdate,jdbcType=DATE},
+      </if>
+      <if test="adenddate != null" >
+        #{adenddate,jdbcType=DATE},
+      </if>
+      <if test="advertisementPrice != null" >
+        #{advertisementPrice,jdbcType=DECIMAL},
       </if>
     </trim>
   </insert>
@@ -182,6 +205,15 @@
       <if test="record.advertisementState != null" >
         advertisement_state = #{record.advertisementState,jdbcType=INTEGER},
       </if>
+      <if test="record.adstartdate != null" >
+        adStartDate = #{record.adstartdate,jdbcType=DATE},
+      </if>
+      <if test="record.adenddate != null" >
+        adEndDate = #{record.adenddate,jdbcType=DATE},
+      </if>
+      <if test="record.advertisementPrice != null" >
+        advertisement_price = #{record.advertisementPrice,jdbcType=DECIMAL},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -194,7 +226,10 @@
       advertisement_imag = #{record.advertisementImag,jdbcType=VARCHAR},
       advertisement_content = #{record.advertisementContent,jdbcType=VARCHAR},
       restaurant_id = #{record.restaurantId,jdbcType=INTEGER},
-      advertisement_state = #{record.advertisementState,jdbcType=INTEGER}
+      advertisement_state = #{record.advertisementState,jdbcType=INTEGER},
+      adStartDate = #{record.adstartdate,jdbcType=DATE},
+      adEndDate = #{record.adenddate,jdbcType=DATE},
+      advertisement_price = #{record.advertisementPrice,jdbcType=DECIMAL}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -217,6 +252,15 @@
       <if test="advertisementState != null" >
         advertisement_state = #{advertisementState,jdbcType=INTEGER},
       </if>
+      <if test="adstartdate != null" >
+        adStartDate = #{adstartdate,jdbcType=DATE},
+      </if>
+      <if test="adenddate != null" >
+        adEndDate = #{adenddate,jdbcType=DATE},
+      </if>
+      <if test="advertisementPrice != null" >
+        advertisement_price = #{advertisementPrice,jdbcType=DECIMAL},
+      </if>
     </set>
     where advertisement_id = #{advertisementId,jdbcType=INTEGER}
   </update>
@@ -226,7 +270,10 @@
       advertisement_imag = #{advertisementImag,jdbcType=VARCHAR},
       advertisement_content = #{advertisementContent,jdbcType=VARCHAR},
       restaurant_id = #{restaurantId,jdbcType=INTEGER},
-      advertisement_state = #{advertisementState,jdbcType=INTEGER}
+      advertisement_state = #{advertisementState,jdbcType=INTEGER},
+      adStartDate = #{adstartdate,jdbcType=DATE},
+      adEndDate = #{adenddate,jdbcType=DATE},
+      advertisement_price = #{advertisementPrice,jdbcType=DECIMAL}
     where advertisement_id = #{advertisementId,jdbcType=INTEGER}
   </update>
 </mapper>
