@@ -2,6 +2,7 @@ package com.shan.reservation.controller;
 
 import com.shan.reservation.bean.admin;
 import com.shan.reservation.bean.advertisement;
+import com.shan.reservation.mapper.advertisementMapper;
 import com.shan.reservation.service.AdminService;
 import com.shan.reservation.service.advertisementService;
 import com.shan.reservation.util.ArchivesLog;
@@ -27,12 +28,21 @@ import java.util.Map;
 public class AdvertisementController {
     @Autowired
     advertisementService advertisementService;
+    @Autowired
+    advertisementMapper advertisementMapper;
     @ResponseBody
     @RequestMapping("/resTaurantSelectAdvertise" )
     @ArchivesLog(operationType = "查询信息", operationName = "商家查询广告信息")
     public R resTaurantSelectAdvertise(@RequestBody Map<String,String> map, HttpSession httpSession){
         Integer re_id=Integer.parseInt(map.get("re_id"));
         List<advertisement> list= advertisementService.resTaurantSelectAdvertise(re_id);
+        return  R.ok().put("advertisement",list);
+    }
+    @ResponseBody
+    @RequestMapping("/selectAllAdvertisement" )
+    @ArchivesLog(operationType = "查询信息", operationName = "查询所有信息")
+    public R selectAllAdvertisement(@RequestBody Map<String,String> map, HttpSession httpSession){
+        List<advertisement> list= advertisementMapper.selectByExample(null);
         return  R.ok().put("advertisement",list);
     }
 }
