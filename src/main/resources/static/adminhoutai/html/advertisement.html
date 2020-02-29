@@ -161,7 +161,7 @@
                         "        <td>审核通过</td>\n" +
                         "        <td>"+adstartdate+"</td>\n" +
                         "            <td>"+adenddate+"</td>\n" +
-                        "        <td><button class=\"layui-btn\">下架</button></td>\n" +
+                        "        <td><button class=\"layui-btn xiajia\" id=\""+advertisementTitle+"\">下架</button></td>\n" +
                         "        </tr>");
 
                 }
@@ -181,7 +181,7 @@
                         "        <td>未审核</td>\n" +
                         "        <td>"+adstartdate+"</td>\n" +
                         "            <td>"+adenddate+"</td>\n" +
-                        "        <td><button class=\"layui-btn\">审核</button></td>\n" +
+                        "        <td><button class=\"layui-btn shenhe\" id=\""+advertisementTitle+"\">审核</button></td>\n" +
                         "        </tr>");
                 }
             }
@@ -191,6 +191,50 @@
             $("#request-process-patent").html("获取数据失败！");
         }
     });
+    $(".shenhe").click(function () {
+        var title=$(this).attr('id');
+        console.log(title);
+        var json = {
+            title: title
+        };
+        json = JSON.stringify(json);
+        $.ajax({
+            type: "POST",
+            url: "/admin/SetState1",
+            contentType: "application/json; charset=utf-8",
+            data: json,
+            async: false,
+            dataType: "json",
+            success: function (info) {
+                    window.location.href="advertisement.html";
+            },
+            error: function (message) {
+                $("#request-process-patent").html("获取数据失败！");
+            }
+        });
+    })
+    $(".xiajia").click(function () {
+        var title=$(this).attr('id');
+        console.log(title);
+        var json = {
+            title: title
+        };
+        json = JSON.stringify(json);
+        $.ajax({
+            type: "POST",
+            url: "/admin/SetState0",
+            contentType: "application/json; charset=utf-8",
+            data: json,
+            async: false,
+            dataType: "json",
+            success: function (info) {
+                window.location.href="advertisement.html";
+            },
+            error: function (message) {
+                $("#request-process-patent").html("获取数据失败！");
+            }
+        });
+    })
 </script>
 
 

@@ -3,6 +3,7 @@ package com.shan.reservation.controller;
 import com.shan.reservation.bean.address;
 import com.shan.reservation.bean.admin;
 import com.shan.reservation.mapper.addressMapper;
+import com.shan.reservation.mapper.advertisementUtilMapper;
 import com.shan.reservation.service.AdminService;
 import com.shan.reservation.util.ArchivesLog;
 import com.shan.reservation.util.R;
@@ -22,9 +23,12 @@ import java.util.Map;
  * @date 2020年2月2日 17:06:30
  */
 @Controller
+@RequestMapping("/admin" )
 public class AdminController {
     @Autowired
     AdminService adminService;
+    @Autowired
+    advertisementUtilMapper advertisementUtilMapper;
     @ResponseBody
     @RequestMapping("/SelectAdminByName" )
     @ArchivesLog(operationType = "查询信息", operationName = "查询管理员")
@@ -46,6 +50,22 @@ public class AdminController {
                 return  R.ok().put("admin",admin);
             };
         }
+        return  R.ok();
+    }
+    @ResponseBody
+    @RequestMapping("/SetState1" )
+    @ArchivesLog(operationType = "更新信息", operationName = "审核广告")
+    public R SetState1(@RequestBody Map<String,String> map, HttpSession httpSession){
+        String title=map.get("title");
+        advertisementUtilMapper.updateAdvertisementSetState1(title);
+        return  R.ok();
+    }
+    @ResponseBody
+    @RequestMapping("/SetState0" )
+    @ArchivesLog(operationType = "更新信息", operationName = "下架广告")
+    public R SetState0(@RequestBody Map<String,String> map, HttpSession httpSession){
+        String title=map.get("title");
+        advertisementUtilMapper.updateAdvertisementSetState0(title);
         return  R.ok();
     }
 }

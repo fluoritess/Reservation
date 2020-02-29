@@ -3,6 +3,7 @@ package com.shan.reservation.controller;
 import com.shan.reservation.bean.admin;
 import com.shan.reservation.bean.advertisement;
 import com.shan.reservation.mapper.advertisementMapper;
+import com.shan.reservation.mapper.advertisementUtilMapper;
 import com.shan.reservation.service.AdminService;
 import com.shan.reservation.service.advertisementService;
 import com.shan.reservation.util.ArchivesLog;
@@ -33,6 +34,8 @@ public class AdvertisementController {
     advertisementService advertisementService;
     @Autowired
     advertisementMapper advertisementMapper;
+    @Autowired
+    advertisementUtilMapper advertisementUtilMapper;
     @ResponseBody
     @RequestMapping("/resTaurantSelectAdvertise" )
     @ArchivesLog(operationType = "查询信息", operationName = "商家查询广告信息")
@@ -50,7 +53,7 @@ public class AdvertisementController {
     }
     @ResponseBody
     @RequestMapping("/AddAdvertisement" )
-    @ArchivesLog(operationType = "查询信息", operationName = "查询所有信息")
+    @ArchivesLog(operationType = "添加信息", operationName = "添加广告")
     public R AddAdvertisement(@RequestBody Map<String,String> map, HttpSession httpSession){
         String start=map.get("start");
         String end=map.get("end");

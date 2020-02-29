@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shan.reservation.mapper.advertisementUtilMapper" >
+    <resultMap id="BaseResultMap" type="com.shan.reservation.bean.advertisement" >
+        <constructor >
+            <idArg column="advertisement_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="advertisement_title" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="advertisement_imag" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="advertisement_content" jdbcType="VARCHAR" javaType="java.lang.String" />
+            <arg column="restaurant_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="advertisement_state" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="adStartDate" jdbcType="DATE" javaType="java.util.Date" />
+            <arg column="adEndDate" jdbcType="DATE" javaType="java.util.Date" />
+            <arg column="advertisement_price" jdbcType="DECIMAL" javaType="java.math.BigDecimal" />
+        </constructor>
+    </resultMap>
+    <update id="updateAdvertisementSetState1" parameterType="com.shan.reservation.bean.orderExample" >
+            UPDATE advertisement set  advertisement_state=1 where advertisement_title=#{advertisementTitle,jdbcType=VARCHAR}
+    </update>
+    <update id="updateAdvertisementSetState0" parameterType="com.shan.reservation.bean.orderExample" >
+            UPDATE advertisement set  advertisement_state=0 where advertisement_title=#{advertisementTitle,jdbcType=VARCHAR}
+    </update>
+</mapper>
