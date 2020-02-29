@@ -22,6 +22,15 @@ public class advertisement {
 
     private BigDecimal advertisementPrice;
 
+    public advertisement(String advertisementTitle, String advertisementContent, Integer restaurantId, Date adstartdate, Date adenddate,Integer advertisementState) {
+        this.advertisementTitle = advertisementTitle;
+        this.advertisementContent = advertisementContent;
+        this.restaurantId = restaurantId;
+        this.adstartdate = adstartdate;
+        this.adenddate = adenddate;
+        this.advertisementState = advertisementState;
+    }
+
     public advertisement(Integer advertisementId, String advertisementTitle, String advertisementImag, String advertisementContent, Integer restaurantId, Integer advertisementState, Date adstartdate, Date adenddate, BigDecimal advertisementPrice) {
         this.advertisementId = advertisementId;
         this.advertisementTitle = advertisementTitle;

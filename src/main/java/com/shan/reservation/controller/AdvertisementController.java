@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -45,4 +48,27 @@ public class AdvertisementController {
         List<advertisement> list= advertisementMapper.selectByExample(null);
         return  R.ok().put("advertisement",list);
     }
+    @ResponseBody
+    @RequestMapping("/AddAdvertisement" )
+    @ArchivesLog(operationType = "查询信息", operationName = "查询所有信息")
+    public R AddAdvertisement(@RequestBody Map<String,String> map, HttpSession httpSession){
+        String start=map.get("start");
+        String end=map.get("end");
+        String tital=map.get("tital");
+        String content=map.get("content");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date startTime = null;
+        Date endTime = null;
+        try {
+            startTime = simpleDateFormat.parse(start);
+            endTime=simpleDateFormat.parse(end);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Integer re_id=Integer.parseInt(map.get("re_id"));
+        advertisement advertisement=new advertisement(tital,content,re_id,startTime,endTime,0);
+        advertisementMapper.insert(advertisement);
+        return  R.ok();
+    }
+
 }

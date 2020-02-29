@@ -44,7 +44,8 @@
             <div class="layui-input-inline">
                 <input type="text" class="layui-input" id="end">
             </div>
-            <div class="layui-form-mid layui-word-aux">广告费一日5000</div>
+            <div class="layui-form-mid layui-word-aux tishi">(温馨提示:广告费一日5000人名币)</div>
+            <!--<div class="layui-form-mid layui-word-aux total">总共费用为</div>-->
         </div>
 
         <div class="layui-form-item">
@@ -70,8 +71,36 @@
     </form>
     </div>
     <script>
+        $("#tijiao").click(function () {
+            var start=$("#start").val();
+            var end=$("#end").val();
+            var tital=$("#mingcheng").val();
+            var content=$("#jianjie").val();
+            var re_id=9;
+            var json = {
+                start:start,
+                end:end,
+                tital:tital,
+                content:content,
+                re_id: re_id
+            };
+            json = JSON.stringify(json);
+            $.ajax({
+                type: "POST",
+                url: "/advertisement/AddAdvertisement",
+                contentType: "application/json; charset=utf-8",
+                data: json,
+                async: false,
+                dataType: "json",
+                success: function (info) {
 
-        //Demo
+                },
+                error: function (message) {
+                    $("#request-process-patent").html("获取数据失败！");
+                }
+            });
+        })
+        //LayUi Demo
         layui.use('form', function(){
             var form = layui.form;
 

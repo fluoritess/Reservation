@@ -164,7 +164,25 @@
                         "        <td><button class=\"layui-btn\">查看</button></td>\n" +
                         "        </tr>");
                 }
-
+                else{
+                    adenddate=format(adenddate);
+                    adstartdate=format(adstartdate);
+                    var advertisementPrice=info.advertisement[i].advertisementPrice;
+                    var url="../image/";
+                    advertisementImag=url+advertisementImag;
+                    console.log(advertisementImag);
+                    $("#table").append("   <tr>\n" +
+                        "        <td><input type=\"checkbox\"/></td>\n" +
+                        "        <td><img src=\""+advertisementImag+"\" alt=\"\"/></td>\n" +
+                        "        <td>"+advertisementTitle+"</td>\n" +
+                        "        <td>"+advertisementPrice+"</td>\n" +
+                        "        <td>"+advertisementContent+"</td>\n" +
+                        "        <td>未审核</td>\n" +
+                        "        <td>"+adstartdate+"</td>\n" +
+                        "            <td>"+adenddate+"</td>\n" +
+                        "        <td><button class=\"layui-btn\">查看</button></td>\n" +
+                        "        </tr>");
+                }
             }
 
         },
