@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50720
 File Encoding         : 65001
 
-Date: 2020-02-26 17:46:16
+Date: 2020-03-01 16:21:37
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -65,20 +65,25 @@ INSERT INTO `admin` VALUES ('2', '123', '2020-02-14 17:43:12', 'admin');
 -- ----------------------------
 DROP TABLE IF EXISTS `advertisement`;
 CREATE TABLE `advertisement` (
-  `advertisement_id` int(11) NOT NULL,
+  `advertisement_id` int(11) NOT NULL AUTO_INCREMENT,
   `advertisement_title` varchar(255) NOT NULL,
   `advertisement_imag` varchar(255) DEFAULT NULL,
-  `advertisement_content` varchar(2000) DEFAULT NULL,
-  `restaurant_id` int(11) DEFAULT NULL,
+  `advertisement_content` varchar(2000) NOT NULL,
+  `restaurant_id` int(11) NOT NULL,
   `advertisement_state` int(11) NOT NULL,
+  `adStartDate` date DEFAULT NULL,
+  `adEndDate` date DEFAULT NULL,
+  `advertisement_price` decimal(11,2) DEFAULT NULL,
   PRIMARY KEY (`advertisement_id`),
   KEY `restaurant_id` (`restaurant_id`),
   CONSTRAINT `advertisement_ibfk_1` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurant` (`restaurant_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of advertisement
 -- ----------------------------
+INSERT INTO `advertisement` VALUES ('1', '新品上市！', 'hualaishi.jpg', '华莱士成为圣农牛排全国最大经销商!', '9', '1', '2020-02-20', '2020-02-29', '45000.00');
+INSERT INTO `advertisement` VALUES ('3', '哈哈哈', null, '问无为谓', '9', '0', '2020-02-19', '2020-02-28', null);
 
 -- ----------------------------
 -- Table structure for `city_info`
@@ -214,9 +219,9 @@ INSERT INTO `food` VALUES ('4', '4', '28.00', '20.00', '回锅肉', '1', '是一
 INSERT INTO `food` VALUES ('5', '4', '26.00', '22.00', '干煸肥肠', '1', '干煸肥肠是用肥肠制作的一道著名的地方佳肴，属于川菜。具有色泽深红、筋韧辣香等口味特点。', '3105', 'upload/food/feichang.jpg', '320', '2983', '4.90', '1');
 INSERT INTO `food` VALUES ('6', '4', '23.00', '18.00', '鱼香肉丝', '1', '鱼香肉丝是一道传统名菜，以鱼香味调味而得名，属于川菜。', '2809', 'upload/food/rousi.jpg', '198', '2769', '4.79', '1');
 INSERT INTO `food` VALUES ('7', '4', '32.00', '30.00', '糖醋里脊', '1', '糖醋里脊是经典传统名菜之一，以猪里脊肉为主材，配以面粉、淀粉、醋等佐料，酸甜可口，让人食欲大开。', '1443', 'upload/food/liji.jpg', '264', '1098', '4.78', '1');
-INSERT INTO `food` VALUES ('8', '9', '15.00', '12.00', '秘制烤鸡腿堡', '2', '华莱士秘制烤鸡腿堡菜单,新鲜嫩滑的鸡腿肉,腌入华莱士秘制五味料,烹制后再淋上一层秘制酱料,配以爽脆的有机蔬菜,味道浓郁,咬一口满满腌制的鸡腿肉', '5980', 'upload/food/jituibao.jpg', '1640', '3895', '4.89', '1');
+INSERT INTO `food` VALUES ('8', '9', '15.00', '12.00', '秘制烤鸡腿堡', '2', '华莱士秘制烤鸡腿堡菜单,新鲜嫩滑的鸡腿肉,腌入华莱士秘制五味料,烹制后再淋上一层秘制酱料,配以爽脆的有机蔬菜,味道浓郁,咬一口满满腌制的鸡腿肉', '5980', 'upload/food/jituibao.jpg', '1612', '3895', '4.89', '1');
 INSERT INTO `food` VALUES ('9', '9', '12.00', '10.00', '香辣鸡翅', '2', '香辣鸡翅酥脆可口,肉嫩味美,咬一口,咔呲咔呲,鲜香劲脆!', '5120', 'upload/food/jichi.jpg', '1480', '3758', '4.81', '1');
-INSERT INTO `food` VALUES ('10', '9', '4.00', '3.00', '可乐', '9', '可乐(Cola)，是指有甜味、含咖啡因但不含酒精的碳酸饮料，非常流行。', '4897', 'upload/food/kele.jpg', '1870', '3412', '4.62', '1');
+INSERT INTO `food` VALUES ('10', '9', '4.00', '3.00', '可乐', '2', '可乐(Cola)，是指有甜味、含咖啡因但不含酒精的碳酸饮料，非常流行。可乐主要口味包括有香草、肉桂、柠檬香味等。', '4897', 'upload/food/kele.jpg', '4275', '3412', '4.62', '1');
 INSERT INTO `food` VALUES ('11', '9', '20.00', '16.50', '秘制烤鸡腿堡套餐', '2', '华莱士秘制烤鸡腿堡菜单,新鲜嫩滑的鸡腿肉,腌入华莱士秘制五味料,烹制后再淋上一层秘制酱料,配以爽脆的有机蔬菜,味道浓郁,咬一口满满腌制的鸡腿肉', '8051', 'upload/food/jituibaotaocan.jpg', '4052', '4687', '4.88', '1');
 
 -- ----------------------------
@@ -265,7 +270,6 @@ CREATE TABLE `item` (
 -- ----------------------------
 INSERT INTO `item` VALUES ('9', '1', '10', '8');
 INSERT INTO `item` VALUES ('11', '1', '9', '2');
-INSERT INTO `item` VALUES ('12', '1', '5', '1');
 
 -- ----------------------------
 -- Table structure for `messageboard`
@@ -332,7 +336,7 @@ CREATE TABLE `order` (
   CONSTRAINT `order_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `order_ibfk_2` FOREIGN KEY (`restaurantId`) REFERENCES `restaurant` (`restaurant_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `order_ibfk_3` FOREIGN KEY (`address_id`) REFERENCES `address` (`address_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of order
@@ -345,6 +349,8 @@ INSERT INTO `order` VALUES ('22', '202002131909391', '1', '9', '40.00', null, nu
 INSERT INTO `order` VALUES ('23', '202002151625491', '1', '9', '56.00', null, null, '2020-02-15 16:25:50', null, null, '1', null, '3');
 INSERT INTO `order` VALUES ('24', '202002161544171', '1', '2', '79.00', null, null, '2020-02-16 15:44:18', null, null, '0', null, '3');
 INSERT INTO `order` VALUES ('25', '202002231706511', '1', '9', '12.00', null, null, '2020-02-23 17:06:52', null, null, '1', null, '3');
+INSERT INTO `order` VALUES ('26', '202002271637581', '1', '9', '36.00', null, null, '2020-02-27 16:37:59', null, null, '1', null, '3');
+INSERT INTO `order` VALUES ('27', '202002291742491', '1', '9', '14.00', null, null, '2020-02-29 17:42:49', null, null, '1', null, '3');
 
 -- ----------------------------
 -- Table structure for `restaurant`
@@ -409,5 +415,5 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', '123', '12341234112', '1', '1', 'upload/user/shan.jpg', '王杉杉', '杉', '1', '2020-02-26 17:14:10', '253681597@qq.com');
+INSERT INTO `user` VALUES ('1', '123', '12341234112', '1', '1', 'upload/user/shan.jpg', '王杉杉', '杉', '1', '2020-03-01 15:08:54', '253681597@qq.com');
 INSERT INTO `user` VALUES ('2', '123', '13224567231', '2', '1', 'upload/user/fluoritess.jpg', 'LiHua', 'fluorites', '1', '2020-01-29 17:14:17', '308751395@qq.com');
