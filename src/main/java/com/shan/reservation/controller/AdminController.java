@@ -50,7 +50,7 @@ public class AdminController {
                 return  R.ok().put("admin",admin);
             };
         }
-        return  R.ok();
+        return  R.error();
     }
     @ResponseBody
     @RequestMapping("/SetState1" )

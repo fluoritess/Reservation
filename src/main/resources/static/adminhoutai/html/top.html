@@ -9,7 +9,13 @@
 <body>
 <div class="top">
 <div class="top_left">杉杉订餐管理员后台管理</div>
-<div class="top_right"><a>欢迎：xxxxx</a><i class="pass_top_i"></i><a href="#">修改密码</a><i class="exit_top_i"></i><a href="#">安全退出</a></div>
+<div class="top_right"><a id="adminame"></a><i class="pass_top_i"></i><a href="#">修改密码</a><i class="exit_top_i"></i><a href="#">安全退出</a></div>
 </div>
 </body>
+<script src="../js/jquery.js"></script>
+<script>
+    var admin=sessionStorage.getItem("admin");
+    $("#adminame").append("欢迎管理员:"+admin);
+</script>
+
 </html>

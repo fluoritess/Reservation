@@ -1,9 +1,6 @@
 package com.shan.reservation.controller;
 
-import com.shan.reservation.bean.city_info;
-import com.shan.reservation.bean.food;
-import com.shan.reservation.bean.restaurant;
-import com.shan.reservation.bean.restaurantUtil;
+import com.shan.reservation.bean.*;
 import com.shan.reservation.mapper.foodUtilMapper;
 import com.shan.reservation.mapper.restaurantMapper;
 import com.shan.reservation.service.FoodService;
@@ -107,4 +104,19 @@ public class RestaurantController {
         return  R.ok();
     }
 
+    @ResponseBody
+    @RequestMapping("/restaurantLogin" )
+    @ArchivesLog(operationType = "登陆操作", operationName = "商家登陆")
+    public R restaurantLogin(@RequestBody Map<String,String> map, HttpSession httpSession){
+        String restaurantName=map.get("restaurantName");
+        String passowrd=map.get("password");
+        List<restaurantUtil> re=RestaurantService.selectByName(restaurantName);
+        if(re!=null){
+            String password_=re.get(0).getRestaurantPassword();
+            if(password_.equals(passowrd)){
+                return R.ok().put("restaurant",restaurantName);
+            }
+        }
+        return  R.error();
+    }
 }
