@@ -19,14 +19,14 @@
 	<body>
 		<div class='login'>
 			<div class='login_title'>
-				<span>管理员登录</span>
+				<span>商家登录</span>
 			</div>
 			<div class='login_fields'>
 				<div class='login_fields__user'>
 					<div class='icon'>
 						<img alt="" src='img/user_icon_copy.png'>
 					</div>
-					<input name="login" placeholder='用户名' maxlength="16" type='text' autocomplete="off" value="admin" id="name" />
+					<input name="login" placeholder='用户名' maxlength="16" type='text' autocomplete="off" value="restaurant" id="name" />
 					<div class='validation'>
 						<img alt="" src='img/tick.png'>
 					</div>
@@ -97,7 +97,7 @@
 
                         }
                         else{
-                            alert("餐馆管理员"+name+"登录成功");
+                            alert("商家"+name+"登录成功");
                             sessionStorage.setItem("restaurant", name);
                             window.location.href="../shophoutai/html/main.html";
                         }
