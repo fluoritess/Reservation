@@ -226,14 +226,14 @@ Author URI: http://www.deathghost.cn
                 success: function (info) {
                   var name=info.user.userName;
                   var lastDate_=info.user.lastDate;
-                   var lastDate=format(lastDate);
+                    lastDate_=format(lastDate_);
                   var userImag=info.user.userImag;
                   userId=info.user.userId;
                     $(".usercenter").append("  <span class=\"Weltitle Block Font16 CorRed FontW Lineheight35\">Welcome欢迎光临！</span>\n" +
                         "   <div class=\"U-header MT20 Overflow\">\n" +
                         "    <img src=\""+userImag+"\">\n" +
                         "    <p class=\"Font14 FontW\">"+name+" 欢迎您回到 用户中心！</p>\n" +
-                        "    <p class=\"Font12\">您的上一次登录时间:<time> "+lastDate+"</time></p>\n" +
+                        "    <p class=\"Font12\">您的上一次登录时间:<time> "+lastDate_+"</time></p>\n" +
                         "    <p class=\"Font12 CorRed FontW\" id=\"youhuijuan\"></p>\n" +
                         "   </div>\n" );
                 },

@@ -8,6 +8,7 @@
     <link href="../ss/css/bootstrap-table.css" rel="stylesheet" type="text/css" />
     <link href="../ss/css/bootstrap-table.css" rel="stylesheet" type="text/css" />
     <link href="../../layui/css/layui.css" rel="stylesheet" type="text/css" />
+    <script src="../../layui/layui.js" charset="utf-8"></script>
     <style type="text/css">
         .left_p_table{
             width:96%;
@@ -66,6 +67,7 @@
                 <!--<td>20￥</td>-->
             <!--</tr>-->
         </table>
+        <div id="demo1"></div>
     </div>
 </div>
 <script src="../js/jquery.js"></script>
@@ -73,6 +75,7 @@
 <script src="../ss/js/bootstrap-table.js"></script>
 <script src="../ss/js/bootstrap-table-zh-CN.min.js"></script>
 <script>
+    var count;
     function add0(m){return m<10?'0'+m:m }
     function format(timestamp)
     {
@@ -90,6 +93,7 @@
         restaurantid: 9
     };
     json = JSON.stringify(json);
+
     $.ajax({
         type: "POST",
         url: "/ResSelectOrder",
@@ -99,6 +103,7 @@
         dataType: "json",
         success: function (info) {
             console.log(info);
+            count=info.order.length;
             for(var i=0;i<info.order.length;i++){
                 var orderno=info.order[i].orderno;
                 var createtime=info.order[i].createtime;
@@ -210,6 +215,19 @@
             },
             error: function (message) {
                 $("#request-process-patent").html("获取数据失败！");
+            }
+        });
+    });
+    layui.use(['laypage', 'layer'], function(){
+        var laypage = layui.laypage
+            ,layer = layui.layer;
+        //总页数大于页码总数
+        laypage.render({
+            elem: 'demo1'
+            ,count: count //数据总数
+            ,limit:10
+            ,jump: function(obj){
+                console.log(obj)
             }
         });
     })
