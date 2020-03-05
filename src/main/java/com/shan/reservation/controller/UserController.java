@@ -79,4 +79,11 @@ public class UserController {
         user user=userService.selectUserByNickName(name);
         return  R.ok().put("user",user);
     }
+    @ResponseBody
+    @RequestMapping("/selectAllUser" )
+    @ArchivesLog(operationType = "查询信息", operationName = "查询所有用户")
+    public R selectAllUser(HttpSession httpSession){
+        List<user> list=userService.selectAllUser();
+        return  R.ok().put("user",list);
+    }
 }

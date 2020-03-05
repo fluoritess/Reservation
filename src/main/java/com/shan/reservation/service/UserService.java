@@ -19,4 +19,6 @@ public interface UserService {
     user selectUserById(int userid);
     //更新最近登录时间
     void updateByName(String name, Date date);
+    //查询所有用户
+    List<user> selectAllUser();
 }

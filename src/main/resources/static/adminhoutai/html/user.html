@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>无标题文档</title>
+    <link href="../css/eys_stly.css" rel="stylesheet" type="text/css" />
+    <link href="../css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="../ss/css/bootstrap-table.css" rel="stylesheet" type="text/css" />
+    <!--<link rel="stylesheet" href="//res.layui.com/layui/dist/css/layui.css"  media="all">-->
+    <link href="../../layui/css/layui.css" rel="stylesheet" type="text/css" />
+    <script src="../../layui/layui.js" charset="utf-8"></script>
+    <style type="text/css">
+        .left_p_table{
+            width:96%;
+            height:auto;
+            border-collapse:collapse;
+            margin-left:2%;
+            border:1px solid #eee;
+        }
+        .left_p_table tr{
+            height:86px;
+            text-align:center;
+        }
+        .left_p_table img{
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="index2">
+    <h5>所在位置：<a>广告中心</a></h5>
+
+
+    <p class="p_line"><input type="text" class="form-control" value="请输入用户名称" />
+        <!--<input type="text" class="form-control" value="SPU商家编码" /> -->
+        <!--<select class="form-control">-->
+        <!--<option>商品品牌</option>-->
+        <!--<option>品牌一</option>-->
+        <!--<option>品牌二</option>-->
+        <!---->
+        <!--</select>-->
+        <!--<select class="form-control">-->
+        <!--<option>分销状态</option>-->
+        <!--<option>待上架</option>-->
+        <!--<option>已上架</option>-->
+        <!---->
+        <!--</select>-->
+        <select class="form-control">
+            <option>全部</option>
+            <option>冻结中</option>
+            <option>使用中</option>
+
+        </select><button class=" button_style">查询</button></p>
+
+    <p >
+        <!--<table data-url="json/data.json" id="table" style="margin: 0 auto">-->
+        <!--</table>-->
+    <table width="200" border="1" class="left_p_table" id="table">
+        <tr class="left_tr1">
+            <td><input type="checkbox"/>全选</td>
+            <td>头像</td>
+            <td>昵称</td>
+            <td>真实姓名</td>
+            <td>状态</td>
+            <td>邮箱</td>
+            <td>最近登陆时间</td>
+            <td>操作</td>
+        </tr>
+        <!--<tr>-->
+        <!--<td><input type="checkbox"/></td>-->
+        <!--<td><img src="../../upload/user/shan.jpg" alt=""/></td>-->
+        <!--<td>王彬彬</td>-->
+        <!--<td>杉</td>-->
+        <!--<td>man</td>-->
+        <!--<td>使用中</td>-->
+         <!--<td>@qq.com</td>-->
+         <!--<td>2020年3月5日 19:26:38</td>-->
+            <!--<td><button class="layui-btn"></button></td>-->
+        <!--</tr>-->
+
+
+    </table>
+    <!--<fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">-->
+    <!--<legend>总页数大于页码总数</legend>-->
+    <!--</fieldset>-->
+    <div id="demo1"></div>
+
+    </p>
+
+</div>
+<script src="../js/jquery.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../ss/js/bootstrap-table.js"></script>
+<script src="../ss/js/bootstrap-table-zh-CN.min.js"></script>
+<script>
+    function add0(m){return m<10?'0'+m:m }
+    function format(timestamp)
+    {
+        //timestamp是整数，否则要parseInt转换,不会出现少个0的情况
+
+        var time = new Date(timestamp);
+        var year = time.getFullYear();
+        var month = time.getMonth()+1;
+        var date = time.getDate();
+        var hours = time.getHours();
+        var minutes = time.getMinutes();
+        var seconds = time.getSeconds();
+        return year+'-'+add0(month)+'-'+add0(date)+' '+add0(hours)+':'+add0(minutes)+':'+add0(seconds);
+    }
+    var count=9;
+
+    layui.use(['laypage', 'layer'], function(){
+        var laypage = layui.laypage
+            ,layer = layui.layer;
+        //总页数大于页码总数
+        laypage.render({
+            elem: 'demo1'
+            ,count: count //数据总数
+            ,jump: function(obj){
+                console.log(obj)
+            }
+        });
+    })
+
+    $.ajax({
+        type: "POST",
+        url: "/selectAllUser",
+        contentType: "application/json; charset=utf-8",
+        data: null,
+        async: false,
+        dataType: "json",
+        success: function (info) {
+            console.log(info);
+            for(var i=0;i<info.user.length;i++){
+                var userImag=info.user[i].userImag;
+                var url="../../";
+                userImag=url+userImag;
+                var userName=info.user[i].userName;
+                var realname=info.user[i].realname;
+                var userSex=info.user[i].userSex;
+                var userState=info.user[i].userState;
+                var userEmail=info.user[i].userEmail;
+                var lastDate=info.user[i].lastDate;
+                lastDate=format(lastDate);
+                if(userState==1){
+                    $("#table").append("  <tr>\n" +
+                        "        <td><input type=\"checkbox\"/></td>\n" +
+                        "        <td><img src=\"../../upload/user/shan.jpg\" alt=\"\"/></td>\n" +
+                        "        <td>"+userName+"</td>\n" +
+                        "        <td>"+realname+"</td>\n" +
+                        "        <td>使用中</td>\n" +
+                        "         <td>"+userEmail+"</td>\n" +
+                        "         <td>"+lastDate+"</td>\n" +
+                        "            <td><button class=\"layui-btn\">冻结</button></td>\n" +
+                        "        </tr>");
+                }
+                else{
+                    $("#table").append("    <tr>\n" +
+                        "        <td><input type=\"checkbox\"/></td>\n" +
+                        "        <td><img src=\"../../upload/user/shan.jpg\" alt=\"\"/></td>\n" +
+                        "        <td>"+userName+"</td>\n" +
+                        "        <td>"+realname+"</td>\n" +
+                        "        <td>冻结中</td>\n" +
+                        "         <td>"+userEmail+"</td>\n" +
+                        "         <td>"+lastDate+"</td>\n" +
+                        "            <td><button class=\"layui-btn\"></button>恢复</td>\n" +
+                        "        </tr>\n");
+                }
+            }
+
+        },
+        error: function (message) {
+            $("#request-process-patent").html("获取数据失败！");
+        }
+    });
+</script>
+
+
+</body>
+</html>

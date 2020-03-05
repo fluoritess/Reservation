@@ -46,5 +46,10 @@ public class UserServiceImpl implements UserService {
         userMapperUtil.updateByName(name,date);
     }
 
+    @Override
+    public List<user> selectAllUser() {
+        return userMapper.selectByExample(null);
+    }
+
 
 }
