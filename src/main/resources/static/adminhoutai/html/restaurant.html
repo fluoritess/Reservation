@@ -18,12 +18,12 @@
             border:1px solid #eee;
         }
         .left_p_table tr{
-            height:76px;
+            height:86px;
             text-align:center;
         }
         .left_p_table img{
-            width: 86px;
-            height: 116px;
+            width: 100px;
+            height: 100px;
         }
     </style>
 </head>
@@ -33,7 +33,7 @@
     <h5>所在位置：<a>广告中心</a></h5>
 
 
-    <p class="p_line"><input type="text" class="form-control" value="请输入商品名称" />
+    <p class="p_line"><input type="text" class="form-control" value="请输入店名名称" />
         <!--<input type="text" class="form-control" value="SPU商家编码" /> -->
         <!--<select class="form-control">-->
         <!--<option>商品品牌</option>-->
@@ -49,9 +49,8 @@
         <!--</select>-->
         <select class="form-control">
             <option>全部</option>
-            <option>审核中</option>
-            <option>上架中</option>
-            <option>已下架</option>
+            <option>冻结中</option>
+            <option>使用中</option>
 
         </select><button class=" button_style">查询</button></p>
 
@@ -62,23 +61,18 @@
         <tr class="left_tr1">
             <td><input type="checkbox"/>全选</td>
             <td>图片</td>
-            <td>广告标题</td>
-            <td>广告价钱</td>
-            <td>广告内容</td>
+            <td>店名</td>
+            <td>电话</td>
             <td>状态</td>
-            <td>开始时间</td>
-            <td>结束时间</td>
             <td>操作</td>
         </tr>
         <!--<tr>-->
         <!--<td><input type="checkbox"/></td>-->
-        <!--<td><img src="../../upload/food/jituibaotaocan.jpg" alt=""/></td>-->
-        <!--<td>秘制烤鸡腿堡</td>-->
-        <!--<td>15</td>-->
-        <!--<td>12312</td>-->
-        <!--<td>1640</td>-->
-            <!--<td>1640</td>-->
-        <!--<td><button class="layui-btn">修改</button></td>-->
+        <!--<td><img src="../../upload/user/shan.jpg" alt=""/></td>-->
+        <!--<td>王彬彬</td>-->
+        <!--<td>@qq.com</td>-->
+        <!--<td>2020年3月5日 19:26:38</td>-->
+        <!--<td><button class="layui-btn"></button></td>-->
         <!--</tr>-->
 
 
@@ -124,64 +118,41 @@
             }
         });
     })
-    var json = {
-        re_id: 9
-    };
-    json = JSON.stringify(json);
+
     $.ajax({
         type: "POST",
-        url: "/advertisement/selectAllAdvertisement",
+        url: "/findAllRestaurant",
         contentType: "application/json; charset=utf-8",
-        data: json,
+        data: null,
         async: false,
         dataType: "json",
         success: function (info) {
             console.log(info);
-            for(var i=0;i<info.advertisement.length;i++){
-                var advertisementState=info.advertisement[i].advertisementState;
-                var advertisementTitle=info.advertisement[i].advertisementTitle;
-                var advertisementContent=info.advertisement[i].advertisementContent;
-                var advertisementImag=info.advertisement[i].advertisementImag;
-                var adenddate=info.advertisement[i].adenddate;
-                var adstartdate=info.advertisement[i].adstartdate;
-                //判断广告是否审核通过
-                if(advertisementState==1){
-                    adenddate=format(adenddate);
-                    adstartdate=format(adstartdate);
-                    var advertisementPrice=info.advertisement[i].advertisementPrice;
-                    var url="../image/";
-                    advertisementImag=url+advertisementImag;
-                    console.log(advertisementImag);
-                    $("#table").append("   <tr>\n" +
-                        "        <td><input type=\"checkbox\"/></td>\n" +
-                        "        <td><img src=\""+advertisementImag+"\" alt=\"\"/></td>\n" +
-                        "        <td>"+advertisementTitle+"</td>\n" +
-                        "        <td>"+advertisementPrice+"</td>\n" +
-                        "        <td>"+advertisementContent+"</td>\n" +
-                        "        <td>审核通过</td>\n" +
-                        "        <td>"+adstartdate+"</td>\n" +
-                        "            <td>"+adenddate+"</td>\n" +
-                        "        <td><button class=\"layui-btn xiajia\" id=\""+advertisementTitle+"\">下架</button></td>\n" +
-                        "        </tr>");
-
-                }
+            for(var i=0;i<info.restaurant.length;i++){
+                var restaurantName=info.restaurant[i].restaurantName;
+                var restaurantImage=info.restaurant[i].restaurantImage;
+                var url="../../";
+                restaurantImage=url+restaurantImage;
+                var restaurantPhone=info.restaurant[i].restaurantPhone;
+                var restaurantState=info.restaurant[i].restaurantState;
+               if(restaurantState==1){
+                   $("#table").append("        <tr>\n" +
+                       "        <td><input type=\"checkbox\"/></td>\n" +
+                       "        <td><img src=\""+restaurantImage+"\" alt=\"\"/></td>\n" +
+                       "        <td>"+restaurantName+"</td>\n" +
+                       "        <td>"+restaurantPhone+"</td>\n" +
+                       "        <td>使用中</td>\n" +
+                       "        <td><button class=\"layui-btn\">冻结</button></td>\n" +
+                       "        </tr>");
+               }
                 else{
-                    adenddate=format(adenddate);
-                    adstartdate=format(adstartdate);
-                    var advertisementPrice=info.advertisement[i].advertisementPrice;
-                    var url="../image/";
-                    advertisementImag=url+advertisementImag;
-                    console.log(advertisementImag);
-                    $("#table").append("   <tr>\n" +
+                    $("#table").append("        <tr>\n" +
                         "        <td><input type=\"checkbox\"/></td>\n" +
-                        "        <td><img src=\""+advertisementImag+"\" alt=\"\"/></td>\n" +
-                        "        <td>"+advertisementTitle+"</td>\n" +
-                        "        <td>"+advertisementPrice+"</td>\n" +
-                        "        <td>"+advertisementContent+"</td>\n" +
-                        "        <td>未审核</td>\n" +
-                        "        <td>"+adstartdate+"</td>\n" +
-                        "            <td>"+adenddate+"</td>\n" +
-                        "        <td><button class=\"layui-btn shenhe\" id=\""+advertisementTitle+"\">审核</button></td>\n" +
+                        "        <td><img src=\""+restaurantImage+"\" alt=\"\"/></td>\n" +
+                        "        <td>"+restaurantName+"</td>\n" +
+                        "        <td>"+restaurantPhone+"</td>\n" +
+                        "        <td>冻结中</td>\n" +
+                        "        <td><button class=\"layui-btn\">恢复</button></td>\n" +
                         "        </tr>");
                 }
             }
@@ -191,50 +162,6 @@
             $("#request-process-patent").html("获取数据失败！");
         }
     });
-    $(".shenhe").click(function () {
-        var title=$(this).attr('id');
-        console.log(title);
-        var json = {
-            title: title
-        };
-        json = JSON.stringify(json);
-        $.ajax({
-            type: "POST",
-            url: "/admin/SetState1",
-            contentType: "application/json; charset=utf-8",
-            data: json,
-            async: false,
-            dataType: "json",
-            success: function (info) {
-                    window.location.href="advertisement.html";
-            },
-            error: function (message) {
-                $("#request-process-patent").html("获取数据失败！");
-            }
-        });
-    })
-    $(".xiajia").click(function () {
-        var title=$(this).attr('id');
-        console.log(title);
-        var json = {
-            title: title
-        };
-        json = JSON.stringify(json);
-        $.ajax({
-            type: "POST",
-            url: "/admin/SetState0",
-            contentType: "application/json; charset=utf-8",
-            data: json,
-            async: false,
-            dataType: "json",
-            success: function (info) {
-                window.location.href="advertisement.html";
-            },
-            error: function (message) {
-                $("#request-process-patent").html("获取数据失败！");
-            }
-        });
-    })
 </script>
 
 

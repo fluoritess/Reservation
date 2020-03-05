@@ -112,7 +112,18 @@
     }
     var count=9;
 
-
+    layui.use(['laypage', 'layer'], function(){
+        var laypage = layui.laypage
+            ,layer = layui.layer;
+        //总页数大于页码总数
+        laypage.render({
+            elem: 'demo1'
+            ,count: count //数据总数
+            ,jump: function(obj){
+                console.log(obj)
+            }
+        });
+    })
     var json = {
         re_id: 9
     };
@@ -126,7 +137,6 @@
         dataType: "json",
         success: function (info) {
             console.log(info);
-            count=info.advertisement.length;
             for(var i=0;i<info.advertisement.length;i++){
                 var advertisementState=info.advertisement[i].advertisementState;
                 var advertisementTitle=info.advertisement[i].advertisementTitle;
@@ -181,18 +191,6 @@
             $("#request-process-patent").html("获取数据失败！");
         }
     });
-    layui.use(['laypage', 'layer'], function(){
-        var laypage = layui.laypage
-            ,layer = layui.layer;
-        //总页数大于页码总数
-        laypage.render({
-            elem: 'demo1'
-            ,count: count //数据总数
-            ,jump: function(obj){
-                console.log(obj)
-            }
-        });
-    })
     $(".shenhe").click(function () {
         var title=$(this).attr('id');
         console.log(title);
