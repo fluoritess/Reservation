@@ -6,11 +6,10 @@
             <idArg column="evaluation_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
             <arg column="order_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
             <arg column="evaluation_content" jdbcType="VARCHAR" javaType="java.lang.String" />
-            <arg column="evaluation_start" jdbcType="TIMESTAMP" javaType="java.util.Date" />
             <arg column="evaluation_data" jdbcType="TIMESTAMP" javaType="java.util.Date" />
             <arg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
             <arg column="restaurant_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
-            <arg column="food_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+            <arg column="score" jdbcType="DOUBLE" javaType="java.lang.Double" />
         </constructor>
     </resultMap>
     <select id="selectReId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >

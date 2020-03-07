@@ -93,8 +93,9 @@ public class UserController {
     @ArchivesLog(operationType = "添加信息", operationName = "评价")
     public R UserEvaluation(@RequestBody Map<String,String> map,HttpSession httpSession){
         String no=map.get("no");
+        String content=map.get("content");
         double score=Double.parseDouble(map.get("score"));
-        userService.UserEvaluation(no,score);
+        userService.UserEvaluation(no,score,content);
         OrderService.uodateByNo4(no);
         return  R.ok();
     }

@@ -1,12 +1,9 @@
 package com.shan.reservation.service.impl;
 
+import com.shan.reservation.bean.evaluation;
 import com.shan.reservation.bean.order;
-import com.shan.reservation.bean.restaurant_score;
 import com.shan.reservation.bean.user;
-import com.shan.reservation.mapper.orderMapper;
-import com.shan.reservation.mapper.restaurant_scoreMapper;
-import com.shan.reservation.mapper.userMapper;
-import com.shan.reservation.mapper.userMapperUtil;
+import com.shan.reservation.mapper.*;
 import com.shan.reservation.service.OrderService;
 import com.shan.reservation.service.UserService;
 
@@ -31,9 +28,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     orderMapper orderMapper;
     @Autowired
-    com.shan.reservation.service.OrderService OrderService;
+    evaluationMapper evaluationMapper;
     @Autowired
-    restaurant_scoreMapper restaurant_scoreMapper;
+    com.shan.reservation.service.OrderService OrderService;
     @Override
     public user selectUserByNickName(String nickname) {
         List<user> list=userMapper.selectByExample(null);
@@ -63,12 +60,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void UserEvaluation(String no, double score) {
+    public void UserEvaluation(String no, double score,String content) {
         order order=OrderService.selectOrder(no);
+        int oreder_id=order.getOrderid();
         int re_id=order.getRestaurantid();
         int user_id=order.getUserid();
-        restaurant_score restaurant_score=new restaurant_score(re_id,user_id,score);
-        restaurant_scoreMapper.insert(restaurant_score);
+        Date date=new Date();
+        evaluation evaluation=new evaluation(oreder_id,content,date,user_id,re_id,score);
+        evaluationMapper.insert(evaluation);
     }
 
 

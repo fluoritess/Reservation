@@ -9,25 +9,31 @@ public class evaluation {
 
     private String evaluationContent;
 
-    private Date evaluationStart;
-
     private Date evaluationData;
 
     private Integer userId;
 
     private Integer restaurantId;
 
-    private Integer foodId;
+    private Double score;
 
-    public evaluation(Integer evaluationId, Integer orderId, String evaluationContent, Date evaluationStart, Date evaluationData, Integer userId, Integer restaurantId, Integer foodId) {
+    public evaluation(Integer evaluationId, Integer orderId, String evaluationContent, Date evaluationData, Integer userId, Integer restaurantId, Double score) {
         this.evaluationId = evaluationId;
         this.orderId = orderId;
         this.evaluationContent = evaluationContent;
-        this.evaluationStart = evaluationStart;
         this.evaluationData = evaluationData;
         this.userId = userId;
         this.restaurantId = restaurantId;
-        this.foodId = foodId;
+        this.score = score;
+    }
+
+    public evaluation(Integer orderId, String evaluationContent, Date evaluationData, Integer userId, Integer restaurantId, Double score) {
+        this.orderId = orderId;
+        this.evaluationContent = evaluationContent;
+        this.evaluationData = evaluationData;
+        this.userId = userId;
+        this.restaurantId = restaurantId;
+        this.score = score;
     }
 
     public evaluation() {
@@ -58,14 +64,6 @@ public class evaluation {
         this.evaluationContent = evaluationContent == null ? null : evaluationContent.trim();
     }
 
-    public Date getEvaluationStart() {
-        return evaluationStart;
-    }
-
-    public void setEvaluationStart(Date evaluationStart) {
-        this.evaluationStart = evaluationStart;
-    }
-
     public Date getEvaluationData() {
         return evaluationData;
     }
@@ -90,11 +88,11 @@ public class evaluation {
         this.restaurantId = restaurantId;
     }
 
-    public Integer getFoodId() {
-        return foodId;
+    public Double getScore() {
+        return score;
     }
 
-    public void setFoodId(Integer foodId) {
-        this.foodId = foodId;
+    public void setScore(Double score) {
+        this.score = score;
     }
 }

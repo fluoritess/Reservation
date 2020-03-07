@@ -48,16 +48,16 @@ public class EvaluationController {
             String username=user.getUserName();
             String content=evaluation.getEvaluationContent();
             Date date=evaluation.getEvaluationData();
-            int food_id=evaluation.getFoodId();
-            food food=foodMapper.selectByPrimaryKey(food_id);
-            String foodname=food.getFoodName();
+//            int food_id=evaluation.getFoodId();
+////            food food=foodMapper.selectByPrimaryKey(food_id);
+//            String foodname=food.getFoodName();
             Map data=new HashMap();
             data.put("size",size);
             data.put("username",username);
             data.put("content",content);
             data.put("date",date);
-            data.put("foodname",foodname);
-            data.put("foodid",food_id);
+//            data.put("foodname",foodname);
+//            data.put("foodid",food_id);
             tarlist.add(data);
         }
         return  R.ok().put("data",tarlist);
@@ -78,16 +78,16 @@ public class EvaluationController {
             String username=user.getUserName();
             String content=evaluation.getEvaluationContent();
             Date date=evaluation.getEvaluationData();
-            int food_id=evaluation.getFoodId();
-            food food=foodMapper.selectByPrimaryKey(food_id);
-            String foodname=food.getFoodName();
+//            int food_id=evaluation.getFoodId();
+//            food food=foodMapper.selectByPrimaryKey(food_id);
+//            String foodname=food.getFoodName();
             Map data=new HashMap();
             data.put("size",size);
             data.put("username",username);
             data.put("content",content);
             data.put("date",date);
-            data.put("foodname",foodname);
-            data.put("foodid",food_id);
+//            data.put("foodname",foodname);
+//            data.put("foodid",food_id);
             tarlist.add(data);
         }
         return  R.ok().put("data",tarlist);

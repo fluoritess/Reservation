@@ -75,7 +75,7 @@
         <form class="layui-form" action="">
             <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;"><legend>评价</legend> </fieldset>
             <ul><li><div id="test3"></div></li></ul>
-            <textarea name="desc" placeholder="请输入您的评价......" class="layui-textarea" id="jianjie" id="jianjie"></textarea>
+            <textarea name="desc" placeholder="请输入您的评价......" class="layui-textarea" id="content" ></textarea>
             <button type="button" class="layui-btn" id="tijiao">提交</button>
         </form>
     </article>
@@ -243,9 +243,15 @@
             //     }
             // });
             $("#tijiao").click(function () {
+                var content=$("#content").val();
+                var score_text=$(".layui-inline").text();
+                var score_number=score_text.split("星");
+                var score=score_number[0];
+                console.log(score)
                 var json = {
                     no: no,
-                    score:4
+                    score:score,
+                    content:content
                 };
                 json = JSON.stringify(json);
                 $.ajax({

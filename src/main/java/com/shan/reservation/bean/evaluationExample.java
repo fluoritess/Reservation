@@ -295,66 +295,6 @@ public class evaluationExample {
             return (Criteria) this;
         }
 
-        public Criteria andEvaluationStartIsNull() {
-            addCriterion("evaluation_start is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andEvaluationStartIsNotNull() {
-            addCriterion("evaluation_start is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andEvaluationStartEqualTo(Date value) {
-            addCriterion("evaluation_start =", value, "evaluationStart");
-            return (Criteria) this;
-        }
-
-        public Criteria andEvaluationStartNotEqualTo(Date value) {
-            addCriterion("evaluation_start <>", value, "evaluationStart");
-            return (Criteria) this;
-        }
-
-        public Criteria andEvaluationStartGreaterThan(Date value) {
-            addCriterion("evaluation_start >", value, "evaluationStart");
-            return (Criteria) this;
-        }
-
-        public Criteria andEvaluationStartGreaterThanOrEqualTo(Date value) {
-            addCriterion("evaluation_start >=", value, "evaluationStart");
-            return (Criteria) this;
-        }
-
-        public Criteria andEvaluationStartLessThan(Date value) {
-            addCriterion("evaluation_start <", value, "evaluationStart");
-            return (Criteria) this;
-        }
-
-        public Criteria andEvaluationStartLessThanOrEqualTo(Date value) {
-            addCriterion("evaluation_start <=", value, "evaluationStart");
-            return (Criteria) this;
-        }
-
-        public Criteria andEvaluationStartIn(List<Date> values) {
-            addCriterion("evaluation_start in", values, "evaluationStart");
-            return (Criteria) this;
-        }
-
-        public Criteria andEvaluationStartNotIn(List<Date> values) {
-            addCriterion("evaluation_start not in", values, "evaluationStart");
-            return (Criteria) this;
-        }
-
-        public Criteria andEvaluationStartBetween(Date value1, Date value2) {
-            addCriterion("evaluation_start between", value1, value2, "evaluationStart");
-            return (Criteria) this;
-        }
-
-        public Criteria andEvaluationStartNotBetween(Date value1, Date value2) {
-            addCriterion("evaluation_start not between", value1, value2, "evaluationStart");
-            return (Criteria) this;
-        }
-
         public Criteria andEvaluationDataIsNull() {
             addCriterion("evaluation_data is null");
             return (Criteria) this;
@@ -535,63 +475,63 @@ public class evaluationExample {
             return (Criteria) this;
         }
 
-        public Criteria andFoodIdIsNull() {
-            addCriterion("food_id is null");
+        public Criteria andScoreIsNull() {
+            addCriterion("score is null");
             return (Criteria) this;
         }
 
-        public Criteria andFoodIdIsNotNull() {
-            addCriterion("food_id is not null");
+        public Criteria andScoreIsNotNull() {
+            addCriterion("score is not null");
             return (Criteria) this;
         }
 
-        public Criteria andFoodIdEqualTo(Integer value) {
-            addCriterion("food_id =", value, "foodId");
+        public Criteria andScoreEqualTo(Double value) {
+            addCriterion("score =", value, "score");
             return (Criteria) this;
         }
 
-        public Criteria andFoodIdNotEqualTo(Integer value) {
-            addCriterion("food_id <>", value, "foodId");
+        public Criteria andScoreNotEqualTo(Double value) {
+            addCriterion("score <>", value, "score");
             return (Criteria) this;
         }
 
-        public Criteria andFoodIdGreaterThan(Integer value) {
-            addCriterion("food_id >", value, "foodId");
+        public Criteria andScoreGreaterThan(Double value) {
+            addCriterion("score >", value, "score");
             return (Criteria) this;
         }
 
-        public Criteria andFoodIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("food_id >=", value, "foodId");
+        public Criteria andScoreGreaterThanOrEqualTo(Double value) {
+            addCriterion("score >=", value, "score");
             return (Criteria) this;
         }
 
-        public Criteria andFoodIdLessThan(Integer value) {
-            addCriterion("food_id <", value, "foodId");
+        public Criteria andScoreLessThan(Double value) {
+            addCriterion("score <", value, "score");
             return (Criteria) this;
         }
 
-        public Criteria andFoodIdLessThanOrEqualTo(Integer value) {
-            addCriterion("food_id <=", value, "foodId");
+        public Criteria andScoreLessThanOrEqualTo(Double value) {
+            addCriterion("score <=", value, "score");
             return (Criteria) this;
         }
 
-        public Criteria andFoodIdIn(List<Integer> values) {
-            addCriterion("food_id in", values, "foodId");
+        public Criteria andScoreIn(List<Double> values) {
+            addCriterion("score in", values, "score");
             return (Criteria) this;
         }
 
-        public Criteria andFoodIdNotIn(List<Integer> values) {
-            addCriterion("food_id not in", values, "foodId");
+        public Criteria andScoreNotIn(List<Double> values) {
+            addCriterion("score not in", values, "score");
             return (Criteria) this;
         }
 
-        public Criteria andFoodIdBetween(Integer value1, Integer value2) {
-            addCriterion("food_id between", value1, value2, "foodId");
+        public Criteria andScoreBetween(Double value1, Double value2) {
+            addCriterion("score between", value1, value2, "score");
             return (Criteria) this;
         }
 
-        public Criteria andFoodIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("food_id not between", value1, value2, "foodId");
+        public Criteria andScoreNotBetween(Double value1, Double value2) {
+            addCriterion("score not between", value1, value2, "score");
             return (Criteria) this;
         }
     }
