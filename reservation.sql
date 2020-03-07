@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50720
 File Encoding         : 65001
 
-Date: 2020-03-01 16:21:37
+Date: 2020-03-07 18:09:01
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -162,14 +162,13 @@ INSERT INTO `coupon` VALUES ('2', '1', '4', '8', '2020-01-29 17:07:47', '2020-02
 -- ----------------------------
 DROP TABLE IF EXISTS `evaluation`;
 CREATE TABLE `evaluation` (
-  `evaluation_id` int(11) NOT NULL,
+  `evaluation_id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL,
   `evaluation_content` varchar(255) DEFAULT NULL,
-  `evaluation_start` datetime DEFAULT NULL,
   `evaluation_data` datetime DEFAULT NULL,
   `user_id` int(11) NOT NULL,
   `restaurant_id` int(11) NOT NULL,
-  `food_id` int(11) NOT NULL,
+  `score` double(11,2) DEFAULT NULL,
   PRIMARY KEY (`evaluation_id`),
   KEY `user_id` (`user_id`),
   KEY `restaurant_id` (`restaurant_id`),
@@ -177,12 +176,16 @@ CREATE TABLE `evaluation` (
   CONSTRAINT `evaluation_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `evaluation_ibfk_3` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurant` (`restaurant_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `evaluation_ibfk_4` FOREIGN KEY (`order_id`) REFERENCES `order` (`orderId`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of evaluation
 -- ----------------------------
-INSERT INTO `evaluation` VALUES ('1', '1', '非常好', '2020-02-01 17:53:56', '2020-02-01 17:54:01', '1', '9', '8');
+INSERT INTO `evaluation` VALUES ('1', '2', '好！', '2020-03-07 17:40:06', '1', '4', '5.00');
+INSERT INTO `evaluation` VALUES ('2', '3', '好！', '2020-03-07 17:50:41', '1', '4', '4.00');
+INSERT INTO `evaluation` VALUES ('3', '3', '好！', '2020-03-07 17:51:59', '1', '4', '4.00');
+INSERT INTO `evaluation` VALUES ('4', '3', '好！', '2020-03-07 17:53:44', '1', '4', '4.00');
+INSERT INTO `evaluation` VALUES ('5', '1', '好！', '2020-03-07 18:02:08', '1', '9', '5.00');
 
 -- ----------------------------
 -- Table structure for `food`
@@ -263,13 +266,15 @@ CREATE TABLE `item` (
   KEY `user_id` (`user_id`),
   CONSTRAINT `item_ibfk_1` FOREIGN KEY (`food_id`) REFERENCES `food` (`food_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `item_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of item
 -- ----------------------------
 INSERT INTO `item` VALUES ('9', '1', '10', '8');
 INSERT INTO `item` VALUES ('11', '1', '9', '2');
+INSERT INTO `item` VALUES ('12', '2', '9', '2');
+INSERT INTO `item` VALUES ('13', '2', '8', '1');
 
 -- ----------------------------
 -- Table structure for `messageboard`
@@ -336,21 +341,24 @@ CREATE TABLE `order` (
   CONSTRAINT `order_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `order_ibfk_2` FOREIGN KEY (`restaurantId`) REFERENCES `restaurant` (`restaurant_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `order_ibfk_3` FOREIGN KEY (`address_id`) REFERENCES `address` (`address_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of order
 -- ----------------------------
-INSERT INTO `order` VALUES ('1', '202054687521022', '1', '9', '25.00', '0000', '000000000.00', '2020-02-01 16:53:02', '2020-02-01 16:54:14', '2020-02-01 17:13:22', '3', null, '1');
-INSERT INTO `order` VALUES ('2', '202021346782322', '1', '4', '36.00', '0000', '000000000.00', '2020-02-01 19:21:03', '2020-02-01 19:21:05', '2020-02-01 19:21:08', '6', null, '1');
-INSERT INTO `order` VALUES ('3', '202080346893212', '1', '4', '32.00', '0000', '000000000.00', '2020-02-01 19:25:19', '2020-02-01 19:25:23', '2020-02-01 19:25:26', '-2', null, '1');
+INSERT INTO `order` VALUES ('1', '202054687521022', '1', '9', '25.00', '0000', '000000000.00', '2020-02-01 16:53:02', '2020-02-01 16:54:14', '2020-02-01 17:13:22', '4', null, '1');
+INSERT INTO `order` VALUES ('2', '202021346782322', '1', '4', '36.00', '0000', '000000000.00', '2020-02-01 19:21:03', '2020-02-01 19:21:05', '2020-02-01 19:21:08', '5', null, '1');
+INSERT INTO `order` VALUES ('3', '202080346893212', '1', '4', '32.00', '0000', '000000000.00', '2020-02-01 19:25:19', '2020-02-01 19:25:23', '2020-02-01 19:25:26', '4', null, '1');
 INSERT INTO `order` VALUES ('21', '202002131825551', '1', '9', '26.00', null, null, '2020-02-13 18:25:55', null, null, '6', null, '3');
 INSERT INTO `order` VALUES ('22', '202002131909391', '1', '9', '40.00', null, null, '2020-02-13 19:09:39', null, null, '-1', null, '3');
 INSERT INTO `order` VALUES ('23', '202002151625491', '1', '9', '56.00', null, null, '2020-02-15 16:25:50', null, null, '1', null, '3');
 INSERT INTO `order` VALUES ('24', '202002161544171', '1', '2', '79.00', null, null, '2020-02-16 15:44:18', null, null, '0', null, '3');
 INSERT INTO `order` VALUES ('25', '202002231706511', '1', '9', '12.00', null, null, '2020-02-23 17:06:52', null, null, '1', null, '3');
-INSERT INTO `order` VALUES ('26', '202002271637581', '1', '9', '36.00', null, null, '2020-02-27 16:37:59', null, null, '1', null, '3');
-INSERT INTO `order` VALUES ('27', '202002291742491', '1', '9', '14.00', null, null, '2020-02-29 17:42:49', null, null, '1', null, '3');
+INSERT INTO `order` VALUES ('26', '202002271637581', '1', '9', '36.00', null, null, '2020-02-27 16:37:59', null, null, '-1', null, '3');
+INSERT INTO `order` VALUES ('27', '202002291742491', '1', '9', '14.00', null, null, '2020-02-29 17:42:49', null, null, '-1', null, '3');
+INSERT INTO `order` VALUES ('28', '202003031433431', '1', '9', '16.00', null, null, '2020-03-03 14:33:44', null, null, '-1', null, '3');
+INSERT INTO `order` VALUES ('29', '202003031434211', '1', '9', '26.00', null, null, '2020-03-03 14:34:21', null, null, '-1', null, '3');
+INSERT INTO `order` VALUES ('30', '202003071803542', '2', '9', '22.00', null, null, '2020-03-07 18:03:55', null, null, '2', null, '4');
 
 -- ----------------------------
 -- Table structure for `restaurant`
@@ -415,5 +423,5 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', '123', '12341234112', '1', '1', 'upload/user/shan.jpg', '王杉杉', '杉', '1', '2020-03-01 15:08:54', '253681597@qq.com');
-INSERT INTO `user` VALUES ('2', '123', '13224567231', '2', '1', 'upload/user/fluoritess.jpg', 'LiHua', 'fluorites', '1', '2020-01-29 17:14:17', '308751395@qq.com');
+INSERT INTO `user` VALUES ('1', '123', '12341234112', '1', '1', 'upload/user/shan.jpg', '王杉杉', '杉', '1', '2020-03-07 15:16:58', '253681597@qq.com');
+INSERT INTO `user` VALUES ('2', '123', '13224567231', '2', '1', 'upload/user/fluoritess.jpg', 'LiHua', 'fluorites', '1', '2020-03-07 18:03:05', '308751395@qq.com');
