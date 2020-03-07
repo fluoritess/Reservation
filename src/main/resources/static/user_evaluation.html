@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>杉杉订餐-用户中心</title>
+    <meta name="author" content="DeathGhost"/>
+    <link href="style/style.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="js/public.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jqpublic.js"></script>
+    <script type="text/javascript" src="js/normal.js"></script>
+    <link rel="stylesheet" href="layui/css/layui.css" media="all">
+    <!--
+    Author: DeathGhost
+    Author URI: http://www.deathghost.cn
+    -->
+</head>
+<body>
+<!--Start header-->
+<header>
+    <section class="Topmenubg">
+        <div class="Topnav">
+            <div class="LeftNav">
+                <!--<a href="login/register.html">注册</a>/<a href="login/login.html">登录</a><a href="#">QQ客服</a><a href="#">微信客服</a><a href="#">手机客户端</a>-->
+            </div>
+            <div class="RightNav">
+                <!--<a href="user_center.html">用户中心</a> <a href="user_orderlist.html" target="_blank" title="我的订单">我的订单</a> <a href="cart.html">购物车（0）</a> <a href="user_favorites.html" target="_blank" title="我的收藏">我的收藏</a> <a href="#">商家入驻</a>-->
+            </div>
+        </div>
+    </section>
+    <div class="Logo_search">
+        <div class="Logo">
+            <a href="index.html"><img src="login/images/logo.png" title="杉杉订餐" alt="模板"></a>
+            <i></i>
+            <span id="distict"></span>
+        </div>
+        <div class="Search">
+            <form method="get" id="main_a_serach" onsubmit="return check_search(this)">
+                <div class="Search_nav" id="selectsearch">
+                    <a href="javascript:;" onClick="selectsearch(this,'restaurant_name')" class="choose">餐厅</a>
+                    <a href="javascript:;" onClick="selectsearch(this,'food_name')">食物名</a>
+                </div>
+                <div class="Search_area">
+                    <input type="search" id="fkeyword" name="keyword" placeholder="请输入您所需查找的餐厅名称或食物名称..." class="searchbox" />
+                    <input type="submit" class="searchbutton" value="搜 索" />
+                </div>
+            </form>
+            <p class="hotkeywords"><a href="detailsp.html?9" title="香辣鸡翅">香辣鸡翅</a><a href="detailsp.html?6" title="鱼香肉丝">鱼香肉丝</a><a href="detailsp.html?2" title="烤芝士沙拉">烤芝士沙拉</a><a href="detailsp.html?3" title="烧仙草">烧仙草</a><a href="detailsp.html?8" title="秘制烤鸡腿堡">秘制烤鸡腿堡</a><a href="detailsp.html?10" title="可乐">可乐</a></p>
+        </div>
+    </div>
+    <nav class="menu_bg">
+        <ul class="menu">
+            <li><a href="index.html">首页</a></li>
+            <li><a href="list.html">订餐</a></li>
+            <li><a href="category.html">积分商城</a></li>
+            <li><a href="article_read.html">关于我们</a></li>
+        </ul>
+    </nav>
+</header>
+<!--Start content-->
+<section class="Psection MT20">
+    <nav class="U-nav Font14 FontW">
+        <ul>
+            <li><i></i><a href="user_center.html">用户中心首页</a></li>
+            <li><i></i><a href="user_orderlist.html">我的订单</a></li>
+            <li><i></i><a href="user_address.html">收货地址</a></li>
+            <li><i></i><a href="user_message.html">我的留言</a></li>
+            <li><i></i><a href="user_coupon.html">我的优惠券</a></li>
+            <li><i></i><a href="user_favorites.html">我的收藏</a></li>
+            <li><i></i><a href="user_account.html">账户管理</a></li>
+            <li><i></i><a href="javascript:redirect();">安全退出</a></li>
+        </ul>
+    </nav>
+    <article class="U-article Overflow">
+        <form class="layui-form" action="">
+            <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;"><legend>评价</legend> </fieldset>
+            <ul><li><div id="test3"></div></li></ul>
+            <textarea name="desc" placeholder="请输入您的评价......" class="layui-textarea" id="jianjie" id="jianjie"></textarea>
+            <button type="button" class="layui-btn">提交</button>
+        </form>
+    </article>
+</section>
+<!--End content-->
+<div class="F-link">
+    <span>友情链接：</span>
+    <a href="http://localhost:8080/index.html" target="_blank" title="杉杉订餐">杉杉订餐</a>
+    <a href="http://www.caixiangyuan.com/" target="_blank" title="菜香源主页">菜香源川菜馆官网</a>
+    <a href="http://www.jidongzs.com/?bd_vid=8764546780220336850" target="_blank" title="烧仙草挂网">悸动烧仙草挂网</a>
+    <a href="http://www.sohu.com/a/161665425_125537" target="_blank" title="香霏牛排官网">香霏牛排官网</a>
+</div>
+<footer>
+    <section class="Otherlink">
+        <aside>
+            <div class="ewm-left">
+                <p>手机扫描二维码：</p>
+                <img src="images/Android_ico_d.gif">
+                <img src="images/iphone_ico_d.gif">
+            </div>
+            <div class="tips">
+                <p>客服热线</p>
+                <p><i>1830927**73</i></p>
+                <p>配送时间</p>
+                <p><time>09：00</time>~<time>22:00</time></p>
+                <p>网站公告</p>
+            </div>
+        </aside>
+        <section>
+            <div>
+                <span><i class="i1"></i>配送支付</span>
+                <ul>
+                    <li><a href="article_read.html" target="_blank" title="标题">支付方式</a></li>
+                    <li><a href="article_read.html" target="_blank" title="标题">配送方式</a></li>
+                    <li><a href="article_read.html" target="_blank" title="标题">配送效率</a></li>
+                    <li><a href="article_read.html" target="_blank" title="标题">服务费用</a></li>
+                </ul>
+            </div>
+            <div>
+                <span><i class="i2"></i>关于我们</span>
+                <ul>
+                    <li><a href="article_read.html" target="_blank" title="标题">招贤纳士</a></li>
+                    <li><a href="article_read.html" target="_blank" title="标题">网站介绍</a></li>
+                    <li><a href="article_read.html" target="_blank" title="标题">配送效率</a></li>
+                    <li><a href="article_read.html" target="_blank" title="标题">商家加盟</a></li>
+                </ul>
+            </div>
+            <div>
+                <span><i class="i3"></i>帮助中心</span>
+                <ul>
+                    <li><a href="article_read.html" target="_blank" title="标题">服务内容</a></li>
+                    <li><a href="article_read.html" target="_blank" title="标题">服务介绍</a></li>
+                    <li><a href="article_read.html" target="_blank" title="标题">常见问题</a></li>
+                    <li><a href="article_read.html" target="_blank" title="标题">网站地图</a></li>
+                </ul>
+            </div>
+        </section>
+    </section>
+    <div class="copyright">© 版权所有 2020 杉杉订餐 技术支持：<a href="http://www.deathghost.cn" title="587工作室">587工作室</a></div>
+</footer>
+<script src="layui/layui.js" charset="utf-8"></script>
+<script type="text/javascript">
+    $(function(){
+        var user=sessionStorage.getItem("name");
+        var userId;
+        var realName;
+        console.log(user);
+        if(user==null){
+            $(".LeftNav").append(" <a href=\"login/register.html\">注册</a>/<a href=\"login/login.html\">登录</a><a href=\"#\">QQ客服</a><a href=\"#\">微信客服</a><a href=\"#\">手机客户端</a>");
+            $(".RightNav").append(" <a href=\"user_center.html\">用户中心</a> <a href=\"user_orderlist.html\" target=\"_blank\" title=\"我的订单\">我的订单</a> <a href=\"cart.html\">购物车（0）</a> <a href=\"user_favorites.html\" target=\"_blank\" title=\"我的收藏\">我的收藏</a> <a href=\"#\">商家入驻</a>");
+            $(".seekarea").append(" <a href=\"#\">碑林区</a>\n" +
+                "     <a href=\"#\">新城区</a>\n" +
+                "     <a href=\"#\">未央区</a>\n" +
+                "     <a href=\"#\">雁塔区</a>\n" +
+                "     <a href=\"#\">莲湖区</a>\n" +
+                "     <a href=\"#\">高新区</a>\n" +
+                "     <a href=\"#\">灞桥区</a>\n" +
+                "     <a href=\"#\">高陵区</a>\n" +
+                "     <a href=\"#\">阎良区</a>\n" +
+                "     <a href=\"#\">临潼区</a>\n" +
+                "     <a href=\"#\">长安区</a>\n" +
+                "     <a href=\"#\">周至县</a>\n" +
+                "     <a href=\"#\">蓝田县 </a>");
+        }
+        else{
+            $(".LeftNav").append(" <a href=\"javascript:redirect();\">退出登录</a><a href=\"#\">QQ客服</a><a href=\"#\">微信客服</a><a href=\"#\">手机客户端</a>");
+            var json = {
+                name: user
+            };
+            json = JSON.stringify(json);
+            var cityname=null;
+            $.ajax({
+                type: "POST",
+                url: "/GetUserCityInfo",
+                contentType: "application/json; charset=utf-8",
+                data: json,
+                async: false,
+                dataType: "json",
+                success: function (info) {
+                    var city=info.user.city;
+                    cityname=city;
+                    var distict=info.user.distict;
+                    $("#distict").append(city+ "[ <a href=\"#\">"+distict+"</a> ]");
+                },
+                error: function (message) {
+                    $("#request-process-patent").html("获取数据失败！");
+                }
+            });
+            $.ajax({
+                type: "POST",
+                url: "/findCartByuser",
+                contentType: "application/json; charset=utf-8",
+                data: json,
+                async: false,
+                dataType: "json",
+                success: function (info) {
+                    var length=info.cart.length;
+                    $(".RightNav").append("<a href=\"user_center.html\">用户中心</a> <a href=\"user_orderlist.html\" target=\"_blank\" title=\"我的订单\">我的订单</a> <a href=\"cart.html\">购物车（"+length+"）</a> <a href=\"user_favorites.html\" target=\"_blank\" title=\"我的收藏\">我的收藏</a> <a href=\"#\">商家入驻</a>");
+                }
+            });
+            $.ajax({
+                type: "POST",
+                url: "/GetUserInfo",
+                contentType: "application/json; charset=utf-8",
+                data: json,
+                async: false,
+                dataType: "json",
+                success: function (info) {
+                    userId=info.user.userId;
+                    realName=info.user.realname;
+                },
+                error: function (message) {
+                    $("#request-process-patent").html("获取数据失败！");
+                }
+            });
+            // var json = {
+            //     userId: userId
+            // };
+            // json = JSON.stringify(json);
+            // $.ajax({
+            //     type: "POST",
+            //     url: "/selectCollectByUser",
+            //     contentType: "application/json; charset=utf-8",
+            //     data: json,
+            //     async: false,
+            //     dataType: "json",
+            //     success: function (info) {
+            //         console.log(info);
+            //         for(var i=0;i<info.collect.length;i++){
+            //             var restaurantId=info.collect[i].restaurantId;
+            //             var restaurantName=info.collect[i].restaurantName;
+            //             var restaurantImage=info.collect[i].restaurantImage;
+            //             $("#ul").append("  <a href=\"shop.html?"+restaurantId+"\" target=\"_blank\">\n" +
+            //                 "    <li>\n" +
+            //                 "     <img src=\""+restaurantImage+"\">\n" +
+            //                 "     <p>"+restaurantName+"</p>\n" +
+            //                 "    </li>\n" +
+            //                 "    </a>");
+            //         }
+            //
+            //     },
+            //     error: function (message) {
+            //         $("#request-process-patent").html("获取数据失败！");
+            //     }
+            // });
+        }
+    });
+
+    layui.use(['rate'], function () {
+        var rate = layui.rate;
+        //星星
+        rate.render({
+            elem: '#test3'
+            , value: 2.5
+            , half: true
+            , text: true
+            , theme: '#FF8000'
+        });
+    });
+    layui.use('form', function(){
+        var form = layui.form;
+        //监听提交
+        form.on('submit(formDemo)', function(data){
+            layer.msg(JSON.stringify(data.field));
+            return false;
+        });
+    });
+</script>
+</body>
+</html>
