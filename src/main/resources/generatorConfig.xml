@@ -89,11 +89,11 @@
                <!--selectByExampleQueryId="true">-->
         <!--</table>-->
 
-        <table tableName="advertisement" domainObjectName="advertisement"
-               enableCountByExample="true" enableUpdateByExample="true"
-               enableDeleteByExample="true" enableSelectByExample="true"
-               selectByExampleQueryId="true">
-        </table>
+        <!--<table tableName="advertisement" domainObjectName="advertisement"-->
+               <!--enableCountByExample="true" enableUpdateByExample="true"-->
+               <!--enableDeleteByExample="true" enableSelectByExample="true"-->
+               <!--selectByExampleQueryId="true">-->
+        <!--</table>-->
         <!--<table tableName="evaluation" domainObjectName="evaluation"-->
                <!--enableCountByExample="true" enableUpdateByExample="true"-->
                <!--enableDeleteByExample="true" enableSelectByExample="true"-->
@@ -122,28 +122,33 @@
                <!--selectByExampleQueryId="true">-->
         <!--</table>-->
 
+        <table tableName="restaurant_score" domainObjectName="restaurant_score"
+               enableCountByExample="true" enableUpdateByExample="true"
+               enableDeleteByExample="true" enableSelectByExample="true"
+               selectByExampleQueryId="true">
+        </table>
         <!--<table tableName="item" domainObjectName="item"-->
                <!--enableCountByExample="true" enableUpdateByExample="true"-->
                <!--enableDeleteByExample="true" enableSelectByExample="true"-->
                <!--selectByExampleQueryId="true">-->
         <!--</table>-->
+
         <!--<table tableName="coupon" domainObjectName="coupon"-->
                <!--enableCountByExample="true" enableUpdateByExample="true"-->
                <!--enableDeleteByExample="true" enableSelectByExample="true"-->
                <!--selectByExampleQueryId="true">-->
         <!--</table>-->
-
         <!--<table tableName="messageboard" domainObjectName="messageboard"-->
                <!--enableCountByExample="true" enableUpdateByExample="true"-->
                <!--enableDeleteByExample="true" enableSelectByExample="true"-->
                <!--selectByExampleQueryId="true">-->
         <!--</table>-->
+
         <!--<table tableName="city_info" domainObjectName="city_info"&ndash;&gt;-->
                <!--&lt;!&ndash;enableCountByExample="true" enableUpdateByExample="true"&ndash;&gt;-->
                <!--&lt;!&ndash;enableDeleteByExample="true" enableSelectByExample="true"&ndash;&gt;-->
                <!--&lt;!&ndash;selectByExampleQueryId="true">&ndash;&gt;-->
         <!--</table>-->
-
         <!--<table tableName="collect" domainObjectName="collect"-->
                <!--enableCountByExample="true" enableUpdateByExample="true"-->
                <!--enableDeleteByExample="true" enableSelectByExample="true"-->

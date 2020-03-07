@@ -39,6 +39,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public void uodateByNo4(String orderNo) {
+        orderUtilMapper.updateByNo4(orderNo);
+    }
+
+    @Override
     public void addOrder(order order) {
         orderUtilMapper.insert(order);
     }

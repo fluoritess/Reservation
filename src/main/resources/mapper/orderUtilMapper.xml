@@ -30,6 +30,9 @@
     <update id="updateByNo2" parameterType="com.shan.reservation.bean.orderExample" >
        update `order` SET orderstate=1 WHERE orderNo=#{orderNo,jdbcType=VARCHAR}
     </update>
+    <update id="updateByNo4" parameterType="com.shan.reservation.bean.orderExample" >
+       update `order` SET orderstate=4 WHERE orderNo=#{orderNo,jdbcType=VARCHAR}
+    </update>
     <insert id="insert" parameterType="com.shan.reservation.bean.order" >
     insert into `order` (orderNo, userId,
       restaurantId, price,

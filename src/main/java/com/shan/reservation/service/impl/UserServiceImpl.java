@@ -1,8 +1,13 @@
 package com.shan.reservation.service.impl;
 
+import com.shan.reservation.bean.order;
+import com.shan.reservation.bean.restaurant_score;
 import com.shan.reservation.bean.user;
+import com.shan.reservation.mapper.orderMapper;
+import com.shan.reservation.mapper.restaurant_scoreMapper;
 import com.shan.reservation.mapper.userMapper;
 import com.shan.reservation.mapper.userMapperUtil;
+import com.shan.reservation.service.OrderService;
 import com.shan.reservation.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +28,12 @@ public class UserServiceImpl implements UserService {
     userMapper userMapper;
     @Autowired
     userMapperUtil  userMapperUtil;
+    @Autowired
+    orderMapper orderMapper;
+    @Autowired
+    com.shan.reservation.service.OrderService OrderService;
+    @Autowired
+    restaurant_scoreMapper restaurant_scoreMapper;
     @Override
     public user selectUserByNickName(String nickname) {
         List<user> list=userMapper.selectByExample(null);
@@ -49,6 +60,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<user> selectAllUser() {
         return userMapper.selectByExample(null);
+    }
+
+    @Override
+    public void UserEvaluation(String no, double score) {
+        order order=OrderService.selectOrder(no);
+        int re_id=order.getRestaurantid();
+        int user_id=order.getUserid();
+        restaurant_score restaurant_score=new restaurant_score(re_id,user_id,score);
+        restaurant_scoreMapper.insert(restaurant_score);
     }
 
 

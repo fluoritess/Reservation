@@ -21,4 +21,6 @@ public interface UserService {
     void updateByName(String name, Date date);
     //查询所有用户
     List<user> selectAllUser();
+    //添加评价
+    void UserEvaluation(String no,double score);
 }

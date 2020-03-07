@@ -3,6 +3,7 @@ package com.shan.reservation.controller;
 import com.shan.reservation.bean.address;
 import com.shan.reservation.bean.user;
 import com.shan.reservation.service.AddressService;
+import com.shan.reservation.service.OrderService;
 import com.shan.reservation.service.UserService;
 import com.shan.reservation.util.ArchivesLog;
 import com.shan.reservation.util.R;
@@ -34,7 +35,8 @@ public class UserController {
     UserService userService;
     @Autowired
     AddressService addressService;
-
+    @Autowired
+    OrderService OrderService;
     @ResponseBody
     @RequestMapping("/Login" )
     @ArchivesLog(operationType = "用户操作", operationName = "用户登陆")
@@ -86,4 +88,15 @@ public class UserController {
         List<user> list=userService.selectAllUser();
         return  R.ok().put("user",list);
     }
+    @ResponseBody
+    @RequestMapping("/UserEvaluation" )
+    @ArchivesLog(operationType = "添加信息", operationName = "评价")
+    public R UserEvaluation(@RequestBody Map<String,String> map,HttpSession httpSession){
+        String no=map.get("no");
+        double score=Double.parseDouble(map.get("score"));
+        userService.UserEvaluation(no,score);
+        OrderService.uodateByNo4(no);
+        return  R.ok();
+    }
+
 }
