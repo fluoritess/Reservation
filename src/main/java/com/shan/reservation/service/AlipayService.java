@@ -19,7 +19,13 @@ public interface AlipayService {
      * @param subject       商品名称
      */
     String webPagePay(String outTradeNo,BigDecimal totalAmount,String subject) throws Exception;
-
+    /**
+     * web端订单支付，商家广告
+     * @param outTradeNo    订单编号（唯一）
+     * @param totalAmount   订单价格
+     * @param subject       商品名称
+     */
+    String webPagePayAd(String outTradeNo,BigDecimal totalAmount,String subject) throws Exception;
     /**
      * app端订单支付
      * @param outTradeNo    订单编号

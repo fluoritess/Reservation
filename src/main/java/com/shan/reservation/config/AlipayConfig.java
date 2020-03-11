@@ -20,6 +20,8 @@ public class AlipayConfig {
     // 页面跳转同步通知页面路径 需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
     public static String return_url = "http://localhost:8080/user_orderlist.html";
 
+    // 页面跳转同步通知页面路径 需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
+    public static String return_shopurl = "http://localhost:8080/shophoutai/html/main.html";
     // 签名方式
     public static String SIGN_TYPE = "RSA2";
 

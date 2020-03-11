@@ -68,7 +68,7 @@ public class AlipayController {
     //报废
     @ResponseBody
     @RequestMapping("/getPagePay2" )
-    @ArchivesLog(operationType = "查询信息", operationName = "根据用户id查询购物车")
+    @ArchivesLog(operationType = "用户操作", operationName = "付款")
     public R getPagePay2( @RequestBody Map<String,String> map,HttpSession httpSession){
         System.out.print("调用支付接口");
         //获取订单基本信息
@@ -103,9 +103,10 @@ public class AlipayController {
 
         return R.ok().put("pays",pays);
     }
+    //使用这个接口
     @ResponseBody
     @RequestMapping("/getPagePay3" )
-    @ArchivesLog(operationType = "查询信息", operationName = "根据用户id查询购物车")
+    @ArchivesLog(operationType = "用户操作", operationName = "付款")
     public R getPagePay3( @RequestBody Map<String,String> map,HttpSession httpSession){
         System.out.print("调用支付接口");
         //获取订单基本信息
@@ -135,6 +136,7 @@ public class AlipayController {
 
         return R.ok().put("pays",pays);
     }
+
     /**
      * app 订单支付
      */

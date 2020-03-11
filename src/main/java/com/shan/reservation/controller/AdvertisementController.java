@@ -5,19 +5,23 @@ import com.shan.reservation.bean.advertisement;
 import com.shan.reservation.mapper.advertisementMapper;
 import com.shan.reservation.mapper.advertisementUtilMapper;
 import com.shan.reservation.service.AdminService;
+import com.shan.reservation.service.AlipayService;
 import com.shan.reservation.service.advertisementService;
 import com.shan.reservation.util.ArchivesLog;
 import com.shan.reservation.util.R;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -36,6 +40,9 @@ public class AdvertisementController {
     advertisementMapper advertisementMapper;
     @Autowired
     advertisementUtilMapper advertisementUtilMapper;
+    @Autowired
+    @Qualifier("alipayService")
+    private AlipayService alipayService;
     @ResponseBody
     @RequestMapping("/resTaurantSelectAdvertise" )
     @ArchivesLog(operationType = "查询信息", operationName = "商家查询广告信息")
@@ -46,7 +53,7 @@ public class AdvertisementController {
     }
     @ResponseBody
     @RequestMapping("/selectAllAdvertisement" )
-    @ArchivesLog(operationType = "查询信息", operationName = "查询所有信息")
+    @ArchivesLog(operationType = "查询信息", operationName = "查询所有广告信息")
     public R selectAllAdvertisement(@RequestBody Map<String,String> map, HttpSession httpSession){
         List<advertisement> list= advertisementMapper.selectByExample(null);
         return  R.ok().put("advertisement",list);
@@ -71,7 +78,19 @@ public class AdvertisementController {
         Integer re_id=Integer.parseInt(map.get("re_id"));
         advertisement advertisement=new advertisement(tital,content,re_id,startTime,endTime,0);
         advertisementMapper.insert(advertisement);
-        return  R.ok();
+        String restaurant=map.get("restaurant");
+        BigDecimal price=new BigDecimal(5000);
+        String pay = null;
+        try {
+            pay = alipayService.webPagePayAd(tital, price, restaurant);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        Map<Object, Object> pays = new HashMap<>();
+        pays.put("pay", pay);
+
+        return  R.ok().put("pays",pays);
     }
 
 }
