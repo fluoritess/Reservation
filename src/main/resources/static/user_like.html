@@ -215,6 +215,24 @@
                     $("#request-process-patent").html("获取数据失败！");
                 }
             });
+            var json = {
+                user_id: userId
+            };
+            json = JSON.stringify(json);
+            $.ajax({
+                type: "POST",
+                url: "/Recommendation/Pearson",
+                contentType: "application/json; charset=utf-8",
+                data: json,
+                async: false,
+                dataType: "json",
+                success: function (info) {
+                    console.log(info)
+                },
+                error: function (message) {
+                    $("#request-process-patent").html("获取数据失败！");
+                }
+            });
             // var json = {
             //     userId: userId
             // };

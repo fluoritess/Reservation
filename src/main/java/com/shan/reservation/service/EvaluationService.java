@@ -15,4 +15,5 @@ import java.util.List;
 public interface EvaluationService {
     List<evaluation> selectReId(int restaurantId);
     List<evaluation> selectByFoodId(int foodId);
+    List<evaluation> selectByuserId(int userId);
 }

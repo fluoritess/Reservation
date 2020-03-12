@@ -18,4 +18,7 @@
     <select id="selectByFoodId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
       select * from evaluation where food_id=#{foodId,jdbcType=INTEGER}
     </select>
+    <select id="selectByuserId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+      select * from evaluation where user_id=#{userId,jdbcType=INTEGER}
+    </select>
 </mapper>

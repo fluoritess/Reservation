@@ -24,4 +24,10 @@ public class EvaluationServiceImpl implements EvaluationService {
         List<evaluation> list=evaluationMapperUtil.selectByFoodId(foodId);
         return list;
     }
+
+    @Override
+    public List<evaluation> selectByuserId(int userId) {
+        List<evaluation> list=evaluationMapperUtil.selectByuserId(userId);
+        return list;
+    }
 }
