@@ -19,4 +19,10 @@
     <update id="updateByName" parameterType="com.shan.reservation.bean.orderExample" >
        update `user` SET last_date= #{lastDate}    WHERE user_name=#{userName,jdbcType=VARCHAR}
     </update>
+    <update id="SetUserState0" parameterType="com.shan.reservation.bean.orderExample" >
+       update `user` SET user_state= 0    WHERE realName=#{realName,jdbcType=VARCHAR}
+    </update>
+    <update id="SetUserState1" parameterType="com.shan.reservation.bean.orderExample" >
+       update `user` SET user_state= 1    WHERE realName=#{realName,jdbcType=VARCHAR}
+    </update>
 </mapper>

@@ -153,7 +153,7 @@
                         "        <td>使用中</td>\n" +
                         "         <td>"+userEmail+"</td>\n" +
                         "         <td>"+lastDate+"</td>\n" +
-                        "            <td><button class=\"layui-btn\">冻结</button></td>\n" +
+                        "            <td><button class=\"layui-btn dongjie\" id="+realname+">冻结</button></td>\n" +
                         "        </tr>");
                 }
                 else{
@@ -165,7 +165,7 @@
                         "        <td>冻结中</td>\n" +
                         "         <td>"+userEmail+"</td>\n" +
                         "         <td>"+lastDate+"</td>\n" +
-                        "            <td><button class=\"layui-btn\"></button>恢复</td>\n" +
+                        "            <td><button class=\"layui-btn huifu\" id="+realname+">恢复</button></td>\n" +
                         "        </tr>\n");
                 }
             }
@@ -175,6 +175,50 @@
             $("#request-process-patent").html("获取数据失败！");
         }
     });
+    $(".dongjie").click(function () {
+        var realname=$(this).attr('id');
+        console.log(realname);
+        var json = {
+            realname: realname
+        };
+        json = JSON.stringify(json);
+        $.ajax({
+            type: "POST",
+            url: "/admin/SetUserState0",
+            contentType: "application/json; charset=utf-8",
+            data: json,
+            async: false,
+            dataType: "json",
+            success: function (info) {
+                window.location.href="user.html";
+            },
+            error: function (message) {
+                $("#request-process-patent").html("获取数据失败！");
+            }
+        });
+    })
+    $(".huifu").click(function () {
+        var realname=$(this).attr('id');
+        console.log(realname);
+        var json = {
+            realname: realname
+        };
+        json = JSON.stringify(json);
+        $.ajax({
+            type: "POST",
+            url: "/admin/SetUserState1",
+            contentType: "application/json; charset=utf-8",
+            data: json,
+            async: false,
+            dataType: "json",
+            success: function (info) {
+                window.location.href="user.html";
+            },
+            error: function (message) {
+                $("#request-process-patent").html("获取数据失败！");
+            }
+        });
+    })
 </script>
 
 

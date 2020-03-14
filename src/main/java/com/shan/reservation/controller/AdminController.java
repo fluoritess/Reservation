@@ -4,6 +4,7 @@ import com.shan.reservation.bean.address;
 import com.shan.reservation.bean.admin;
 import com.shan.reservation.mapper.addressMapper;
 import com.shan.reservation.mapper.advertisementUtilMapper;
+import com.shan.reservation.mapper.userMapperUtil;
 import com.shan.reservation.service.AdminService;
 import com.shan.reservation.util.ArchivesLog;
 import com.shan.reservation.util.R;
@@ -29,6 +30,8 @@ public class AdminController {
     AdminService adminService;
     @Autowired
     advertisementUtilMapper advertisementUtilMapper;
+    @Autowired
+    com.shan.reservation.mapper.userMapperUtil userMapperUtil;
     @ResponseBody
     @RequestMapping("/SelectAdminByName" )
     @ArchivesLog(operationType = "查询信息", operationName = "查询管理员")
@@ -53,7 +56,7 @@ public class AdminController {
         return  R.error();
     }
     @ResponseBody
-    @RequestMapping("/SetState1" )
+    @RequestMapping("/SetAdState1" )
     @ArchivesLog(operationType = "更新信息", operationName = "审核广告")
     public R SetState1(@RequestBody Map<String,String> map, HttpSession httpSession){
         String title=map.get("title");
@@ -61,11 +64,28 @@ public class AdminController {
         return  R.ok();
     }
     @ResponseBody
-    @RequestMapping("/SetState0" )
+    @RequestMapping("/SetAdState0" )
     @ArchivesLog(operationType = "更新信息", operationName = "下架广告")
     public R SetState0(@RequestBody Map<String,String> map, HttpSession httpSession){
         String title=map.get("title");
         advertisementUtilMapper.updateAdvertisementSetState0(title);
         return  R.ok();
     }
+    @ResponseBody
+    @RequestMapping("/SetUserState1" )
+    @ArchivesLog(operationType = "更新信息", operationName = "恢复用户")
+    public R SetUserState1(@RequestBody Map<String,String> map, HttpSession httpSession){
+        String realname=map.get("realname");
+        userMapperUtil.SetUserState1(realname);
+        return  R.ok();
+    }
+    @ResponseBody
+    @RequestMapping("/SetUserState0" )
+    @ArchivesLog(operationType = "更新信息", operationName = "冻结用户")
+    public R SetUserState0(@RequestBody Map<String,String> map, HttpSession httpSession){
+        String realname=map.get("realname");
+        userMapperUtil.SetUserState0(realname);
+        return  R.ok();
+    }
+
 }
