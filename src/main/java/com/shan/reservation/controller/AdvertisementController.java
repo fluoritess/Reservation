@@ -9,6 +9,7 @@ import com.shan.reservation.service.AlipayService;
 import com.shan.reservation.service.advertisementService;
 import com.shan.reservation.util.ArchivesLog;
 import com.shan.reservation.util.R;
+import com.shan.reservation.util.date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -75,11 +76,14 @@ public class AdvertisementController {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        long day= date.daysBetween(startTime,endTime);
+        double price_=day*2000;
+        BigDecimal price=new BigDecimal(price_);
         Integer re_id=Integer.parseInt(map.get("re_id"));
-        advertisement advertisement=new advertisement(tital,content,re_id,startTime,endTime,0);
+        advertisement advertisement=new advertisement(tital,content,re_id,startTime,endTime,0,price);
         advertisementMapper.insert(advertisement);
         String restaurant=map.get("restaurant");
-        BigDecimal price=new BigDecimal(5000);
+
         String pay = null;
         try {
             pay = alipayService.webPagePayAd(tital, price, restaurant);

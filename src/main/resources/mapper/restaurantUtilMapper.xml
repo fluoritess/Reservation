@@ -36,5 +36,10 @@
     <select id="selectByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
          select * from restaurant WHERE restaurant_name=#{restaurantName,jdbcType=VARCHAR}
     </select>
-
+    <update id="ReAddCollect" parameterType="java.lang.Integer" >
+           UPDATE restaurant SET collection=collection+1 where restaurant_id=#{restaurantId,jdbcType=INTEGER}
+    </update>
+    <update id="RereduceCollect" parameterType="java.lang.Integer" >
+           UPDATE restaurant SET collection=collection-1 where restaurant_id=#{restaurantId,jdbcType=INTEGER}
+    </update>
 </mapper>

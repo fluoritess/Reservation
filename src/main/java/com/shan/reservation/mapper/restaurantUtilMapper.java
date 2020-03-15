@@ -12,4 +12,6 @@ public interface restaurantUtilMapper {
     List<restaurant> findRestaurantByAddressAndCate(int foodCategoryId,int addressId);
     List<restaurant> findhotshop();
     List<restaurant> selectByName(String restaurantName);
+    int ReAddCollect(int restaurantId);
+    int RereduceCollect(int restaurantId);
 }

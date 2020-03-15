@@ -3,6 +3,7 @@ package com.shan.reservation.controller;
 import com.shan.reservation.bean.city_info;
 import com.shan.reservation.bean.collect;
 import com.shan.reservation.bean.collectUtil;
+import com.shan.reservation.mapper.restaurantUtilMapper;
 import com.shan.reservation.service.CollectService;
 import com.shan.reservation.util.ArchivesLog;
 import com.shan.reservation.util.R;
@@ -26,6 +27,8 @@ import java.util.Map;
 public class CollectController {
     @Autowired
     CollectService CollectService;
+    @Autowired
+    restaurantUtilMapper restaurantUtilMapper;
     @ResponseBody
     @RequestMapping("/selectCollectByUser" )
     @ArchivesLog(operationType = "查询信息", operationName = "查询收藏夹信息")
@@ -50,6 +53,7 @@ public class CollectController {
         int user_id=Integer.parseInt(map.get("userId"));
         int re_id=Integer.parseInt(map.get("id"));
        CollectService.deleteCollect(user_id,re_id);
+        restaurantUtilMapper.RereduceCollect(re_id);
         return  R.ok();
     }
     @ResponseBody
@@ -59,6 +63,7 @@ public class CollectController {
         int user_id=Integer.parseInt(map.get("userId"));
         int re_id=Integer.parseInt(map.get("id"));
         CollectService.insert(user_id,re_id);
+        restaurantUtilMapper.ReAddCollect(re_id);
         return  R.ok();
     }
 }
