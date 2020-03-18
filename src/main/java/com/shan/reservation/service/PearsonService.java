@@ -3,7 +3,7 @@ package com.shan.reservation.service;
 import org.springframework.stereotype.Service;
 /**
  * @author wsw
- * @Package com.gabe.mychat.service
+ * @Package com.shan.reservation.service
  * @Description:
  * @date 2020年3月12日 14:36:21
  */

@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * @author wsw
- * @Package com.gabe.mychat.controller
+ * @Package com.shan.reservation.service
  * @Description:广告接口
  * @date 2020年2月27日 15:39:35
  */

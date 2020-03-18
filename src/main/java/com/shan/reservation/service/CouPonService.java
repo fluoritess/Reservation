@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * @author wsw
- * @Package com.gabe.mychat.service
+ * @Package com.shan.reservation.service
  * @Description:优惠卷service
  * @date 2020年2月3日 16:35:39
  */

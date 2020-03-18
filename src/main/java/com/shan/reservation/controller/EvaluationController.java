@@ -20,7 +20,7 @@ import java.util.*;
 
 /**
  * @author wsw
- * @Package com.gabe.mychat.controller
+ * @Package com.shan.reservation.controller
  * @Description:评价controller
  * @date 2020年1月23日 22:45:58
  */

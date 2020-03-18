@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 /**
  * @author wsw
- * @Package com.gabe.mychat.service
+ * @Package com.shan.reservation.service
  * @Description:
  * @date 2019年12月30日 19:25:31
  */

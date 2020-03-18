@@ -18,7 +18,7 @@ import java.util.Map;
 
 /**
  * @author wsw
- * @Package com.gabe.mychat.controller
+ * @Package com.shan.reservation.controller
  * @Description:新闻controller
  * @date 2020年2月8日 14:54:32
  */

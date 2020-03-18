@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 /**
  * @author wsw
- * @Package com.gabe.mychat.controller
+ * @Package com.shan.reservation.service
  * @Description:管理员接口
  * @date 2020年2月9日 15:19:22
  */

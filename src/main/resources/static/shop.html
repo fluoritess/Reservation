@@ -239,25 +239,27 @@ Author URI: http://www.deathghost.cn
     </div>
     <!--case5-->
     <div class="menutab">
-     <span class="Ask"><i>DeathGhost</i>:这里是测试问答？</span>
-     <span class="Answer"><i>管理员回复</i>：这里是测试回答！</span>
+     <span class="Ask">
+         <!--<i>杉</i>:请问最近有优惠活动吗？-->
+     </span>
+     <!--<span class="Answer"><i>管理员回复</i>：这里是测试回答！</span>-->
 
-     <div class="TurnPage">
-     <a href="#">
-      <span class="Prev"><i></i>首页</span>
-     </a>
-     <a href="#"><span class="PNumber">1</span></a>
-     <a href="#"><span class="PNumber">2</span></a>
-     <a href="#">
-     <span class="Next">最后一页<i></i></span>
-     </a>
-    </div>
-    
-     <form class="A-Message" action="#"> 
-      <p><i>姓名：</i><input name="usr_name" type="text" autofocus placeholder="张三" required></p>
-      <p><i>手机：</i><input name="" type="text" placeholder="15825518***" pattern="[0-9]{11}" required></p>
-      <p><i>邮件：</i><input type="email" name="email" autocomplete="off" placeholder="admin@admin.com" required/></p>
-      <p><i>问题补充：</i><textarea name="" cols="" rows="" required placeholder="详细说明您的问题..."></textarea></p>
+     <!--<div class="TurnPage">-->
+     <!--<a href="#">-->
+      <!--<span class="Prev"><i></i>首页</span>-->
+     <!--</a>-->
+     <!--<a href="#"><span class="PNumber">1</span></a>-->
+     <!--<a href="#"><span class="PNumber">2</span></a>-->
+     <!--<a href="#">-->
+     <!--<span class="Next">最后一页<i></i></span>-->
+     <!--</a>-->
+    <!--</div>-->
+
+     <form class="A-Message" action="#">
+      <p><i>昵称：</i><input name="usr_name" type="text" id="messagename" autofocus placeholder="" required></p>
+      <!--<p><i>手机：</i><input name="" type="text" placeholder="15825518***" pattern="[0-9]{11}" required></p>-->
+      <!--<p><i>邮件：</i><input type="email" name="email" autocomplete="off" placeholder="admin@admin.com" required/></p>-->
+      <p><i>问题：</i><textarea name="" cols="" rows="" required placeholder="详细说明您的问题..."></textarea></p>
       <p><input type="submit" class="Abutt" /></p>
      </form>
     </div>
@@ -270,13 +272,13 @@ Author URI: http://www.deathghost.cn
 	<table id="cartcontent" fitColumns="true">
 	<thead>
 	<tr>
-	<th width="33%" align="center" field="name">商品</th>
-	<th width="33%" align="center" field="quantity">数量</th>
-	<th width="33%" align="center" field="price">价格</th>
+	<!--<th width="33%" align="center" field="name">商品</th>-->
+	<!--<th width="33%" align="center" field="quantity">数量</th>-->
+	<!--<th width="33%" align="center" field="price">价格</th>-->
 	</tr>
 	</thead>
 	</table>
-	<p class="Ptc"><span class="Cbutton"><a href="cart.html" target="进入购物车">进入购物车</a></span><span class="total">共计金额: ￥0</span></p>
+	<p class="Ptc"><span class="Cbutton"><a href="cart.html" target="进入购物车">进入购物车</a></span><span class="total" id="total">已购买: </span></p>
   </div>
   
   <div class="Nearshop" id="Nearshop">
@@ -372,6 +374,7 @@ Author URI: http://www.deathghost.cn
         var id = location.href.split("?")[1];
         //获取用户id
         var user=sessionStorage.getItem("name");
+        $("#messagename").attr('placeholder',user);
         var userId;
         var json = {
             name: user
@@ -736,6 +739,7 @@ Author URI: http://www.deathghost.cn
                     success: function (info) {
                         var length=info.cart.length;
                         $(".RightNav").append("<a href=\"user_center.html\">用户中心</a> <a href=\"user_orderlist.html\" target=\"_blank\" title=\"我的订单\">我的订单</a> <a href=\"cart.html\">购物车（"+length+"）</a> <a href=\"user_favorites.html\" target=\"_blank\" title=\"我的收藏\">我的收藏</a> <a href=\"#\">商家入驻</a>");
+                    $("#total").append(length);
                     }
                 });
             }
@@ -778,6 +782,28 @@ Author URI: http://www.deathghost.cn
                 }
             });
         })
+        //查询留言------------------------------------------------------------------------------------------------------------
+        var json = {
+            id:id
+        };
+        json = JSON.stringify(json);
+        $.ajax({
+            type: "POST",
+            url: "/messageBoard/selectMessageByRe",
+            contentType: "application/json; charset=utf-8",
+            data: json,
+            async: false,
+            dataType: "json",
+            success: function (info) {
+                console.log(info);
+                for(var i=0;i<info.name.length;i++){
+                    var name=info.name[i];
+                    var content=info.content[i];
+                    $(".Ask").append(" <i>"+name+"</i>:"+content+"");
+                }
+            }
+        });
+
 </script>
 </body>
 </html>
