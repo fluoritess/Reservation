@@ -14,4 +14,5 @@ import java.util.List;
 @Service
 public interface messageboardService {
     List<messageboard> selectMessageByRe(int restaurantId);
+    int insert(int userId,int restaurantId,String content);
 }

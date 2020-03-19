@@ -49,7 +49,9 @@ public class UserController {
 //               httpSession.setAttribute("user",user);
                Date date=new Date();
                System.out.print(date);
-               userService.updateByName(name,date);
+               user user_=userService.selectLastDate(name);
+               Date lastDate=user_.getLastDate();
+               userService.updateByName(name,lastDate,date);
                return  R.ok().put("user",user);
            }
         }

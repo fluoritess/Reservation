@@ -50,9 +50,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateByName(String name, Date date) {
-        userMapperUtil.updateByName(name,date);
+    public void updateByName(String userName, Date lastDate, Date thisDate) {
+        userMapperUtil.updateByName(userName,lastDate,thisDate);
     }
+
 
     @Override
     public List<user> selectAllUser() {
@@ -68,6 +69,11 @@ public class UserServiceImpl implements UserService {
         Date date=new Date();
         evaluation evaluation=new evaluation(oreder_id,content,date,user_id,re_id,score);
         evaluationMapper.insert(evaluation);
+    }
+
+    @Override
+    public user selectLastDate(String userName) {
+        return userMapperUtil.selectLastDate(userName);
     }
 
 

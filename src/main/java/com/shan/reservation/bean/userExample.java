@@ -834,6 +834,66 @@ public class userExample {
             addCriterion("user_email not between", value1, value2, "userEmail");
             return (Criteria) this;
         }
+
+        public Criteria andThisDateIsNull() {
+            addCriterion("this_date is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andThisDateIsNotNull() {
+            addCriterion("this_date is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andThisDateEqualTo(Date value) {
+            addCriterion("this_date =", value, "thisDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andThisDateNotEqualTo(Date value) {
+            addCriterion("this_date <>", value, "thisDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andThisDateGreaterThan(Date value) {
+            addCriterion("this_date >", value, "thisDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andThisDateGreaterThanOrEqualTo(Date value) {
+            addCriterion("this_date >=", value, "thisDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andThisDateLessThan(Date value) {
+            addCriterion("this_date <", value, "thisDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andThisDateLessThanOrEqualTo(Date value) {
+            addCriterion("this_date <=", value, "thisDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andThisDateIn(List<Date> values) {
+            addCriterion("this_date in", values, "thisDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andThisDateNotIn(List<Date> values) {
+            addCriterion("this_date not in", values, "thisDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andThisDateBetween(Date value1, Date value2) {
+            addCriterion("this_date between", value1, value2, "thisDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andThisDateNotBetween(Date value1, Date value2) {
+            addCriterion("this_date not between", value1, value2, "thisDate");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

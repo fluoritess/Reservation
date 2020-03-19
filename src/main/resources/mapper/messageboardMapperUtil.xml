@@ -12,5 +12,10 @@
     <select id="selectMessageByRe" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
         select * from messageboard  where restaurant_id = #{restaurantId,jdbcType=INTEGER}
     </select>
-
+    <insert id="insert" parameterType="com.shan.reservation.bean.messageboard" >
+    insert into messageboard ( user_id, restaurant_id,
+      content)
+    values #{userId,jdbcType=INTEGER}, #{restaurantId,jdbcType=INTEGER},
+      #{content,jdbcType=VARCHAR})
+  </insert>
 </mapper>

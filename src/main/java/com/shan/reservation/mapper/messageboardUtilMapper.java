@@ -8,4 +8,5 @@ import java.util.List;
 @Mapper
 public interface messageboardUtilMapper {
     List<messageboard> selectMessageByRe(int restaurantId);
+    int insert(int userId,int restaurantId,String content);
 }

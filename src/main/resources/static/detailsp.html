@@ -371,48 +371,48 @@ $(function(){
             });
         }
     });
-    //获取评论
-    $.ajax({
-        type: "POST",
-        url: "/selectByFoodId",
-        contentType: "application/json; charset=utf-8",
-        data: json,
-        async: false,
-        dataType: "json",
-        success: function (info) {
-            console.log(info);
-            for(var i=0;i<info.data.length;i++){
-                var content=info.data[i].content;
-                var date=info.data[i].date;
-                var username=info.data[i].username;
-                var foodid=info.data[i].foodid;
-                var foodname=info.data[i].foodname;
-                console.log(content);
-            }
-            if(info.data.length>0){
-                $("#pinglun").append(" <li class=\"on\">详细说明</li>\n" +
-                    "      <li>评价详情（"+info.data[0].size+"）</li>\n" +
-                    "      <li>成交记录（5）</li>\n" +
-                    "      <p><b></b></p>");
-
-            }
-            else{
-                $("#pinglun").append(" <li class=\"on\">详细说明</li>\n" +
-                    "      <li>评价详情（0）</li>\n" +
-                    "      <li>成交记录（5）</li>\n" +
-                    "      <p><b></b></p>");
-            }
-
-            $("#Dcomment").append(" <td>\n" +content+
-                "      \n" +
-                "        <time>"+date+"</time>\n" +
-                "       </td>\n" +
-                "       <td align=\"right\">"+username+"</td>");
-        },
-        error: function (message) {
-            $("#request-process-patent").html("获取数据失败！");
-        }
-    });
+    // //获取评论
+    // $.ajax({
+    //     type: "POST",
+    //     url: "/selectByFoodId",
+    //     contentType: "application/json; charset=utf-8",
+    //     data: json,
+    //     async: false,
+    //     dataType: "json",
+    //     success: function (info) {
+    //         console.log(info);
+    //         for(var i=0;i<info.data.length;i++){
+    //             var content=info.data[i].content;
+    //             var date=info.data[i].date;
+    //             var username=info.data[i].username;
+    //             var foodid=info.data[i].foodid;
+    //             var foodname=info.data[i].foodname;
+    //             console.log(content);
+    //         }
+    //         if(info.data.length>0){
+    //             $("#pinglun").append(" <li class=\"on\">详细说明</li>\n" +
+    //                 "      <li>评价详情（"+info.data[0].size+"）</li>\n" +
+    //                 "      <li>成交记录（5）</li>\n" +
+    //                 "      <p><b></b></p>");
+    //
+    //         }
+    //         else{
+    //             $("#pinglun").append(" <li class=\"on\">详细说明</li>\n" +
+    //                 "      <li>评价详情（0）</li>\n" +
+    //                 "      <li>成交记录（5）</li>\n" +
+    //                 "      <p><b></b></p>");
+    //         }
+    //
+    //         $("#Dcomment").append(" <td>\n" +content+
+    //             "      \n" +
+    //             "        <time>"+date+"</time>\n" +
+    //             "       </td>\n" +
+    //             "       <td align=\"right\">"+username+"</td>");
+    //     },
+    //     error: function (message) {
+    //         $("#request-process-patent").html("获取数据失败！");
+    //     }
+    // });
     //加入购物车
     $("#form").submit(function (e) {
         e.preventDefault();

@@ -18,9 +18,11 @@ public interface UserService {
     //根据id查询用户
     user selectUserById(int userid);
     //更新最近登录时间
-    void updateByName(String name, Date date);
+    void updateByName(String userName,Date lastDate, Date thisDate);
     //查询所有用户
     List<user> selectAllUser();
     //添加评价
     void UserEvaluation(String no,double score,String content);
+    //查询上次登陆时间
+    user selectLastDate(String userName);
 }

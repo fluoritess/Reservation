@@ -9,6 +9,12 @@ public class messageboard {
 
     private String content;
 
+    public messageboard(Integer userId, Integer restaurantId, String content) {
+        this.userId = userId;
+        this.restaurantId = restaurantId;
+        this.content = content;
+    }
+
     public messageboard(Integer messageboardId, Integer userId, Integer restaurantId, String content) {
         this.messageboardId = messageboardId;
         this.userId = userId;

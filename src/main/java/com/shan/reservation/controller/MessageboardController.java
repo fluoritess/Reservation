@@ -55,5 +55,15 @@ public class MessageboardController {
         }
         return  R.ok().put("name",name).put("content",content);
     }
-
+    @ResponseBody
+    @RequestMapping("/insert" )
+    @ArchivesLog(operationType = "添加", operationName = "添加留言")
+    public R insert(@RequestBody Map<String,String> map, HttpSession httpSession){
+//        String title=map.get("title");
+        Integer re_id=Integer.parseInt(map.get("id"));
+        int user_id=Integer.parseInt(map.get("userId"));
+        String content=map.get("content");
+        messageboardService.insert(re_id,user_id,content);
+        return  R.ok();
+    }
 }

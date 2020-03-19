@@ -151,7 +151,7 @@
                     <p><em>订单附言:</em><input name=""  type="text"></p>
                     <p><em>优惠券:</em>
                         <select name="">
-                            <option id="youhuijuan">￥10元优惠券</option>
+                            <option id="youhuijuan">￥0元优惠券</option>
                         </select>
                     </p>
                 </div>
@@ -324,7 +324,7 @@
         var user=sessionStorage.getItem("name");
         console.log(user);
         var totalprice=sessionStorage.getItem("totalprice");
-        jQuery("#p1").append("配送费用：￥0.00+商品费用：￥"+totalprice+"-优惠券：￥10.00");
+        jQuery("#p1").append("配送费用：￥0.00+商品费用：￥"+totalprice+"-优惠券：￥0.00");
         var youhuijuan=jQuery("#youhuijuan").html();
         console.log(youhuijuan);
         var youhuiprice=youhuijuan.replace(/[^0-9]/ig,"");

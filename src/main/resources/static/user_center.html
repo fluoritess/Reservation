@@ -233,7 +233,7 @@ Author URI: http://www.deathghost.cn
                         "   <div class=\"U-header MT20 Overflow\">\n" +
                         "    <img src=\""+userImag+"\">\n" +
                         "    <p class=\"Font14 FontW\">"+name+" 欢迎您回到 用户中心！</p>\n" +
-                        "    <p class=\"Font12\">您的上一次登录时间:<time> "+lastDate_+"</time></p>\n" +
+                        "    <p class=\"Font12\">您的上次登录时间:<time> "+lastDate_+"</time></p>\n" +
                         "    <p class=\"Font12 CorRed FontW\" id=\"youhuijuan\"></p>\n" +
                         "   </div>\n" );
                 },
@@ -268,6 +268,7 @@ Author URI: http://www.deathghost.cn
                 async: false,
                 dataType: "json",
                 success: function (info) {
+                    console.log(info)
                     var count_fu2=0;
                     var count0=0;
                     var count1=0;
@@ -275,7 +276,7 @@ Author URI: http://www.deathghost.cn
                     var number=info.order.length;
                     $("#youhuijuan").append("| 我的订单( "+number+" )");
                     for(var i=0;i<info.order.length;i++){
-                        var state=info.order[i].state;
+                        var state=info.order[i].orderstate;
                         console.log(state);
                         if(state==-2){
                             count_fu2=count_fu2+1;

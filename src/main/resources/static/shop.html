@@ -255,12 +255,12 @@ Author URI: http://www.deathghost.cn
      <!--</a>-->
     <!--</div>-->
 
-     <form class="A-Message" action="#">
+     <form class="A-Message" action="#" id="form">
       <p><i>昵称：</i><input name="usr_name" type="text" id="messagename" autofocus placeholder="" required></p>
       <!--<p><i>手机：</i><input name="" type="text" placeholder="15825518***" pattern="[0-9]{11}" required></p>-->
       <!--<p><i>邮件：</i><input type="email" name="email" autocomplete="off" placeholder="admin@admin.com" required/></p>-->
-      <p><i>问题：</i><textarea name="" cols="" rows="" required placeholder="详细说明您的问题..."></textarea></p>
-      <p><input type="submit" class="Abutt" /></p>
+      <p><i>问题：</i><textarea id="content" name="" cols="" rows="" required placeholder="详细说明您的问题..."></textarea></p>
+      <p><input type="submit" class="Abutt" id="tijiaoliuyan" /></p>
      </form>
     </div>
   </div>
@@ -368,6 +368,9 @@ Author URI: http://www.deathghost.cn
     <div class="copyright">© 版权所有 2020 杉杉订餐 技术支持：<a href="http://www.deathghost.cn" title="587工作室">587工作室</a></div>
 </footer>
 <script type="text/javascript">
+    $("#form").submit(function (e) {
+        e.preventDefault();
+    });
         //判断是否收藏标志
         var collect=0;
         //获取商铺id
@@ -795,15 +798,37 @@ Author URI: http://www.deathghost.cn
             async: false,
             dataType: "json",
             success: function (info) {
-                console.log(info);
+                // console.log(info);
                 for(var i=0;i<info.name.length;i++){
                     var name=info.name[i];
                     var content=info.content[i];
                     $(".Ask").append(" <i>"+name+"</i>:"+content+"");
+                    $(".Ask").append("</br>")
                 }
             }
         });
-
+        //提交留言-----------------------------------------------------------------------------------------------------------
+    $("#tijiaoliuyan").click(function () {
+        var content=$("#content").text();
+        console.log(id)
+        var json = {
+            id:id,
+            userId: userId,
+            content:content
+        };
+        json = JSON.stringify(json);
+        $.ajax({
+            type: "POST",
+            url: "/messageBoard/insert",
+            contentType: "application/json; charset=utf-8",
+            data: json,
+            async: false,
+            dataType: "json",
+            success: function (info) {
+                window.location.href="shop.html?"+id;
+            }
+        });
+    })
 </script>
 </body>
 </html>

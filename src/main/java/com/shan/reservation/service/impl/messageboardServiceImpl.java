@@ -16,4 +16,11 @@ public class messageboardServiceImpl implements messageboardService {
         List<messageboard> list=  messageboardUtilMapper.selectMessageByRe(restaurantId);
         return list;
     }
+
+    @Override
+    public int insert(int userId, int restaurantId, String content) {
+
+        messageboardUtilMapper.insert(userId,restaurantId,content);
+        return 1;
+    }
 }
