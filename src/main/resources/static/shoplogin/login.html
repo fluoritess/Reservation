@@ -92,6 +92,7 @@
                     success: function (info) {
                         console.log(info);
                         var name=info.restaurant;
+                        var re_id=info.re_id;
                         if(name == '' || name == null || name == undefined){
                             alert("密码或账号错误")
 
@@ -99,6 +100,7 @@
                         else{
                             alert("商家"+name+"登录成功");
                             sessionStorage.setItem("restaurant", name);
+                            sessionStorage.setItem("re_id", re_id);
                             window.location.href="../shophoutai/html/main.html";
                         }
                     },

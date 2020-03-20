@@ -127,8 +127,9 @@
 <script src="../ss/js/bootstrap-table-zh-CN.min.js"></script>
 <script>
     var count=0;
+    var re_id=sessionStorage.getItem("re_id");
     var json = {
-        id: 9
+        id:re_id
     };
     json = JSON.stringify(json);
     $.ajax({

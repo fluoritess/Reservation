@@ -21,10 +21,7 @@ import javax.servlet.http.HttpSession;
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author wsw
@@ -96,5 +93,30 @@ public class AdvertisementController {
 
         return  R.ok().put("pays",pays);
     }
-
+    @ResponseBody
+    @RequestMapping("/selectAllAdvertisementRandom" )
+    @ArchivesLog(operationType = "查询信息", operationName = "随机查询广告信息")
+    public R selectAllAdvertisementRandom(@RequestBody Map<String,String> map, HttpSession httpSession){
+        List<advertisement> list= advertisementMapper.selectByExample(null);
+        int length=list.size();
+        boolean flag=true;
+        int i=10;//防止死循序
+        while(flag) {
+            int count = (int) (Math.random() * length);
+            advertisement advertisement = list.get(count);
+            Date startDate=advertisement.getAdstartdate();
+            Date endDate=advertisement.getAdenddate();
+            Date nowDate=new Date();
+            boolean f=date.belongCalendar(nowDate,startDate,endDate);
+            if (advertisement.getAdvertisementState() == 1&&f) {
+                flag=false;
+                return  R.ok().put("advertisement",advertisement);
+            }
+            if(i>10){
+                break;
+            }
+            i++;
+        }
+        return  R.error().put("info","查询失败");
+    }
 }

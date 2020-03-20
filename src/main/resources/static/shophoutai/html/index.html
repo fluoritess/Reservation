@@ -129,8 +129,9 @@
 <script src="../js/jquery.js"></script>
 <script src="../js/jquery.jqChart.min.js"></script>
 <script>
+    var re_id=sessionStorage.getItem("re_id");
     var json = {
-        restaurantid: 9
+        restaurantid:re_id
     };
     json = JSON.stringify(json);
     //查询一周内订单

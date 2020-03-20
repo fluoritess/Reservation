@@ -124,8 +124,9 @@
             }
         });
     })
+    var re_id=sessionStorage.getItem("re_id");
     var json = {
-        re_id: 9
+        re_id:re_id
     };
     json = JSON.stringify(json);
     $.ajax({
