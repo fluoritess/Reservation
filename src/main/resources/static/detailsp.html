@@ -32,6 +32,12 @@ $(function(){
 	});
 	});
 </script>
+    <style type="text/css">
+        #advertisement img{
+            width: 220px;
+            height: 280px;
+        }
+    </style>
 </head>
 <body>
 <header>
@@ -219,9 +225,9 @@ $(function(){
    </div>
   </article>
   <!--ad&other infor-->
-  <aside>
+  <aside id="advertisement">
    <!--广告位或推荐位-->
-   <a href="#" title="广告位占位图片" target="_blank"><img src="upload/2014912.jpg"></a>
+   <!--<a href="aaa.html" title="广告位占位图片" target="_blank"><img src="upload/2014912.jpg"></a>-->
   </aside>
  </section>
 </section>
@@ -443,5 +449,25 @@ $(function(){
                 }
             });
         });
+    //------------------------广告位置--------------------------------------------------------------------------------
+    $.ajax({
+        type: "POST",
+        url: "/advertisement/selectAllAdvertisementRandom",
+        contentType: "application/json; charset=utf-8",
+        data: null,
+        async: false,
+        dataType: "json",
+        success: function (info) {
+            console.log(info);
+            var image=info.advertisement.advertisementImag;
+            var url="/upload/advertisement/";
+            image=url+image;
+            var restaurantId=info.advertisement.restaurantId;
+            $("#advertisement").append("<a href=\"shop.html?"+restaurantId+"\" title=\"广告位占位图片\" target=\"_blank\"><img src=\""+image+"\"></a>");
+        },
+        error: function (message) {
+            $("#request-process-patent").html("获取数据失败！");
+        }
+    });
 </script>
 </html>

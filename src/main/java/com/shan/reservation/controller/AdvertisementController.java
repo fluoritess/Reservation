@@ -96,7 +96,7 @@ public class AdvertisementController {
     @ResponseBody
     @RequestMapping("/selectAllAdvertisementRandom" )
     @ArchivesLog(operationType = "查询信息", operationName = "随机查询广告信息")
-    public R selectAllAdvertisementRandom(@RequestBody Map<String,String> map, HttpSession httpSession){
+    public R selectAllAdvertisementRandom(HttpSession httpSession){
         List<advertisement> list= advertisementMapper.selectByExample(null);
         int length=list.size();
         boolean flag=true;

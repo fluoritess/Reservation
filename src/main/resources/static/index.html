@@ -15,6 +15,12 @@
 Author: DeathGhost
 Author URI: http://www.deathghost.cn
 -->
+    <style type="text/css">
+        #advertisement img{
+            width: 300px;
+            height: 400px;
+        }
+    </style>
 </head>
 <body>
 <header>
@@ -307,21 +313,21 @@ Author URI: http://www.deathghost.cn
  </div>
  </div>
  </article>
- <aside class="A-infor">
-  <img src="upload/2014911.jpg">
-  <div class="usercomment">
-   <span>用户菜品点评</span>
-   <ul>
-    <li>
-     <img src="upload/food/rousi.jpg">
-     用户“杉”对[ 川菜源 ]“酸辣土豆丝”评说：味道挺不错，送餐速度挺快...
-    </li>
-    <li>
-     <img src="upload/food/shaoxiancao.jpg">
-     用户“fluorites”对[ 烧仙草 ]“烧仙草”评说：味道挺不错，送餐速度挺快...
-    </li>
-   </ul>
-  </div>
+ <aside class="A-infor" id="advertisement">
+  <!--<img src="upload/2014911.jpg">-->
+  <!--<div class="usercomment">-->
+   <!--<span>用户菜品点评</span>-->
+   <!--<ul>-->
+    <!--<li>-->
+     <!--<img src="upload/food/rousi.jpg">-->
+     <!--用户“杉”对[ 川菜源 ]“酸辣土豆丝”评说：味道挺不错，送餐速度挺快...-->
+    <!--</li>-->
+    <!--<li>-->
+     <!--<img src="upload/food/shaoxiancao.jpg">-->
+     <!--用户“fluorites”对[ 烧仙草 ]“烧仙草”评说：味道挺不错，送餐速度挺快...-->
+    <!--</li>-->
+   <!--</ul>-->
+  <!--</div>-->
  </aside>
 </section>
 <!--End content-->
@@ -556,6 +562,27 @@ Author URI: http://www.deathghost.cn
             });
         }
     });
+    //----------------------广告-----------------------------------
+    $.ajax({
+        type: "POST",
+        url: "/advertisement/selectAllAdvertisementRandom",
+        contentType: "application/json; charset=utf-8",
+        data: null,
+        async: false,
+        dataType: "json",
+        success: function (info) {
+            console.log(info);
+            var image=info.advertisement.advertisementImag;
+            var url="/upload/advertisement/";
+            image=url+image;
+            var restaurantId=info.advertisement.restaurantId;
+            $("#advertisement").append("<a href=\"shop.html?"+restaurantId+"\" title=\"广告位占位图片\" target=\"_blank\"><img src=\""+image+"\"></a>");
+        },
+        error: function (message) {
+            $("#request-process-patent").html("获取数据失败！");
+        }
+    });
+   //------------------------------layui--------------------------------------
     layui.use('carousel', function(){
         var carousel = layui.carousel;
         //建造实例
