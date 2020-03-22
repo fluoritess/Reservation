@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50720
 File Encoding         : 65001
 
-Date: 2020-03-18 22:29:10
+Date: 2020-03-22 21:29:30
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -82,10 +82,7 @@ CREATE TABLE `advertisement` (
 -- ----------------------------
 -- Records of advertisement
 -- ----------------------------
-INSERT INTO `advertisement` VALUES ('1', '新品上市！', 'hualaishi.jpg', '华莱士成为圣农牛排全国最大经销商!', '9', '1', '2020-02-20', '2020-02-29', '45000.00');
-INSERT INTO `advertisement` VALUES ('3', '哈哈哈', null, '问无为谓', '9', '0', '2020-02-19', '2020-02-28', null);
-INSERT INTO `advertisement` VALUES ('7', '21312', null, 'dsasad', '9', '0', '2020-03-10', '2020-03-13', null);
-INSERT INTO `advertisement` VALUES ('8', '3.15', null, '3.15', '9', '0', '2020-03-15', '2020-03-18', '15000.00');
+INSERT INTO `advertisement` VALUES ('1', '新品上市！', 'hualaishi.jpg', '华莱士成为圣农牛排全国最大经销商!', '9', '1', '2020-03-19', '2020-03-25', '6000.00');
 
 -- ----------------------------
 -- Table structure for `city_info`
@@ -274,14 +271,14 @@ CREATE TABLE `item` (
   KEY `user_id` (`user_id`),
   CONSTRAINT `item_ibfk_1` FOREIGN KEY (`food_id`) REFERENCES `food` (`food_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `item_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of item
 -- ----------------------------
 INSERT INTO `item` VALUES ('9', '1', '10', '8');
 INSERT INTO `item` VALUES ('15', '2', '9', '1');
-INSERT INTO `item` VALUES ('16', '2', '8', '2');
+INSERT INTO `item` VALUES ('18', '2', '8', '2');
 
 -- ----------------------------
 -- Table structure for `messageboard`
@@ -297,12 +294,13 @@ CREATE TABLE `messageboard` (
   KEY `restaurant_id` (`restaurant_id`),
   CONSTRAINT `messageboard_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `messageboard_ibfk_2` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurant` (`restaurant_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of messageboard
 -- ----------------------------
 INSERT INTO `messageboard` VALUES ('1', '1', '9', '请问最近几天有优惠活动吗?');
+INSERT INTO `messageboard` VALUES ('2', '1', '9', '测试');
 
 -- ----------------------------
 -- Table structure for `notice`
@@ -349,7 +347,7 @@ CREATE TABLE `order` (
   CONSTRAINT `order_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `order_ibfk_2` FOREIGN KEY (`restaurantId`) REFERENCES `restaurant` (`restaurant_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `order_ibfk_3` FOREIGN KEY (`address_id`) REFERENCES `address` (`address_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of order
@@ -361,6 +359,7 @@ INSERT INTO `order` VALUES ('30', '202003071803542', '2', '9', '22.00', null, nu
 INSERT INTO `order` VALUES ('31', '202003111721042', '2', '4', '12.00', null, null, '2020-03-11 17:21:04', null, null, '4', null, '4');
 INSERT INTO `order` VALUES ('32', '202003111721402', '2', '7', '12.00', null, null, '2020-03-11 17:21:40', null, null, '1', null, '4');
 INSERT INTO `order` VALUES ('33', '202003111721512', '2', '8', '12.00', null, null, '2020-03-11 17:21:51', null, null, '0', null, '4');
+INSERT INTO `order` VALUES ('34', '202003191525012', '2', '9', '34.00', null, null, '2020-03-19 15:25:01', null, null, '1', null, '4');
 
 -- ----------------------------
 -- Table structure for `restaurant`
@@ -417,6 +416,7 @@ CREATE TABLE `user` (
   `user_state` int(11) NOT NULL,
   `last_date` datetime DEFAULT NULL,
   `user_email` varchar(255) DEFAULT NULL,
+  `this_date` datetime DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   KEY `user_address` (`user_address`),
   CONSTRAINT `user_ibfk_1` FOREIGN KEY (`user_address`) REFERENCES `address` (`address_id`) ON DELETE CASCADE ON UPDATE CASCADE
@@ -425,5 +425,5 @@ CREATE TABLE `user` (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', '123', '12341234112', '1', '1', 'upload/user/shan.jpg', '王杉杉', '杉', '1', '2020-03-07 15:16:58', '253681597@qq.com');
-INSERT INTO `user` VALUES ('2', '123', '13224567231', '2', '1', 'upload/user/fluoritess.jpg', 'LiHua', 'fluorites', '1', '2020-03-18 21:21:12', '308751395@qq.com');
+INSERT INTO `user` VALUES ('1', '123', '12341234112', '1', '1', 'upload/user/shan.jpg', '王杉杉', '杉', '1', '2020-03-18 15:43:06', '253681597@qq.com', '2020-03-19 15:43:06');
+INSERT INTO `user` VALUES ('2', '123', '13224567231', '2', '1', 'upload/user/fluoritess.jpg', '彬彬', 'fluorites', '1', '2020-03-19 16:24:59', '308751395@qq.com', '2020-03-20 20:38:39');
