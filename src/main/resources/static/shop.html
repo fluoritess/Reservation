@@ -606,17 +606,18 @@ Author URI: http://www.deathghost.cn
                 $("#request-process-patent").html("获取数据失败！");
             }
         });
-        //附近商店-------------------------------------------------------------------------------------------------------------------
+        //热门商店-------------------------------------------------------------------------------------------------------------------
         $.ajax({
             type: "POST",
-            url: "/findAllRestaurant",
+            url: "/findHotRestaurant",
             contentType: "application/json; charset=utf-8",
             data: null,
             async: false,
             dataType: "json",
             success: function (info) {
-                // console.log(info);
-                for(var i=0;i<info.restaurant.length&&i<2;i++){
+                console.log(info);
+                for(var i=0;i<info.restaurant.length&&i<4;i++){
+
                     var name=info.restaurant[i].restaurantName;
                     var restaurantCategory=info.restaurant[i].restaurantCategory;
                     var restaurantAddress=info.restaurant[i].restaurantAddress;
@@ -624,32 +625,41 @@ Author URI: http://www.deathghost.cn
                     var image=info.restaurant[i].restaurantImage;
                     var id=info.restaurant[i].restaurantId;
                     var logo=info.restaurant[i].logo;
+                    console.log(logo);
                     // console.log(name);
                     if(i==0){
-                        $("#Nearshop").append("  <span class=\"Nstitle\">附近其他店铺</span>\n" +
-                            "   <ul>\n" +
+                        $("#Nearshop").append("  <span class=\"Nstitle\">热门商家</span>\n" +
+                            "   <ul id=\"hostul\">\n" +
                             "    <li>\n" +
                             "     <img src=\""+logo+"\">\n" +
                             "     <p>\n" +
-                            "     <span class=\"shopname\" title=\"动态调用完整标题\"><a href=\"shop.html?"+id+"\" target=\"_blank\" title=\"肯德基\">"+name+"</a></span>\n" +
-                            "     <span class=\"Discolor\">距离：1.2KM</span>\n" +
+                            "     <span class=\"shopname\" title=\"动态调用完整标题\"><a href=\"shop.html?"+id+"\" target=\"_blank\" title=\"#\">"+name+"</a></span>\n" +
+                            // "     <span class=\"Discolor\">距离：1.2KM</span>\n" +
                             "     <span title=\"完整地址title\">地址："+restaurantAddress+"</span>\n" +
                             "     </p>\n" +
                             "    </li>\n" +
                             "   </ul>");
                     }
-                    else if(i==1){
-                        $("#History").append("   <span class=\"Htitle\">浏览历史</span>\n" +
-                            "   <ul>\n" +
-                            "    <li>\n" +
-                            "    <a href=\"detailsp.html\" target=\"_blank\" title=\"清真川菜馆\"><img src=\""+logo+"\"></a>\n" +
-                            "    <p>\n" +
-                            "     <span class=\"shopname\" title=\"动态调用完整标题\"><a href=\"shop.html?"+id+"\" target=\"_blank\" title=\"正宗陕北小吃城\">"+name+"</a></span>\n" +
-                            "     <span>地址:"+restaurantAddress+"</span>\n" +
-                            "    </p>\n" +
-                            "    </li>\n" +
-                            "    <span>[ <a href=\"#\">清空历史记录</a> ]</span>\n" +
-                            "   </ul>");
+                    else if(i>0){
+                        // $("#History").append("   <span class=\"Htitle\">浏览历史</span>\n" +
+                        //     "   <ul>\n" +
+                        //     "    <li>\n" +
+                        //     "    <a href=\"detailsp.html\" target=\"_blank\" title=\"清真川菜馆\"><img src=\""+logo+"\"></a>\n" +
+                        //     "    <p>\n" +
+                        //     "     <span class=\"shopname\" title=\"动态调用完整标题\"><a href=\"shop.html?"+id+"\" target=\"_blank\" title=\"正宗陕北小吃城\">"+name+"</a></span>\n" +
+                        //     "     <span>地址:"+restaurantAddress+"</span>\n" +
+                        //     "    </p>\n" +
+                        //     "    </li>\n" +
+                        //     "    <span>[ <a href=\"#\">清空历史记录</a> ]</span>\n" +
+                        //     "   </ul>");
+                   $("#hostul").append( "    <li>\n" +
+                       "     <img src=\""+logo+"\">\n" +
+                       "     <p>\n" +
+                       "     <span class=\"shopname\" title=\"动态调用完整标题\"><a href=\"shop.html?"+id+"\" target=\"_blank\" title=\"#\">"+name+"</a></span>\n" +
+                       // "     <span class=\"Discolor\">距离：1.2KM</span>\n" +
+                       "     <span title=\"完整地址title\">地址："+restaurantAddress+"</span>\n" +
+                       "     </p>\n" +
+                       "    </li>\n");
                     }
                 }
             },

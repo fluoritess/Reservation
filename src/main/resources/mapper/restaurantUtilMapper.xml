@@ -31,7 +31,7 @@
        SELECT * from restaurant where restaurant_address= #{addressId,jdbcType=INTEGER} And  restaurant_category_id = #{foodCategoryId,jdbcType=INTEGER}
     </select>
     <select id="findhotshop" resultMap="BaseResultMap" >
-       SELECT * from restaurant   order by sales desc limit 2;
+       select * from restaurant order by collection desc;
     </select>
     <select id="selectByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
          select * from restaurant WHERE restaurant_name=#{restaurantName,jdbcType=VARCHAR}
