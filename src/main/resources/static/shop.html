@@ -606,7 +606,7 @@ Author URI: http://www.deathghost.cn
                 $("#request-process-patent").html("获取数据失败！");
             }
         });
-        //热门商店-------------------------------------------------------------------------------------------------------------------
+        //最受欢迎商家商店-------------------------------------------------------------------------------------------------------------------
         $.ajax({
             type: "POST",
             url: "/findHotRestaurant",
@@ -628,7 +628,7 @@ Author URI: http://www.deathghost.cn
                     console.log(logo);
                     // console.log(name);
                     if(i==0){
-                        $("#Nearshop").append("  <span class=\"Nstitle\">热门商家</span>\n" +
+                        $("#Nearshop").append("  <span class=\"Nstitle\">最受欢迎商家</span>\n" +
                             "   <ul id=\"hostul\">\n" +
                             "    <li>\n" +
                             "     <img src=\""+logo+"\">\n" +
