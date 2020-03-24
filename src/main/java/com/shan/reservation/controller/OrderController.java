@@ -50,10 +50,18 @@ public class OrderController {
     }
     @ResponseBody
     @RequestMapping("/deleteOrderByNo2" )
-    @ArchivesLog(operationType = "删除信息", operationName = "删除订单")
+    @ArchivesLog(operationType = "更新信息", operationName = "更新订单，申请退货")
     public R deleteOrderByNo2(@RequestBody Map<String,String> map, HttpSession httpSession){
         String orderNo=map.get("orderno");
         OrderService.deleteByNo2(orderNo);
+        return  R.ok();
+    }
+    @ResponseBody
+    @RequestMapping("/updateByNoMinus1" )
+    @ArchivesLog(operationType = "更新信息", operationName = "更新订单，商家批准退货")
+    public R updateByNoMinus1(@RequestBody Map<String,String> map, HttpSession httpSession){
+        String orderNo=map.get("orderNo");
+        OrderService.updateByNoMinus1(orderNo);
         return  R.ok();
     }
     @ResponseBody

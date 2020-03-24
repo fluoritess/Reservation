@@ -29,6 +29,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public void updateByNoMinus1(String orderNo) {
+        orderUtilMapper.updateByNoMinus1(orderNo);
+    }
+
+    @Override
     public void deleteByNo2(String orderNo) {
         orderUtilMapper.updateByNo(orderNo);
     }

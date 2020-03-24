@@ -121,7 +121,7 @@
                         "                <td>"+nickName+"</td>\n" +
                         "                <td>"+userName+"</td>\n" +
                         "                <td>"+createtime_+"</td>\n" +
-                        "                <td>已完成</td>\n" +
+                        "                <td>已作废</td>\n" +
                         "                <td>无</td>\n" +
                         "            </tr>");
                 }
@@ -144,7 +144,7 @@
                         "                <td>"+userName+"</td>\n" +
                         "                <td>"+createtime_+"</td>\n" +
                         "                <td>已付款,未发货</td>\n" +
-                        "                <td><button class=\"layui-btn\" id="+orderno+">发货</button></td>\n" +
+                        "                <td><button class=\"layui-btn fahuo\" id="+orderno+">发货</button></td>\n" +
                         "            </tr>");
                 }
                 else if(orderstate==2){
@@ -166,7 +166,7 @@
                         "                <td>"+userName+"</td>\n" +
                         "                <td>"+createtime_+"</td>\n" +
                         "                <td>确认收货,未评价</td>\n" +
-                        "                <td><button class=\"layui-btn\">提醒评价</button></td>\n" +
+                        "                <td><button class=\"layui-btn \">提醒评价</button></td>\n" +
                         "            </tr>");
                 }
                 else if(orderstate==4){
@@ -187,8 +187,8 @@
                         "                <td>"+nickName+"</td>\n" +
                         "                <td>"+userName+"</td>\n" +
                         "                <td>"+createtime_+"</td>\n" +
-                        "                <td>订单取消中</td>\n" +
-                        "                <td>无</td>\n" +
+                        "                <td>用户申请退货</td>\n" +
+                        "                <td><button class=\"layui-btn tuihuo\" id="+orderno+">退货</button></td>\n" +
                         "            </tr>");
                 }
             }
@@ -198,7 +198,7 @@
             $("#request-process-patent").html("获取数据失败！");
         }
     });
-    $(".layui-btn").click(function () {
+    $(".fahuo").click(function () {
         var orderno=$(this).attr('id');
         var json = {
             orderNo: orderno
@@ -207,6 +207,27 @@
         $.ajax({
             type: "POST",
             url: "/updateState2",
+            contentType: "application/json; charset=utf-8",
+            data: json,
+            async: false,
+            dataType: "json",
+            success: function (info) {
+                window.location.href="order.html";
+            },
+            error: function (message) {
+                $("#request-process-patent").html("获取数据失败！");
+            }
+        });
+    });
+    $(".tuihuo").click(function () {
+        var orderno=$(this).attr('id');
+        var json = {
+            orderNo: orderno
+        };
+        json = JSON.stringify(json);
+        $.ajax({
+            type: "POST",
+            url: "/updateByNoMinus1",
             contentType: "application/json; charset=utf-8",
             data: json,
             async: false,

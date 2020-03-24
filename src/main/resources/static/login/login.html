@@ -96,17 +96,18 @@
                 dataType: "json",
                 success: function (msg) {
                     console.log(msg);
-                    var name=msg.user.userName;
-                    if(name == '' || name == null || name == undefined){
+                  var code=msg.code;
+                    if(code == 500||code=='500'){
                         alert("密码或账号错误")
                         window.location.href="http://localhost:8080/login/login.html"
                     }
-                    else if(name=='admin'){
-                        alert("管理员"+name+"登录成功");
-                        sessionStorage.setItem("name", name);
-                        window.location.href="http://localhost:8080/index.html"
-                    }
+                    // else if(name=='admin'){
+                    //     alert("管理员"+name+"登录成功");
+                    //     sessionStorage.setItem("name", name);
+                    //     window.location.href="http://localhost:8080/index.html"
+                    // }
                     else {
+                        var name=msg.user.userName;
                         alert("用户"+name+"登录成功")
                         sessionStorage.setItem("name", name);
                         window.location.href="http://localhost:8080/index.html"
