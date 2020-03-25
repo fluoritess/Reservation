@@ -93,9 +93,9 @@
                         console.log(info);
                         var name=info.restaurant;
                         var re_id=info.re_id;
-                        if(name == '' || name == null || name == undefined){
+                        var code=info.code;
+                        if(code == 500||code=='500'){
                             alert("密码或账号错误")
-
                         }
                         else{
                             alert("商家"+name+"登录成功");

@@ -111,7 +111,7 @@ public class RestaurantController {
         String restaurantName=map.get("restaurantName");
         String passowrd=map.get("password");
         List<restaurantUtil> re=RestaurantService.selectByName(restaurantName);
-        if(re!=null){
+        if(re.size()!=0){
             String password_=re.get(0).getRestaurantPassword();
             if(password_.equals(passowrd)){
                 int re_id=re.get(0).getRestaurantId();
