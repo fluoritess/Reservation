@@ -131,14 +131,16 @@
             for(var i=0;i<info.restaurant.length;i++){
                 var restaurantName=info.restaurant[i].restaurantName;
                 var restaurantImage=info.restaurant[i].restaurantImage;
+                var logo=info.restaurant[i].logo;
                 var url="../../";
                 restaurantImage=url+restaurantImage;
+                logo=url+logo;
                 var restaurantPhone=info.restaurant[i].restaurantPhone;
                 var restaurantState=info.restaurant[i].restaurantState;
                if(restaurantState==1){
                    $("#table").append("        <tr>\n" +
                        "        <td><input type=\"checkbox\"/></td>\n" +
-                       "        <td><img src=\""+restaurantImage+"\" alt=\"\"/></td>\n" +
+                       "        <td><img src=\""+logo+"\" alt=\"\"/></td>\n" +
                        "        <td>"+restaurantName+"</td>\n" +
                        "        <td>"+restaurantPhone+"</td>\n" +
                        "        <td>使用中</td>\n" +
@@ -148,7 +150,7 @@
                 else{
                     $("#table").append("        <tr>\n" +
                         "        <td><input type=\"checkbox\"/></td>\n" +
-                        "        <td><img src=\""+restaurantImage+"\" alt=\"\"/></td>\n" +
+                        "        <td><img src=\""+logo+"\" alt=\"\"/></td>\n" +
                         "        <td>"+restaurantName+"</td>\n" +
                         "        <td>"+restaurantPhone+"</td>\n" +
                         "        <td>冻结中</td>\n" +
