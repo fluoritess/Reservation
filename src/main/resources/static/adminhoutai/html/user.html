@@ -9,6 +9,7 @@
     <!--<link rel="stylesheet" href="//res.layui.com/layui/dist/css/layui.css"  media="all">-->
     <link href="../../layui/css/layui.css" rel="stylesheet" type="text/css" />
     <script src="../../layui/layui.js" charset="utf-8"></script>
+    <script src="../../layui/lay/modules/layer.js"></script>
     <style type="text/css">
         .left_p_table{
             width:96%;
@@ -190,6 +191,7 @@
             async: false,
             dataType: "json",
             success: function (info) {
+                layer.msg('冻结成功');
                 window.location.href="user.html";
             },
             error: function (message) {
