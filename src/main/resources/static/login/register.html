@@ -30,21 +30,25 @@
 <section id="secTab">
     <div class="innerTab">
         <h2>注册</h2>
-        <form action="#">
+        <form action="#" id="form">
             <div class="tableItem">
                 <span class="userPhone">手机号</span>
-                <input type="text" required placeholder="手机号"/>
+                <input type="text"id="phone" required placeholder="手机号"/>
             </div>
             <div class="clear">
                 <div class="tableItem onlyItem fl">
-                    <span class="userPhone">手机号</span>
-                    <input class="" type="text" required placeholder="手机号"/>
+                    <span class="userPhone">验证码</span>
+                    <input class=""  id="inputCode"type="text" required placeholder="验证码"/>
                 </div>
-                <a class="tableText fr" href="#">获取验证码</a>
+                <a class="tableText fr" id="code">获取验证码</a>
+            </div>
+            <div class="tableItem">
+                <span class="userPhone">昵称</span>
+                <input type="text" id="name" required placeholder="昵称"/>
             </div>
             <div class="tableItem">
                 <span class="setPass">设置密码</span>
-                <input type="password" required placeholder="密码"/>
+                <input type="password" id="password" required placeholder="密码"/>
             </div>
             <div class="tableItem">
                 <span class="turePass">确认密码</span>
@@ -61,4 +65,50 @@
     <p>Copyright © 1号店网上超市 2007-2016，All Rights Reserved</p>
 </footer>
 </body>
+<script>
+    $("#form").submit(function (e) {
+        e.preventDefault();
+    });
+    $("#code").click(function () {
+        $.ajax({
+            type: "POST",
+            url: "/getCode",
+            contentType: "application/json; charset=utf-8",
+            data: null,
+            async: false,
+            dataType: "json",
+            success: function (info) {
+
+            },
+            error: function (message) {
+                $("#request-process-patent").html("提交数据失败！");
+            }
+        });
+    })
+    $(".tableBtn").click(function () {
+        var json = {
+            phone: $("#phone").val(),
+            password:$("#password").val(),
+            name:$("#name").val(),
+            code:$("#inputCode").val()
+        };
+        json = JSON.stringify(json);
+        $.ajax({
+            type: "POST",
+            url: "/userRegister",
+            contentType: "application/json; charset=utf-8",
+            data: json,
+            async: false,
+            dataType: "json",
+            success: function (info) {
+                window.location.href="http://localhost:8080/login/login.html"
+            },
+            error: function (message) {
+                alert("验证码错误");
+                window.location.href="http://localhost:8080/login/register.html"
+            }
+        });
+    })
+
+</script>
 </html>

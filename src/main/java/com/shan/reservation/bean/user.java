@@ -27,6 +27,15 @@ public class user {
 
     private Date thisDate;
 
+    public user(Integer userId, String userPassword, String userPhone, String realname, String userName, Integer userState) {
+        this.userId = userId;
+        this.userPassword = userPassword;
+        this.userPhone = userPhone;
+        this.realname = realname;
+        this.userName = userName;
+        this.userState = userState;
+    }
+
     public user(Integer userId, String userPassword, String userPhone, Integer userAddress, String userSex, String userImag, String realname, String userName, Integer userState, Date lastDate, String userEmail, Date thisDate) {
         this.userId = userId;
         this.userPassword = userPassword;

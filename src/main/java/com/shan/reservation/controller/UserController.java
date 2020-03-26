@@ -101,5 +101,35 @@ public class UserController {
         OrderService.uodateByNo4(no);
         return  R.ok();
     }
+    @ResponseBody
+    @RequestMapping("/getCode" )
+    @ArchivesLog(operationType = "用户操作", operationName = "获取验证码")
+    public R getCode(HttpSession httpSession){
+        String code=com.shan.reservation.util.code.getCode();
+        System.out.print(code);
+        httpSession.setAttribute("code",code);
+        return  R.ok();
+    }
+    @ResponseBody
+    @RequestMapping("/userRegister" )
+    @ArchivesLog(operationType = "用户操作", operationName = "用户注册")
+    public R userRegister(@RequestBody Map<String,String> map,HttpSession httpSession){
+        String code=map.get("code");
+        String password=map.get("password");
+        String name=map.get("name");
+        String phone=map.get("phone");
+        String realName="匿名";
+        String code1=(String)httpSession.getAttribute("code");
+        if(code.equals(code1)){
+            List<user> list=userService.selectAllUser();
+            int id=list.size()+1;
+            user user=new user(id,password,phone,realName,name,1);
+            int flag=userService.register(user);
+            if(flag==1){
+                return  R.ok();
+            }
+        }
+        return R.error();
 
+    }
 }

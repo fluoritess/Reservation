@@ -76,5 +76,10 @@ public class UserServiceImpl implements UserService {
         return userMapperUtil.selectLastDate(userName);
     }
 
+    @Override
+    public int register(user user) {
+        return  userMapperUtil.insert(user);
+    }
+
 
 }

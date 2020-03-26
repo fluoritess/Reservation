@@ -29,5 +29,13 @@
     <select id="selectLastDate" resultMap="BaseResultMap" parameterType="java.lang.String" >
         select * from user  where user_name=#{userName,jdbcType=VARCHAR}
     </select>
+    <insert id="insert" parameterType="com.shan.reservation.bean.user" >
+    insert into user (user_id, user_password, user_phone,
+      realName, user_name, user_state
+      )
+    values (#{userId,jdbcType=INTEGER}, #{userPassword,jdbcType=VARCHAR}, #{userPhone,jdbcType=VARCHAR},
+      #{realname,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{userState,jdbcType=INTEGER}
 
+      )
+  </insert>
 </mapper>

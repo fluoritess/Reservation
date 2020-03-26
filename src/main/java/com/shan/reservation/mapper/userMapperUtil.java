@@ -11,4 +11,5 @@ public interface userMapperUtil {
     int SetUserState0(String realName);
     int SetUserState1(String realName);
     user selectLastDate(String userName);
+    int insert(user user);
 }

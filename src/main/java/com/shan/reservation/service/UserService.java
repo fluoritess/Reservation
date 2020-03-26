@@ -25,4 +25,6 @@ public interface UserService {
     void UserEvaluation(String no,double score,String content);
     //查询上次登陆时间
     user selectLastDate(String userName);
+    //注册用户
+    int register(user user);
 }
