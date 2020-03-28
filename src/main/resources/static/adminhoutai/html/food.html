@@ -33,7 +33,7 @@
 <h5>所在位置：<a>菜品信息</a></h5>
 
 
-<p class="p_line"><input type="text" class="form-control" value="请输入菜品名称" />
+<p class="p_line"><input type="text" class="form-control" id="input" value="请输入菜品名称" />
     <!--<input type="text" class="form-control" value="SPU商家编码" /> -->
     <select class="form-control">
          <option>展示分类</option>
@@ -71,7 +71,7 @@
       <p> <select class="form-control select_button">
          <option>批量操作</option>
 
-          <option>批量上架</option><option>批量下架</option></select><span class="shop_span"><a href="#" class="shop_stley_a">商品列表</a><a href="#">大图模式</a></span></p>
+          <option>批量上架</option><option>批量下架</option></select><span class="shop_span"><a href="#" class="shop_stley_a">商品列表</a></span></p>
       <p >
     <!--<table data-url="json/data.json" id="table" style="margin: 0 auto">-->
         <!--</table>-->
@@ -149,7 +149,7 @@
                         "        <td>"+foodPrice+"</td>\n" +
                         "        <td>"+foodBargain+"</td>\n" +
                         "        <td>"+stock+"</td>\n" +
-                        "                <td><button class=\"layui-btn\" id="+foodId+">修改</button></td>\n" +
+                        "                <td><button class=\"layui-btn\" id="+foodId+">查看</button></td>\n" +
                         "        </tr>");
           }
         },
@@ -165,6 +165,7 @@
             elem: 'demo1'
             ,count: count //数据总数
             ,limit:6
+            ,groups:5
             ,jump: function(obj){
                 console.log(obj)
             }
@@ -174,6 +175,50 @@
     $(".layui-btn").click(function () {
       var id=$(this).attr('id');
         window.location.href="foodupdate.html?"+id;
+    })
+    $(".button_style").click(function () {
+        var foodname=$("#input").val();
+        var json={
+            foodName:foodname
+        };
+        json=JSON.stringify(json);
+        $.ajax({
+            type: "POST",
+            url: "/selectFoodByName",
+            contentType: "application/json; charset=utf-8",
+            data: json,
+            async: false,
+            dataType: "json",
+            success: function (info) {
+                $("#table").empty();
+                console.log(info);
+                count=info.food.length;
+                for(var i=0;i<info.food.length;i++){
+                    var foodName=info.food[i].foodName;
+                    var foodPrice=info.food[i].foodPrice;
+                    var foodBargain=info.food[i].foodBargain;
+                    var stock=info.food[i].stock;
+                    var foodId=info.food[i].foodId;
+                    var foodImage=info.food[i].foodImage;
+                    var url="../../";
+                    var image=url+foodImage;
+                    $("#table").append("    <tr>\n" +
+                        "        <td><input type=\"checkbox\"/></td>\n" +
+                        "        <td><img src=\""+image+"\" alt=\"\"/></td>\n" +
+                        "        <td>"+foodName+"</td>\n" +
+                        "        <td>"+foodPrice+"</td>\n" +
+                        "        <td>"+foodBargain+"</td>\n" +
+                        "        <td>"+stock+"</td>\n" +
+                        "                <td><button class=\"layui-btn\" id="+foodId+">修改</button></td>\n" +
+                        "        </tr>");
+                }
+            },
+            error: function (message) {
+                $("#request-process-patent").html("获取数据失败！");
+            }
+        });
+
+
     })
 </script>
   <!--<script type="text/javascript">-->
