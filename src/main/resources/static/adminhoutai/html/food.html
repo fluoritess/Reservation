@@ -149,7 +149,7 @@
                         "        <td>"+foodPrice+"</td>\n" +
                         "        <td>"+foodBargain+"</td>\n" +
                         "        <td>"+stock+"</td>\n" +
-                        "                <td><button class=\"layui-btn\" id="+foodId+">查看</button></td>\n" +
+                        "                <td><button class=\"layui-btn\" id="+foodId+">修改</button></td>\n" +
                         "        </tr>");
           }
         },
@@ -191,6 +191,15 @@
             dataType: "json",
             success: function (info) {
                 $("#table").empty();
+                $("#table").append("<tr class=\"left_tr1\">\n" +
+                    "            <td><input type=\"checkbox\"/>全选</td>\n" +
+                    "            <td>图片</td>\n" +
+                    "            <td>商品名称</td>\n" +
+                    "            <td>销售价</td>\n" +
+                    "            <td>促销价</td>\n" +
+                    "            <td>可销售库存</td>\n" +
+                    "            <td>操作</td>\n" +
+                    "        </tr>");
                 console.log(info);
                 count=info.food.length;
                 for(var i=0;i<info.food.length;i++){
