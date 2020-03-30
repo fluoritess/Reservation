@@ -140,7 +140,7 @@
         async: false,
         dataType: "json",
         success: function (info) {
-          console.log(info);
+          // console.log(info);
           count=info.food.length;
           for(var i=0;i<info.food.length;i++){
               var foodName=info.food[i].foodName;
@@ -173,8 +173,14 @@
         laypage.render({
             elem: 'demo1'
             ,count: count //数据总数
-            ,jump: function(obj){
-                console.log(obj)
+            ,prev:'上一页'
+            ,netx:'下一页'
+            ,curr:1
+            ,group:5
+            ,first:1
+            ,jump: function(obj,first){
+                console.log(obj);
+                console.log(first);
             }
         });
     })

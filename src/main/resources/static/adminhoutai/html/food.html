@@ -131,9 +131,9 @@
         async: false,
         dataType: "json",
         success: function (info) {
-          console.log(info);
+          // console.log(info);
           count=info.food.length;
-          for(var i=0;i<info.food.length;i++){
+          for(var i=0;i<info.food.length&&i<6;i++){
               var foodName=info.food[i].foodName;
               var foodPrice=info.food[i].foodPrice;
               var foodBargain=info.food[i].foodBargain;
@@ -157,6 +157,7 @@
             $("#request-process-patent").html("获取数据失败！");
         }
     });
+    //----------------------------------------------------------分页------------------------------------------------------
     layui.use(['laypage', 'layer'], function(){
         var laypage = layui.laypage
             ,layer = layui.layer;
@@ -165,17 +166,69 @@
             elem: 'demo1'
             ,count: count //数据总数
             ,limit:6
-            ,groups:5
-            ,jump: function(obj){
-                console.log(obj)
+            ,prev:'上一页'
+            ,netx:'下一页'
+            ,curr:1
+            ,group:5
+            ,first:1
+            ,jump: function(obj,first){
+                console.log(obj.curr);
+                console.log(obj.limit);
+                if (!first) {
+                    //清空以前加载的数据
+                    $('#table').empty();
+                    //调用加载函数加载数据
+                    showRecord(obj.curr,obj.limit);
+                }
             }
-
         });
-    })
+    });
+    function showRecord(pageNo,pageSize){
+        var json = {
+            pageNo:pageNo,
+            pageSize:pageSize
+        };
+        json = JSON.stringify(json);
+        $.ajax({
+            type: "POST",
+            url: "/findAllFoodByPage",
+            contentType: "application/json; charset=utf-8",
+            data: json,
+            async: false,
+            dataType: "json",
+            success: function (info) {
+                console.log(info);
+                for(var i=0;i<info.list.length&&i<6;i++){
+                    var foodName=info.list[i].foodName;
+                    var foodPrice=info.list[i].foodPrice;
+                    var foodBargain=info.list[i].foodBargain;
+                    var stock=info.list[i].stock;
+                    var foodId=info.list[i].foodId;
+                    var foodImage=info.list[i].foodImage;
+                    var url="../../";
+                    var image=url+foodImage;
+                    $("#table").append("    <tr>\n" +
+                        "        <td><input type=\"checkbox\"/></td>\n" +
+                        "        <td><img src=\""+image+"\" alt=\"\"/></td>\n" +
+                        "        <td>"+foodName+"</td>\n" +
+                        "        <td>"+foodPrice+"</td>\n" +
+                        "        <td>"+foodBargain+"</td>\n" +
+                        "        <td>"+stock+"</td>\n" +
+                        "                <td><button class=\"layui-btn\" id="+foodId+">修改</button></td>\n" +
+                        "        </tr>");
+                }
+            },
+            error: function (message) {
+                $("#request-process-patent").html("获取数据失败！");
+            }
+        });
+    }
+    //----------------------------------------------------------更新信息------------------------------------------------------
     $(".layui-btn").click(function () {
       var id=$(this).attr('id');
         window.location.href="foodupdate.html?"+id;
-    })
+    });
+    //----------------------------------------------------------按名称查询------------------------------------------------------
     $(".button_style").click(function () {
         var foodname=$("#input").val();
         var json={

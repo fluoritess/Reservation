@@ -1,5 +1,7 @@
 package com.shan.reservation.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.shan.reservation.bean.food;
 import com.shan.reservation.bean.restaurantUtil;
 import com.shan.reservation.mapper.foodMapper;
@@ -61,5 +63,15 @@ public class FoodController {
         List<food> food= FoodService.selectByName(foodName);
         return  R.ok().put("food",food);
     }
-
+    @ResponseBody
+    @RequestMapping("/findAllFoodByPage" )
+    @ArchivesLog(operationType = "查询信息", operationName = "查询所有食物")
+    public PageInfo findAllFoodByPage(@RequestBody Map<String,String> map,HttpSession httpSession){
+        int pageNo=Integer.parseInt(map.get("pageNo"));
+        int pageSize=Integer.parseInt(map.get("pageSize"));
+        PageHelper.startPage(pageNo,pageSize);
+        List<food> food= FoodService.findAllFood();
+        PageInfo<food> pageInfo=new PageInfo<food>(food);
+        return  pageInfo;
+    }
 }
