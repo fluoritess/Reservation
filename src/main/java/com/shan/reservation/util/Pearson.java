@@ -8,7 +8,7 @@ package com.shan.reservation.util;
 public class Pearson {
     public static void main(String[] args) {
         double[] arr={5,4,4,4,5};
-        double[] arr2={4,5,5,4,5};
+        double[] arr2={5,5,5,4,5};
         System.out.print(Pearson.getPearson(arr,arr2));
     }
     //获取数组平均数

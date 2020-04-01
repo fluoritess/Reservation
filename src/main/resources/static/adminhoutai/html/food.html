@@ -177,6 +177,15 @@
                 if (!first) {
                     //清空以前加载的数据
                     $('#table').empty();
+                    $("#table").append("  <tr class=\"left_tr1\">\n" +
+                        "            <td><input type=\"checkbox\"/>全选</td>\n" +
+                        "            <td>图片</td>\n" +
+                        "            <td>商品名称</td>\n" +
+                        "            <td>销售价</td>\n" +
+                        "            <td>促销价</td>\n" +
+                        "            <td>可销售库存</td>\n" +
+                        "            <td>操作</td>\n" +
+                        "        </tr>");
                     //调用加载函数加载数据
                     showRecord(obj.curr,obj.limit);
                 }

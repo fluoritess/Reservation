@@ -1,12 +1,7 @@
 package com.shan.reservation.controller;
 
-import com.shan.reservation.bean.evaluation;
-import com.shan.reservation.bean.order;
-import com.shan.reservation.bean.restaurantUtil;
-import com.shan.reservation.service.EvaluationService;
-import com.shan.reservation.service.OrderService;
-import com.shan.reservation.service.PearsonService;
-import com.shan.reservation.service.RestaurantService;
+import com.shan.reservation.bean.*;
+import com.shan.reservation.service.*;
 import com.shan.reservation.util.ArchivesLog;
 import com.shan.reservation.util.R;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -36,6 +32,10 @@ public class RecommendationController {
     com.shan.reservation.service.EvaluationService EvaluationService;
     @Autowired
     OrderService OrderService;
+    @Autowired
+    RestaurantService RestaurantService;
+    @Autowired
+    com.shan.reservation.service.CollectService CollectService;
     @ResponseBody
     @RequestMapping("/Pearson" )
     @ArchivesLog(operationType = "推荐", operationName = "使用皮尔逊推荐算法")
@@ -65,6 +65,16 @@ public class RecommendationController {
             count2++;
         }
         double score=PearsonService.CalculationPearson(arr,arr2);
+        if(score>=0.4){
+            List<collectUtil> list=CollectService.selectByUser(1);
+            List<restaurantUtil> restaurantUtil=new ArrayList<>();
+            for(collectUtil c:list){
+                int re_id=c.getRestaurantId();
+                restaurantUtil restaurantUtil1=RestaurantService.findRestaurantById(re_id);
+                restaurantUtil.add(restaurantUtil1);
+            }
+            return R.ok().put("restaurant",restaurantUtil);
+        }
         return  R.ok().put("score",score);
     }
 

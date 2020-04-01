@@ -73,14 +73,14 @@
     <article class="U-article Overflow">
         <!--user Favorites-->
         <section class="ShopFav Overflow">
-            <span class="ShopFavtitle Block Font14 FontW Lineheight35">我的收藏</span>
+            <span class="ShopFavtitle Block Font14 FontW Lineheight35">为您推荐</span>
             <ul id="ul">
-                <a href="shop.html" target="_blank">
-                <li>
-                <img src="upload/cc.jpg">
-                <p>好味来快餐店 ( 删除 )</p>
-                </li>
-                </a>
+                <!--<a href="shop.html" target="_blank">-->
+                <!--<li>-->
+                <!--<img src="upload/cc.jpg">-->
+                <!--<p>好味来快餐店 ( 删除 )</p>-->
+                <!--</li>-->
+                <!--</a>-->
             </ul>
         </section>
     </article>
@@ -227,7 +227,19 @@
                 async: false,
                 dataType: "json",
                 success: function (info) {
-                    console.log(info)
+                    console.log(info);
+                    for(var i=0;i<info.restaurant.length;i++){
+                        var restaurantName=info.restaurant[i].restaurantName;
+                        var restaurantImage=info.restaurant[i].restaurantImage;
+                        var restaurantId=info.restaurant[i].restaurantId;
+                        $("#ul").append("      <a href=\"shop.html?"+restaurantId+"\" target=\"_blank\">\n" +
+                            "                <li>\n" +
+                            "                <img src=\""+restaurantImage+"\">\n" +
+                            "                <p>"+restaurantName+"</p>\n" +
+                            "                </li>\n" +
+                            "                </a>");
+                    }
+
                 },
                 error: function (message) {
                     $("#request-process-patent").html("获取数据失败！");
