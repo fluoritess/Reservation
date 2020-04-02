@@ -93,6 +93,13 @@
                 <!--<input type="radio" name="sex" value="女" title="女" checked>-->
             <!--</div>-->
         <!--</div>-->
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button type="button" class="layui-btn" id="test1">
+                    <i class="layui-icon">&#xe67c;</i>上传菜品图片
+                </button>
+            </div>
+        </div>
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label">商品简介</label>
             <div class="layui-input-block">
@@ -193,6 +200,7 @@
                     CateName=info.CateName;
                     console.log(CateName)
                     $("#0").text(CateName);
+                    window.location.href="food.html";
                 },
                 error: function (message) {
                     $("#request-process-patent").html("获取数据失败！");
