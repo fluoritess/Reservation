@@ -12,6 +12,12 @@
 Author: DeathGhost
 Author URI: http://www.deathghost.cn
 -->
+    <style type="text/css">
+        #advertisement img{
+            width: 300px;
+            height: 400px;
+        }
+    </style>
 </head>
 <body>
 <header>
@@ -124,7 +130,8 @@ Author URI: http://www.deathghost.cn
   <!--</ul>-->
   </div>
   <!--广告位或其他推荐版块-->
-  <img src="upload/ggw.jpg">
+     <div id="advertisement"></div>
+     <!--<img src="upload/ggw.jpg">-->
  </aside>
 </section>
 <!--End content-->
@@ -221,6 +228,26 @@ Author URI: http://www.deathghost.cn
                         "    <p class=\"P-shop Overflow\"><span class=\"sa\"><a href=\"#\" target=\"_blank\" target=\"_blank\" title=\""+foodName+"\">评分:"+score+"</a></span><span class=\"sp\">库存:"+stock+"</span></p>\n" +
                         "    </li>");
                 }
+            }
+        });
+        //-----------------------------广告-----------------------------------------
+        $.ajax({
+            type: "POST",
+            url: "/advertisement/selectAllAdvertisementRandom",
+            contentType: "application/json; charset=utf-8",
+            data: null,
+            async: false,
+            dataType: "json",
+            success: function (info) {
+                // console.log(info);
+                var image=info.advertisement.advertisementImag;
+                var url="/upload/advertisement/";
+                image=url+image;
+                var restaurantId=info.advertisement.restaurantId;
+                $("#advertisement").append("<a href=\"shop.html?"+restaurantId+"\" title=\"广告位占位图片\" target=\"_blank\"><img src=\""+image+"\"></a>");
+            },
+            error: function (message) {
+                $("#request-process-patent").html("获取数据失败！");
             }
         });
         //---------------------用户相关信息----------------------
