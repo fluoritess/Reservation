@@ -8,7 +8,7 @@ function selectsearch(theA,word){
     theA.className='choose';
     console.log(word);
     if(word=='restaurant_name'){
-        document.getElementById('main_a_serach').action="search_s.html";//Test url
+        document.getElementById('main_a_serach').action="search_restaurant.html";//Test url
     }else if(word=='food_name'){
         document.getElementById('main_a_serach').action="search_food.html";//Test url
     }

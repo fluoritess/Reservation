@@ -94,7 +94,7 @@ public class RestaurantController {
     }
     @ResponseBody
     @RequestMapping("/selectResByName" )
-    @ArchivesLog(operationType = "查询信息", operationName = "根据食物名称查询食物")
+    @ArchivesLog(operationType = "查询信息", operationName = "根据餐馆名称查询餐馆")
     public R selectByName(@RequestBody Map<String,String> map, HttpSession httpSession){
         String restaurantName=map.get("restaurantName");
         List<restaurantUtil> restaurantUtil= RestaurantService.selectByName(restaurantName);

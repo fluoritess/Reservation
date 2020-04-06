@@ -58,12 +58,12 @@ Author URI: http://www.deathghost.cn
 <!--Start content-->
 <section class="Psection MT20">
  <article class="Searchlist Overflow">
-  <ul class="Overflow">
-    <li>
-    <a href="shop.html" target="_blank" title="好味来快餐店"><img src="upload/cc.jpg"></a>
-    <p class="P-shop Overflow"><span class="sa"><a href="shop.html" target="_blank" title="好味来快餐店">好味来快餐店</a></span><span class="sp">西安·莲湖区</span></p>
-    <p class="P-shop Overflow">西安市莲湖区土门十字往西100米...</p>
-    </li>
+  <ul class="Overflow" id="re_ul">
+    <!--<li>-->
+    <!--<a href="shop.html" target="_blank" title="好味来快餐店"><img src="upload/cc.jpg"></a>-->
+    <!--<p class="P-shop Overflow"><span class="sa"><a href="shop.html" target="_blank" title="好味来快餐店">好味来快餐店</a></span><span class="sp">西安·莲湖区</span></p>-->
+    <!--<p class="P-shop Overflow">西安市莲湖区土门十字往西100米...</p>-->
+    <!--</li>-->
   </ul>
   <div class="TurnPage">
   <a href="#">
@@ -78,17 +78,17 @@ Author URI: http://www.deathghost.cn
  </article>
  <aside class="Sraside">
   <div class="bestshop">
-  <span class="Bpt Block FontW Font14">推荐店铺</span>
-  <ul>
-   <li>
-    <a href="shop.html" title="好味来快餐店" target="_blank"><img src="upload/cc.jpg"></a>
-    <p>
-     <span class="Block FontW Font14"><a href="food.html" title="好味来快餐店" target="_blank" class="CorRed">好味来快餐店</a></span>
-     <span class="Block Overflow">西安 · 莲湖区</span>
-     <span class="Block Overflow">西安市莲湖区土门十字...</span>
-    </p>
-   </li>
-  </ul>
+  <span class="Bpt Block FontW Font14">广告推荐</span>
+  <!--<ul id="re_recommen">-->
+   <!--&lt;!&ndash;<li>&ndash;&gt;-->
+    <!--&lt;!&ndash;<a href="shop.html" title="好味来快餐店" target="_blank"><img src="upload/cc.jpg"></a>&ndash;&gt;-->
+    <!--&lt;!&ndash;<p>&ndash;&gt;-->
+     <!--&lt;!&ndash;<span class="Block FontW Font14"><a href="food.html" title="好味来快餐店" target="_blank" class="CorRed">好味来快餐店</a></span>&ndash;&gt;-->
+     <!--&lt;!&ndash;<span class="Block Overflow">西安 · 莲湖区</span>&ndash;&gt;-->
+     <!--&lt;!&ndash;<span class="Block Overflow">西安市莲湖区土门十字...</span>&ndash;&gt;-->
+    <!--&lt;!&ndash;</p>&ndash;&gt;-->
+   <!--&lt;!&ndash;</li>&ndash;&gt;-->
+  <!--</ul>-->
   </div>
   <!--广告位或其他推荐版块-->
   <img src="upload/ggw.jpg">
@@ -148,10 +148,48 @@ Author URI: http://www.deathghost.cn
     </div>
   </section>
  </section>
-<div class="copyright">© 版权所有 2016 DeathGhost 技术支持：<a href="http://www.deathghost.cn" title="DeathGhost">DeathGhost</a></div>
+    <div class="copyright">© 版权所有 2020 杉杉订餐 技术支持：<a href="http://www.deathghost.cn" title="587工作室">587工作室</a></div>
 </footer>
 <script type="text/javascript">
+    function getParams(key) {
+        return decodeURIComponent((new RegExp('[?|&]' + key + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [, ""])[1].replace(/\+/g, '%20')) || null;
+    };
+    var restaurantName=getParams("keyword");
+    console.log(restaurantName);
+    $("#main_a_serach").submit(function (e) {
+        e.preventDefault();
+    });
     $(function(){
+        //-------------------------------------初始化页面搜索-----------------------
+        var json = {
+            restaurantName: restaurantName
+        };
+        json = JSON.stringify(json);
+        $.ajax({
+            type: "POST",
+            url: "/selectResByName",
+            contentType: "application/json; charset=utf-8",
+            data: json,
+            async: false,
+            dataType: "json",
+            success: function (info) {
+                console.log(info);
+                for(var i=0;i<info.restaurant.length;i++){
+                    var restaurantId=info.restaurant[i].restaurantId;
+                    var restaurantName=info.restaurant[i].restaurantName;
+                    var restaurantImage=info.restaurant[i].restaurantImage;
+                    var restaurantAddress=info.restaurant[i].restaurantAddress;
+                    var restaurantCategory=info.restaurant[i].restaurantCategory;
+                    console.log(restaurantAddress);
+                        $("#re_ul").append("    <li>\n" +
+                            "    <a href=\"shop.html?"+restaurantId+"\" target=\"_blank\" title=\"\"><img src=\""+restaurantImage+"\"></a>\n" +
+                            "    <p class=\"P-shop Overflow\"><span class=\"sa\"><a href=\"shop.html\" target=\"_blank\" title=\"\">"+restaurantName+"</a></span><span class=\"sp\">"+restaurantCategory+"</span></p>\n" +
+                            "    <p class=\"P-shop Overflow\">"+restaurantAddress+"</p>\n" +
+                            "    </li>");
+                }
+            }
+        });
+        //---------------------用户相关信息----------------------
         var user=sessionStorage.getItem("name");
         var userId;
         console.log(user);
