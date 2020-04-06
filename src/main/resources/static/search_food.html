@@ -184,13 +184,49 @@ Author URI: http://www.deathghost.cn
 <div class="copyright">© 版权所有 2016 DeathGhost 技术支持：<a href="http://www.deathghost.cn" title="DeathGhost">DeathGhost</a></div>
 </footer>
 <script type="text/javascript">
+    function getParams(key) {
+        return decodeURIComponent((new RegExp('[?|&]' + key + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [, ""])[1].replace(/\+/g, '%20')) || null;
+    };
+    var foodname=getParams("keyword");
+    console.log(foodname);
     $("#main_a_serach").submit(function (e) {
         e.preventDefault();
     });
     $(function(){
+        //-------------------------------------初始化页面搜索-----------------------
+        var json = {
+            foodName: foodname
+        };
+        json = JSON.stringify(json);
+        $.ajax({
+            type: "POST",
+            url: "/selectFoodByName",
+            contentType: "application/json; charset=utf-8",
+            data: json,
+            async: false,
+            dataType: "json",
+            success: function (info) {
+                // console.log(info);
+                for(var i=0;i<info.food.length;i++){
+                    var foodName=info.food[i].foodName;
+                    var foodBargain=info.food[i].foodBargain;
+                    var foodImage=info.food[i].foodImage;
+                    var score=info.food[i].score;
+                    var stock=info.food[i].stock;
+                    var foodId=info.food[i].foodId;
+                    $("#foodul").append("<li>\n" +
+                        "    <a href=\"food.html?"+foodId+"\" target=\"_blank\" target=\"_blank\" title=\""+foodName+"\"><img src=\""+foodImage+"\"></a>\n" +
+                        "    <p class=\"P-price FontW Font16\"><span>￥"+foodBargain+"</span></p>\n" +
+                        "    <p class=\"P-title\"><a href=\"food.html\" target=\"_blank\" target=\"_blank\" title=\"酸辣土豆丝\">"+foodName+"</a></p>\n" +
+                        "    <p class=\"P-shop Overflow\"><span class=\"sa\"><a href=\"#\" target=\"_blank\" target=\"_blank\" title=\""+foodName+"\">评分:"+score+"</a></span><span class=\"sp\">库存:"+stock+"</span></p>\n" +
+                        "    </li>");
+                }
+            }
+        });
+        //---------------------用户相关信息----------------------
         var user=sessionStorage.getItem("name");
         var userId;
-        console.log(user);
+        // console.log(user);
         if(user==null){
             $(".LeftNav").append(" <a href=\"login/register.html\">注册</a>/<a href=\"login/login.html\">登录</a><a href=\"#\">QQ客服</a><a href=\"#\">微信客服</a><a href=\"#\">手机客户端</a>");
             $(".RightNav").append(" <a href=\"user_center.html\">用户中心</a> <a href=\"user_orderlist.html\" target=\"_blank\" title=\"我的订单\">我的订单</a> <a href=\"cart.html\">购物车（0）</a> <a href=\"user_favorites.html\" target=\"_blank\" title=\"我的收藏\">我的收藏</a> <a href=\"#\">商家入驻</a>");
@@ -244,16 +280,18 @@ Author URI: http://www.deathghost.cn
                     $(".RightNav").append("<a href=\"user_center.html\">用户中心</a> <a href=\"user_orderlist.html\" target=\"_blank\" title=\"我的订单\">我的订单</a> <a href=\"cart.html\">购物车（"+length+"）</a> <a href=\"user_favorites.html\" target=\"_blank\" title=\"我的收藏\">我的收藏</a> <a href=\"#\">商家入驻</a>");
                 }
             });
+
         }
     });
     $("#tuichu").click(function () {
         window.sessionStorage.clear();
         window.location.href="index.html";
 
-    })
+    });
+    //-----------------------------本页面搜索----------------------------------------------
     $("#shousuo").click(function () {
-        $("#foodul").empty();
-        if($("#food").hasClass("choose")){
+            $("#foodul").empty();
+
             var foodName=$("#fkeyword").val();
             var json = {
                 foodName: foodName
@@ -267,7 +305,7 @@ Author URI: http://www.deathghost.cn
                 async: false,
                 dataType: "json",
                 success: function (info) {
-                    console.log(info);
+                    // console.log(info);
                     for(var i=0;i<info.food.length;i++){
                         var foodName=info.food[i].foodName;
                         var foodBargain=info.food[i].foodBargain;
@@ -284,25 +322,7 @@ Author URI: http://www.deathghost.cn
                     }
                 }
             });
-        }
-        else if($("#res").hasClass("choose")){
-            var resName=$("#fkeyword").val();
-            var json = {
-                resName: resName
-            };
-            json = JSON.stringify(json);
-            $.ajax({
-                type: "POST",
-                url: "/selectResByName",
-                contentType: "application/json; charset=utf-8",
-                data: json,
-                async: false,
-                dataType: "json",
-                success: function (info) {
-                    console.log(info);
-                }
-            });
-        }
+
     })
 </script>
 </body>

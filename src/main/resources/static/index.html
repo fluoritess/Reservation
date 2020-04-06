@@ -396,7 +396,7 @@ Author URI: http://www.deathghost.cn
             async: false,
             dataType: "json",
             success: function (info) {
-                console.log(info);
+                // console.log(info);
                 for(var i=0;i<info.restaurant.length&&i<5;i++){
                     var name=info.restaurant[i].restaurantName;
                     var id=info.restaurant[i].restaurantId;
@@ -454,7 +454,7 @@ Author URI: http://www.deathghost.cn
             async: false,
             dataType: "json",
             success: function (info) {
-                    console.log(info);
+                    // console.log(info);
                 for(var i=0;i<info.food.length&&i<3;i++) {
                     var name = info.food[i].foodName;
                     var image = info.food[i].foodImage;
@@ -480,7 +480,7 @@ Author URI: http://www.deathghost.cn
         });
 
         var user=sessionStorage.getItem("name");
-        console.log(user);
+        // console.log(user);
         if(user==null){
             $(".LeftNav").append(" <a href=\"login/register.html\">注册</a>/<a href=\"login/login.html\">登录</a><a href=\"#\">QQ客服</a><a href=\"#\">微信客服</a><a href=\"#\">手机客户端</a>");
             $(".RightNav").append(" <a href=\"user_center.html\">用户中心</a> <a href=\"user_orderlist.html\" target=\"_blank\" title=\"我的订单\">我的订单</a> <a href=\"cart.html\">购物车（0）</a> <a href=\"user_favorites.html\" target=\"_blank\" title=\"我的收藏\">我的收藏</a> <a href=\"#\">商家入驻</a>");
@@ -552,7 +552,7 @@ Author URI: http://www.deathghost.cn
                 success: function (info) {
                     for(var i=0;i<info.distict.length;i++){
                             var distict=info.distict[i].cityDistict;
-                            console.log(distict);
+                            // console.log(distict);
                             $(".seekarea").append("  <a href=\"#\">"+distict+"</a>")
                     }
                 },
@@ -571,7 +571,7 @@ Author URI: http://www.deathghost.cn
         async: false,
         dataType: "json",
         success: function (info) {
-            console.log(info);
+            // console.log(info);
             var image=info.advertisement.advertisementImag;
             var url="/upload/advertisement/";
             image=url+image;
