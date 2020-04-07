@@ -179,18 +179,23 @@
             dataType: "json",
             success: function (info) {
                 console.log(info);
-                for(var i=0;i<info.restaurant.length;i++){
-                    var restaurantId=info.restaurant[i].restaurantId;
-                    var restaurantName=info.restaurant[i].restaurantName;
-                    var restaurantImage=info.restaurant[i].restaurantImage;
-                    var restaurantAddress=info.restaurant[i].restaurantAddress;
-                    var restaurantCategory=info.restaurant[i].restaurantCategory;
-                    console.log(restaurantAddress);
+                if(info.restaurant.length>0){
+                    for(var i=0;i<info.restaurant.length;i++){
+                        var restaurantId=info.restaurant[i].restaurantId;
+                        var restaurantName=info.restaurant[i].restaurantName;
+                        var restaurantImage=info.restaurant[i].restaurantImage;
+                        var restaurantAddress=info.restaurant[i].restaurantAddress;
+                        var restaurantCategory=info.restaurant[i].restaurantCategory;
+                        console.log(restaurantAddress);
                         $("#re_ul").append("    <li>\n" +
                             "    <a href=\"shop.html?"+restaurantId+"\" target=\"_blank\" title=\"\"><img src=\""+restaurantImage+"\"></a>\n" +
                             "    <p class=\"P-shop Overflow\"><span class=\"sa\"><a href=\"shop.html\" target=\"_blank\" title=\"\">"+restaurantName+"</a></span><span class=\"sp\">"+restaurantCategory+"</span></p>\n" +
                             "    <p class=\"P-shop Overflow\">"+restaurantAddress+"</p>\n" +
                             "    </li>");
+                    }
+                }
+              else {
+                    alert("未查询到结果");
                 }
             }
         });
@@ -296,8 +301,13 @@
                 dataType: "json",
                 success: function (info) {
                     console.log(info);
-                    var foodName=info.food[0].foodName;
-                    window.location.href="search_food.html?keyword="+foodName;
+                    if(info.food.length>0){
+                        var foodName=info.food[0].foodName;
+                        window.location.href="search_food.html?keyword="+foodName;
+                    }
+                   else {
+                       alert("未查询到结果");
+                    }
                 }
             });
         }
@@ -315,9 +325,14 @@
                 async: false,
                 dataType: "json",
                 success: function (info) {
-                    console.log(info);
-                    var restaurantName=info.restaurant[0].restaurantName;
-                    window.location.href="search_restaurant.html?keyword="+restaurantName;
+                    if(info.restaurant.length>0){
+                        console.log(info);
+                        var restaurantName=info.restaurant[0].restaurantName;
+                        window.location.href="search_restaurant.html?keyword="+restaurantName;
+                    }
+                   else {
+                        alert("未查询到结果");
+                    }
                 }
             });
         }
