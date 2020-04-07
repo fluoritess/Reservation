@@ -86,6 +86,10 @@ $(function(){
                 $("#request-process-patent").html("获取数据失败！");
             }
         });
+        $("#tuichu").click(function () {
+            window.sessionStorage.clear();
+            window.location.href="index.html";
 
+        });
     }
 });
