@@ -35,7 +35,7 @@ public class AlipayServiceImpl implements AlipayService {
         /** 同步通知，支付完成后，支付成功页面*/
         alipayRequest.setReturnUrl(AlipayConfig.return_url);
         /** 异步通知，支付完成后，需要进行的异步处理*/
-        alipayRequest.setNotifyUrl(AlipayConfig.notify_url);
+        alipayRequest.setNotifyUrl(AlipayConfig.test_url);
 
         alipayRequest.setBizContent("{\"out_trade_no\":\""+ outTradeNo +"\","
                 + "\"total_amount\":\""+ totalAmount +"\","
@@ -48,7 +48,7 @@ public class AlipayServiceImpl implements AlipayService {
         String result = alipayClient.pageExecute(alipayRequest).getBody().replace('\"','\'').replace('\n',' ');
         return result;
     }
-
+    //广告付费
     @Override
     public String webPagePayAd(String outTradeNo, BigDecimal totalAmount, String subject) throws Exception {
         AlipayTradePagePayRequest alipayRequest = new AlipayTradePagePayRequest();

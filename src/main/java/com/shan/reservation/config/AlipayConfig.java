@@ -16,7 +16,8 @@ public class AlipayConfig {
 
     //异步通知，再这里我们设计自己的后台代码
     public static String notify_url = "http://localhost:8080/user_orderlist.html";
-
+    //异步通知，再这里我们设计自己的后台代码
+    public static String test_url = "http://localhost:8080/Test";
     // 页面跳转同步通知页面路径 需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
     public static String return_url = "http://localhost:8080/user_orderlist.html";
 

@@ -130,6 +130,12 @@ public class UserController {
             }
         }
         return R.error();
-
+    }
+    @ResponseBody
+    @RequestMapping("/Test" )
+    @ArchivesLog(operationType = "测试", operationName = "测试")
+    public R Test(HttpSession httpSession){
+        System.out.print("xxxxxxxxx");
+        return  R.error();
     }
 }
