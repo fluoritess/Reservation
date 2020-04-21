@@ -52,12 +52,12 @@ $(document).ready(function () {
                 totalprice=totalprice+onetotalprice;
             }
         }
-        console.log("当前总数量:"+count);
-        console.log("当前总价钱:"+totalprice);
+        // console.log("当前总数量:"+count);
+        // console.log("当前总价钱:"+totalprice);
         var label=document.getElementById("zong1");
         label.innerText=totalprice;
         var label2=document.getElementById("zongshu");
-        console.log(label2);
+        // console.log(label2);
         label2.innerText=count;
         // GetPrice2();
     });
@@ -225,7 +225,7 @@ function setTotal2(){
             totalprice=totalprice+onetotalprice;
         }
     }
-    console.log("当前总价钱:"+totalprice);zong1
+    // console.log("当前总价钱:"+totalprice);zong1
     var label=document.getElementById("zong1");
     label.innerText=totalprice;
     // var value=$("#zong1").html();
@@ -236,7 +236,8 @@ var jz1 = (function () {
     var length=$("#cart").find("table").length ;
     var totalprice=0;
     var count=0;
-    var  foodlist = [];
+    var  foodlist =[];
+    var foodNameList=[];
     for(var i=1;i<length-1;i++){
         if($("#newslist"+i).prop('checked')){
             count=count+1;
@@ -244,24 +245,48 @@ var jz1 = (function () {
             var number=$("#text_box"+i).val();
             var price=$("#total"+i).html().trim();
             var onetotalprice=number*price;
-            console.log("商品名称:"+name+"商品数量:"+number+"商品价钱:"+price+"此商品总价:"+onetotalprice);
+            // console.log("商品名称:"+name+"商品数量:"+number+"商品价钱:"+price+"此商品总价:"+onetotalprice);
             var food = {};
             food.name=name;
+            foodNameList.push(name);
             food.number=number;
             food.price=price;
             food.onetotalprice=onetotalprice;
-            console.log(food);
+            // console.log(food);
             foodlist.push(food);
-            console.log(foodlist);
+            // console.log(foodNameList);
             totalprice=totalprice+onetotalprice;
         }
     }
-    var foodcount={}
+    var foodcount={};
+    var foodStrList=foodNameList.join(',');
+    console.log(foodStrList);
     foodcount.name=foodlist;
     sessionStorage.setItem("totalprice", totalprice);
     sessionStorage.setItem("foodlist", foodcount);
-    console.log("当前总数量:"+count);
-    console.log("当前总价钱:"+totalprice);
+    // console.log("当前总数量:"+count);
+    // console.log("当前总价钱:"+totalprice);
+    //----------------------------------------删除购物车--------------------------------------------------
+    var json = {
+        foodNameList: foodStrList
+    };
+    json = JSON.stringify(json);
+    $.ajax({
+        type: "POST",
+        url: "/deleteItems",
+        contentType: "application/json; charset=utf-8",
+        data:json,
+        traditional: true,
+        async: false,
+        dataType: "json",
+        success: function (info) {
+            // console.log(info);
+        },
+        error: function (message) {
+            $("#request-process-patent").html("获取数据失败！");
+        }
+    });
+    //---------------------------------跳转----------------------------------------------
     window.location.href ="confirm_order2.html";
 })
 //计算总价钱

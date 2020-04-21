@@ -222,6 +222,8 @@
 </div>
 </body>
 <script type="text/javascript">
+    var foodNamelist=sessionStorage.getItem("foodlist");
+    console.log(foodNamelist);
     //禁止表单默认行为--------------------------------------------------------------
     $("#form1").submit(function (e) {
         e.preventDefault();

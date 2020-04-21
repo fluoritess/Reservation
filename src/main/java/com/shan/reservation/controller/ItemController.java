@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import sun.awt.FontDescriptor;
 
@@ -33,7 +34,7 @@ public class ItemController {
     @ResponseBody
     @RequestMapping("/deleteItem" )
     @ArchivesLog(operationType = "删除信息", operationName = "删除购物车")
-    public R selectNoticeByName(@RequestBody Map<String,String> map, HttpSession httpSession){
+    public R deleteItem(@RequestBody Map<String,String> map, HttpSession httpSession){
 //        String title=map.get("title");
        String foodName=map.get("name");
         List<food> foodlist= FoodService.selectByName(foodName);
@@ -41,5 +42,24 @@ public class ItemController {
         itemMapperUtil.deleteByFoodId(id);
        System.out.print(foodName);
        return  R.ok();
+    }
+    @ResponseBody
+    @RequestMapping("/deleteItems" )
+    @ArchivesLog(operationType = "删除信息", operationName = "删除购物车内容")
+    public R deleteItems(@RequestBody Map<String,String> map, HttpSession httpSession){
+//        String title=map.get("title");
+            String foodNameList=map.get("foodNameList");
+            String[] foodList=foodNameList.split("\\,");
+            for(int i=0;i<foodList.length;i++){
+                String foodName=foodList[i];
+                List<food> foodlist= FoodService.selectByName(foodName);
+                int id=foodlist.get(0).getFoodId();
+                itemMapperUtil.deleteByFoodId(id);
+            }
+//        List<food> foodlist= FoodService.selectByName(foodName);
+//        int id=foodlist.get(0).getFoodId();
+//        itemMapperUtil.deleteByFoodId(id);
+//        System.out.print(foodName);
+        return  R.ok();
     }
 }
