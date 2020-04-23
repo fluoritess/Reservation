@@ -30,7 +30,7 @@ public class advertisement {
         this.adenddate = adenddate;
         this.advertisementState = advertisementState;
     }
-    public advertisement(String advertisementTitle, String advertisementContent, Integer restaurantId, Date adstartdate, Date adenddate,Integer advertisementState,BigDecimal advertisementPrice) {
+    public advertisement(String advertisementTitle, String advertisementContent, Integer restaurantId, Date adstartdate, Date adenddate,Integer advertisementState,BigDecimal advertisementPrice,String advertisementImag) {
         this.advertisementTitle = advertisementTitle;
         this.advertisementContent = advertisementContent;
         this.restaurantId = restaurantId;
@@ -38,6 +38,7 @@ public class advertisement {
         this.adenddate = adenddate;
         this.advertisementState = advertisementState;
         this.advertisementPrice = advertisementPrice;
+        this.advertisementImag=advertisementImag;
     }
 
     public advertisement(Integer advertisementId, String advertisementTitle, String advertisementImag, String advertisementContent, Integer restaurantId, Integer advertisementState, Date adstartdate, Date adenddate, BigDecimal advertisementPrice) {

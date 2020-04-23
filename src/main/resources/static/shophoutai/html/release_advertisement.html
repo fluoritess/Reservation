@@ -79,13 +79,16 @@
             var tital=$("#mingcheng").val();
             var content=$("#jianjie").val();
             var re_id=9;
+            var imgage=$(".layui-upload-choose").text();
+            console.log(imgage);
             var json = {
                 start:start,
                 end:end,
                 tital:tital,
                 content:content,
                 re_id: re_id,
-                restaurant:restaurant
+                restaurant:restaurant,
+                imgage:imgage
             };
             json = JSON.stringify(json);
             $.ajax({
@@ -142,21 +145,28 @@
                 elem: '#end' //指定元素
             });
         });
+        //-------------------------------------------------------上传图片--------------------------------------------------------
         layui.use('upload', function(){
             var upload = layui.upload;
 
             //执行实例
             var uploadInst = upload.render({
                 elem: '#test1' //绑定元素
-                ,url: '/upload/' //上传接口
+                ,accept: 'images'
+                ,size:4048
+                // ,auto: false //选择文件后不自动上传
+                // ,bindAction: '#tijiao'
+                ,url: '/advertisement/uploadAdImage' //上传接口
                 ,done: function(res){
                     //上传完毕回调
+                    console.log(res);
                 }
                 ,error: function(){
                     //请求异常回调
                 }
             });
         });
+
     </script>
     </body>
 </html>
