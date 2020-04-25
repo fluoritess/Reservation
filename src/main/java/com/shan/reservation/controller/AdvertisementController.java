@@ -85,21 +85,28 @@ public class AdvertisementController {
         double price_=day*2000;
         BigDecimal price=new BigDecimal(price_);
         Integer re_id=Integer.parseInt(map.get("re_id"));
-        advertisement advertisement=new advertisement(tital,content,re_id,startTime,endTime,0,price,imgage);
-        advertisementMapper.insert(advertisement);
-        String restaurant=map.get("restaurant");
-
-        String pay = null;
-        try {
-            pay = alipayService.webPagePayAd(tital, price, restaurant);
-        } catch (Exception e) {
-            e.printStackTrace();
+        if(imgage!=null){
+            advertisement advertisement=new advertisement(tital,content,re_id,startTime,endTime,0,price,imgage);
+            advertisementMapper.insert(advertisement);
         }
-
-        Map<Object, Object> pays = new HashMap<>();
-        pays.put("pay", pay);
-
-        return  R.ok().put("pays",pays);
+        else{
+            advertisement advertisement=new advertisement(tital,content,re_id,startTime,endTime,0,price);
+            advertisementMapper.insert(advertisement);
+        }
+        //---------------------------------------------支付订单,演示时注释---------------------------------------
+//        String restaurant=map.get("restaurant");
+//        String pay = null;
+//        try {
+//            pay = alipayService.webPagePayAd(tital, price, restaurant);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//        Map<Object, Object> pays = new HashMap<>();
+//        pays.put("pay", pay);
+//
+//        return  R.ok().put("pays",pays);
+        return  R.ok();
     }
     @ResponseBody
     @RequestMapping("/selectAllAdvertisementRandom" )

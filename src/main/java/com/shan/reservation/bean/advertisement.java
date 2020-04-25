@@ -30,6 +30,16 @@ public class advertisement {
         this.adenddate = adenddate;
         this.advertisementState = advertisementState;
     }
+    public advertisement(String advertisementTitle, String advertisementContent, Integer restaurantId, Date adstartdate, Date adenddate,Integer advertisementState,BigDecimal advertisementPrice) {
+        this.advertisementTitle = advertisementTitle;
+        this.advertisementContent = advertisementContent;
+        this.restaurantId = restaurantId;
+        this.adstartdate = adstartdate;
+        this.adenddate = adenddate;
+        this.advertisementState = advertisementState;
+        this.advertisementPrice = advertisementPrice;
+
+    }
     public advertisement(String advertisementTitle, String advertisementContent, Integer restaurantId, Date adstartdate, Date adenddate,Integer advertisementState,BigDecimal advertisementPrice,String advertisementImag) {
         this.advertisementTitle = advertisementTitle;
         this.advertisementContent = advertisementContent;

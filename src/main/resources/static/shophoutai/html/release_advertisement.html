@@ -99,10 +99,13 @@
                 async: false,
                 dataType: "json",
                 success: function (info) {
-                    $(".content").empty();
-                    var pay=info.pays.pay;
-                    $(".content").append(pay);
-                    // window.location.href="advertisement.html";
+                    //-----------------------------支付页面，演示时注释--------------------------
+                    // $(".content").empty();
+                    // var pay=info.pays.pay;
+                    // $(".content").append(pay);
+
+                    //----------------------------------------------------------------
+
                 },
                 error: function (message) {
                     $("#request-process-patent").html("获取数据失败！");
@@ -154,12 +157,13 @@
                 elem: '#test1' //绑定元素
                 ,accept: 'images'
                 ,size:4048
-                // ,auto: false //选择文件后不自动上传
-                // ,bindAction: '#tijiao'
+                ,auto: false //选择文件后不自动上传
+                ,bindAction: '#tijiao'
                 ,url: '/advertisement/uploadAdImage' //上传接口
                 ,done: function(res){
                     //上传完毕回调
                     console.log(res);
+                    window.location.href="advertisement.html";
                 }
                 ,error: function(){
                     //请求异常回调
