@@ -42,6 +42,19 @@ public class food {
         this.foodState = foodState;
     }
 
+    public food(Integer foodId, Integer restaurantId, Double foodPrice, Double foodBargain, String foodName, Integer categoryId, String foodDescribe, String foodImage, Integer stock, Integer foodState) {
+        this.foodId = foodId;
+        this.restaurantId = restaurantId;
+        this.foodPrice = foodPrice;
+        this.foodBargain = foodBargain;
+        this.foodName = foodName;
+        this.categoryId = categoryId;
+        this.foodDescribe = foodDescribe;
+        this.foodImage = foodImage;
+        this.stock = stock;
+        this.foodState = foodState;
+    }
+
     public food(Integer foodId, Integer restaurantId, Double foodPrice, Double foodBargain, String foodName, Integer categoryId, String foodDescribe, Integer sales, String foodImage, Integer stock, Integer cumulativeEvaluation, Double score, Integer foodState) {
         this.foodId = foodId;
         this.restaurantId = restaurantId;

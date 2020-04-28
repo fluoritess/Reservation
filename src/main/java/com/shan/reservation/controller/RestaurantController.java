@@ -3,6 +3,7 @@ package com.shan.reservation.controller;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.shan.reservation.bean.*;
+import com.shan.reservation.mapper.foodMapper;
 import com.shan.reservation.mapper.foodUtilMapper;
 import com.shan.reservation.mapper.restaurantMapper;
 import com.shan.reservation.service.FoodService;
@@ -31,6 +32,8 @@ public class RestaurantController {
     RestaurantService RestaurantService;
     @Autowired
     foodUtilMapper foodUtilMapper;
+    @Autowired
+    com.shan.reservation.mapper.foodMapper foodMapper;
     @ResponseBody
     @RequestMapping("/findAllRestaurant" )
     @ArchivesLog(operationType = "查询信息", operationName = "查询所有餐馆")
@@ -115,7 +118,25 @@ public class RestaurantController {
         foodUtilMapper.shopUpdateFood(foodPrice,foodBargain,foodName,categoryId,foodDescribe,stock,1,foodId);
         return  R.ok();
     }
-
+    @ResponseBody
+    @RequestMapping("/restaurantAddFood" )
+    @ArchivesLog(operationType = "修改信息", operationName = "餐馆添加食物信息")
+    public R restaurantAddFood(@RequestBody Map<String,String> map, HttpSession httpSession){
+        List<food> food=foodMapper.selectByExample(null);
+        int foodId=food.size()+1;
+        String foodName=map.get("foodName");
+//        Double foodPrice, Double foodBargain, String foodName, Integer categoryId, String foodDescribe, Integer stock, Integer foodState
+        Integer categoryId=Integer.parseInt(map.get("categoryId"));
+        Double foodPrice=Double.parseDouble(map.get("foodPrice"));
+        Double foodBargain=Double.parseDouble(map.get("foodBargain"));
+        String foodDescribe=map.get("foodDescribe");
+        Integer stock=Integer.parseInt(map.get("stock"));
+        Integer re_id=Integer.parseInt(map.get("re_id"));
+        String foodImage=map.get("image");
+        food food1=new food(foodId,re_id,foodPrice,foodBargain,foodName,categoryId,foodDescribe,foodImage,stock,1);
+        foodMapper.insert(food1);
+        return  R.ok();
+    }
     @ResponseBody
     @RequestMapping("/restaurantLogin" )
     @ArchivesLog(operationType = "登陆操作", operationName = "商家登陆")

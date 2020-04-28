@@ -200,7 +200,7 @@
                     CateName=info.CateName;
                     console.log(CateName)
                     $("#0").text(CateName);
-                    window.location.href="food.html";
+                    // window.location.href="food.html";
                 },
                 error: function (message) {
                     $("#request-process-patent").html("获取数据失败！");
@@ -227,7 +227,28 @@
             //     }
             // }
         });
+        //-------------------------------------------------------上传图片--------------------------------------------------------
+        layui.use('upload', function(){
+            var upload = layui.upload;
 
+            //执行实例
+            var uploadInst = upload.render({
+                elem: '#test1' //绑定元素
+                ,accept: 'images'
+                ,size:4048
+                ,auto: false //选择文件后不自动上传
+                ,bindAction: '#tijiao'
+                ,url: '/uploadFoodImage' //上传接口
+                ,done: function(res){
+                    //上传完毕回调
+                    console.log(res);
+                    window.location.href="food.html";
+                }
+                ,error: function(){
+                    //请求异常回调
+                }
+            });
+        });
     </script>
     </body>
 </html>
