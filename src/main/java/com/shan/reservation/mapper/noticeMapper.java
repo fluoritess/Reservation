@@ -3,8 +3,10 @@ package com.shan.reservation.mapper;
 import com.shan.reservation.bean.notice;
 import com.shan.reservation.bean.noticeExample;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+@Mapper
 public interface noticeMapper {
     int countByExample(noticeExample example);
 

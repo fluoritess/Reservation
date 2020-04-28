@@ -13,4 +13,7 @@
     <select id="selectNoticeByName" resultMap="BaseResultMap" parameterType="java.lang.String" >
      select * from notice where notice_title= #{noticeTitle,jdbcType=VARCHAR}
     </select>
+    <select id="selectNoticeLast" resultMap="BaseResultMap" parameterType="java.lang.String" >
+     select * from notice ORDER BY notice_data
+    </select>
 </mapper>

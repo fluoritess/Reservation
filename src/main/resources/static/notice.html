@@ -2,8 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>杉杉订餐-文章详情页</title>
-<meta name="author" content="DeathGhost"/>
+<title>杉杉订餐-新闻/告示页</title>
 <link href="style/style.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="js/public.js"></script>
 <script type="text/javascript" src="js/jquery.js"></script>
@@ -58,7 +57,7 @@ Author URI: http://www.deathghost.cn
    <li><a href="index.html">首页</a></li>
    <li><a href="list.html">订餐</a></li>
    <li><a href="category.html">积分商城</a></li>
-   <li><a href="article_read.html">关于我们</a></li>
+   <li><a href="notice.html">关于我们</a></li>
   </ul>
  </nav>
 </header>
@@ -109,28 +108,28 @@ Author URI: http://www.deathghost.cn
     <div>
     <span><i class="i1"></i>配送支付</span>
     <ul>
-     <li><a href="article_read.html" target="_blank" title="标题">支付方式</a></li>
-     <li><a href="article_read.html" target="_blank" title="标题">配送方式</a></li>
-     <li><a href="article_read.html" target="_blank" title="标题">配送效率</a></li>
-     <li><a href="article_read.html" target="_blank" title="标题">服务费用</a></li>
+     <li><a href="notice.html" target="_blank" title="标题">支付方式</a></li>
+     <li><a href="notice.html" target="_blank" title="标题">配送方式</a></li>
+     <li><a href="notice.html" target="_blank" title="标题">配送效率</a></li>
+     <li><a href="notice.html" target="_blank" title="标题">服务费用</a></li>
     </ul>
     </div>
     <div>
     <span><i class="i2"></i>关于我们</span>
     <ul>
-     <li><a href="article_read.html" target="_blank" title="标题">招贤纳士</a></li>
-     <li><a href="article_read.html" target="_blank" title="标题">网站介绍</a></li>
-     <li><a href="article_read.html" target="_blank" title="标题">配送效率</a></li>
-     <li><a href="article_read.html" target="_blank" title="标题">商家加盟</a></li>
+     <li><a href="notice.html" target="_blank" title="标题">招贤纳士</a></li>
+     <li><a href="notice.html" target="_blank" title="标题">网站介绍</a></li>
+     <li><a href="notice.html" target="_blank" title="标题">配送效率</a></li>
+     <li><a href="notice.html" target="_blank" title="标题">商家加盟</a></li>
     </ul>
     </div>
     <div>
     <span><i class="i3"></i>帮助中心</span>
     <ul>
-     <li><a href="article_read.html" target="_blank" title="标题">服务内容</a></li>
-     <li><a href="article_read.html" target="_blank" title="标题">服务介绍</a></li>
-     <li><a href="article_read.html" target="_blank" title="标题">常见问题</a></li>
-     <li><a href="article_read.html" target="_blank" title="标题">网站地图</a></li>
+     <li><a href="notice.html" target="_blank" title="标题">服务内容</a></li>
+     <li><a href="notice.html" target="_blank" title="标题">服务介绍</a></li>
+     <li><a href="notice.html" target="_blank" title="标题">常见问题</a></li>
+     <li><a href="notice.html" target="_blank" title="标题">网站地图</a></li>
     </ul>
     </div>
   </section>
@@ -139,8 +138,8 @@ Author URI: http://www.deathghost.cn
 </footer>>
 <script type="text/javascript">
     $(function(){
-        var title = location.href.split("?")[1];
-        console.log(title);
+        var noticeId = location.href.split("?")[1];
+        console.log(noticeId);
         var user=sessionStorage.getItem("name");
         var userId;
         console.log(user);
@@ -200,12 +199,12 @@ Author URI: http://www.deathghost.cn
         }
 
         var json = {
-            title: "网络订餐全程监管 维护消费者“舌尖上的安全”"
+            noticeId: noticeId
         };
         json = JSON.stringify(json);
         $.ajax({
             type: "POST",
-            url: "/selectNoticeByName",
+            url: "/selectNoticeById",
             contentType: "application/json; charset=utf-8",
             data: json,
             async: false,

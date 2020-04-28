@@ -65,7 +65,7 @@ public class RecommendationController {
             count2++;
         }
         double score=PearsonService.CalculationPearson(arr,arr2);
-        if(score>=0.4){
+        if(score>=0.2){
             List<collectUtil> list=CollectService.selectByUser(1);
             List<restaurantUtil> restaurantUtil=new ArrayList<>();
             for(collectUtil c:list){
