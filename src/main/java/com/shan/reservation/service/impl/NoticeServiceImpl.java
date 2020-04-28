@@ -30,4 +30,9 @@ public class NoticeServiceImpl implements NoticeService {
     public notice selectById(int noticeId) {
         return noticeMapper.selectByPrimaryKey(noticeId);
     }
+
+    @Override
+    public int addNotice(notice notice) {
+        return noticeMapper.insert(notice);
+    }
 }

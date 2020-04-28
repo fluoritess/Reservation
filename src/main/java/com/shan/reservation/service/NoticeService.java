@@ -16,4 +16,5 @@ public interface NoticeService {
     notice selectNoticeByName(String noticeTitle);
     List<notice> selectNoticeLast();
     notice selectById(int noticeId);
+    int addNotice(notice notice);
 }

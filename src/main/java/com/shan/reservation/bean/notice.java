@@ -13,6 +13,13 @@ public class notice {
 
     private Date noticeData;
 
+    public notice(Integer adminId, String noticeTitle, String noticeContent, Date noticeData) {
+        this.adminId = adminId;
+        this.noticeTitle = noticeTitle;
+        this.noticeContent = noticeContent;
+        this.noticeData = noticeData;
+    }
+
     public notice(Integer noticeId, Integer adminId, String noticeTitle, String noticeContent, Date noticeData) {
         this.noticeId = noticeId;
         this.adminId = adminId;

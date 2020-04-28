@@ -18,7 +18,7 @@
 </head>
 <body>
 <div class="content">
-    <form class="layui-form" action="">
+    <form class="layui-form" id="form" action="">
         <!--<div class="layui-form-item">-->
         <!--<label class="layui-form-label">输入框</label>-->
         <!--<div class="layui-input-block">-->
@@ -28,7 +28,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">标题</label>
             <div class="layui-input-inline">
-                <input type="text" name="password" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input" id="mingcheng">
+                <input type="text" name="password" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input" id="title">
             </div>
             <!--<div class="layui-form-mid layui-word-aux">辅助文字</div>-->
         </div>
@@ -43,7 +43,7 @@
         <div class="layui-form-item layui-form-text">
             <label class="layui-form-label">内容</label>
             <div class="layui-input-block">
-                <textarea name="desc" placeholder="请输入内容" class="layui-textarea" id="jianjie" id="jianjie"></textarea>
+                <textarea name="desc" placeholder="请输入内容" class="layui-textarea"  id="content"></textarea>
             </div>
         </div>
         <div class="layui-form-item">
@@ -55,10 +55,37 @@
     </form>
 </div>
 <script>
-
+    $("#form").submit(function (e) {
+        e.preventDefault();
+    });
+    var admin=sessionStorage.getItem("admin");
     $("#tijiao").click(function () {
+        var title=$("#title").val();
+        var content=$("#content").val();
+        console.log(content);
+        var json = {
+            title: title,
+            content:content,
+            admin:admin
+        };
+        json = JSON.stringify(json);
+        $.ajax({
+            type: "POST",
+            url: "/addNotice",
+            contentType: "application/json; charset=utf-8",
+            data: json,
+            async: false,
+            dataType: "json",
+            success: function (info) {
+                    window.location.href="index.html";
+            },
+            error: function (message) {
+                $("#request-process-patent").html("获取数据失败！");
+            }
+        });
+    });
 
-    })
+    json = JSON.stringify(json);
     //Demo
     layui.use('form', function(){
         var form = layui.form;
