@@ -34,19 +34,7 @@
 
 
     <p class="p_line"><input type="text" class="form-control" value="请输入店名名称" />
-        <!--<input type="text" class="form-control" value="SPU商家编码" /> -->
-        <!--<select class="form-control">-->
-        <!--<option>商品品牌</option>-->
-        <!--<option>品牌一</option>-->
-        <!--<option>品牌二</option>-->
-        <!---->
-        <!--</select>-->
-        <!--<select class="form-control">-->
-        <!--<option>分销状态</option>-->
-        <!--<option>待上架</option>-->
-        <!--<option>已上架</option>-->
-        <!---->
-        <!--</select>-->
+
         <select class="form-control">
             <option>全部</option>
             <option>冻结中</option>
@@ -128,7 +116,7 @@
         dataType: "json",
         success: function (info) {
             console.log(info);
-            for(var i=0;i<info.restaurant.length;i++){
+            for(var i=0;i<info.restaurant.length&&i<6;i++){
                 var restaurantName=info.restaurant[i].restaurantName;
                 var restaurantImage=info.restaurant[i].restaurantImage;
                 var logo=info.restaurant[i].logo;
@@ -164,7 +152,93 @@
             $("#request-process-patent").html("获取数据失败！");
         }
     });
+    //----------------------------------------------------------分页------------------------------------------------------
+    layui.use(['laypage', 'layer'], function(){
+        var laypage = layui.laypage
+            ,layer = layui.layer;
+        //总页数大于页码总数
+        laypage.render({
+            elem: 'demo1'
+            ,count: count //数据总数
+            ,limit:6
+            ,prev:'上一页'
+            ,netx:'下一页'
+            ,curr:1
+            ,group:5
+            ,first:1
+            ,jump: function(obj,first){
+                console.log(obj.curr);
+                console.log(obj.limit);
+                if (!first) {
+                    //清空以前加载的数据
+                    $('#table').empty();
+                    //添加表格头部
+                  $("#table").append("     <tr class=\"left_tr1\">\n" +
+                      "            <td><input type=\"checkbox\"/>全选</td>\n" +
+                      "            <td>图片</td>\n" +
+                      "            <td>店名</td>\n" +
+                      "            <td>电话</td>\n" +
+                      "            <td>状态</td>\n" +
+                      "            <td>操作</td>\n" +
+                      "        </tr>");
+                    //调用加载函数加载数据
+                    showRecord(obj.curr,obj.limit);
+                }
+            }
+        });
+    });
+    function showRecord(pageNo,pageSize){
+        var json = {
+            pageNo:pageNo,
+            pageSize:pageSize
+        };
+        json = JSON.stringify(json);
+        $.ajax({
+            type: "POST",
+            url: "/findAllRestaurantBypage",
+            contentType: "application/json; charset=utf-8",
+            data: json,
+            async: false,
+            dataType: "json",
+            success: function (info) {
+                console.log(info);
+                for(var i=0;i<info.list.length&&i<6;i++){
+                    var restaurantName=info.list[i].restaurantName;
+                    var restaurantImage=info.list[i].restaurantImage;
+                    var logo=info.list[i].logo;
+                    var url="../../";
+                    restaurantImage=url+restaurantImage;
+                    logo=url+logo;
+                    var restaurantPhone=info.list[i].restaurantPhone;
+                    var restaurantState=info.list[i].restaurantState;
+                    if(restaurantState==1){
+                        $("#table").append("        <tr>\n" +
+                            "        <td><input type=\"checkbox\"/></td>\n" +
+                            "        <td><img src=\""+logo+"\" alt=\"\"/></td>\n" +
+                            "        <td>"+restaurantName+"</td>\n" +
+                            "        <td>"+restaurantPhone+"</td>\n" +
+                            "        <td>使用中</td>\n" +
+                            "        <td><button class=\"layui-btn\">冻结</button></td>\n" +
+                            "        </tr>");
+                    }
+                    else{
+                        $("#table").append("        <tr>\n" +
+                            "        <td><input type=\"checkbox\"/></td>\n" +
+                            "        <td><img src=\""+logo+"\" alt=\"\"/></td>\n" +
+                            "        <td>"+restaurantName+"</td>\n" +
+                            "        <td>"+restaurantPhone+"</td>\n" +
+                            "        <td>冻结中</td>\n" +
+                            "        <td><button class=\"layui-btn\">恢复</button></td>\n" +
+                            "        </tr>");
+                    }
+                }
 
+            },
+            error: function (message) {
+                $("#request-process-patent").html("获取数据失败！");
+            }
+        });
+    }
 </script>
 
 
