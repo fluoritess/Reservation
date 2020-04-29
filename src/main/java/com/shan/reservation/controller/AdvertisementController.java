@@ -134,7 +134,7 @@ public class AdvertisementController {
         }
         return  R.error().put("info","查询失败");
     }
-    //-----------------------------------------------------------测试接口,实际未使用----------------------------------------------
+
     @ResponseBody
     @RequestMapping("/uploadAdImage" )
     @ArchivesLog(operationType = "上传", operationName = "上传广告图片")

@@ -179,6 +179,7 @@
             var chuxiaojia=$("#chuxiaojia").val();
             var jianjie=$("#jianjie").val();
             var kucun=$("#kucun").val();
+            var imgage=$(".layui-upload-choose").text();
             var json = {
                 foodId:id,
                 categoryId: categoryId,
@@ -186,7 +187,8 @@
                 foodBargain:chuxiaojia,
                 foodDescribe:jianjie,
                 foodName:name,
-                stock:kucun
+                stock:kucun,
+                image:imgage
             };
             json = JSON.stringify(json);
             $.ajax({

@@ -23,7 +23,8 @@
     </select>
     <update id="shopUpdateFood" parameterType="com.shan.reservation.bean.orderExample" >
      update food SET food_name=#{foodName,jdbcType=VARCHAR},food_bargain= #{foodBargain,jdbcType=DOUBLE},food_price= #{foodPrice,jdbcType=DOUBLE},
-      category_id=#{categoryId,jdbcType=INTEGER}, food_describe= #{foodDescribe,jdbcType=VARCHAR}, stock=#{stock,jdbcType=INTEGER},food_state= #{foodState,jdbcType=INTEGER}
+      category_id=#{categoryId,jdbcType=INTEGER}, food_describe= #{foodDescribe,jdbcType=VARCHAR}, stock=#{stock,jdbcType=INTEGER},food_state= #{foodState,jdbcType=INTEGER},
+     food_image=#{foodImage,jdbcType=VARCHAR}
       WHERE food_id=#{foodId,jdbcType=INTEGER}
     </update>
 </mapper>

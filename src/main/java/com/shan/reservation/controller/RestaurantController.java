@@ -113,14 +113,16 @@ public class RestaurantController {
         Integer foodId=Integer.parseInt(map.get("foodId"));
         Double foodPrice=Double.parseDouble(map.get("foodPrice"));
         Double foodBargain=Double.parseDouble(map.get("foodBargain"));
+        String foodImage=map.get("image");
+        foodImage="upload/food/"+foodImage;
         String foodDescribe=map.get("foodDescribe");
         Integer stock=Integer.parseInt(map.get("stock"));
-        foodUtilMapper.shopUpdateFood(foodPrice,foodBargain,foodName,categoryId,foodDescribe,stock,1,foodId);
+        foodUtilMapper.shopUpdateFood(foodPrice,foodBargain,foodName,categoryId,foodDescribe,stock,1,foodId,foodImage);
         return  R.ok();
     }
     @ResponseBody
     @RequestMapping("/restaurantAddFood" )
-    @ArchivesLog(operationType = "修改信息", operationName = "餐馆添加食物信息")
+    @ArchivesLog(operationType = "添加信息", operationName = "餐馆添加食物信息")
     public R restaurantAddFood(@RequestBody Map<String,String> map, HttpSession httpSession){
         List<food> food=foodMapper.selectByExample(null);
         int foodId=food.size()+1;
