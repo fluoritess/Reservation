@@ -41,30 +41,46 @@ public class RecommendationController {
     @ArchivesLog(operationType = "推荐", operationName = "使用皮尔逊推荐算法")
     public R Pearson(@RequestBody Map<String,String> map, HttpSession httpSession){
        Integer id=Integer.parseInt(map.get("user_id"));
-       String orderno=map.get("orderno");
+//       String orderno=map.get("orderno");
+//       order oreder=OrderService.selectOrder(orderno);
+        //-----------------用户评价列表---------------------------
        List<evaluation> evaluations=EvaluationService.selectByuserId(id);
-
-//       order order =OrderService.selectOrder(orderno);
-        double[] arr=new double[evaluations.size()];
+       List<evaluation> evaluations2=EvaluationService.selectByuserId(1);
+        //-----------------统一长度------------------------------
+       int size=0;
+        if(evaluations.size()<evaluations2.size()){
+           size=evaluations.size();
+       }
+       else{
+           size=evaluations2.size();
+       }
+       //------------------------生成推荐列表------------------------
+        double[] arr=new double[size];
+        double[] arr2=new double[size];
         Iterator it=evaluations.iterator();
         int count=0;
-        while(it.hasNext()){
+        int count2=0;
+        while(it.hasNext()&&count<size){
             evaluation evaluation=(evaluation)it.next();
             double score=evaluation.getScore();
-            arr[count]=score;
+            int re_id=evaluation.getRestaurantId();
+            Iterator it2=evaluations2.iterator();
+            while(it2.hasNext()){
+                evaluation evaluation_=(evaluation)it2.next();
+                double score_=evaluation_.getScore();
+                int re_id2=evaluation_.getRestaurantId();
+                if(re_id==re_id2){
+                    arr[count]=score;
+                    arr2[count2]=score_;
+                    count2++;
+                    break;
+                }
+            }
             count++;
         }
-        List<evaluation> evaluations2=EvaluationService.selectByuserId(1);
-        double[] arr2=new double[evaluations2.size()];
-        Iterator it2=evaluations2.iterator();
-        int count2=0;
-        while(it2.hasNext()){
-            evaluation evaluation=(evaluation)it2.next();
-            double score=evaluation.getScore();
-            arr2[count2]=score;
-            count2++;
-        }
+        //-------------------------------评分--------------------------------
         double score=PearsonService.CalculationPearson(arr,arr2);
+        //-------------------------------推荐--------------------------------
         if(score>=0.2){
             List<collectUtil> list=CollectService.selectByUser(1);
             List<restaurantUtil> restaurantUtil=new ArrayList<>();
