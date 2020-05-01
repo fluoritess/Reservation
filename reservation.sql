@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50720
 File Encoding         : 65001
 
-Date: 2020-04-15 17:41:51
+Date: 2020-05-01 22:20:21
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -77,12 +77,13 @@ CREATE TABLE `advertisement` (
   PRIMARY KEY (`advertisement_id`),
   KEY `restaurant_id` (`restaurant_id`),
   CONSTRAINT `advertisement_ibfk_1` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurant` (`restaurant_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of advertisement
 -- ----------------------------
 INSERT INTO `advertisement` VALUES ('1', '新品上市！', 'hualaishi.jpg', '华莱士成为圣农牛排全国最大经销商!', '9', '1', '2020-03-01', '2020-05-30', '182000.00');
+INSERT INTO `advertisement` VALUES ('2', '大汉堡', 'hanbao.jpg', '大汉堡', '9', '1', '2020-04-23', '2020-04-29', '12000.00');
 
 -- ----------------------------
 -- Table structure for `city_info`
@@ -124,17 +125,17 @@ CREATE TABLE `collect` (
   CONSTRAINT `collect_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `collect_ibfk_2` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurant` (`restaurant_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `collect_ibfk_3` FOREIGN KEY (`food_id`) REFERENCES `food` (`food_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of collect
 -- ----------------------------
-INSERT INTO `collect` VALUES ('5', '1', '4', null);
-INSERT INTO `collect` VALUES ('13', '2', '1', null);
-INSERT INTO `collect` VALUES ('14', '2', '4', null);
-INSERT INTO `collect` VALUES ('15', '1', '8', null);
-INSERT INTO `collect` VALUES ('16', '1', '9', null);
-INSERT INTO `collect` VALUES ('19', '2', '9', null);
+INSERT INTO `collect` VALUES ('1', '1', '4', null);
+INSERT INTO `collect` VALUES ('2', '2', '1', null);
+INSERT INTO `collect` VALUES ('3', '2', '4', null);
+INSERT INTO `collect` VALUES ('4', '1', '8', null);
+INSERT INTO `collect` VALUES ('5', '1', '9', null);
+INSERT INTO `collect` VALUES ('6', '2', '9', null);
 
 -- ----------------------------
 -- Table structure for `coupon`
@@ -180,20 +181,22 @@ CREATE TABLE `evaluation` (
   CONSTRAINT `evaluation_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `evaluation_ibfk_3` FOREIGN KEY (`restaurant_id`) REFERENCES `restaurant` (`restaurant_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `evaluation_ibfk_4` FOREIGN KEY (`order_id`) REFERENCES `order` (`orderId`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of evaluation
 -- ----------------------------
-INSERT INTO `evaluation` VALUES ('1', '2', '好！', '2020-03-07 17:40:06', '1', '4', '4.00');
-INSERT INTO `evaluation` VALUES ('2', '3', '好！', '2020-03-07 17:50:41', '1', '7', '4.00');
-INSERT INTO `evaluation` VALUES ('3', '3', '好！', '2020-03-07 17:51:59', '1', '8', '4.00');
+INSERT INTO `evaluation` VALUES ('1', '2', '好！', '2020-03-07 17:40:06', '1', '8', '4.50');
+INSERT INTO `evaluation` VALUES ('2', '3', '好！', '2020-03-07 17:50:41', '1', '7', '5.00');
+INSERT INTO `evaluation` VALUES ('3', '3', '好！', '2020-03-07 17:51:59', '1', '1', '4.50');
 INSERT INTO `evaluation` VALUES ('4', '3', '好！', '2020-03-07 17:53:44', '1', '4', '4.00');
 INSERT INTO `evaluation` VALUES ('5', '1', '好！', '2020-03-07 18:02:08', '1', '9', '5.00');
-INSERT INTO `evaluation` VALUES ('6', '30', '好', '2020-03-11 17:23:17', '2', '9', '4.00');
-INSERT INTO `evaluation` VALUES ('7', '31', '好', '2020-03-11 17:23:40', '2', '4', '5.00');
-INSERT INTO `evaluation` VALUES ('8', '32', '好', '2020-03-11 17:23:55', '2', '7', '5.00');
-INSERT INTO `evaluation` VALUES ('10', '31', '', '2020-04-01 20:29:13', '2', '4', '5.00');
+INSERT INTO `evaluation` VALUES ('6', '4', '好', '2020-03-11 17:23:17', '2', '9', '4.00');
+INSERT INTO `evaluation` VALUES ('7', '5', '好', '2020-03-11 17:23:40', '2', '8', '4.50');
+INSERT INTO `evaluation` VALUES ('8', '6', '好', '2020-03-11 17:23:55', '2', '7', '5.00');
+INSERT INTO `evaluation` VALUES ('9', '5', '', '2020-04-01 20:29:13', '2', '4', '4.00');
+INSERT INTO `evaluation` VALUES ('10', '5', 'good', '2020-04-27 17:36:45', '3', '2', '4.00');
+INSERT INTO `evaluation` VALUES ('20', '5', 'tttttt', '2020-04-30 23:05:56', '2', '1', '4.50');
 
 -- ----------------------------
 -- Table structure for `food`
@@ -232,7 +235,7 @@ INSERT INTO `food` VALUES ('6', '4', '23.00', '18.00', '鱼香肉丝', '1', '鱼
 INSERT INTO `food` VALUES ('7', '4', '32.00', '30.00', '糖醋里脊', '1', '糖醋里脊是经典传统名菜之一，以猪里脊肉为主材，配以面粉、淀粉、醋等佐料，酸甜可口，让人食欲大开。', '1443', 'upload/food/liji.jpg', '264', '1098', '4.78', '1');
 INSERT INTO `food` VALUES ('8', '9', '15.00', '12.00', '秘制烤鸡腿堡', '2', '华莱士秘制烤鸡腿堡菜单,新鲜嫩滑的鸡腿肉,腌入华莱士秘制五味料,烹制后再淋上一层秘制酱料,配以爽脆的有机蔬菜,味道浓郁,咬一口满满腌制的鸡腿肉', '5980', 'upload/food/jituibao.jpg', '1614', '3895', '4.89', '1');
 INSERT INTO `food` VALUES ('9', '9', '12.00', '10.00', '香辣鸡翅', '2', '香辣鸡翅酥脆可口,肉嫩味美,咬一口,咔呲咔呲,鲜香劲脆!', '5120', 'upload/food/jichi.jpg', '1480', '3758', '4.81', '1');
-INSERT INTO `food` VALUES ('10', '9', '4.00', '3.00', '可乐', '2', '可乐(Cola)，是指有甜味、含咖啡因但不含酒精的碳酸饮料，非常流行。可乐主要口味包括有香草、肉桂、柠檬香味等。', '4897', 'upload/food/kele.jpg', '4275', '3412', '4.62', '1');
+INSERT INTO `food` VALUES ('10', '9', '5.00', '3.00', '可乐', '2', '可乐(Cola)，是指有甜味、含咖啡因但不含酒精的碳酸饮料，非常流行。可乐主要口味包括有香草、肉桂、柠檬香味等。', '4897', 'upload/food/kele2.jpg', '4275', '3412', '4.62', '1');
 INSERT INTO `food` VALUES ('11', '9', '20.00', '16.50', '秘制烤鸡腿堡套餐', '2', '华莱士秘制烤鸡腿堡菜单,新鲜嫩滑的鸡腿肉,腌入华莱士秘制五味料,烹制后再淋上一层秘制酱料,配以爽脆的有机蔬菜,味道浓郁,咬一口满满腌制的鸡腿肉', '8051', 'upload/food/jituibaotaocan.jpg', '4052', '4687', '4.88', '1');
 
 -- ----------------------------
@@ -274,13 +277,12 @@ CREATE TABLE `item` (
   KEY `user_id` (`user_id`),
   CONSTRAINT `item_ibfk_1` FOREIGN KEY (`food_id`) REFERENCES `food` (`food_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `item_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of item
 -- ----------------------------
-INSERT INTO `item` VALUES ('9', '1', '10', '8');
-INSERT INTO `item` VALUES ('15', '2', '9', '1');
+INSERT INTO `item` VALUES ('22', '2', '9', '2');
 
 -- ----------------------------
 -- Table structure for `messageboard`
@@ -309,7 +311,7 @@ INSERT INTO `messageboard` VALUES ('2', '1', '9', '测试');
 -- ----------------------------
 DROP TABLE IF EXISTS `notice`;
 CREATE TABLE `notice` (
-  `notice_id` int(11) NOT NULL,
+  `notice_id` int(11) NOT NULL AUTO_INCREMENT,
   `admin_id` int(11) NOT NULL,
   `notice_title` varchar(255) DEFAULT NULL,
   `notice_content` varchar(2000) DEFAULT NULL,
@@ -317,7 +319,7 @@ CREATE TABLE `notice` (
   PRIMARY KEY (`notice_id`),
   KEY `admin_id` (`admin_id`),
   CONSTRAINT `notice_ibfk_1` FOREIGN KEY (`admin_id`) REFERENCES `admin` (`admin_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of notice
@@ -349,7 +351,7 @@ CREATE TABLE `order` (
   CONSTRAINT `order_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `order_ibfk_2` FOREIGN KEY (`restaurantId`) REFERENCES `restaurant` (`restaurant_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `order_ibfk_3` FOREIGN KEY (`address_id`) REFERENCES `address` (`address_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of order
@@ -357,9 +359,10 @@ CREATE TABLE `order` (
 INSERT INTO `order` VALUES ('1', '202054687521022', '1', '9', '25.00', '0000', '000000000.00', '2020-02-01 16:53:02', '2020-02-01 16:54:14', '2020-02-01 17:13:22', '4', null, '1');
 INSERT INTO `order` VALUES ('2', '202021346782322', '1', '4', '36.00', '0000', '000000000.00', '2020-02-01 19:21:03', '2020-02-01 19:21:05', '2020-02-01 19:21:08', '5', null, '1');
 INSERT INTO `order` VALUES ('3', '202080346893212', '1', '4', '32.00', '0000', '000000000.00', '2020-02-01 19:25:19', '2020-02-01 19:25:23', '2020-02-01 19:25:26', '4', null, '1');
-INSERT INTO `order` VALUES ('30', '202003071803542', '2', '9', '22.00', null, null, '2020-03-07 18:03:55', null, null, '4', null, '4');
-INSERT INTO `order` VALUES ('31', '202003111721042', '2', '4', '12.00', null, null, '2020-03-11 17:21:04', null, null, '3', null, '4');
-INSERT INTO `order` VALUES ('32', '202003111721402', '2', '9', '12.00', null, null, '2020-03-11 17:21:40', null, null, '1', null, '4');
+INSERT INTO `order` VALUES ('4', '202003071803542', '2', '9', '22.00', null, null, '2020-03-07 18:03:55', null, null, '4', null, '4');
+INSERT INTO `order` VALUES ('5', '202003111721042', '2', '4', '12.00', null, null, '2020-03-11 17:21:04', null, null, '3', null, '4');
+INSERT INTO `order` VALUES ('6', '202003111721402', '2', '9', '12.00', null, null, '2020-03-11 17:21:40', null, null, '1', null, '4');
+INSERT INTO `order` VALUES ('7', '202005012218273', '3', '9', '30.00', null, null, '2020-05-01 22:18:28', null, null, '1', null, '6');
 
 -- ----------------------------
 -- Table structure for `restaurant`
@@ -428,5 +431,5 @@ CREATE TABLE `user` (
 -- Records of user
 -- ----------------------------
 INSERT INTO `user` VALUES ('1', '123', '12341234112', '1', '1', 'upload/user/shan.jpg', '王杉', '杉', '1', '2020-03-18 15:43:06', '253681597@qq.com', '2020-04-07 20:17:59');
-INSERT INTO `user` VALUES ('2', '123', '13224567231', '2', '1', 'upload/user/fluoritess.jpg', '彬彬', 'fluorites', '1', '2020-03-19 16:24:59', '308751395@qq.com', '2020-04-15 16:45:26');
-INSERT INTO `user` VALUES ('3', '123', '13854652124', null, null, null, '杉', '文', '1', null, null, '2020-03-26 20:08:11');
+INSERT INTO `user` VALUES ('2', '123', '13224567231', '2', '1', 'upload/user/fluoritess.jpg', '彬彬', 'fluorites', '1', '2020-03-19 16:24:59', '308751395@qq.com', '2020-04-30 22:33:23');
+INSERT INTO `user` VALUES ('3', '123', '13854652124', null, null, null, '杉', '文', '1', null, null, '2020-05-01 22:17:06');
