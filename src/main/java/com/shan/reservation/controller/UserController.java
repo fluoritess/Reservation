@@ -44,7 +44,8 @@ public class UserController {
         String name=map.get("name");
         String password=map.get("password");
         user user=userService.selectUserByNickName(name);
-        if(user!=null&&user.getUserState()!=0){
+//        &&user.getUserState()!=0
+        if(user!=null){
            if(user.getUserPassword().equals(password)){
 //               httpSession.setAttribute("user",user);
                Date date=new Date();

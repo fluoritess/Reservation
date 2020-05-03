@@ -107,10 +107,18 @@
                     //     window.location.href="http://localhost:8080/index.html"
                     // }
                     else {
-                        var name=msg.user.userName;
-                        alert("用户"+name+"登录成功")
-                        sessionStorage.setItem("name", name);
-                        window.location.href="http://localhost:8080/index.html"
+                        console.log(msg);
+                        var userState=msg.user.userState;
+                        if(userState!=0){
+                            var name=msg.user.userName;
+                            alert("用户"+name+"登录成功")
+                            sessionStorage.setItem("name", name);
+                            window.location.href="http://localhost:8080/index.html"
+                        }
+                        else{
+                            alert("账号被冻结，请联系管理员")
+                            window.location.href="http://localhost:8080/login/login.html"
+                        }
                 }
                 },
                 error: function (message) {
