@@ -115,7 +115,7 @@ public class AdvertisementController {
         List<advertisement> list= advertisementMapper.selectByExample(null);
         int length=list.size();
         boolean flag=true;
-        int i=10;//防止死循序
+        int i=0;//防止死循序
         while(flag) {
             int count = (int) (Math.random() * length);
             advertisement advertisement = list.get(count);
@@ -127,7 +127,7 @@ public class AdvertisementController {
                 flag=false;
                 return  R.ok().put("advertisement",advertisement);
             }
-            if(i>10){
+            if(i>20){
                 break;
             }
             i++;

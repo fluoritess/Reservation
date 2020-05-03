@@ -9,12 +9,16 @@
 <body>
 <div class="top">
 <div class="top_left">杉杉订餐商家后台管理</div>
-<div class="top_right"><a id="restaurant">欢迎商家：</a><i class="pass_top_i"></i><a href="#">修改密码</a><i class="exit_top_i"></i><a href="#">安全退出</a></div>
+<div class="top_right"><a id="restaurant">欢迎商家：</a><i class="pass_top_i"></i><a href="#">修改密码</a><i class="exit_top_i"></i><a href="#" id="tuichu">安全退出</a></div>
 </div>
 </body>
 <script src="../js/jquery.js"></script>
 <script>
     var restaurant=sessionStorage.getItem("restaurant");
    $("#restaurant").append(restaurant);
+   $("#tuichu").click(function () {
+       window.sessionStorage.clear();
+       // window.location.href="../../adminlogin/login.html";
+   })
 </script>
 </html>
