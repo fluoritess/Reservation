@@ -98,10 +98,17 @@
                             alert("密码或账号错误")
                         }
                         else{
-                            alert("商家"+name+"登录成功");
-                            sessionStorage.setItem("restaurant", name);
-                            sessionStorage.setItem("re_id", re_id);
-                            window.location.href="../shophoutai/html/main.html";
+                            console.log(info);
+                            var state=info.state;
+                            if(state!=0){
+                                alert("商家"+name+"登录成功");
+                                sessionStorage.setItem("restaurant", name);
+                                sessionStorage.setItem("re_id", re_id);
+                                window.location.href="../shophoutai/html/main.html";
+                            }
+                        else{
+                                alert("账号被冻结，请联系管理员")
+                            }
                         }
                     },
                     error: function (message) {

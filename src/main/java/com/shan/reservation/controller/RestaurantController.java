@@ -150,7 +150,8 @@ public class RestaurantController {
             String password_=re.get(0).getRestaurantPassword();
             if(password_.equals(passowrd)){
                 int re_id=re.get(0).getRestaurantId();
-                return R.ok().put("restaurant",restaurantName).put("re_id",re_id);
+                int state=re.get(0).getRestaurantState();
+                return R.ok().put("restaurant",restaurantName).put("re_id",re_id).put("state",state);
             }
         }
         return  R.error();
