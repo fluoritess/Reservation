@@ -14,4 +14,6 @@ public interface restaurantUtilMapper {
     List<restaurant> selectByName(String restaurantName);
     int ReAddCollect(int restaurantId);
     int RereduceCollect(int restaurantId);
+    int SetReState0(String restaurantName);
+    int SetReState1(String restaurantName);
 }

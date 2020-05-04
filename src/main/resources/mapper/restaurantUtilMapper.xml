@@ -42,4 +42,10 @@
     <update id="RereduceCollect" parameterType="java.lang.Integer" >
            UPDATE restaurant SET collection=collection-1 where restaurant_id=#{restaurantId,jdbcType=INTEGER}
     </update>
+    <update id="SetReState0" parameterType="com.shan.reservation.bean.orderExample" >
+       update restaurant SET restaurant_state= 0    WHERE restaurant_name=#{restaurantName,jdbcType=VARCHAR}
+    </update>
+    <update id="SetReState1" parameterType="com.shan.reservation.bean.orderExample" >
+       update restaurant SET restaurant_state= 1    WHERE restaurant_name=#{restaurantName,jdbcType=VARCHAR}
+    </update>
 </mapper>

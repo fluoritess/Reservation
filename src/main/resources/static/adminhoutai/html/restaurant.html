@@ -102,7 +102,7 @@
             elem: 'demo1'
             ,count: count //数据总数
             ,jump: function(obj){
-                console.log(obj)
+                // console.log(obj)
             }
         });
     })
@@ -115,7 +115,7 @@
         async: false,
         dataType: "json",
         success: function (info) {
-            console.log(info);
+            // console.log(info);
             for(var i=0;i<info.restaurant.length&&i<6;i++){
                 var restaurantName=info.restaurant[i].restaurantName;
                 var restaurantImage=info.restaurant[i].restaurantImage;
@@ -132,7 +132,7 @@
                        "        <td>"+restaurantName+"</td>\n" +
                        "        <td>"+restaurantPhone+"</td>\n" +
                        "        <td>使用中</td>\n" +
-                       "        <td><button class=\"layui-btn\">冻结</button></td>\n" +
+                       "        <td><button class=\"layui-btn dongjie\" id="+restaurantName+" >冻结</button></td>\n" +
                        "        </tr>");
                }
                 else{
@@ -142,7 +142,7 @@
                         "        <td>"+restaurantName+"</td>\n" +
                         "        <td>"+restaurantPhone+"</td>\n" +
                         "        <td>冻结中</td>\n" +
-                        "        <td><button class=\"layui-btn\">恢复</button></td>\n" +
+                        "        <td><button class=\"layui-btn huifu\" id="+restaurantName+">恢复</button></td>\n" +
                         "        </tr>");
                 }
             }
@@ -152,6 +152,52 @@
             $("#request-process-patent").html("获取数据失败！");
         }
     });
+    //----------------------------------------------------------冻结与恢复------------------------------------------------------
+    $(".dongjie").click(function () {
+        var restaurantName=$(this).attr('id');
+        console.log(restaurantName);
+        var json = {
+            restaurantName: restaurantName
+        };
+        json = JSON.stringify(json);
+        $.ajax({
+            type: "POST",
+            url: "/admin/SetReState0",
+            contentType: "application/json; charset=utf-8",
+            data: json,
+            async: false,
+            dataType: "json",
+            success: function (info) {
+                layer.msg('冻结成功');
+                window.location.href="restaurant.html";
+            },
+            error: function (message) {
+                $("#request-process-patent").html("获取数据失败！");
+            }
+        });
+    })
+    $(".huifu").click(function () {
+        var restaurantName=$(this).attr('id');
+        console.log(restaurantName);
+        var json = {
+            restaurantName: restaurantName
+        };
+        json = JSON.stringify(json);
+        $.ajax({
+            type: "POST",
+            url: "/admin/SetReState1",
+            contentType: "application/json; charset=utf-8",
+            data: json,
+            async: false,
+            dataType: "json",
+            success: function (info) {
+                window.location.href="restaurant.html";
+            },
+            error: function (message) {
+                $("#request-process-patent").html("获取数据失败！");
+            }
+        });
+    })
     //----------------------------------------------------------分页------------------------------------------------------
     layui.use(['laypage', 'layer'], function(){
         var laypage = layui.laypage
@@ -167,8 +213,8 @@
             ,group:5
             ,first:1
             ,jump: function(obj,first){
-                console.log(obj.curr);
-                console.log(obj.limit);
+                // console.log(obj.curr);
+                // console.log(obj.limit);
                 if (!first) {
                     //清空以前加载的数据
                     $('#table').empty();

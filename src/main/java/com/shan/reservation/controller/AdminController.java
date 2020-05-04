@@ -4,6 +4,7 @@ import com.shan.reservation.bean.address;
 import com.shan.reservation.bean.admin;
 import com.shan.reservation.mapper.addressMapper;
 import com.shan.reservation.mapper.advertisementUtilMapper;
+import com.shan.reservation.mapper.restaurantUtilMapper;
 import com.shan.reservation.mapper.userMapperUtil;
 import com.shan.reservation.service.AdminService;
 import com.shan.reservation.util.ArchivesLog;
@@ -32,6 +33,8 @@ public class AdminController {
     advertisementUtilMapper advertisementUtilMapper;
     @Autowired
     com.shan.reservation.mapper.userMapperUtil userMapperUtil;
+    @Autowired
+    com.shan.reservation.mapper.restaurantUtilMapper restaurantUtilMapper;
     @ResponseBody
     @RequestMapping("/SelectAdminByName" )
     @ArchivesLog(operationType = "查询信息", operationName = "查询管理员")
@@ -85,6 +88,22 @@ public class AdminController {
     public R SetUserState0(@RequestBody Map<String,String> map, HttpSession httpSession){
         String realname=map.get("realname");
         userMapperUtil.SetUserState0(realname);
+        return  R.ok();
+    }
+    @ResponseBody
+    @RequestMapping("/SetReState0" )
+    @ArchivesLog(operationType = "更新信息", operationName = "恢复商家")
+    public R SetReState0(@RequestBody Map<String,String> map, HttpSession httpSession){
+        String restaurantName=map.get("restaurantName");
+        restaurantUtilMapper.SetReState0(restaurantName);
+        return  R.ok();
+    }
+    @ResponseBody
+    @RequestMapping("/SetReState1" )
+    @ArchivesLog(operationType = "更新信息", operationName = "冻结商家")
+    public R SetReState1(@RequestBody Map<String,String> map, HttpSession httpSession){
+        String restaurantName=map.get("restaurantName");
+        restaurantUtilMapper.SetReState1(restaurantName);
         return  R.ok();
     }
 
