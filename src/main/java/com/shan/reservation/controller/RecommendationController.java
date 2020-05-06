@@ -77,6 +77,10 @@ public class RecommendationController {
                 }
             }
             count++;
+            //-------------------------------count2<count是因为该栏本两用户没有进行共同评价，为了使评分矩阵规整进行修正--------------------------------
+            if(count2<count){
+                count--;
+            }
         }
         //-------------------------------评分--------------------------------
         double score=PearsonService.CalculationPearson(arr,arr2);
