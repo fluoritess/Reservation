@@ -42,22 +42,26 @@ public class RecommendationController {
     @RequestMapping("/Pearson" )
     @ArchivesLog(operationType = "推荐", operationName = "使用皮尔逊推荐算法")
     public R Pearson(@RequestBody Map<String,String> map, HttpSession httpSession){
+        //-----------------获得当前用户id---------------------------
        Integer id=Integer.parseInt(map.get("user_id"));
-//       String orderno=map.get("orderno");
-//       order oreder=OrderService.selectOrder(orderno);
-        //-----------------最终评分---------------------------
+        //-----------------最优评分--------------------------------
         double tar_score=0;
-        //-----------------最终评分用户id---------------------------
+        //-----------------最优评分用户id---------------------------
         int tar_id=0;
-        //-----------------用户评价列表---------------------------
+        //-----------------获取当前用户评价列表-----------------------------
        List<evaluation> evaluations=EvaluationService.selectByuserId(id);
        List<user> userList=UserService.selectAllUser();
        int n=userList.size();
        for(int i=0;i<n;i++){
            user user=userList.get(i);
            int user_id=user.getUserId();
+           //-----------------排除当前用户自身的列表-----------------------------
+           if(user_id==id){
+               continue;
+           }
+           //-----------------遍历获取其他用户评价列表-----------------------------
            List<evaluation> evaluations2=EvaluationService.selectByuserId(user_id);
-           //-----------------统一长度------------------------------
+           //-----------------统一长度--------------------------------
            int size=0;
            if(evaluations.size()<evaluations2.size()){
                size=evaluations.size();
@@ -95,13 +99,12 @@ public class RecommendationController {
            }
            //-------------------------------评分--------------------------------
            double score=PearsonService.CalculationPearson(arr,arr2);
-           //-------------------------------判断与最终评分的大小--------------------------------
+           //-------------------------------判断与最优评分的大小--------------------------------
            if(score>tar_score){
                tar_score=score;
                tar_id=user_id;
            }
        }
-
         //-------------------------------生成推荐列表--------------------------------
         if(tar_score>=0.4){
             List<collectUtil> list=CollectService.selectByUser(tar_id);
@@ -115,5 +118,4 @@ public class RecommendationController {
         }
         return  R.ok().put("score",tar_score);
     }
-
 }
