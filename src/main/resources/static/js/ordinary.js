@@ -23,18 +23,18 @@ $(function(){
         $(".LeftNav").append(" <a href=\"login/register.html\">注册</a>/<a href=\"login/login.html\">登录</a><a href=\"#\">QQ客服</a><a href=\"#\">微信客服</a><a href=\"#\">手机客户端</a>");
         $(".RightNav").append(" <a href=\"user_center.html\">用户中心</a> <a href=\"user_orderlist.html\" target=\"_blank\" title=\"我的订单\">我的订单</a> <a href=\"cart.html\">购物车（0）</a> <a href=\"user_favorites.html\" target=\"_blank\" title=\"我的收藏\">我的收藏</a> <a href=\"#\">商家入驻</a>");
         $(".seekarea").append(" <a href=\"#\">碑林区</a>\n" +
-            "     <a href=\"#\">新城区</a>\n" +
-            "     <a href=\"#\">未央区</a>\n" +
-            "     <a href=\"#\">雁塔区</a>\n" +
-            "     <a href=\"#\">莲湖区</a>\n" +
-            "     <a href=\"#\">高新区</a>\n" +
-            "     <a href=\"#\">灞桥区</a>\n" +
-            "     <a href=\"#\">高陵区</a>\n" +
-            "     <a href=\"#\">阎良区</a>\n" +
-            "     <a href=\"#\">临潼区</a>\n" +
-            "     <a href=\"#\">长安区</a>\n" +
-            "     <a href=\"#\">周至县</a>\n" +
-            "     <a href=\"#\">蓝田县 </a>");
+            "     <a href=\"#\">请先登录</a>\n" +
+            "     <a href=\"#\">请先登录</a>\n" +
+            "     <a href=\"#\">请先登录</a>\n" +
+            "     <a href=\"#\">请先登录</a>\n" +
+            "     <a href=\"#\">请先登录</a>\n" +
+            "     <a href=\"#\">请先登录</a>\n" +
+            "     <a href=\"#\">请先登录</a>\n" +
+            "     <a href=\"#\">请先登录</a>\n" +
+            "     <a href=\"#\">请先登录</a>\n" +
+            "     <a href=\"#\">请先登录</a>\n" +
+            "     <a href=\"#\">请先登录</a>\n" +
+            "     <a href=\"#\">请先登录 </a>");
     }
     else{
         $(".LeftNav").append(" <a href=\"javascript:redirect();\">退出登录</a><a href=\"#\">QQ客服</a><a href=\"#\">微信客服</a><a href=\"#\">手机客户端</a>");
