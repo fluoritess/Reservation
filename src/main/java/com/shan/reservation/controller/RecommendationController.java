@@ -113,7 +113,7 @@ public class RecommendationController {
             }
             return R.ok().put("restaurant",restaurantUtil);
         }
-        return  R.ok().put("score",score);
+        return  R.ok().put("score",tar_score);
     }
 
 }
