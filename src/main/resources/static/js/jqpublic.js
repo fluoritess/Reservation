@@ -63,7 +63,7 @@ $(document).ready(function(){
             console.log('执行2');
             $.ajax({
                 type: "POST",
-                url: "/findAllRestaurant",
+                url: "/findHotRestaurant",
                 contentType: "application/json; charset=utf-8",
                 data: null,
                 async: false,

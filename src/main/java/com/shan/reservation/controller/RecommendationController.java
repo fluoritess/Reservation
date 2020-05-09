@@ -42,13 +42,13 @@ public class RecommendationController {
     @RequestMapping("/Pearson" )
     @ArchivesLog(operationType = "推荐", operationName = "使用皮尔逊推荐算法")
     public R Pearson(@RequestBody Map<String,String> map, HttpSession httpSession){
-        //-----------------获得当前用户id---------------------------
+        //-----------------获得当前用户id-----------------------------------------
        Integer id=Integer.parseInt(map.get("user_id"));
-        //-----------------最优评分--------------------------------
+        //-----------------最优评分----------------------------------------------
         double tar_score=0;
-        //-----------------最优评分用户id---------------------------
+        //-----------------最优评分用户id-----------------------------------------
         int tar_id=0;
-        //-----------------获取当前用户评价列表-----------------------------
+        //-----------------获取当前用户评价列表------------------------------------
        List<evaluation> evaluations=EvaluationService.selectByuserId(id);
        List<user> userList=UserService.selectAllUser();
        int n=userList.size();
@@ -61,7 +61,7 @@ public class RecommendationController {
            }
            //-----------------遍历获取其他用户评价列表-----------------------------
            List<evaluation> evaluations2=EvaluationService.selectByuserId(user_id);
-           //-----------------统一长度--------------------------------
+           //-----------------统一长度----------------------------------------------
            int size=0;
            if(evaluations.size()<evaluations2.size()){
                size=evaluations.size();
@@ -69,7 +69,7 @@ public class RecommendationController {
            else{
                size=evaluations2.size();
            }
-           //------------------------获取评分项------------------------
+           //------------------------获取评分项--------------------------------------
            double[] arr=new double[size];
            double[] arr2=new double[size];
            Iterator it=evaluations.iterator();
@@ -97,7 +97,7 @@ public class RecommendationController {
                    count--;
                }
            }
-           //-------------------------------评分--------------------------------
+           //-------------------------------评分---------------------------------------
            double score=PearsonService.CalculationPearson(arr,arr2);
            //-------------------------------判断与最优评分的大小--------------------------------
            if(score>tar_score){
