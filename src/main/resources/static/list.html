@@ -158,7 +158,7 @@
  <ul id="relist1">
  </ul>
  <aside>
-  <div class="title">热门商家</div>
+  <div class="title">推荐商家</div>
      <div id="hotshop">
      </div>
  </aside>
@@ -297,12 +297,38 @@
                 $("#request-process-patent").html("获取数据失败！");
             }
         });
-        //获取最热商家findHotRestaurant
+
+        //获取推荐商家
+        var userId;
+
+        var json = {
+            name: user
+        };
+        json = JSON.stringify(json);
         $.ajax({
             type: "POST",
-            url: "/findHotRestaurant",
+            url: "/GetUserInfo",
             contentType: "application/json; charset=utf-8",
-            data: null,
+            data: json,
+            async: false,
+            dataType: "json",
+            success: function (info) {
+                userId=info.user.userId;
+                realName=info.user.realname;
+            },
+            error: function (message) {
+                $("#request-process-patent").html("获取数据失败！");
+            }
+        });
+        var json = {
+            user_id: userId
+        };
+        json = JSON.stringify(json);
+        $.ajax({
+            type: "POST",
+            url: "/Recommendation/Pearson",
+            contentType: "application/json; charset=utf-8",
+            data: json,
             async: false,
             dataType: "json",
             success: function (info) {

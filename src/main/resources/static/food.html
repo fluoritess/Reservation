@@ -129,18 +129,18 @@ $(function(){
    </div>
   </div>
   <div class="viewhistory">
-   <span class="VHtitle">看了又看</span>
-   <ul class="Fsulist">
-    <li>
-     <a href="food.html" target="_blank" title="香辣鸡翅"><img src="upload/jichi.jpg"></a>
-     <p>酱爆茄子</p>
-     <p>￥12.80</p>
-    </li>
-    <li>
-     <a href="food.html" target="_blank" title="沙拉寿司"><img src="upload/07.jpg"></a>
-     <p>酱爆茄子</p>
-     <p>￥12.80</p>
-    </li>
+   <span class="VHtitle">推荐商家</span>
+   <ul class="Fsulist" id="shop">
+    <!--<li>-->
+     <!--<a href="food.html" target="_blank" title="香辣鸡翅"><img src="upload/jichi.jpg"></a>-->
+     <!--<p>酱爆茄子</p>-->
+     <!--<p>￥12.80</p>-->
+    <!--</li>-->
+    <!--<li>-->
+     <!--<a href="food.html" target="_blank" title="沙拉寿司"><img src="upload/07.jpg"></a>-->
+     <!--<p>酱爆茄子</p>-->
+     <!--<p>￥12.80</p>-->
+    <!--</li>-->
    </ul>
   </div>
  </section>
@@ -375,6 +375,63 @@ $(function(){
                     $(".RightNav").append("<a href=\"user_center.html\">用户中心</a> <a href=\"user_orderlist.html\" target=\"_blank\" title=\"我的订单\">我的订单</a> <a href=\"cart.html\">购物车（"+length+"）</a> <a href=\"user_favorites.html\" target=\"_blank\" title=\"我的收藏\">我的收藏</a> <a href=\"#\">商家入驻</a>");
                 }
             });
+        }
+    });
+    //-----------------------------------------------------------------推荐商家---------------------------------------
+    var user=sessionStorage.getItem("name");
+    //获取推荐商家
+    var userId;
+
+    var json = {
+        name: user
+    };
+    json = JSON.stringify(json);
+    $.ajax({
+        type: "POST",
+        url: "/GetUserInfo",
+        contentType: "application/json; charset=utf-8",
+        data: json,
+        async: false,
+        dataType: "json",
+        success: function (info) {
+            userId=info.user.userId;
+            realName=info.user.realname;
+        },
+        error: function (message) {
+            $("#request-process-patent").html("获取数据失败！");
+        }
+    });
+    var json = {
+        user_id: userId
+    };
+    json = JSON.stringify(json);
+    $.ajax({
+        type: "POST",
+        url: "/Recommendation/Pearson",
+        contentType: "application/json; charset=utf-8",
+        data: json,
+        async: false,
+        dataType: "json",
+        success: function (info) {
+            // console.log(info);
+            for(var i=0;i<info.restaurant.length&&i<2;i++){
+                var name=info.restaurant[i].restaurantName;
+                var restaurantCategory=info.restaurant[i].restaurantCategory;
+                var restaurantAddress=info.restaurant[i].restaurantAddress;
+                var score=info.restaurant[i].score;
+                var image=info.restaurant[i].restaurantImage;
+                var id=info.restaurant[i].restaurantId;
+                var logo=info.restaurant[i].logo;
+                // console.log(name);
+                $("#shop").append("  <li>\n" +
+                    "     <a href=\"shop.html?"+id+"\" target=\"_blank\" title=\""+name+"\"><img src=\""+logo+"\"></a>\n" +
+                    "     <p>"+name+"</p>\n" +
+                    "     <p>分数:"+score+"</p>\n" +
+                    "    </li>");
+            }
+        },
+        error: function (message) {
+            $("#request-process-patent").html("获取数据失败！");
         }
     });
     // //获取评论
