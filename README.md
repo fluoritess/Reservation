@@ -1,6 +1,6 @@
 # 基于SpringBoot的网上订餐系统
 杉杉订餐系统是一个以SpringBoot搭建的网上订餐系统，前端技术使用Bootstarp与Layui
-进行开发，前后端使用ajax进行交互。这是本人本科毕业设计。 
+进行开发，前后端使用ajax进行交互。
 ### 订餐主页
 ----------
 ![主页](images/zhuye1.png)
